@@ -725,7 +725,7 @@ int loadSave()
             fread(&gbClock, 1, sizeof(gbClock), saveFile);
             break;
     }
-
+    saveGame();
     return 0;
 }
 
