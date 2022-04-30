@@ -792,10 +792,19 @@ void updateAutosave() {
     if (autosaveStarted)
         framesSinceAutosaveStarted++;
 
-    if (framesSinceAutosaveStarted >= 120 ||     // Executes when sram is written to for 120 consecutive frames, or
-        (!saveModified && wroteToSramThisFrame)) { // when a full frame has passed since sram was last written to.
-        gameboySyncAutosave();
+    if (!(fastForwardMode || fastForwardKey)){
+        if (framesSinceAutosaveStarted >= 120 ||     // Executes when sram is written to for 120 consecutive frames, or
+            (!saveModified && wroteToSramThisFrame)) { // when a full frame has passed since sram was last written to.
+            gameboySyncAutosave();
+        }
     }
+    else{
+        if (framesSinceAutosaveStarted >= 960 ||     // Executes when sram is written to for 120 consecutive frames, or
+            (!saveModified && wroteToSramThisFrame)) { // when a full frame has passed since sram was last written to.
+            gameboySyncAutosave();
+        }
+    }
+    
     if (saveModified) {
         wroteToSramThisFrame = true;
         autosaveStarted = true;
