@@ -34,9 +34,9 @@ $(TARGET)_dsi.nds: arm7/$(TARGET).elf arm9/$(TARGET).elf
 	@ndstool -7 arm7/$(TARGET).elf -9 arm9/$(TARGET).elf -b $(GAME_ICON) "$(GAME_TITLE);$(GAME_SUBTITLE1);$(GAME_SUBTITLE2)" -g $(GID) -u $(TID) -c $@
 	@echo built ... $(notdir $@)
 
-$(TARGET).cia: $(TARGET)_dsi.nds
-	@make_cia --srl=$(TARGET)_dsi.nds
-	@mv $(TARGET)_dsi.cia $(TARGET).cia
+#$(TARGET).cia: $(TARGET)_dsi.nds
+#	@make_cia --srl=$(TARGET)_dsi.nds
+#	@mv $(TARGET)_dsi.cia $(TARGET).cia
 
 #---------------------------------------------------------------------------------
 arm7/$(TARGET).elf:
@@ -50,4 +50,4 @@ arm9/$(TARGET).elf:
 clean:
 	$(MAKE) -C arm9 clean
 	$(MAKE) -C arm7 clean
-	rm -f $(TARGET).nds $(TARGET).dsi $(TARGET).cia $(TARGET).arm7 $(TARGET).arm9
+	rm -f $(TARGET).nds $(TARGET).dsi $(TARGET).arm7 $(TARGET).arm9 #$(TARGET).cia 
