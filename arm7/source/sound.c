@@ -9,6 +9,8 @@
 // The lower this value, the more often sound will be synchronized.
 #define SOUND_RESOLUTION 150
 
+void startChannel(int);
+
 int channels[4] = {8,9,0,14};
 const int dutyIndex[4] = {0, 1, 3, 5};
 u32 schannelCR[4];
