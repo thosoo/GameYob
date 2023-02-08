@@ -12,7 +12,9 @@
 void startChannel(int);
 void setChannelVolume(int, bool);
 void doCommand(u32);
-
+void updateMasterVolume();
+void updateChannel(int, bool);
+void setHyperSound(int);
 
 int channels[4] = {8,9,0,14};
 const int dutyIndex[4] = {0, 1, 3, 5};
