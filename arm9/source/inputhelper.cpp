@@ -134,6 +134,7 @@ void loadKeyConfig() {
 void controlsParseConfig(const char* line2) {
     char line[100];
     strncpy(line, line2, 100);
+    line[99] = '\0';
     while (strlen(line) > 0 && (line[strlen(line)-1] == '\n' || line[strlen(line)-1] == ' '))
         line[strlen(line)-1] = '\0';
     if (line[0] == '(') {

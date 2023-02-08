@@ -165,9 +165,11 @@ void loadCheats(const char* filename) {
         for (int i=0; i<numCheats; i++)
             unapplyGGCheat(i);
     }
-    else
-        // Rom has been changed
+    else{
         strncpy(cheatsRomTitle, getRomTitle(), 20);
+        cheatsRomTitle[20]='\0';
+    }
+        // Rom has been changed
     numCheats = 0;
 
     // Begin loading new cheat file
