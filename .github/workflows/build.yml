@@ -17,4 +17,12 @@ jobs:
         uses: actions/checkout@v1
       - name: Build GameYob
         run: |
-          make 
+          make
+          mkdir -p ~/artifacts
+          cp gameyob.nds ~/artifacts
+          cp gameyob_dsi.nds.cia ~/artifacts
+      - name: Publish build to GH Actions
+        uses: actions/upload-artifact@v2
+        with:
+          path: ~/artifacts/*
+          name: build
