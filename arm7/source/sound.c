@@ -10,6 +10,9 @@
 #define SOUND_RESOLUTION 150
 
 void startChannel(int);
+void setChannelVolume(int, bool);
+void doCommand(u32);
+
 
 int channels[4] = {8,9,0,14};
 const int dutyIndex[4] = {0, 1, 3, 5};
