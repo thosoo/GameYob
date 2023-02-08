@@ -203,7 +203,7 @@ template <class Data, class Metadata> void quickSort(std::vector<Data>& data, st
  * Returns a pointer to a newly-allocated string. The caller is responsible
  * for free()ing it.
  */
-char* startFileChooser(const char* extensions[], bool romExtensions, bool canQuit,  int len) {
+char* startFileChooser(const char* extensions[],  int len, bool romExtensions, bool canQuit) {
     filesPerPage = (canQuit ? 23 : 24);
 
     setPrintConsole(menuConsole);
