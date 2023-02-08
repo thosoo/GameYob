@@ -253,7 +253,7 @@ void gameboyUpdateVBlank() {
             }
             char s[50];
             strncpy(s, timeString, 50);
-            s[5] = '\0';
+            s[50] = '\0';
             int spaces = 31-strlen(s);
             for (int i=0; i<spaces; i++)
                 iprintf(" ");
