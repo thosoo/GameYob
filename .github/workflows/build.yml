@@ -20,7 +20,7 @@ jobs:
           make
           mkdir -p ~/artifacts
           cp gameyob.nds ~/artifacts
-          cp gameyob_dsi.nds.cia ~/artifacts
+          cp gameyob_dsi.nds ~/artifacts
       - name: Publish build to GH Actions
         uses: actions/upload-artifact@v2
         with:
