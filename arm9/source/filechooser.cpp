@@ -203,14 +203,13 @@ template <class Data, class Metadata> void quickSort(std::vector<Data>& data, st
  * Returns a pointer to a newly-allocated string. The caller is responsible
  * for free()ing it.
  */
-char* startFileChooser(const char* extensions[], bool romExtensions, bool canQuit) {
+char* startFileChooser(const char* extensions[], bool romExtensions, bool canQuit,  int len) {
     filesPerPage = (canQuit ? 23 : 24);
 
     setPrintConsole(menuConsole);
     fileChooserOn = true;
     updateScreens(true); // Screen may need to be enabled
 
-    int numExtensions = sizeof(extensions)/sizeof(const char*);
     char* retval;
     char buffer[256];
     char cwd[256];
@@ -233,7 +232,7 @@ char* startFileChooser(const char* extensions[], bool romExtensions, bool canQui
             bool isValidExtension = false;
             bool isRomFile = false;
             if (!(entry->d_type & DT_DIR)) {
-                for (int i=0; i<numExtensions; i++) {
+                for (int i=0; i<len; i++) {
                     if (strcasecmp(ext, extensions[i]) == 0) {
                         isValidExtension = true;
                         break;

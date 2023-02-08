@@ -6,7 +6,7 @@ struct FileChooserState {
     std::string directory;
 };
 
-char* startFileChooser(const char* extensions[], bool romExtensions, bool canQuit=false);
+char* startFileChooser(const char* extensions[], bool romExtensions, bool canQuit=false,  int len);
 bool isFileChooserOn();
 void setFileChooserMatchFile(const char* filename); // Auto-select this file in the directory
 

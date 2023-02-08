@@ -61,7 +61,8 @@ void selectRom() {
 
     loadFileChooserState(&romChooserState);
     const char* extraExtensions[] = {"gbs"};
-    char* filename = startFileChooser(extraExtensions, true);
+    int len = (sizeof(extensions)/sizeof(const char* );
+    char* filename = startFileChooser(extraExtensions, true,len);
     saveFileChooserState(&romChooserState);
 
     if (!biosExists) {

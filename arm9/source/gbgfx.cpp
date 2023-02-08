@@ -763,7 +763,8 @@ void selectBorder() {
     loadFileChooserState(&borderChooserState);
 
     const char* extensions[] = {"bmp"};
-    char* filename = startFileChooser(extensions, false, true);
+    int len = (sizeof(extensions)/sizeof(const char* );
+    char* filename = startFileChooser(extensions, false, true,len);
     if (filename != NULL) {
         char cwd[256];
         getcwd(cwd, 256);
