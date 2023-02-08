@@ -55,8 +55,8 @@ void VblankHandler(void) {
         sharedData->scaleTransferReady = false;
     }
 
-scaling_end:
-    Wifi_Update();
+//scaling_end:
+//    Wifi_Update();
 }
 
 void VcountHandler() {
