@@ -167,7 +167,7 @@ void loadCheats(const char* filename) {
     }
     else{
         strncpy(cheatsRomTitle, getRomTitle(), 20);
-        cheatsRomTitle[20]='\0';
+        cheatsRomTitle[19]='\0';
     }
         // Rom has been changed
     numCheats = 0;

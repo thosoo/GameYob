@@ -659,7 +659,7 @@ void updateMenu() {
 void printMenuMessage(const char* s) {
     bool hadPreviousMessage = printMessage[0] != '\0';
     strncpy(printMessage, s, 33);
-    printMessage[33]= '\0';
+    printMessage[32]= '\0';
     if (hadPreviousMessage) {
         iprintf("\r");
     }
