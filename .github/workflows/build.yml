@@ -31,6 +31,7 @@ jobs:
           mkdir -p ~/artifacts
           cp gameyob.nds ~/artifacts
           cp gameyob_dsi.nds ~/artifacts
+          cp gameyob.cia ~/artifacts
       - name: Publish build to GH Actions
         uses: actions/upload-artifact@v3
         with:
