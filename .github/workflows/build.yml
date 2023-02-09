@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Get make_cia
+        run: |
+          curl -o make_cia https://github.com/DS-Homebrew/GodMode9i/blob/master/make_cia?raw=true
+          chmod +x make_cia
       - name: Build GameYob
         run: |
           make
