@@ -19,6 +19,9 @@ jobs:
         run: |
           curl -o make_cia https://github.com/DS-Homebrew/GodMode9i/blob/master/make_cia?raw=true
           chmod +x make_cia
+      - name: List directory
+        run: |
+          ls -al
       - name: Build GameYob
         run: |
           make
