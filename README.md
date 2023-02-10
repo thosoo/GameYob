@@ -1,13 +1,13 @@
-GameYob v0.5.2
+# GameYob v0.5.2
 Author: Drenn
 
-Files included:
+## Files included
 
 gameyob.nds:     Use with DS flashcards.
 gameyob_dsi.nds: Same as gameyob.nds, but has a dsi header. Needed for hbmenu support.
 gameyob.cia:     Installable as DSiWare for 3DS.
 
-Basic list of features:
+## Basic list of features
 
 - Gameboy, Gameboy Color, Super Gameboy emulation
 - Supports Gameboy Color Bios ("boot rom") for custom palettes
@@ -20,7 +20,6 @@ Basic list of features:
 - Gameboy Printer emulation
 - GBS music playback
 
-
-See the GBAtemp thread for more information:
+## See the GBAtemp thread for more information
 
 http://gbatemp.net/threads/gameyob-a-gameboy-emulator-for-ds.343407/
