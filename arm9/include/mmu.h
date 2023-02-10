@@ -3,16 +3,19 @@
 #include "global.h"
 #include <stdio.h>
 
-#define MAX_SRAM_SIZE   0x20000
+#define MAX_SRAM_SIZE 0x20000
 
 // Be careful changing this; it affects save state compatibility.
 struct clockStruct
 {
-    union {
-        struct {
+    union
+    {
+        struct
+        {
             int s, m, h, d, ctrl;
         } mbc3;
-        struct {
+        struct
+        {
             int m, d, y;
             int u[2]; /* Unused */
         } huc3;
@@ -45,9 +48,9 @@ void doRumble(bool rumbleVal);
 
 extern bool ramEnabled;
 extern char rtcReg;
-extern u8   HuC3Mode;
-extern u8   HuC3Value;
-extern u8   HuC3Shift;
+extern u8 HuC3Mode;
+extern u8 HuC3Value;
+extern u8 HuC3Shift;
 
 extern int resultantGBMode;
 
@@ -61,13 +64,13 @@ extern bool biosOn;
 extern u8 bios[0x900];
 
 // memory[x][yyy] = ram value at xyyy
-extern u8* memory[0x10];
+extern u8 *memory[0x10];
 
 extern u8 vram[2][0x2000];
-extern u8* externRam;
+extern u8 *externRam;
 extern u8 wram[8][0x1000];
-extern u8* const hram;
-extern u8* const ioRam;
+extern u8 *const hram;
+extern u8 *const ioRam;
 extern u8 spriteData[];
 extern int wramBank;
 extern int vramBank;
@@ -84,6 +87,6 @@ extern u16 dmaLength;
 extern int dmaMode;
 
 extern bool saveModified;
-extern bool dirtySectors[MAX_SRAM_SIZE/512];
+extern bool dirtySectors[MAX_SRAM_SIZE / 512];
 extern int numSaveWrites;
 extern bool autosaveStarted;

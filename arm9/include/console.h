@@ -15,10 +15,9 @@ extern bool printerEnabled;
 extern int stateNum;
 extern int singleScreenMode;
 extern int gameScreen;
-extern PrintConsole* menuConsole;
+extern PrintConsole *menuConsole;
 
 extern volatile int consoleSelectedRow; // This line is given a different backdrop
-
 
 void setMenuDefaults();
 
@@ -29,38 +28,37 @@ bool isConsoleOn(); // Returns true if the sub-screen's console is set up.
 
 void redrawMenu();
 void updateMenu();
-void printMenuMessage(const char* s);
+void printMenuMessage(const char *s);
 
 void displaySubMenu(void (*updateFunc)());
 void closeSubMenu();
 
-int getMenuOption(const char* name);
-void setMenuOption(const char* name, int value);
-void enableMenuOption(const char* name);
-void disableMenuOption(const char* name);
+int getMenuOption(const char *name);
+void setMenuOption(const char *name, int value);
+void enableMenuOption(const char *name);
+void disableMenuOption(const char *name);
 
-void menuParseConfig(const char* line);
-void menuPrintConfig(FILE* file);
+void menuParseConfig(const char *line);
+void menuPrintConfig(FILE *file);
 
-void updateScreens(bool waitToFinish=false);
+void updateScreens(bool waitToFinish = false);
 
-
-void setPrintConsole(PrintConsole* console);
-PrintConsole* getPrintConsole();
+void setPrintConsole(PrintConsole *console);
+PrintConsole *getPrintConsole();
 
 void consoleSetPosColor(int x, int y, int color);
 void consoleSetLineColor(int line, int color);
-void iprintfColored(int palette, const char* format, ...);
-void printLog(const char* format, ...);
+void iprintfColored(int palette, const char *format, ...);
+void printLog(const char *format, ...);
 
 int checkRumble();
 
 void disableSleepMode();
 void enableSleepMode();
 
-
-enum {
-    CONSOLE_COLOR_BLACK=0,
+enum
+{
+    CONSOLE_COLOR_BLACK = 0,
     CONSOLE_COLOR_RED,
     CONSOLE_COLOR_GREEN,
     CONSOLE_COLOR_YELLOW,

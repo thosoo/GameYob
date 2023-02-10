@@ -13,4 +13,4 @@ void updateSound(int cycles);
 void soundUpdateVBlank(); // Sound is send to arm7 each vblank, if basicSound == true
 void handleSoundRegister(u8 ioReg, u8 val);
 void updateSoundSample();
-void handleSDLCallback(void* userdata, u8* buffer, int len);
+void handleSDLCallback(void *userdata, u8 *buffer, int len);

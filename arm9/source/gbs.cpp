@@ -10,7 +10,7 @@
 #include "gbsnd.h"
 #include "console.h"
 
-#define READ16(src) (*(src) | *(src+1)<<8)
+#define READ16(src) (*(src) | *(src + 1) << 8)
 
 bool gbsMode;
 u8 gbsHeader[0x70];
@@ -23,28 +23,31 @@ u16 gbsPlayAddress;
 u8 gbsSelectedSong;
 int gbsPlayingSong;
 
-PrintConsole* gbsConsole = 0;
+PrintConsole *gbsConsole = 0;
 extern PrintConsole defaultConsole; // Defined in libnds
 
 // private
 
-void gbsRedraw() {
-    //consoleClear();
-    
-    PrintConsole* oldPrintConsole = getPrintConsole();
+void gbsRedraw()
+{
+    // consoleClear();
+
+    PrintConsole *oldPrintConsole = getPrintConsole();
     setPrintConsole(gbsConsole);
     iprintf("\33[0;0H"); // Cursor to upper-left corner
 
-    iprintf("Song %d of %d\33[0K\n", gbsSelectedSong+1, gbsNumSongs);
+    iprintf("Song %d of %d\33[0K\n", gbsSelectedSong + 1, gbsNumSongs);
     if (gbsPlayingSong == -1)
         iprintf("(Not playing)\33[0K\n\n");
     else
-        iprintf("(Playing %d)\33[0K\n\n", gbsPlayingSong+1);
+        iprintf("(Playing %d)\33[0K\n\n", gbsPlayingSong + 1);
 
     // Print music information
-    for (int i=0; i<3; i++) {
-        for (int j=0; j<32; j++) {
-            char c = gbsHeader[0x10+i*0x20+j];
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 32; j++)
+        {
+            char c = gbsHeader[0x10 + i * 0x20 + j];
             if (c == 0)
                 iprintf(" ");
             else
@@ -55,30 +58,33 @@ void gbsRedraw() {
     setPrintConsole(oldPrintConsole);
 }
 
-void gbsLoadSong() {
+void gbsLoadSong()
+{
     initMMU();
     ime = 0;
 
-    gbRegs.sp.w = READ16(gbsHeader+0x0c);
-    u8 tma =        gbsHeader[0x0e];
-    u8 tac =        gbsHeader[0x0f];
+    gbRegs.sp.w = READ16(gbsHeader + 0x0c);
+    u8 tma = gbsHeader[0x0e];
+    u8 tac = gbsHeader[0x0f];
 
-    if (tac&0x80)
+    if (tac & 0x80)
         setDoubleSpeed(1);
     tac &= ~0x80;
-    if (tma == 0 && tac == 0) {
+    if (tma == 0 && tac == 0)
+    {
         // Vblank interrupt handler
         romSlot0[0x40] = 0xcd; // call
-        romSlot0[0x41] = gbsPlayAddress&0xff;
-        romSlot0[0x42] = gbsPlayAddress>>8;
+        romSlot0[0x41] = gbsPlayAddress & 0xff;
+        romSlot0[0x42] = gbsPlayAddress >> 8;
         romSlot0[0x43] = 0xd9; // reti
         writeIO(0xff, VBLANK);
     }
-    else {
+    else
+    {
         // Timer interrupt handler
         romSlot0[0x50] = 0xcd; // call
-        romSlot0[0x51] = gbsPlayAddress&0xff;
-        romSlot0[0x52] = gbsPlayAddress>>8;
+        romSlot0[0x51] = gbsPlayAddress & 0xff;
+        romSlot0[0x52] = gbsPlayAddress >> 8;
         romSlot0[0x53] = 0xd9; // reti
         writeIO(0xff, TIMER);
     }
@@ -96,16 +102,19 @@ void gbsLoadSong() {
 
 // public
 
-void gbsReadHeader() {
-    gbsNumSongs    =    gbsHeader[0x04];
-    gbsLoadAddress =    READ16(gbsHeader+0x06);
-    gbsInitAddress =    READ16(gbsHeader+0x08);
-    gbsPlayAddress =    READ16(gbsHeader+0x0a);
+void gbsReadHeader()
+{
+    gbsNumSongs = gbsHeader[0x04];
+    gbsLoadAddress = READ16(gbsHeader + 0x06);
+    gbsInitAddress = READ16(gbsHeader + 0x08);
+    gbsPlayAddress = READ16(gbsHeader + 0x0a);
 }
 
-void gbsInit() {
-    if (gbsConsole == 0) {
-        gbsConsole = (PrintConsole*)malloc(sizeof(PrintConsole));
+void gbsInit()
+{
+    if (gbsConsole == 0)
+    {
+        gbsConsole = (PrintConsole *)malloc(sizeof(PrintConsole));
         memcpy(gbsConsole, &defaultConsole, sizeof(PrintConsole));
     }
     videoSetMode(MODE_0_2D);
@@ -113,19 +122,21 @@ void gbsInit() {
     setPrintConsole(gbsConsole);
     videoBgEnable(0);
 
-    u8 firstSong=   gbsHeader[0x05]-1;
+    u8 firstSong = gbsHeader[0x05] - 1;
 
     // RST vectors
-    for (int i=0; i<8; i++) {
-        u16 dest = gbsLoadAddress + i*8;
-        romSlot0[i*8] = 0xc3; // jp
-        romSlot0[i*8+1] = dest&0xff;
-        romSlot0[i*8+2] = dest>>8;
+    for (int i = 0; i < 8; i++)
+    {
+        u16 dest = gbsLoadAddress + i * 8;
+        romSlot0[i * 8] = 0xc3; // jp
+        romSlot0[i * 8 + 1] = dest & 0xff;
+        romSlot0[i * 8 + 2] = dest >> 8;
     }
 
     // Interrupt handlers
-    for (int i=0; i<5; i++) {
-        romSlot0[0x40+i*8] = 0xd9; // reti
+    for (int i = 0; i < 5; i++)
+    {
+        romSlot0[0x40 + i * 8] = 0xd9; // reti
     }
 
     // Infinite loop
@@ -139,22 +150,27 @@ void gbsInit() {
 }
 
 // Called at vblank each frame
-void gbsCheckInput() {
-    if (keyPressedAutoRepeat(mapGbKey(KEY_GB_LEFT))) {
+void gbsCheckInput()
+{
+    if (keyPressedAutoRepeat(mapGbKey(KEY_GB_LEFT)))
+    {
         if (gbsSelectedSong == 0)
-            gbsSelectedSong = gbsNumSongs-1;
+            gbsSelectedSong = gbsNumSongs - 1;
         else
             gbsSelectedSong--;
     }
-    if (keyPressedAutoRepeat(mapGbKey(KEY_GB_RIGHT))) {
+    if (keyPressedAutoRepeat(mapGbKey(KEY_GB_RIGHT)))
+    {
         gbsSelectedSong++;
         if (gbsSelectedSong == gbsNumSongs)
             gbsSelectedSong = 0;
     }
-    if (keyJustPressed(mapGbKey(KEY_GB_A))) {
+    if (keyJustPressed(mapGbKey(KEY_GB_A)))
+    {
         gbsLoadSong();
     }
-    if (keyJustPressed(mapGbKey(KEY_GB_B))) { // Stop playing music
+    if (keyJustPressed(mapGbKey(KEY_GB_B)))
+    { // Stop playing music
         gbsPlayingSong = -1;
         ime = 0;
         writeIO(0xff, 0);

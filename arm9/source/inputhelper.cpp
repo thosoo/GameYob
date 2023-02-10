@@ -26,16 +26,16 @@
 
 #define FAT_CACHE_SIZE 16
 
-FILE* romFile=NULL;
-FILE* saveFile=NULL;
+FILE *romFile = NULL;
+FILE *saveFile = NULL;
 char filename[100];
 char savename[100];
 char basename[100];
 char romTitle[20];
 
-char* romPath = NULL;
-char* biosPath = NULL;
-char* borderPath = NULL;
+char *romPath = NULL;
+char *biosPath = NULL;
+char *borderPath = NULL;
 
 // Values taken from the cartridge header
 u8 ramSize;
@@ -43,19 +43,19 @@ u8 mapper;
 u8 cgbFlag;
 u8 romSize;
 
-int keysPressed=0;
-int lastKeysPressed=0;
-int keysForceReleased=0;
-int repeatStartTimer=0;
-int repeatTimer=0;
+int keysPressed = 0;
+int lastKeysPressed = 0;
+int keysForceReleased = 0;
+int repeatStartTimer = 0;
+int repeatTimer = 0;
 
-bool advanceFrame=false;
+bool advanceFrame = false;
 
-u8* romSlot0;
-u8* romSlot1;
+u8 *romSlot0;
+u8 *romSlot1;
 int maxLoadedRomBanks;
 int numLoadedRomBanks;
-u8* romBankSlots = NULL; // Each 0x4000 bytes = one slot
+u8 *romBankSlots = NULL;        // Each 0x4000 bytes = one slot
 int bankSlotIDs[MAX_ROM_BANKS]; // Keeps track of which bank occupies which slot
 std::vector<int> lastBanksUsed;
 
@@ -64,53 +64,57 @@ bool suspendStateExists;
 void initInput()
 {
     fatInit(FAT_CACHE_SIZE, true);
-    //fatInitDefault();
+    // fatInitDefault();
 
     if (__dsimode)
         maxLoadedRomBanks = 512; // 8 megabytes
     else
         maxLoadedRomBanks = 128; // 2 megabytes
 
-    romBankSlots = (u8*)malloc(maxLoadedRomBanks*0x4000);
+    romBankSlots = (u8 *)malloc(maxLoadedRomBanks * 0x4000);
 }
 
 // This function is supposed to flush the cache so I don't have to fclose() and fopen()
 // a file in order to save it.
 // But I found I could not rely on it in the gameboySyncAutosave() function.
-void flushFatCache() {
+void flushFatCache()
+{
     // This involves things from libfat which aren't normally visible
-    devoptab_t* devops = (devoptab_t*)GetDeviceOpTab ("sd");
-    PARTITION* partition = (PARTITION*)devops->deviceData;
+    devoptab_t *devops = (devoptab_t *)GetDeviceOpTab("sd");
+    PARTITION *partition = (PARTITION *)devops->deviceData;
     _FAT_cache_flush(partition->cache); // Flush the cache manually
 }
 
-const char* gbKeyNames[] = {"-","A","B","Left","Right","Up","Down","Start","Select",
-    "Menu","Menu/Pause","Save","Autofire A","Autofire B", "Fast Forward", "FF Toggle", "Scale","Reset","A+B+START+SELECT"};
-const char* dsKeyNames[] = {"A","B","Select","Start","Right","Left","Up","Down",
-    "R","L","X","Y","Touch"};
+const char *gbKeyNames[] = {"-", "A", "B", "Left", "Right", "Up", "Down", "Start", "Select",
+                            "Menu", "Menu/Pause", "Save", "Autofire A", "Autofire B", "Fast Forward", "FF Toggle", "Scale", "Reset", "A+B+START+SELECT"};
+const char *dsKeyNames[] = {"A", "B", "Select", "Start", "Right", "Left", "Up", "Down",
+                            "R", "L", "X", "Y", "Touch"};
 
-const int NUM_DS_KEYS = sizeof(dsKeyNames)/sizeof(char*);
-const int NUM_GB_KEYS = sizeof(gbKeyNames)/sizeof(char*);
+const int NUM_DS_KEYS = sizeof(dsKeyNames) / sizeof(char *);
+const int NUM_GB_KEYS = sizeof(gbKeyNames) / sizeof(char *);
 
 int keys[NUM_GB_KEYS];
 
-struct KeyConfig {
+struct KeyConfig
+{
     char name[32];
     int gbKeys[13];
 };
 KeyConfig defaultKeyConfig = {
     "Main",
-    {KEY_GB_A,KEY_GB_B,KEY_GB_SELECT,KEY_GB_START,KEY_GB_RIGHT,KEY_GB_LEFT,KEY_GB_UP,KEY_GB_DOWN,
-        KEY_MENU,KEY_FAST_FORWARD,KEY_SAVE,KEY_SCALE,KEY_MENU}
-};
+    {KEY_GB_A, KEY_GB_B, KEY_GB_SELECT, KEY_GB_START, KEY_GB_RIGHT, KEY_GB_LEFT, KEY_GB_UP, KEY_GB_DOWN,
+     KEY_MENU, KEY_FAST_FORWARD, KEY_SAVE, KEY_SCALE, KEY_MENU}};
 
 std::vector<KeyConfig> keyConfigs;
-unsigned int selectedKeyConfig=0;
+unsigned int selectedKeyConfig = 0;
 
 // Return false if there is no key assigned to opening the menu (including touch).
-bool checkKeyAssignedToMenu(KeyConfig* config) {
-    for (int i=0; i<NUM_DS_KEYS; i++) {
-        if (config->gbKeys[i] == KEY_MENU || config->gbKeys[i] == KEY_MENU_PAUSE) {
+bool checkKeyAssignedToMenu(KeyConfig *config)
+{
+    for (int i = 0; i < NUM_DS_KEYS; i++)
+    {
+        if (config->gbKeys[i] == KEY_MENU || config->gbKeys[i] == KEY_MENU_PAUSE)
+        {
             return true;
         }
     }
@@ -118,11 +122,13 @@ bool checkKeyAssignedToMenu(KeyConfig* config) {
     return false;
 }
 
-void loadKeyConfig() {
-    KeyConfig* keyConfig = &keyConfigs[selectedKeyConfig];
-    for (int i=0; i<NUM_GB_KEYS; i++)
+void loadKeyConfig()
+{
+    KeyConfig *keyConfig = &keyConfigs[selectedKeyConfig];
+    for (int i = 0; i < NUM_GB_KEYS; i++)
         keys[i] = 0;
-    for (int i=0; i<NUM_DS_KEYS; i++) {
+    for (int i = 0; i < NUM_DS_KEYS; i++)
+    {
         keys[keyConfig->gbKeys[i]] |= BIT(i);
     }
 
@@ -131,62 +137,76 @@ void loadKeyConfig() {
         keyConfig->gbKeys[12] = KEY_MENU;
 }
 
-void controlsParseConfig(const char* line2) {
+void controlsParseConfig(const char *line2)
+{
     char line[100];
     strncpy(line, line2, 100);
     line[99] = '\0';
-    while (strlen(line) > 0 && (line[strlen(line)-1] == '\n' || line[strlen(line)-1] == ' '))
-        line[strlen(line)-1] = '\0';
-    if (line[0] == '(') {
-        char* bracketEnd;
-        if ((bracketEnd = strrchr(line, ')')) != 0) {
+    while (strlen(line) > 0 && (line[strlen(line) - 1] == '\n' || line[strlen(line) - 1] == ' '))
+        line[strlen(line) - 1] = '\0';
+    if (line[0] == '(')
+    {
+        char *bracketEnd;
+        if ((bracketEnd = strrchr(line, ')')) != 0)
+        {
             *bracketEnd = '\0';
-            const char* name = line+1;
+            const char *name = line + 1;
 
             keyConfigs.push_back(KeyConfig());
-            KeyConfig* config = &keyConfigs.back();
+            KeyConfig *config = &keyConfigs.back();
             strncpy(config->name, name, 32);
             config->name[31] = '\0';
-            for (int i=0; i<NUM_DS_KEYS; i++)
+            for (int i = 0; i < NUM_DS_KEYS; i++)
                 config->gbKeys[i] = KEY_NONE;
         }
         return;
     }
-    char* equalsPos;
-    if ((equalsPos = strrchr(line, '=')) != 0 && equalsPos != line+strlen(line)-1) {
+    char *equalsPos;
+    if ((equalsPos = strrchr(line, '=')) != 0 && equalsPos != line + strlen(line) - 1)
+    {
         *equalsPos = '\0';
 
-        if (strcasecmp(line, "config") == 0) {
-            selectedKeyConfig = atoi(equalsPos+1);
+        if (strcasecmp(line, "config") == 0)
+        {
+            selectedKeyConfig = atoi(equalsPos + 1);
         }
-        else {
+        else
+        {
             int dsKey = -1;
-            for (int i=0; i<NUM_DS_KEYS; i++) {
-                if (strcasecmp(line, dsKeyNames[i]) == 0) {
+            for (int i = 0; i < NUM_DS_KEYS; i++)
+            {
+                if (strcasecmp(line, dsKeyNames[i]) == 0)
+                {
                     dsKey = i;
                     break;
                 }
             }
             int gbKey = -1;
-            for (int i=0; i<NUM_GB_KEYS; i++) {
-                if (strcasecmp(equalsPos+1, gbKeyNames[i]) == 0) {
+            for (int i = 0; i < NUM_GB_KEYS; i++)
+            {
+                if (strcasecmp(equalsPos + 1, gbKeyNames[i]) == 0)
+                {
                     gbKey = i;
                     break;
                 }
             }
 
-            if (gbKey != -1 && dsKey != -1) {
-                KeyConfig* config = &keyConfigs.back();
+            if (gbKey != -1 && dsKey != -1)
+            {
+                KeyConfig *config = &keyConfigs.back();
                 config->gbKeys[dsKey] = gbKey;
             }
         }
     }
 }
-void controlsPrintConfig(FILE* file) {
+void controlsPrintConfig(FILE *file)
+{
     fiprintf(file, "config=%d\n", selectedKeyConfig);
-    for (unsigned int i=0; i<keyConfigs.size(); i++) {
+    for (unsigned int i = 0; i < keyConfigs.size(); i++)
+    {
         fiprintf(file, "(%s)\n", keyConfigs[i].name);
-        for (int j=0; j<NUM_DS_KEYS; j++) {
+        for (int j = 0; j < NUM_DS_KEYS; j++)
+        {
             fiprintf(file, "%s=%s\n", dsKeyNames[j], gbKeyNames[keyConfigs[i].gbKeys[j]]);
         }
     }
@@ -195,9 +215,10 @@ void controlsPrintConfig(FILE* file) {
 int keyConfigChooser_option;
 bool keyConfigChooser_printMenuWarning = false;
 
-void redrawKeyConfigChooser() {
-    int& option = keyConfigChooser_option;
-    KeyConfig* config = &keyConfigs[selectedKeyConfig];
+void redrawKeyConfigChooser()
+{
+    int &option = keyConfigChooser_option;
+    KeyConfig *config = &keyConfigs[selectedKeyConfig];
 
     consoleClear();
 
@@ -209,9 +230,11 @@ void redrawKeyConfigChooser() {
 
     iprintf("    Button   Function\n\n");
 
-    for (int i=0; i<NUM_DS_KEYS; i++) {
-        int len = 8-strlen(dsKeyNames[i]);
-        while (len > 0) {
+    for (int i = 0; i < NUM_DS_KEYS; i++)
+    {
+        int len = 8 - strlen(dsKeyNames[i]);
+        while (len > 0)
+        {
             iprintf(" ");
             len--;
         }
@@ -221,83 +244,99 @@ void redrawKeyConfigChooser() {
             iprintf("  %s | %s  \n", dsKeyNames[i], gbKeyNames[config->gbKeys[i]]);
     }
     iprintf("\n\nPress X to make a new config.");
-    if (selectedKeyConfig != 0) /* can't erase the default */ {
+    if (selectedKeyConfig != 0) /* can't erase the default */
+    {
         iprintf("\n\nPress Y to delete this config.");
     }
     if (keyConfigChooser_printMenuWarning)
         iprintf("\n\nNo key is assigned to the menu!");
 }
 
-void updateKeyConfigChooser() {
+void updateKeyConfigChooser()
+{
     bool redraw = false;
 
-    int& option = keyConfigChooser_option;
-    KeyConfig* config = &keyConfigs[selectedKeyConfig];
+    int &option = keyConfigChooser_option;
+    KeyConfig *config = &keyConfigs[selectedKeyConfig];
 
-    if (keyJustPressed(KEY_B)) {
+    if (keyJustPressed(KEY_B))
+    {
         // Don't allow exiting if nothing is assigned to opening the menu
 
-        if (!checkKeyAssignedToMenu(config)) {
+        if (!checkKeyAssignedToMenu(config))
+        {
             keyConfigChooser_printMenuWarning = true;
             redrawKeyConfigChooser();
         }
-        else {
+        else
+        {
             loadKeyConfig();
             closeSubMenu();
         }
     }
-    else if (keyJustPressed(KEY_X)) {
+    else if (keyJustPressed(KEY_X))
+    {
         keyConfigs.push_back(KeyConfig(*config));
-        selectedKeyConfig = keyConfigs.size()-1;
+        selectedKeyConfig = keyConfigs.size() - 1;
         char name[32];
-        siprintf(name, "Custom %d", keyConfigs.size()-1);
+        siprintf(name, "Custom %d", keyConfigs.size() - 1);
         strcpy(keyConfigs.back().name, name);
         option = -1;
         redraw = true;
     }
-    else if (keyJustPressed(KEY_Y)) {
-        if (selectedKeyConfig != 0) /* can't erase the default */ {
+    else if (keyJustPressed(KEY_Y))
+    {
+        if (selectedKeyConfig != 0) /* can't erase the default */
+        {
             keyConfigs.erase(keyConfigs.begin() + selectedKeyConfig);
             if (selectedKeyConfig >= keyConfigs.size())
                 selectedKeyConfig = keyConfigs.size() - 1;
             redraw = true;
         }
     }
-    else if (keyPressedAutoRepeat(KEY_DOWN)) {
-        if (option == NUM_DS_KEYS-1)
+    else if (keyPressedAutoRepeat(KEY_DOWN))
+    {
+        if (option == NUM_DS_KEYS - 1)
             option = -1;
         else
             option++;
         redraw = true;
     }
-    else if (keyPressedAutoRepeat(KEY_UP)) {
+    else if (keyPressedAutoRepeat(KEY_UP))
+    {
         if (option == -1)
-            option = NUM_DS_KEYS-1;
+            option = NUM_DS_KEYS - 1;
         else
             option--;
         redraw = true;
     }
-    else if (keyPressedAutoRepeat(KEY_LEFT)) {
-        if (option == -1) {
+    else if (keyPressedAutoRepeat(KEY_LEFT))
+    {
+        if (option == -1)
+        {
             if (selectedKeyConfig == 0)
-                selectedKeyConfig = keyConfigs.size()-1;
+                selectedKeyConfig = keyConfigs.size() - 1;
             else
                 selectedKeyConfig--;
         }
-        else {
+        else
+        {
             config->gbKeys[option]--;
             if (config->gbKeys[option] < 0)
-                config->gbKeys[option] = NUM_GB_KEYS-1;
+                config->gbKeys[option] = NUM_GB_KEYS - 1;
         }
         redraw = true;
     }
-    else if (keyPressedAutoRepeat(KEY_RIGHT)) {
-        if (option == -1) {
+    else if (keyPressedAutoRepeat(KEY_RIGHT))
+    {
+        if (option == -1)
+        {
             selectedKeyConfig++;
             if (selectedKeyConfig >= keyConfigs.size())
                 selectedKeyConfig = 0;
         }
-        else {
+        else
+        {
             config->gbKeys[option]++;
             if (config->gbKeys[option] >= NUM_GB_KEYS)
                 config->gbKeys[option] = 0;
@@ -308,48 +347,56 @@ void updateKeyConfigChooser() {
         doAtVBlank(redrawKeyConfigChooser);
 }
 
-void startKeyConfigChooser() {
+void startKeyConfigChooser()
+{
     keyConfigChooser_option = -1;
     displaySubMenu(updateKeyConfigChooser);
     redrawKeyConfigChooser();
 }
 
-void generalParseConfig(const char* line) {
-    char* equalsPos;
-    if ((equalsPos = strrchr(line, '=')) != 0 && equalsPos != line+strlen(line)-1) {
+void generalParseConfig(const char *line)
+{
+    char *equalsPos;
+    if ((equalsPos = strrchr(line, '=')) != 0 && equalsPos != line + strlen(line) - 1)
+    {
         *equalsPos = '\0';
-        const char* parameter = line;
-        const char* value = equalsPos+1;
+        const char *parameter = line;
+        const char *value = equalsPos + 1;
 
-        if (strcasecmp(parameter, "rompath") == 0) {
+        if (strcasecmp(parameter, "rompath") == 0)
+        {
             if (romPath != 0)
                 free(romPath);
-            romPath = (char*)malloc(strlen(value)+1);
+            romPath = (char *)malloc(strlen(value) + 1);
             strcpy(romPath, value);
             romChooserState.directory = romPath;
         }
-        else if (strcasecmp(parameter, "biosfile") == 0) {
+        else if (strcasecmp(parameter, "biosfile") == 0)
+        {
             if (biosPath != 0)
                 free(biosPath);
-            biosPath = (char*)malloc(strlen(value)+1);
+            biosPath = (char *)malloc(strlen(value) + 1);
             strcpy(biosPath, value);
             loadBios(biosPath);
         }
-        else if (strcasecmp(parameter, "borderfile") == 0) {
+        else if (strcasecmp(parameter, "borderfile") == 0)
+        {
             if (borderPath != 0)
                 free(borderPath);
-            borderPath = (char*)malloc(strlen(value)+1);
+            borderPath = (char *)malloc(strlen(value) + 1);
             strcpy(borderPath, value);
         }
     }
-    if (borderPath == NULL || *borderPath == '\0') {
+    if (borderPath == NULL || *borderPath == '\0')
+    {
         free(borderPath);
-        borderPath = (char*)malloc(strlen("/border.bmp")+1);
+        borderPath = (char *)malloc(strlen("/border.bmp") + 1);
         strcpy(borderPath, "/border.bmp");
     }
 }
 
-void generalPrintConfig(FILE* file) {
+void generalPrintConfig(FILE *file)
+{
     if (romPath == 0)
         fiprintf(file, "rompath=\n");
     else
@@ -364,31 +411,38 @@ void generalPrintConfig(FILE* file) {
         fiprintf(file, "borderfile=%s\n", borderPath);
 }
 
-bool readConfigFile() {
-    FILE* file = fopen("/gameyobds.ini", "r");
+bool readConfigFile()
+{
+    FILE *file = fopen("/gameyobds.ini", "r");
     char line[100];
-    void (*configParser)(const char*) = generalParseConfig;
+    void (*configParser)(const char *) = generalParseConfig;
 
     if (file == NULL)
         goto end;
 
-    while (!feof(file)) {
+    while (!feof(file))
+    {
         fgets(line, 100, file);
-        char c=0;
-        while (*line != '\0' && ((c = line[strlen(line)-1]) == ' ' || c == '\n' || c == '\r'))
-            line[strlen(line)-1] = '\0';
-        if (line[0] == '[') {
-            char* endBrace;
-            if ((endBrace = strrchr(line, ']')) != 0) {
+        char c = 0;
+        while (*line != '\0' && ((c = line[strlen(line) - 1]) == ' ' || c == '\n' || c == '\r'))
+            line[strlen(line) - 1] = '\0';
+        if (line[0] == '[')
+        {
+            char *endBrace;
+            if ((endBrace = strrchr(line, ']')) != 0)
+            {
                 *endBrace = '\0';
-                const char* section = line+1;
-                if (strcasecmp(section, "general") == 0) {
+                const char *section = line + 1;
+                if (strcasecmp(section, "general") == 0)
+                {
                     configParser = generalParseConfig;
                 }
-                else if (strcasecmp(section, "console") == 0) {
+                else if (strcasecmp(section, "console") == 0)
+                {
                     configParser = menuParseConfig;
                 }
-                else if (strcasecmp(section, "controls") == 0) {
+                else if (strcasecmp(section, "controls") == 0)
+                {
                     configParser = controlsParseConfig;
                 }
             }
@@ -407,8 +461,9 @@ end:
     return file != NULL;
 }
 
-void writeConfigFile() {
-    FILE* file = fopen("/gameyobds.ini", "w");
+void writeConfigFile()
+{
+    FILE *file = fopen("/gameyobds.ini", "w");
     fiprintf(file, "[general]\n");
     generalPrintConfig(file);
     fiprintf(file, "[console]\n");
@@ -422,15 +477,15 @@ void writeConfigFile() {
     saveCheats(nameBuf);
 }
 
-
-void loadBios(const char* filename) {
-    FILE* file = fopen(filename, "rb");
+void loadBios(const char *filename)
+{
+    FILE *file = fopen(filename, "rb");
     biosExists = file != NULL;
     if (biosExists)
         fread(bios, 1, 0x900, file);
 }
 
-int loadRom(char* f)
+int loadRom(char *f)
 {
     if (romFile != NULL)
         fclose(romFile);
@@ -446,25 +501,27 @@ int loadRom(char* f)
         return 1;
     }
 
-    if (gbsMode) {
+    if (gbsMode)
+    {
         fread(gbsHeader, 1, 0x70, romFile);
         gbsReadHeader();
         fseek(romFile, 0, SEEK_END);
-        numRomBanks = (ftell(romFile)-0x70+0x3fff)/0x4000; // Get number of banks, rounded up
+        numRomBanks = (ftell(romFile) - 0x70 + 0x3fff) / 0x4000; // Get number of banks, rounded up
     }
-    else {
+    else
+    {
         fseek(romFile, 0, SEEK_END);
-        numRomBanks = (ftell(romFile)+0x3fff)/0x4000; // Get number of banks, rounded up
+        numRomBanks = (ftell(romFile) + 0x3fff) / 0x4000; // Get number of banks, rounded up
     }
 
     // Round numRomBanks to a power of 2
-    int n=1;
-    while (n < numRomBanks) n*=2;
+    int n = 1;
+    while (n < numRomBanks)
+        n *= 2;
     numRomBanks = n;
 
-    //int rawRomSize = ftell(romFile);
+    // int rawRomSize = ftell(romFile);
     rewind(romFile);
-
 
     if (numRomBanks <= maxLoadedRomBanks)
         numLoadedRomBanks = numRomBanks;
@@ -474,27 +531,31 @@ int loadRom(char* f)
     romSlot0 = romBankSlots;
     romSlot1 = romBankSlots + 0x4000;
 
-    for (int i=0; i<numRomBanks; i++) {
+    for (int i = 0; i < numRomBanks; i++)
+    {
         bankSlotIDs[i] = -1;
     }
 
     // Load rom banks and initialize all those "bank" arrays
     lastBanksUsed = std::vector<int>();
     // Read bank 0
-    if (gbsMode) {
+    if (gbsMode)
+    {
         bankSlotIDs[0] = 0;
         fseek(romFile, 0x70, SEEK_SET);
-        fread(romBankSlots+gbsLoadAddress, 1, 0x4000-gbsLoadAddress, romFile);
+        fread(romBankSlots + gbsLoadAddress, 1, 0x4000 - gbsLoadAddress, romFile);
     }
-    else {
+    else
+    {
         bankSlotIDs[0] = 0;
         fseek(romFile, 0, SEEK_SET);
         fread(romBankSlots, 1, 0x4000, romFile);
     }
     // Read the rest of the banks
-    for (int i=1; i<numLoadedRomBanks; i++) {
+    for (int i = 1; i < numLoadedRomBanks; i++)
+    {
         bankSlotIDs[i] = i;
-        fread(romBankSlots+0x4000*i, 1, 0x4000, romFile);
+        fread(romBankSlots + 0x4000 * i, 1, 0x4000, romFile);
         lastBanksUsed.push_back(i);
     }
 
@@ -506,68 +567,85 @@ int loadRom(char* f)
     cgbFlag = romSlot0[0x143];
     romSize = romSlot0[0x148];
     ramSize = romSlot0[0x149];
-    mapper  = romSlot0[0x147];
+    mapper = romSlot0[0x147];
 
     int nameLength = 16;
     if (cgbFlag == 0x80 || cgbFlag == 0xc0)
         nameLength = 15;
-    for (int i=0; i<nameLength; i++)
-        romTitle[i] = (char)romSlot0[i+0x134];
+    for (int i = 0; i < nameLength; i++)
+        romTitle[i] = (char)romSlot0[i + 0x134];
     romTitle[nameLength] = '\0';
 
     hasRumble = false;
 
-    if (gbsMode) {
+    if (gbsMode)
+    {
         MBC = MBC5;
         loadCheats(""); // Unloads previous cheats
     }
-    else {
-        switch (mapper) {
-            case 0: case 8: case 9:
-                MBC = MBC0;
-                break;
-            case 1: case 2: case 3:
-                MBC = MBC1;
-                break;
-            case 5: case 6:
-                MBC = MBC2;
-                break;
-                //case 0xb: case 0xc: case 0xd:
-                //MBC = MMM01;
-                //break;
-            case 0xf: case 0x10: case 0x11: case 0x12: case 0x13:
-                MBC = MBC3;
-                break;
-                //case 0x15: case 0x16: case 0x17:
-                //MBC = MBC4;
-                //break;
-            case 0x19: case 0x1a: case 0x1b:
-                MBC = MBC5;
-                break;
-            case 0x1c: case 0x1d: case 0x1e:
-                MBC = MBC5;
-                hasRumble = true;
-                break;
-            case 0x22:
-                MBC = MBC7;
-                break;
-            case 0xea: /* Hack for SONIC5 */
-                MBC = MBC1;
-                break;
-            case 0xfe:
-                MBC = HUC3;
-                break;
-            case 0xff:
-                MBC = HUC1;
-                break;
-            default:
-                printLog("Unsupported MBC %02x\n", mapper);
-                return 1;
+    else
+    {
+        switch (mapper)
+        {
+        case 0:
+        case 8:
+        case 9:
+            MBC = MBC0;
+            break;
+        case 1:
+        case 2:
+        case 3:
+            MBC = MBC1;
+            break;
+        case 5:
+        case 6:
+            MBC = MBC2;
+            break;
+            // case 0xb: case 0xc: case 0xd:
+            // MBC = MMM01;
+            // break;
+        case 0xf:
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+            MBC = MBC3;
+            break;
+            // case 0x15: case 0x16: case 0x17:
+            // MBC = MBC4;
+            // break;
+        case 0x19:
+        case 0x1a:
+        case 0x1b:
+            MBC = MBC5;
+            break;
+        case 0x1c:
+        case 0x1d:
+        case 0x1e:
+            MBC = MBC5;
+            hasRumble = true;
+            break;
+        case 0x22:
+            MBC = MBC7;
+            break;
+        case 0xea: /* Hack for SONIC5 */
+            MBC = MBC1;
+            break;
+        case 0xfe:
+            MBC = HUC3;
+            break;
+        case 0xff:
+            MBC = HUC1;
+            break;
+        default:
+            printLog("Unsupported MBC %02x\n", mapper);
+            return 1;
         }
 
         // Little hack to preserve "quickread" from gbcpu.cpp.
-        if (biosExists) {
-            for (int i=0x100; i<0x150; i++)
+        if (biosExists)
+        {
+            for (int i = 0x100; i < 0x150; i++)
                 bios[i] = romSlot0[i];
         }
 
@@ -581,7 +659,8 @@ int loadRom(char* f)
     } // !gbsMode
 
     // If we've loaded everything, close the rom file
-    if (numRomBanks <= numLoadedRomBanks) {
+    if (numRomBanks <= numLoadedRomBanks)
+    {
         fclose(romFile);
         romFile = NULL;
     }
@@ -591,9 +670,11 @@ int loadRom(char* f)
     return 0;
 }
 
-void loadRomBank() {
-    if (bankSlotIDs[romBank] != -1 || numRomBanks <= numLoadedRomBanks || romBank == 0) {
-        romSlot1 = romBankSlots+bankSlotIDs[romBank]*0x4000;
+void loadRomBank()
+{
+    if (bankSlotIDs[romBank] != -1 || numRomBanks <= numLoadedRomBanks || romBank == 0)
+    {
+        romSlot1 = romBankSlots + bankSlotIDs[romBank] * 0x4000;
         return;
     }
     int bankToUnload = lastBanksUsed.back();
@@ -602,30 +683,34 @@ void loadRomBank() {
     bankSlotIDs[bankToUnload] = -1;
     bankSlotIDs[romBank] = slot;
 
-    fseek(romFile, 0x4000*romBank, SEEK_SET);
-    fread(romBankSlots+slot*0x4000, 1, 0x4000, romFile);
+    fseek(romFile, 0x4000 * romBank, SEEK_SET);
+    fread(romBankSlots + slot * 0x4000, 1, 0x4000, romFile);
 
     lastBanksUsed.insert(lastBanksUsed.begin(), romBank);
 
     applyGGCheatsToBank(romBank);
 
-    romSlot1 = romBankSlots+slot*0x4000;
+    romSlot1 = romBankSlots + slot * 0x4000;
 }
 
-bool isRomBankLoaded(int bank) {
+bool isRomBankLoaded(int bank)
+{
     return bankSlotIDs[bank] != -1;
 }
-u8* getRomBank(int bank) {
+u8 *getRomBank(int bank)
+{
     if (!isRomBankLoaded(bank))
         return 0;
-    return romBankSlots+bankSlotIDs[bank]*0x4000;
+    return romBankSlots + bankSlotIDs[bank] * 0x4000;
 }
 
-const char* getRomBasename() {
+const char *getRomBasename()
+{
     return basename;
 }
 
-void unloadRom() {
+void unloadRom()
+{
     doAtVBlank(clearGFX);
 
     gameboySyncAutosave();
@@ -633,7 +718,8 @@ void unloadRom() {
         fclose(saveFile);
     saveFile = NULL;
     // unload previous save
-    if (externRam != NULL) {
+    if (externRam != NULL)
+    {
         free(externRam);
         externRam = NULL;
     }
@@ -641,38 +727,41 @@ void unloadRom() {
 
 int loadSave()
 {
-    if (saveFile != NULL) {
+    if (saveFile != NULL)
+    {
         fclose(saveFile);
         saveFile = NULL;
     }
-    if (externRam != NULL) {
+    if (externRam != NULL)
+    {
         free(externRam);
         externRam = NULL;
     }
 
     if (gbsMode)
         numRamBanks = 1;
-    else {
+    else
+    {
         // Get the game's external memory size and allocate the memory
-        switch(ramSize)
+        switch (ramSize)
         {
-            case 0:
-                numRamBanks = 0;
-                break;
-            case 1:
-            case 2:
-                numRamBanks = 1;
-                break;
-            case 3:
-                numRamBanks = 4;
-                break;
-            case 4:
-                numRamBanks = 16;
-                break;
-            default:
-                printLog("Invalid RAM bank number: %x\nDefaulting to 4 banks\n", ramSize);
-                numRamBanks = 4;
-                break;
+        case 0:
+            numRamBanks = 0;
+            break;
+        case 1:
+        case 2:
+            numRamBanks = 1;
+            break;
+        case 3:
+            numRamBanks = 4;
+            break;
+        case 4:
+            numRamBanks = 16;
+            break;
+        default:
+            printLog("Invalid RAM bank number: %x\nDefaulting to 4 banks\n", ramSize);
+            numRamBanks = 4;
+            break;
         }
         if (MBC == MBC2)
             numRamBanks = 1;
@@ -681,36 +770,40 @@ int loadSave()
     if (numRamBanks == 0)
         return 0;
 
-    externRam = (u8*)malloc(numRamBanks*0x2000);
+    externRam = (u8 *)malloc(numRamBanks * 0x2000);
 
     if (gbsMode)
         return 0; // GBS files don't get to save.
 
     // Now load the data.
     saveFile = fopen(savename, "r+b");
-    int neededFileSize = numRamBanks*0x2000;
+    int neededFileSize = numRamBanks * 0x2000;
     if (MBC == MBC3 || MBC == HUC3)
         neededFileSize += sizeof(clockStruct);
 
     int fileSize = 0;
-    if (saveFile) {
+    if (saveFile)
+    {
         fseek(saveFile, 0, SEEK_END);
         fileSize = ftell(saveFile);
         fseek(saveFile, 0, SEEK_SET);
     }
 
-    if (!saveFile || fileSize < neededFileSize) {
+    if (!saveFile || fileSize < neededFileSize)
+    {
         fclose(saveFile);
 
         // Extend the size of the file, or create it
-        if (!saveFile) {
+        if (!saveFile)
+        {
             saveFile = fopen(savename, "wb");
-            fseek(saveFile, neededFileSize-1, SEEK_SET);
+            fseek(saveFile, neededFileSize - 1, SEEK_SET);
             fputc(0, saveFile);
         }
-        else {
+        else
+        {
             saveFile = fopen(savename, "ab");
-            for (; fileSize<neededFileSize; fileSize++)
+            for (; fileSize < neededFileSize; fileSize++)
                 fputc(0, saveFile);
         }
         fclose(saveFile);
@@ -718,13 +811,14 @@ int loadSave()
         saveFile = fopen(savename, "r+b");
     }
 
-    fread(externRam, 1, 0x2000*numRamBanks, saveFile);
+    fread(externRam, 1, 0x2000 * numRamBanks, saveFile);
 
-    switch (MBC) {
-        case MBC3:
-        case HUC3:
-            fread(&gbClock, 1, sizeof(gbClock), saveFile);
-            break;
+    switch (MBC)
+    {
+    case MBC3:
+    case HUC3:
+        fread(&gbClock, 1, sizeof(gbClock), saveFile);
+        break;
     }
     saveGame();
     return 0;
@@ -739,13 +833,14 @@ int saveGame()
 
     fseek(saveFile, 0, SEEK_SET);
 
-    fwrite(externRam, 1, 0x2000*numRamBanks, saveFile);
+    fwrite(externRam, 1, 0x2000 * numRamBanks, saveFile);
 
-    switch (MBC) {
-        case MBC3:
-        case HUC3:
-            fwrite(&gbClock, 1, sizeof(gbClock), saveFile);
-            break;
+    switch (MBC)
+    {
+    case MBC3:
+    case HUC3:
+        fwrite(&gbClock, 1, sizeof(gbClock), saveFile);
+        break;
     }
 
     flushFatCache();
@@ -753,10 +848,11 @@ int saveGame()
     return 0;
 }
 
-bool wroteToSramThisFrame=false;
-int framesSinceAutosaveStarted=0;
+bool wroteToSramThisFrame = false;
+int framesSinceAutosaveStarted = 0;
 
-void gameboySyncAutosave() {
+void gameboySyncAutosave()
+{
     if (!autosaveStarted)
         return;
 
@@ -767,13 +863,15 @@ void gameboySyncAutosave() {
     int lastWritten = -2;
 
     // iterate over each sector
-    for (int i=0; i<numRamBanks*0x2000/AUTOSAVE_SECTOR_SIZE; i++) {
-        if (dirtySectors[i]) {
+    for (int i = 0; i < numRamBanks * 0x2000 / AUTOSAVE_SECTOR_SIZE; i++)
+    {
+        if (dirtySectors[i])
+        {
 
-            if (lastWritten+1 != i)
-                fseek(saveFile, i*AUTOSAVE_SECTOR_SIZE, SEEK_SET);
+            if (lastWritten + 1 != i)
+                fseek(saveFile, i * AUTOSAVE_SECTOR_SIZE, SEEK_SET);
 
-            fwrite(externRam+i*AUTOSAVE_SECTOR_SIZE, AUTOSAVE_SECTOR_SIZE, 1, saveFile);
+            fwrite(externRam + i * AUTOSAVE_SECTOR_SIZE, AUTOSAVE_SECTOR_SIZE, 1, saveFile);
 
             lastWritten = i;
             dirtySectors[i] = false;
@@ -789,64 +887,78 @@ void gameboySyncAutosave() {
     autosaveStarted = false;
 }
 
-void updateAutosave() {
+void updateAutosave()
+{
     if (autosaveStarted)
         framesSinceAutosaveStarted++;
 
-    if (!(fastForwardMode || fastForwardKey)){
-        if (framesSinceAutosaveStarted >= 120 ||     // Executes when sram is written to for 120 consecutive frames, or
-            (!saveModified && wroteToSramThisFrame)) { // when a full frame has passed since sram was last written to.
+    if (!(fastForwardMode || fastForwardKey))
+    {
+        if (framesSinceAutosaveStarted >= 120 || // Executes when sram is written to for 120 consecutive frames, or
+            (!saveModified && wroteToSramThisFrame))
+        { // when a full frame has passed since sram was last written to.
             gameboySyncAutosave();
         }
     }
-    else{
-        if (framesSinceAutosaveStarted >= 960 ||     // Executes when sram is written to for 120 consecutive frames, or
-            (!saveModified && wroteToSramThisFrame)) { // when a full frame has passed since sram was last written to.
+    else
+    {
+        if (framesSinceAutosaveStarted >= 960 || // Executes when sram is written to for 120 consecutive frames, or
+            (!saveModified && wroteToSramThisFrame))
+        { // when a full frame has passed since sram was last written to.
             gameboySyncAutosave();
         }
     }
-    
-    if (saveModified) {
+
+    if (saveModified)
+    {
         wroteToSramThisFrame = true;
         autosaveStarted = true;
         saveModified = false;
     }
 }
 
-
-bool keyPressed(int key) {
-    return keysPressed&key;
+bool keyPressed(int key)
+{
+    return keysPressed & key;
 }
-bool keyPressedAutoRepeat(int key) {
-    if (keyJustPressed(key)) {
+bool keyPressedAutoRepeat(int key)
+{
+    if (keyJustPressed(key))
+    {
         repeatStartTimer = 14;
         return true;
     }
-    if (keyPressed(key) && repeatStartTimer == 0 && repeatTimer == 0) {
+    if (keyPressed(key) && repeatStartTimer == 0 && repeatTimer == 0)
+    {
         repeatTimer = 2;
         return true;
     }
     return false;
 }
-bool keyJustPressed(int key) {
-    return ((keysPressed^lastKeysPressed)&keysPressed) & key;
+bool keyJustPressed(int key)
+{
+    return ((keysPressed ^ lastKeysPressed) & keysPressed) & key;
 }
 
-int readKeysLastFrameCounter=0;
-void readKeys() {
+int readKeysLastFrameCounter = 0;
+void readKeys()
+{
     scanKeys();
 
     lastKeysPressed = keysPressed;
     keysPressed = keysHeld();
-    for (int i=0; i<16; i++) {
-        if (keysForceReleased & (1<<i)) {
-            if (!(keysPressed & (1<<i)))
-                keysForceReleased &= ~(1<<i);
+    for (int i = 0; i < 16; i++)
+    {
+        if (keysForceReleased & (1 << i))
+        {
+            if (!(keysPressed & (1 << i)))
+                keysForceReleased &= ~(1 << i);
         }
     }
     keysPressed &= ~keysForceReleased;
 
-    if (dsFrameCounter != readKeysLastFrameCounter) { // Double-check that it's been 1/60th of a second
+    if (dsFrameCounter != readKeysLastFrameCounter)
+    { // Double-check that it's been 1/60th of a second
         if (repeatStartTimer > 0)
             repeatStartTimer--;
         if (repeatTimer > 0)
@@ -855,22 +967,26 @@ void readKeys() {
     }
 }
 
-void forceReleaseKey(int key) {
+void forceReleaseKey(int key)
+{
     keysForceReleased |= key;
     keysPressed &= ~key;
 }
 
-int mapGbKey(int gbKey) {
+int mapGbKey(int gbKey)
+{
     return keys[gbKey];
 }
 
-char* getRomTitle() {
+char *getRomTitle()
+{
     return romTitle;
 }
 
-const char *mbcName[] = {"ROM","MBC1","MBC2","MBC3","MBC4","MBC5","MBC7","HUC3","HUC1"};
+const char *mbcName[] = {"ROM", "MBC1", "MBC2", "MBC3", "MBC4", "MBC5", "MBC7", "HUC3", "HUC1"};
 
-void printRomInfo() {
+void printRomInfo()
+{
     consoleClear();
     iprintf("ROM Title: \"%s\"\n", romTitle);
     iprintf("Cartridge type: %.2x (%s)\n", mapper, mbcName[MBC]);
@@ -880,7 +996,8 @@ void printRomInfo() {
 
 const int STATE_VERSION = 5;
 
-struct StateStruct {
+struct StateStruct
+{
     // version
     // bg/sprite PaletteData
     // vram
@@ -911,8 +1028,9 @@ struct StateStruct {
     //   u8[20*18] sgbMap;
 };
 
-void saveState(int stateNum) {
-    FILE* outFile;
+void saveState(int stateNum)
+{
+    FILE *outFile;
     StateStruct state;
     char statename[100];
 
@@ -922,7 +1040,8 @@ void saveState(int stateNum) {
         siprintf(statename, "%s.ys%d", basename, stateNum);
     outFile = fopen(statename, "w");
 
-    if (outFile == 0) {
+    if (outFile == 0)
+    {
         printMenuMessage("Error opening file for writing.");
         return;
     }
@@ -947,25 +1066,27 @@ void saveState(int stateNum) {
     state.ramEnabled = ramEnabled;
 
     fwrite(&STATE_VERSION, sizeof(int), 1, outFile);
-    fwrite((char*)bgPaletteData, 1, sizeof(bgPaletteData), outFile);
-    fwrite((char*)sprPaletteData, 1, sizeof(sprPaletteData), outFile);
-    fwrite((char*)vram, 1, sizeof(vram), outFile);
-    fwrite((char*)wram, 1, sizeof(wram), outFile);
-    fwrite((char*)hram, 1, 0x200, outFile);
-    fwrite((char*)externRam, 1, 0x2000*numRamBanks, outFile);
+    fwrite((char *)bgPaletteData, 1, sizeof(bgPaletteData), outFile);
+    fwrite((char *)sprPaletteData, 1, sizeof(sprPaletteData), outFile);
+    fwrite((char *)vram, 1, sizeof(vram), outFile);
+    fwrite((char *)wram, 1, sizeof(wram), outFile);
+    fwrite((char *)hram, 1, 0x200, outFile);
+    fwrite((char *)externRam, 1, 0x2000 * numRamBanks, outFile);
 
-    fwrite((char*)&state, 1, sizeof(StateStruct), outFile);
+    fwrite((char *)&state, 1, sizeof(StateStruct), outFile);
 
-    switch (MBC) {
-        case HUC3:
-            fwrite(&HuC3Mode,  1, sizeof(u8), outFile);
-            fwrite(&HuC3Value, 1, sizeof(u8), outFile);
-            fwrite(&HuC3Shift, 1, sizeof(u8), outFile);
-            break;
+    switch (MBC)
+    {
+    case HUC3:
+        fwrite(&HuC3Mode, 1, sizeof(u8), outFile);
+        fwrite(&HuC3Value, 1, sizeof(u8), outFile);
+        fwrite(&HuC3Shift, 1, sizeof(u8), outFile);
+        break;
     }
 
     fwrite(&sgbMode, 1, sizeof(bool), outFile);
-    if (sgbMode) {
+    if (sgbMode)
+    {
         fwrite(&sgbPacketLength, 1, sizeof(int), outFile);
         fwrite(&sgbPacketsTransferred, 1, sizeof(int), outFile);
         fwrite(&sgbPacketBit, 1, sizeof(int), outFile);
@@ -977,7 +1098,8 @@ void saveState(int stateNum) {
     fclose(outFile);
 }
 
-int loadState(int stateNum) {
+int loadState(int stateNum)
+{
     FILE *inFile;
     StateStruct state;
     char statename[100];
@@ -991,52 +1113,58 @@ int loadState(int stateNum) {
         siprintf(statename, "%s.ys%d", basename, stateNum);
     inFile = fopen(statename, "r");
 
-    if (inFile == 0) {
+    if (inFile == 0)
+    {
         printMenuMessage("State doesn't exist.");
         return 1;
     }
 
     fread(&version, sizeof(int), 1, inFile);
 
-    if (version == 0 || version > STATE_VERSION) {
+    if (version == 0 || version > STATE_VERSION)
+    {
         printMenuMessage("State is from an incompatible version.");
         return 1;
     }
 
-    fread((char*)bgPaletteData, 1, sizeof(bgPaletteData), inFile);
-    fread((char*)sprPaletteData, 1, sizeof(sprPaletteData), inFile);
-    fread((char*)vram, 1, sizeof(vram), inFile);
-    fread((char*)wram, 1, sizeof(wram), inFile);
-    fread((char*)hram, 1, 0x200, inFile);
+    fread((char *)bgPaletteData, 1, sizeof(bgPaletteData), inFile);
+    fread((char *)sprPaletteData, 1, sizeof(sprPaletteData), inFile);
+    fread((char *)vram, 1, sizeof(vram), inFile);
+    fread((char *)wram, 1, sizeof(wram), inFile);
+    fread((char *)hram, 1, 0x200, inFile);
 
     if (version <= 4 && ramSize == 0x04)
         // Value "0x04" for ram size wasn't interpreted correctly before
-        fread((char*)externRam, 1, 0x2000*4, inFile);
+        fread((char *)externRam, 1, 0x2000 * 4, inFile);
     else
-        fread((char*)externRam, 1, 0x2000*numRamBanks, inFile);
+        fread((char *)externRam, 1, 0x2000 * numRamBanks, inFile);
 
-    fread((char*)&state, 1, sizeof(StateStruct), inFile);
+    fread((char *)&state, 1, sizeof(StateStruct), inFile);
 
     /* MBC-specific values have been introduced in v3 */
-    if (version >= 3) {
-        switch (MBC) {
-            case MBC3:
-                if (version == 3) {
-                    u8 rtcReg;
-                    fread(&rtcReg, 1, sizeof(u8), inFile);
-                    if (rtcReg != 0)
-                        currentRamBank = rtcReg;
-                }
-                break;
-            case HUC3:
-                fread(&HuC3Mode,  1, sizeof(u8), inFile);
-                fread(&HuC3Value, 1, sizeof(u8), inFile);
-                fread(&HuC3Shift, 1, sizeof(u8), inFile);
-                break;
+    if (version >= 3)
+    {
+        switch (MBC)
+        {
+        case MBC3:
+            if (version == 3)
+            {
+                u8 rtcReg;
+                fread(&rtcReg, 1, sizeof(u8), inFile);
+                if (rtcReg != 0)
+                    currentRamBank = rtcReg;
+            }
+            break;
+        case HUC3:
+            fread(&HuC3Mode, 1, sizeof(u8), inFile);
+            fread(&HuC3Value, 1, sizeof(u8), inFile);
+            fread(&HuC3Shift, 1, sizeof(u8), inFile);
+            break;
         }
 
         fread(&sgbMode, 1, sizeof(bool), inFile);
-        if (sgbMode) {
+        if (sgbMode)
+        {
             fread(&sgbPacketLength, 1, sizeof(int), inFile);
             fread(&sgbPacketsTransferred, 1, sizeof(int), inFile);
             fread(&sgbPacketBit, 1, sizeof(int), inFile);
@@ -1048,9 +1176,9 @@ int loadState(int stateNum) {
     else
         sgbMode = false;
 
-
     fclose(inFile);
-    if (stateNum == -1) {
+    if (stateNum == -1)
+    {
         unlink(statename);
         suspendStateExists = false;
     }
@@ -1079,12 +1207,11 @@ int loadState(int stateNum) {
         ramEnabled = true;
 
     transferReady = false;
-    timerPeriod = periods[ioRam[0x07]&0x3];
+    timerPeriod = periods[ioRam[0x07] & 0x3];
     cyclesToEvent = 1;
 
     mapMemory();
     setDoubleSpeed(doubleSpeed);
-
 
     if (autoSavingEnabled && stateNum != -1)
         saveGame(); // Synchronize save file on sd with file in ram
@@ -1095,7 +1222,8 @@ int loadState(int stateNum) {
     return 0;
 }
 
-void deleteState(int stateNum) {
+void deleteState(int stateNum)
+{
     if (!checkStateExists(stateNum))
         return;
 
@@ -1108,7 +1236,8 @@ void deleteState(int stateNum) {
     unlink(statename);
 }
 
-bool checkStateExists(int stateNum) {
+bool checkStateExists(int stateNum)
+{
     char statename[256];
 
     if (stateNum == -1)
@@ -1126,5 +1255,3 @@ bool checkStateExists(int stateNum) {
     return true;
     */
 }
-
-

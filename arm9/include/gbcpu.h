@@ -1,8 +1,8 @@
 #pragma once
 #include "global.h"
 
-#define GB			0
-#define CGB			1
+#define GB 0
+#define CGB 1
 
 typedef union
 {

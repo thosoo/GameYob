@@ -24,8 +24,8 @@ time_t lastRawTime;
 
 volatile bool gameboyPaused;
 int fps;
-bool fpsOutput=true;
-bool timeOutput=true;
+bool fpsOutput = true;
+bool timeOutput = true;
 bool fastForwardMode = false; // controlled by the toggle hotkey
 bool fastForwardKey = false;  // only while its hotkey is pressed
 
@@ -42,18 +42,20 @@ long periods[4];
 int gbMode;
 bool sgbMode;
 
-const int maxWaitCycles=1000000;
+const int maxWaitCycles = 1000000;
 int cyclesToEvent;
-int cyclesSinceVblank=0;
+int cyclesSinceVblank = 0;
 
 bool resettingGameboy = false;
 
-bool probingForBorder=false;
+bool probingForBorder = false;
 
 int gameboyFrameCounter;
 
-void setEventCycles(int cycles) {
-    if (cycles < cyclesToEvent) {
+void setEventCycles(int cycles)
+{
+    if (cycles < cyclesToEvent)
+    {
         cyclesToEvent = cycles;
         /*
         if (cyclesToEvent <= 0) {
@@ -63,62 +65,74 @@ void setEventCycles(int cycles) {
     }
 }
 
-int autoFireCounterA=0,autoFireCounterB=0;
-void gameboyCheckInput() {
+int autoFireCounterA = 0, autoFireCounterB = 0;
+void gameboyCheckInput()
+{
     buttonsPressed = 0xff;
 
     if (probingForBorder)
         return;
 
-    if (keyPressed(mapGbKey(KEY_GB_UP))) {
+    if (keyPressed(mapGbKey(KEY_GB_UP)))
+    {
         buttonsPressed &= (0xFF ^ UP);
         if (!(ioRam[0x00] & 0x10))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_DOWN))) {
+    if (keyPressed(mapGbKey(KEY_GB_DOWN)))
+    {
         buttonsPressed &= (0xFF ^ DOWN);
         if (!(ioRam[0x00] & 0x10))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_LEFT))) {
+    if (keyPressed(mapGbKey(KEY_GB_LEFT)))
+    {
         buttonsPressed &= (0xFF ^ LEFT);
         if (!(ioRam[0x00] & 0x10))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_RIGHT))) {
+    if (keyPressed(mapGbKey(KEY_GB_RIGHT)))
+    {
         buttonsPressed &= (0xFF ^ RIGHT);
         if (!(ioRam[0x00] & 0x10))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_A))) {
+    if (keyPressed(mapGbKey(KEY_GB_A)))
+    {
         buttonsPressed &= (0xFF ^ BUTTONA);
         if (!(ioRam[0x00] & 0x20))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_B))) {
+    if (keyPressed(mapGbKey(KEY_GB_B)))
+    {
         buttonsPressed &= (0xFF ^ BUTTONB);
         if (!(ioRam[0x00] & 0x20))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_START))) {
+    if (keyPressed(mapGbKey(KEY_GB_START)))
+    {
         buttonsPressed &= (0xFF ^ START);
         if (!(ioRam[0x00] & 0x20))
             requestInterrupt(JOYPAD);
     }
-    if (keyPressed(mapGbKey(KEY_GB_SELECT))) {
+    if (keyPressed(mapGbKey(KEY_GB_SELECT)))
+    {
         buttonsPressed &= (0xFF ^ SELECT);
         if (!(ioRam[0x00] & 0x20))
             requestInterrupt(JOYPAD);
     }
 
-    if (keyPressed(mapGbKey(KEY_GB_A_B_START_SELECT))) {
-        buttonsPressed &= (0xFF ^ (BUTTONA|BUTTONB|START|SELECT));
+    if (keyPressed(mapGbKey(KEY_GB_A_B_START_SELECT)))
+    {
+        buttonsPressed &= (0xFF ^ (BUTTONA | BUTTONB | START | SELECT));
         if (!(ioRam[0x00] & 0x20))
             requestInterrupt(JOYPAD);
     }
 
-    if (keyPressed(mapGbKey(KEY_GB_AUTO_A))) {
-        if (autoFireCounterA <= 0) {
+    if (keyPressed(mapGbKey(KEY_GB_AUTO_A)))
+    {
+        if (autoFireCounterA <= 0)
+        {
             buttonsPressed &= (0xFF ^ BUTTONA);
             if (!(ioRam[0x00] & 0x20))
                 requestInterrupt(JOYPAD);
@@ -126,8 +140,10 @@ void gameboyCheckInput() {
         }
         autoFireCounterA--;
     }
-    if (keyPressed(mapGbKey(KEY_GB_AUTO_B))) {
-        if (autoFireCounterB <= 0) {
+    if (keyPressed(mapGbKey(KEY_GB_AUTO_B)))
+    {
+        if (autoFireCounterB <= 0)
+        {
             buttonsPressed &= (0xFF ^ BUTTONB);
             if (!(ioRam[0x00] & 0x20))
                 requestInterrupt(JOYPAD);
@@ -140,8 +156,10 @@ void gameboyCheckInput() {
     refreshP1();
 #endif
 
-    if (keyJustPressed(mapGbKey(KEY_SAVE))) {
-        if (!autoSavingEnabled) {
+    if (keyJustPressed(mapGbKey(KEY_SAVE)))
+    {
+        if (!autoSavingEnabled)
+        {
             saveGame();
         }
     }
@@ -150,7 +168,8 @@ void gameboyCheckInput() {
     if (keyJustPressed(mapGbKey(KEY_FAST_FORWARD_TOGGLE)))
         fastForwardMode = !fastForwardMode;
 
-    if (advanceFrame || keyJustPressed(mapGbKey(KEY_MENU) | mapGbKey(KEY_MENU_PAUSE))) {
+    if (advanceFrame || keyJustPressed(mapGbKey(KEY_MENU) | mapGbKey(KEY_MENU_PAUSE)))
+    {
         if (keyJustPressed(mapGbKey(KEY_MENU_PAUSE)) || singleScreenMode)
             pauseGameboy();
 
@@ -162,14 +181,17 @@ void gameboyCheckInput() {
         displayMenu();
     }
 
-    if (keyJustPressed(mapGbKey(KEY_SCALE))) {
+    if (keyJustPressed(mapGbKey(KEY_SCALE)))
+    {
         setMenuOption("Scaling", !getMenuOption("Scaling"));
     }
 
-    if (fastForwardKey || fastForwardMode) {
+    if (fastForwardKey || fastForwardMode)
+    {
         sharedData->hyperSound = false;
     }
-    else {
+    else
+    {
         sharedData->hyperSound = hyperSound;
     }
 
@@ -178,21 +200,25 @@ void gameboyCheckInput() {
 }
 
 // This is called 60 times per gameboy second, even if the lcd is off.
-void gameboyUpdateVBlank() {
+void gameboyUpdateVBlank()
+{
     gameboyFrameCounter++;
 
     readKeys();
     if (isMenuOn())
         updateMenu();
-    else {
+    else
+    {
         gameboyCheckInput();
         if (gbsMode)
             gbsCheckInput();
     }
 
-    if (gameboyPaused) {
+    if (gameboyPaused)
+    {
         muteSND();
-        while (gameboyPaused) {
+        while (gameboyPaused)
+        {
             swiWaitForVBlank();
             readKeys();
             updateMenu();
@@ -200,62 +226,71 @@ void gameboyUpdateVBlank() {
         unmuteSND();
     }
 
-	if (gbsMode) {
+    if (gbsMode)
+    {
         drawScreen(); // Just because it syncs with vblank...
-	}
-	else {
-		drawScreen();
-		soundUpdateVBlank();
+    }
+    else
+    {
+        drawScreen();
+        soundUpdateVBlank();
 
-		if (resettingGameboy) {
-			initializeGameboy();
-			resettingGameboy = false;
-		}
+        if (resettingGameboy)
+        {
+            initializeGameboy();
+            resettingGameboy = false;
+        }
 
-        if (probingForBorder) {
-            if (gameboyFrameCounter >= 450) {
+        if (probingForBorder)
+        {
+            if (gameboyFrameCounter >= 450)
+            {
                 // Give up on finding a sgb border.
                 probingForBorder = false;
                 sgbBorderLoaded = false;
                 resetGameboy();
             }
-			return;
+            return;
         }
 
         updateAutosave();
 
-		if (cheatsEnabled)
-			applyGSCheats();
+        if (cheatsEnabled)
+            applyGSCheats();
 
         updateGbPrinter();
-	}
+    }
 
     if (isConsoleOn() && !isMenuOn() && !consoleDebugOutput && (rawTime > lastRawTime))
     {
         setPrintConsole(menuConsole);
         consoleClear();
-        int line=0;
-        if (fpsOutput) {
+        int line = 0;
+        if (fpsOutput)
+        {
             consoleClear();
             iprintf("FPS: %d\n", fps);
             line++;
         }
         fps = 0;
-        if (timeOutput) {
-            for (; line<23-1; line++)
+        if (timeOutput)
+        {
+            for (; line < 23 - 1; line++)
                 iprintf("\n");
             char *timeString = ctime(&rawTime);
-            for (int i=0;; i++) {
-                if (timeString[i] == ':') {
-                    timeString += i-2;
+            for (int i = 0;; i++)
+            {
+                if (timeString[i] == ':')
+                {
+                    timeString += i - 2;
                     break;
                 }
             }
             char s[50];
             strncpy(s, timeString, 50);
             s[49] = '\0';
-            int spaces = 31-strlen(s);
-            for (int i=0; i<spaces; i++)
+            int spaces = 31 - strlen(s);
+            for (int i = 0; i < spaces; i++)
                 iprintf(" ");
             iprintf("%s\n", s);
         }
@@ -265,25 +300,31 @@ void gameboyUpdateVBlank() {
 
 // This function can be called from weird contexts, so just set a flag to deal
 // with it later.
-void resetGameboy() {
+void resetGameboy()
+{
     resettingGameboy = true;
 }
 
-void pauseGameboy() {
-    if (!gameboyPaused) {
+void pauseGameboy()
+{
+    if (!gameboyPaused)
+    {
         gameboyPaused = true;
     }
 }
-void unpauseGameboy() {
-    if (gameboyPaused) {
+void unpauseGameboy()
+{
+    if (gameboyPaused)
+    {
         gameboyPaused = false;
     }
 }
-bool isGameboyPaused() {
+bool isGameboyPaused()
+{
     return gameboyPaused;
 }
 
-int soundCycles=0;
+int soundCycles = 0;
 int extraCycles;
 void runEmul()
 {
@@ -302,13 +343,15 @@ void runEmul()
         cycles += extraCycles;
 
         cyclesToEvent = maxWaitCycles;
-        extraCycles=0;
+        extraCycles = 0;
 
         cyclesSinceVblank += cycles;
 
-        if (serialCounter > 0) {
+        if (serialCounter > 0)
+        {
             serialCounter -= cycles;
-            if (serialCounter <= 0) {
+            if (serialCounter <= 0)
+            {
                 serialCounter = 0;
                 linkReceivedData = 0xff;
                 transferReady = true;
@@ -316,14 +359,18 @@ void runEmul()
             else
                 setEventCycles(serialCounter);
         }
-        if (transferReady) {
-            if (nifiEnabled) {
-                if (!(ioRam[0x02] & 1)) {
+        if (transferReady)
+        {
+            if (nifiEnabled)
+            {
+                if (!(ioRam[0x02] & 1))
+                {
                     sendPacketByte(56, linkSendData);
                     timerStop(2);
                 }
             }
-            else if (printerEnabled) {
+            else if (printerEnabled)
+            {
                 sendGbPrinterByte(ioRam[0x01]);
             }
             else
@@ -337,8 +384,9 @@ void runEmul()
 
         updateTimers(cycles);
 
-        soundCycles += cycles>>doubleSpeed;
-        if (soundCycles >= cyclesToSoundEvent) {
+        soundCycles += cycles >> doubleSpeed;
+        if (soundCycles >= cyclesToSoundEvent)
+        {
             cyclesToSoundEvent = 10000;
             updateSound(soundCycles);
             soundCycles = 0;
@@ -348,7 +396,8 @@ void runEmul()
         updateLCD(cycles);
 
         int interruptTriggered = ioRam[0x0F] & ioRam[0xFF];
-        if (interruptTriggered) {
+        if (interruptTriggered)
+        {
             /* Hack to fix Robocop 2 and LEGO Racers, possibly others.
              * Interrupts can occur in the middle of an opcode. The result of
              * this is that said opcode can read the resulting state - most
@@ -370,8 +419,8 @@ void initLCD()
     gameboyPaused = false;
     setDoubleSpeed(0);
 
-    scanlineCounter = 456*(doubleSpeed?2:1);
-    phaseCounter = 456*153;
+    scanlineCounter = 456 * (doubleSpeed ? 2 : 1);
+    phaseCounter = 456 * 153;
     timerCounter = 0;
     dividerCounter = 256;
     serialCounter = 0;
@@ -379,50 +428,53 @@ void initLCD()
     initGbPrinter();
 
     // Timer stuff
-    periods[0] = clockSpeed/4096;
-    periods[1] = clockSpeed/262144;
-    periods[2] = clockSpeed/65536;
-    periods[3] = clockSpeed/16384;
+    periods[0] = clockSpeed / 4096;
+    periods[1] = clockSpeed / 262144;
+    periods[2] = clockSpeed / 65536;
+    periods[3] = clockSpeed / 16384;
     timerPeriod = periods[0];
 
     timerStop(2);
 }
 
 // Called either from startup, or when the BIOS writes to FF50.
-void initGameboyMode() {
+void initGameboyMode()
+{
     gbRegs.af.b.l = 0xB0;
     gbRegs.bc.w = 0x0013;
     gbRegs.de.w = 0x00D8;
     gbRegs.hl.w = 0x014D;
-    switch(resultantGBMode) {
-        case 0: // GB
-            gbRegs.af.b.h = 0x01;
-            gbMode = GB;
-            if (romSlot0[0x143] == 0x80 || romSlot1[0x143] == 0xC0)
-                // Init the palette in case the bios overwrote it, since it
-                // assumed it was starting in GBC mode.
-                initGFXPalette();
-            break;
-        case 1: // GBC
-            gbRegs.af.b.h = 0x11;
-            if (gbaModeOption)
-                gbRegs.bc.b.h |= 1;
-            gbMode = CGB;
-            break;
-        case 2: // SGB
-            sgbMode = true;
-            gbRegs.af.b.h = 0x01;
-            gbMode = GB;
-            initSGB();
-            break;
+    switch (resultantGBMode)
+    {
+    case 0: // GB
+        gbRegs.af.b.h = 0x01;
+        gbMode = GB;
+        if (romSlot0[0x143] == 0x80 || romSlot1[0x143] == 0xC0)
+            // Init the palette in case the bios overwrote it, since it
+            // assumed it was starting in GBC mode.
+            initGFXPalette();
+        break;
+    case 1: // GBC
+        gbRegs.af.b.h = 0x11;
+        if (gbaModeOption)
+            gbRegs.bc.b.h |= 1;
+        gbMode = CGB;
+        break;
+    case 2: // SGB
+        sgbMode = true;
+        gbRegs.af.b.h = 0x01;
+        gbMode = GB;
+        initSGB();
+        break;
     }
 }
 
-void checkLYC() {
+void checkLYC()
+{
     if (ioRam[0x44] == ioRam[0x45])
     {
         ioRam[0x41] |= 4;
-        if (ioRam[0x41]&0x40)
+        if (ioRam[0x41] & 0x40)
             requestInterrupt(LCD);
     }
     else
@@ -431,19 +483,20 @@ void checkLYC() {
 
 inline void updateLCD(int cycles)
 {
-    if (!(ioRam[0x40] & 0x80))		// If LCD is off
+    if (!(ioRam[0x40] & 0x80)) // If LCD is off
     {
-        scanlineCounter = 456*(doubleSpeed?2:1);
+        scanlineCounter = 456 * (doubleSpeed ? 2 : 1);
         ioRam[0x44] = 0;
         ioRam[0x41] &= 0xF8;
         // Normally timing is synchronized with gameboy's vblank. If the screen
         // is off, this code kicks in. The "phaseCounter" is a counter until the
         // ds should check for input and whatnot.
         phaseCounter -= cycles;
-        if (phaseCounter <= 0) {
+        if (phaseCounter <= 0)
+        {
             fps++;
-            phaseCounter += 456*153*(doubleSpeed?2:1);
-            cyclesSinceVblank=0;
+            phaseCounter += 456 * 153 * (doubleSpeed ? 2 : 1);
+            cyclesSinceVblank = 0;
             // Though not technically vblank, this is a good time to check for
             // input and whatnot.
             gameboyUpdateVBlank();
@@ -453,92 +506,99 @@ inline void updateLCD(int cycles)
 
     scanlineCounter -= cycles;
 
-    if (scanlineCounter > 0) {
+    if (scanlineCounter > 0)
+    {
         setEventCycles(scanlineCounter);
         return;
     }
 
-    switch(ioRam[0x41]&3)
+    switch (ioRam[0x41] & 3)
     {
-        case 2:
-            {
-                ioRam[0x41]++; // Set mode 3
-                scanlineCounter += 172<<doubleSpeed;
-                drawScanline(ioRam[0x44]);
-            }
-            break;
-        case 3:
-            {
-                ioRam[0x41] &= ~3; // Set mode 0
+    case 2:
+    {
+        ioRam[0x41]++; // Set mode 3
+        scanlineCounter += 172 << doubleSpeed;
+        drawScanline(ioRam[0x44]);
+    }
+    break;
+    case 3:
+    {
+        ioRam[0x41] &= ~3; // Set mode 0
 
-                if (ioRam[0x41]&0x8)
+        if (ioRam[0x41] & 0x8)
+            requestInterrupt(LCD);
+
+        scanlineCounter += 204 << doubleSpeed;
+
+        drawScanline_P2(ioRam[0x44]);
+        if (updateHblankDMA())
+        {
+            extraCycles += 50;
+        }
+    }
+    break;
+    case 0:
+    {
+        // fall through to next case
+    }
+    case 1:
+        if (ioRam[0x44] == 0 && (ioRam[0x41] & 3) == 1)
+        {                  // End of vblank
+            ioRam[0x41]++; // Set mode 2
+            scanlineCounter += 80 << doubleSpeed;
+        }
+        else
+        {
+            ioRam[0x44]++;
+
+            if (ioRam[0x44] < 144 || ioRam[0x44] >= 153)
+            { // Not in vblank
+                if (ioRam[0x41] & 0x20)
+                {
                     requestInterrupt(LCD);
-
-                scanlineCounter += 204<<doubleSpeed;
-
-                drawScanline_P2(ioRam[0x44]);
-                if (updateHblankDMA()) {
-                    extraCycles += 50;
                 }
-            }
-            break;
-        case 0:
-            {
-                // fall through to next case
-            }
-        case 1:
-            if (ioRam[0x44] == 0 && (ioRam[0x41]&3) == 1) { // End of vblank
-                ioRam[0x41]++; // Set mode 2
-                scanlineCounter += 80<<doubleSpeed;
-            }
-            else {
-                ioRam[0x44]++;
 
-                if (ioRam[0x44] < 144 || ioRam[0x44] >= 153) { // Not in vblank
-                    if (ioRam[0x41]&0x20)
-                    {
+                if (ioRam[0x44] >= 153)
+                {
+                    // Don't change the mode. Scanline 0 is twice as
+                    // long as normal - half of it identifies as being
+                    // in the vblank period.
+                    ioRam[0x44] = 0;
+                    scanlineCounter += 456 << doubleSpeed;
+                }
+                else
+                { // End of hblank
+                    ioRam[0x41] &= ~3;
+                    ioRam[0x41] |= 2; // Set mode 2
+                    if (ioRam[0x41] & 0x20)
                         requestInterrupt(LCD);
-                    }
-
-                    if (ioRam[0x44] >= 153)
-                    {
-                        // Don't change the mode. Scanline 0 is twice as
-                        // long as normal - half of it identifies as being
-                        // in the vblank period.
-                        ioRam[0x44] = 0;
-                        scanlineCounter += 456<<doubleSpeed;
-                    }
-                    else { // End of hblank
-                        ioRam[0x41] &= ~3;
-                        ioRam[0x41] |= 2; // Set mode 2
-                        if (ioRam[0x41]&0x20)
-                            requestInterrupt(LCD);
-                        scanlineCounter += 80<<doubleSpeed;
-                    }
-                }
-
-                checkLYC();
-
-                if (ioRam[0x44] >= 144) { // In vblank
-                    scanlineCounter += 456<<doubleSpeed;
-
-                    if (ioRam[0x44] == 144) // Beginning of vblank
-                    {
-                        ioRam[0x41] &= ~3;
-                        ioRam[0x41] |= 1;   // Set mode 1
-
-                        requestInterrupt(VBLANK);
-                        if (ioRam[0x41]&0x10)
-                            requestInterrupt(LCD);
-
-                        fps++;
-                        cyclesSinceVblank = scanlineCounter - (456<<doubleSpeed);
-                        gameboyUpdateVBlank();
-                    }
+                    scanlineCounter += 80 << doubleSpeed;
                 }
             }
 
-            break;
+            checkLYC();
+
+            if (ioRam[0x44] >= 144)
+            { // In vblank
+                scanlineCounter += 456 << doubleSpeed;
+
+                if (ioRam[0x44] == 144) // Beginning of vblank
+                {
+                    ioRam[0x41] &= ~3;
+                    ioRam[0x41] |= 1; // Set mode 1
+
+                    requestInterrupt(VBLANK);
+                    if (ioRam[0x41] & 0x10)
+                        requestInterrupt(LCD);
+
+                    fps++;
+                    cyclesSinceVblank = scanlineCounter - (456 << doubleSpeed);
+                    gameboyUpdateVBlank();
+                }
+            }
+        }
+
+        break;
     }
 
     setEventCycles(scanlineCounter);
@@ -551,10 +611,11 @@ inline void updateTimers(int cycles)
         timerCounter -= cycles;
         while (timerCounter <= 0)
         {
-            int clocksAdded = (-timerCounter)/timerPeriod+1;
-            timerCounter += timerPeriod*clocksAdded;
-            int sum = ioRam[0x05]+clocksAdded;
-            if (sum > 0xff) {
+            int clocksAdded = (-timerCounter) / timerPeriod + 1;
+            timerCounter += timerPeriod * clocksAdded;
+            int sum = ioRam[0x05] + clocksAdded;
+            if (sum > 0xff)
+            {
                 requestInterrupt(TIMER);
                 ioRam[0x05] = ioRam[0x06];
             }
@@ -565,17 +626,17 @@ inline void updateTimers(int cycles)
         // Reads from [0xff05] may be inaccurate.
         // However Castlevania and Alone in the Dark are extremely slow
         // if this is updated each time [0xff05] is changed.
-        setEventCycles(timerCounter+timerPeriod*(255-ioRam[0x05]));
+        setEventCycles(timerCounter + timerPeriod * (255 - ioRam[0x05]));
     }
     dividerCounter -= cycles;
-    if (dividerCounter <= 0) {
-        int divsAdded = -dividerCounter/256+1;
-        dividerCounter += divsAdded*256;
+    if (dividerCounter <= 0)
+    {
+        int divsAdded = -dividerCounter / 256 + 1;
+        dividerCounter += divsAdded * 256;
         ioRam[0x04] += divsAdded;
     }
-    //setEventCycles(dividerCounter);
+    // setEventCycles(dividerCounter);
 }
-
 
 void requestInterrupt(int id)
 {
@@ -584,14 +645,17 @@ void requestInterrupt(int id)
         cyclesToExecute = -1;
 }
 
-void setDoubleSpeed(int val) {
-    if (val == 0) {
+void setDoubleSpeed(int val)
+{
+    if (val == 0)
+    {
         if (doubleSpeed)
             scanlineCounter >>= 1;
         doubleSpeed = 0;
         ioRam[0x4D] &= ~0x80;
     }
-    else {
+    else
+    {
         if (!doubleSpeed)
             scanlineCounter <<= 1;
         doubleSpeed = 1;
