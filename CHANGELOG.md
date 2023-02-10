@@ -1,4 +1,5 @@
-Version 0.5.2
+# Changelog
+## Version 0.5.2
 
 - Updated to DevkitARM r46 for better DSi support.
 - Added an installable CIA file to run as DSiWare.
@@ -7,7 +8,7 @@ Version 0.5.2
   - When running as a CIA on the New 3DS, the "touch" input gets spammed for no reason.
     It can now be disabled as a workaround.
 
-Version 0.5.1:
+## Version 0.5.1
 
 - Savegame management has been modified to prevent corruption as reported by some.
 - Autosaving is laggier due to the above. Consider turning it off.
@@ -15,7 +16,7 @@ Version 0.5.1:
   conflicts with GameYob 3DS.
 - A "single-screen mode" has been added.
 
-Version 0.5:
+## Version 0.5
 
 - Added Gameboy Printer emulation
 - Added GBS playback feature
@@ -29,11 +30,11 @@ Version 0.5:
 - More fixes to emulation accuracy, sound, etc
 - Stability fixes (most notably for sleep mode), many other minor bugfixes
 
-Version 0.4.1:
+## Version 0.4.1
 
 - Fixed "save" button (which was bugged) and reduced autosaving lag
 
-Version 0.4:
+## Version 0.4
 
 - New Icon by Corbin Davenport
 - Implemented Super Gameboy support
@@ -50,7 +51,7 @@ Version 0.4:
 - (partial) Stereo sound emulation
 - More improvements to emulation & sound accuracy
 
-Version 0.3:
+## Version 0.3
 
 - Surpasses Lameboy in speed by about 10 FPS, thanks to optimizations by Nebuleon and myself
 - Added fast forward mode (courtesy of Nebuleon)
@@ -65,7 +66,7 @@ Version 0.3:
 - 100% remappable controls
 - Sound bugfixes
 
-Version 0.2:
+## Version 0.2
 
 - Fixed some sound emulation bugs
 - Fixed sleep-mode crashes
@@ -78,10 +79,10 @@ Version 0.2:
 - Added a little clock
 - Capitalized rom extensions are detected properly
 
-Version 0.1.2:
+## Version 0.1.2
 
 - Fixed Z flag for sla (hl) and rl (hl) opcodes
 
-Version 0.1.1:
+## Version 0.1.1
 
 - Removed limit on number of files per directory
