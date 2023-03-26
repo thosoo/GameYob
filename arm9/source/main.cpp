@@ -227,8 +227,6 @@ void initializeGameboy()
  * If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu.
  * @return void
 */
- * 
- */
 void initializeGameboyFirstTime()
 {
     if (sgbBordersEnabled)
