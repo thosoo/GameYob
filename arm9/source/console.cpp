@@ -54,11 +54,18 @@ extern int halt;
 extern int rumbleInserted;
 extern int rumbleStrength;
 
-// Private function used for simple submenus
+/**
+ * @brief Update function used for simple submenus.
+ *
+ * This is a private function that's used as an update function for simple submenus.
+ * It simply checks whether the A or B button has been pressed and closes the submenu
+ * if so.
+ */
 void subMenuGenericUpdateFunc()
 {
+    // Check if the A or B button has been pressed
     if (keyJustPressed(KEY_A) || keyJustPressed(KEY_B))
-        closeSubMenu();
+        closeSubMenu(); // Close the submenu if so
 }
 
 // Functions corresponding to menu options

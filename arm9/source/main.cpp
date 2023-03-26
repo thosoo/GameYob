@@ -26,12 +26,24 @@ extern time_t lastRawTime;
 
 volatile SharedData *sharedData;
 
-// This is used to signal sleep mode starting or ending.
+/**
+ * @brief Handle 32-bit FIFO messages.
+ *
+ * This function is used to handle 32-bit FIFO messages, specifically to signal sleep mode starting or ending.
+ *
+ * @param[in] value The 32-bit value.
+ * @param[in] user_data Pointer to user-defined data.
+ *
+ * @return void
+ *
+ * @see pauseGameboy(), isGameboyPaused(), unpauseGameboy()
+ */
 void fifoValue32Handler(u32 value, void *user_data)
 {
-    static u8 scalingWasOn;
-    static bool soundWasDisabled;
-    static bool wasPaused;
+    static u8 scalingWasOn; /**< The scaling value before entering sleep mode. */
+    static bool soundWasDisabled; /**< The sound state before entering sleep mode. */
+    static bool wasPaused; /**< Whether the Game Boy was paused before entering sleep mode. */
+
     switch (value)
     {
     case FIFOMSG_LID_CLOSED:
@@ -50,6 +62,7 @@ void fifoValue32Handler(u32 value, void *user_data)
         soundDisabled = soundWasDisabled;
         if (!wasPaused)
             unpauseGameboy();
+
         // Time isn't incremented properly in sleep mode, compensate here.
         time(&rawTime);
         lastRawTime = rawTime;
@@ -57,16 +70,29 @@ void fifoValue32Handler(u32 value, void *user_data)
     }
 }
 
+
+/**
+ * @brief Loads a ROM file and initializes the Gameboy emulator for the first time.
+ * 
+ * This function unloads the current ROM, displays a file chooser dialog to let the user
+ * select a new ROM file to load, and initializes the emulator with the selected ROM.
+ * If a BIOS file is present, it is loaded and used by the emulator as well.
+ * 
+ * @note This function must be called after the emulator has been initialized at least once.
+ */
 void selectRom()
 {
+    // Unload the current ROM
     unloadRom();
 
+    // Display a file chooser dialog to let the user select a new ROM file to load
     loadFileChooserState(&romChooserState);
     const char *extraExtensions[] = {"gbs"};
     int len = (sizeof(extraExtensions) / sizeof(const char *));
     char *filename = startFileChooser(extraExtensions, len, true);
     saveFileChooserState(&romChooserState);
 
+    // Load the BIOS file if it exists
     if (!biosExists)
     {
         FILE *file;
@@ -79,93 +105,130 @@ void selectRom()
         }
     }
 
+    // Load the selected ROM file and update the screens
     loadRom(filename);
     free(filename);
-
     updateScreens();
 
+    // Initialize the emulator for the first time
     initializeGameboyFirstTime();
 }
 
+/**
+ * @brief This function initializes the Game Boy mode based on the current ROM's header values.
+ *
+ * It checks if the SGB mode option is enabled and if the ROM header contains the SGB identifier. 
+ * If both conditions are met, it sets the Game Boy mode to SGB (Super Game Boy) mode. Otherwise,
+ * it sets the Game Boy mode to GB (Game Boy) mode.
+ *
+ * @return void
+ */ 
 void initGBMode()
 {
     if (sgbModeOption != 0 && romSlot0[0x14b] == 0x33 && romSlot0[0x146] == 0x03)
-        resultantGBMode = 2;
+        resultantGBMode = 2; // SGB mode
     else
     {
-        resultantGBMode = 0;
+        resultantGBMode = 0; // GB mode
     }
 }
+
+/**
+ * @brief This function initializes the Game Boy Color mode based on the current ROM's header values.
+ *
+ * It checks if the SGB mode option is set to 2 and if the ROM header contains the SGB identifier. 
+ * If both conditions are met, it sets the Game Boy Color mode to SGB (Super Game Boy) mode. Otherwise,
+ * it sets the Game Boy Color mode to GBC (Game Boy Color) mode.
+ *
+ * @return void
+ */ 
 void initGBCMode()
 {
     if (sgbModeOption == 2 && romSlot0[0x14b] == 0x33 && romSlot0[0x146] == 0x03)
-        resultantGBMode = 2;
+        resultantGBMode = 2; // SGB mode
     else
     {
-        resultantGBMode = 1;
+        resultantGBMode = 1; // GBC mode
     }
 }
+
+/**
+ * @brief Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences.
+* This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero,
+* and initializing the SGB mode to false. Depending on the type of game being loaded and the user's preferences,
+* the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized
+* and GBS mode is handled accordingly.
+* @return void
+*/
 void initializeGameboy()
 {
-    enableSleepMode();
-    gameboyFrameCounter = 0;
-    sgbMode = false;
+    enableSleepMode(); // Set the Gameboy to sleep mode
+    gameboyFrameCounter = 0; // Reset the frame counter to 0
+    sgbMode = false; // Set the Super Gameboy mode to false
 
-    if (gbsMode)
+    if (gbsMode) // Check if it is in Gameboy Sound mode
     {
-        resultantGBMode = 1; // GBC
-        probingForBorder = false;
+        resultantGBMode = 1; // Set the resultant Gameboy mode to Gameboy Color
+        probingForBorder = false; // Stop probing for border
     }
-    else
+    else // If not in Gameboy Sound mode
     {
-        switch (gbcModeOption)
+        switch (gbcModeOption) // Check the Gameboy Color mode option
         {
-        case 0: // GB
-            initGBMode();
+        case 0: // Gameboy mode
+            initGBMode(); // Initialize Gameboy mode
             break;
-        case 1: // GBC if needed
+        case 1: // Gameboy Color mode if needed
             if (romSlot0[0x143] == 0xC0)
-                initGBCMode();
+                initGBCMode(); // Initialize Gameboy Color mode
             else
-                initGBMode();
+                initGBMode(); // Initialize Gameboy mode
             break;
-        case 2: // GBC
+        case 2: // Gameboy Color mode
             if (romSlot0[0x143] == 0x80 || romSlot0[0x143] == 0xC0)
-                initGBCMode();
+                initGBCMode(); // Initialize Gameboy Color mode
             else
-                initGBMode();
+                initGBMode(); // Initialize Gameboy mode
             break;
         }
 
-        bool sgbEnhanced = romSlot0[0x14b] == 0x33 && romSlot0[0x146] == 0x03;
+        bool sgbEnhanced = romSlot0[0x14b] == 0x33 && romSlot0[0x146] == 0x03; // Check if the ROM is Super Gameboy enhanced
         if (sgbEnhanced && resultantGBMode != 2 && probingForBorder)
         {
-            resultantGBMode = 2;
+            resultantGBMode = 2; // Set the resultant Gameboy mode to Super Gameboy
         }
         else
         {
-            probingForBorder = false;
+            probingForBorder = false; // Stop probing for border
         }
     } // !gbsMode
 
-    initMMU();
-    initCPU();
-    initLCD();
-    initGFX();
-    initSND();
+    initMMU(); // Initialize the Memory Management Unit
+    initCPU(); // Initialize the Central Processing Unit
+    initLCD(); // Initialize the Liquid Crystal Display
+    initGFX(); // Initialize the Graphics
+    initSND(); // Initialize the Sound
 
     if (!gbsMode && !probingForBorder && suspendStateExists)
     {
-        loadState(-1);
+        loadState(-1); // Load the suspended state
     }
 
     if (gbsMode)
-        gbsInit();
+        gbsInit(); // Initialize the Gameboy Sound mode
 
     // We haven't calculated the # of cycles to the next hardware event.
-    cyclesToEvent = 1;
+    cyclesToEvent = 1; // Set the number of cycles to the next hardware event to 1
 }
 
+/**
+ * @brief Initializes the Gameboy system for the first time.
+ * If SGB borders are enabled, sets probingForBorder flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgbBorderLoaded flag to false, which effectively unloads any SGB border. Calls initializeGameboy() to continue with Gameboy initialization.
+ * If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu.
+ * @return void
+*/
+ * 
+ */
 void initializeGameboyFirstTime()
 {
     if (sgbBordersEnabled)
@@ -211,6 +274,15 @@ void initializeGameboyFirstTime()
         disableMenuOption("GBC Bios");
 }
 
+/**
+ * @brief Main function for the Gameboy emulator.
+ * This function initializes the emulator by setting various parameters and calling the necessary initialization functions.
+ * It also loads a ROM file if passed as a command-line argument, otherwise it prompts the user to select a ROM file.
+ * Finally, it runs the emulator by calling the runEmul() function and returns 0 when finished.
+ * @param argc The number of command-line arguments passed to the program.
+ * @param argv An array of command-line argument strings.
+ * @return An integer indicating the success of the program (always returns 0).
+ */
 int main(int argc, char *argv[])
 {
     REG_POWERCNT = POWER_ALL & ~(POWER_MATRIX | POWER_3D_CORE); // don't need 3D

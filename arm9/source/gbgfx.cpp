@@ -176,6 +176,15 @@ typedef struct
 
 void drawLine(int gbLine) ITCM_CODE;
 
+/**
+ * @brief Draws a line on the screen, updating the state and palettes for each line.
+ *
+ * This function is responsible for updating the state of the screen on a line-by-line basis,
+ * including managing screen/window layers and updating palettes for the background and sprites.
+ * It also manages drawing the sprites for each line.
+ *
+ * @param gbLine The current line number to be drawn on the screen.
+ */
 void drawLine(int gbLine)
 {
     ScanlineStruct *state = &drawingState[gbLine];
@@ -419,91 +428,149 @@ void drawLine(int gbLine)
 
 void doHBlank(int line) ITCM_CODE;
 
+/**
+ * @brief Perform horizontal blank processing for a given line.
+ * 
+ * This function is called during the horizontal blank period of the Game Boy's screen refresh cycle. It checks if graphics
+ * are disabled, the current line is outside the valid range, or if H-blank processing is disabled. If none of these
+ * conditions apply, it calculates the Game Boy line number for the current line, checks if the previous line was modified
+ * but not yet drawn, and draws the current line if it has been modified.
+ * 
+ * Additionally, if a file chooser or menu is currently active, this function will change the backdrop color for the current
+ * row to highlight the selected option.
+ * 
+ * @param line The current line.
+ */
 void doHBlank(int line)
 {
     if (line >= 192)
         return;
+
+    // Highlight the selected row in the file chooser or menu.
     if ((isFileChooserOn() || isMenuOn()) && line % 8 == 0)
     {
-        // Change the backdrop color for a certain row.
-        // This is used in the file selection menu.
         if (line / 8 == consoleSelectedRow)
-            setBackdropColorSub(RGB15(0, 0, 31));
+            setBackdropColorSub(RGB15(0, 0, 31)); // Highlight the selected row.
         else
             setBackdropColorSub(RGB15(0, 0, 0));
     }
 
     if (gbGraphicsDisabled || hblankDisabled)
         return;
-    int gbLine = line - screenOffsY;
 
+    int gbLine = line - screenOffsY;
     if (gbLine >= 144 || gbLine <= 0)
         return;
 
+    // Draw the previous line if it was modified and not yet drawn.
     if (drawingState[gbLine - 1].modified && !lineCompleted[gbLine - 1])
         drawLine(gbLine - 1);
 
+    // Return if the current line has not been modified.
     if (!drawingState[gbLine].modified)
         return;
 
     lineCompleted[gbLine] = true;
-
     drawLine(gbLine);
 }
 
 void hblankHandler() ITCM_CODE;
 
+/**
+ * @brief Handle horizontal blank interrupt.
+ *
+ * This function is called during the horizontal blank interrupt and retrieves the current line number using REG_VCOUNT.
+ * If the screen is in a non-VBlank mode, it decrements the line number by one. It then calls the doHBlank function
+ * to perform horizontal blank processing for the given line.
+ *
+ */
 void hblankHandler()
 {
     int line = REG_VCOUNT + 1;
+
+    // Decrement line number if not in VBlank mode.
     if ((REG_DISPSTAT & 3) != 2)
         line--;
+
+    // Call doHBlank function to perform horizontal blank processing for the given line.
     doHBlank(line);
 }
 
-// Triggered on line 235, middle of vblank
+/**
+ * @brief Handle vcount interrupt, which is triggered on line 235 (middle of vblank).
+ * This function is called during the vcount interrupt and sets the vram banks to the appropriate sub backgrounds
+ * based on whether scaling is on or not. It then performs hblank processing for the very top line (physical line 0)
+ * and draws the first Game Boy line early (physical line 24) if it has been modified. If graphics are disabled, the function
+ * returns.
+*/
 void vcountHandler()
 {
-    // These vram banks may have been allocated to arm7 for scaling stuff.
+    // Set vram banks for sub backgrounds.
     vramSetBankC(VRAM_C_SUB_BG);
     if (sharedData->scalingOn)
         vramSetBankD(VRAM_D_LCD);
 
-    // Do hblank stuff for the very top line (physical line 0)
+    // Perform hblank processing for physical line 0.
     doHBlank(0);
+
+    // If graphics are disabled, return.
     if (gbGraphicsDisabled)
         return;
-    // Draw the first gameboy line early (physical line 24)
+
+    // Draw the first Game Boy line early (physical line 24) if it has been modified.
     if (drawingState[0].modified)
         drawLine(0);
+
+    // Mark the first Game Boy line as completed.
     lineCompleted[0] = true;
 }
 
 std::vector<void (*)()> vblankTasks;
 
+/**
+ * @brief Add a function to be called at VBlank time.
+ *
+ * This function adds a function pointer to the list of tasks to be executed during VBlank.
+ * The function pointer is added to the end of the vblankTasks vector.
+ *
+ * @param func A pointer to the function to be executed at VBlank time.
+ */
 void doAtVBlank(void (*func)(void))
 {
     vblankTasks.push_back(func);
 }
 
 bool filterFlip = false;
+/**
+ * @brief Handle vblank interrupt.
+ * 
+ * This function is called during the vblank interrupt and performs various tasks such as setting the appropriate
+ * vram banks for scaling, capturing the main display into vram bank D, resetting the line completion status, and
+ * executing any vblank tasks that were added to the vblankTasks vector using doAtVBlank. 
+ * If scaling is enabled, DMA copying is left for arm7 to handle and the scaleTransferReady flag is set to true. 
+ * The function also updates the frame counter and the filter position if a filter is being applied.
+ */
 void vblankHandler()
 {
     if (sharedData->scalingOn)
     {
-        // Leave the DMA copying for arm7.
-        // dmaCopyWordsAsynch(0, (u16*)0x06860000+24*256, (u16*)0x06200000, 144*256*2);
+        // Set vram banks for scaling.
         vramSetBankD(VRAM_D_ARM7_0x06000000);
         vramSetBankC(VRAM_C_ARM7_0x06020000);
         sharedData->scaleTransferReady = true;
 
-        // Capture the main display into vram bank D
+        // Capture the main display into vram bank D.
         REG_DISPCAPCNT = 15 | 3 << 16 | 0 << 18 | 3 << 20 | 0 << 29 | 1 << 31;
     }
+
+    // Update vblank status and frame counter.
     didVblank = true;
     dsFrameCounter++;
 
+    // Reset line completion status.
     memset(lineCompleted, 0, sizeof(lineCompleted));
+
+    // Update filter position if a filter is being applied.
     if (scaleFilter == 1)
     {
         if (filterFlip)
@@ -523,7 +590,7 @@ void vblankHandler()
         filterFlip = !filterFlip;
     }
 
-    // Copy the list so that functions which access vblankTasks work.
+    // Copy the list of vblank tasks and execute them.
     std::vector<void (*)()> tasks = vblankTasks;
     vblankTasks.clear();
     for (uint i = 0; i < tasks.size(); i++)
@@ -532,7 +599,14 @@ void vblankHandler()
     }
 }
 
-// This just sets up the background
+/**
+ * @brief Load SGB border.
+ *
+ * This function sets up the background and loads the SGB border. It disables video background 3, sets the window out to video
+ * background 3, and sets the display control to mode 0. It sets the background 3 control register to the border map base and
+ * tile base 12, and sets the horizontal and vertical offsets to zero and -(screenOffsY - 40) respectively. It then enables
+ * video background 3.
+ */
 void loadSGBBorder()
 {
     loadedBorderType = BORDER_SGB;
@@ -545,6 +619,15 @@ void loadSGBBorder()
     videoBgEnable(3);
 }
 
+/**
+
+ * @brief Initialize the graphics subsystem
+ * 
+ * This function sets up the video memory banks for the backgrounds and sprites. It sets the vcount interrupt line to 235
+ * and enables the vcount, hblank and vblank interrupts. It initializes the off map and the tile for "color0 maps". It also
+ * initializes the window parameters and sets the video mode. Finally, it clears the scanline buffers and enables the graphics.
+ * 
+ */
 void initGFX()
 {
     vramSetBankA(VRAM_A_MAIN_BG);
@@ -624,9 +707,16 @@ void initGFX()
     refreshGFX();
 }
 
+/**
+ * @brief Initializes the palette data for the graphics.
+ *
+ * This function sets the palette data for the background and sprite palettes,
+ * as well as prevents flickering when loading ROMs.
+ */
 void initGFXPalette()
 {
     memset(bgPaletteData, 0xff, 0x40);
+
     if (gbMode == GB)
     {
         sprPaletteData[0] = 0xff;
@@ -654,11 +744,21 @@ void initGFXPalette()
         bgPaletteData[6] = 0;
         bgPaletteData[7] = 0;
     }
+
     // This prevents some flickering when loading roms
     for (int i = 0; i < 8; i++)
+    {
         updateBgPalette_GBC(i, bgPaletteData + i * 8);
+    }
 }
 
+/**
+ * @brief Refreshes the graphics on the screen.
+ *
+ * This function updates all tiles and tile maps on both backgrounds,
+ * as well as clears all queues of changes to tiles and tile maps.
+ * It also resets various internal flags and counters used for graphics processing.
+ */
 void refreshGFX()
 {
     for (int i = 0; i < 0x180; i++)
@@ -696,6 +796,13 @@ void refreshGFX()
     }
 }
 
+/**
+ * @brief Disables graphics and blackens the screen or sets it to white if a border is loaded.
+ *
+ * This function disables all graphics and sets the background color to black or white depending
+ * on whether a border is loaded. If a border is loaded, it sets the palette to white. Otherwise,
+ * it sets the palette to black. It also disables all sprites.
+ */
 void clearGFX()
 {
     gbGraphicsDisabled = true;
@@ -719,9 +826,14 @@ void clearGFX()
     videoBgEnable(0);
 }
 
-// SGB palettes can't quite be perfect because SGB doesn't (necessarily) align
-// palettes with tiles. Mostly problematic with scrolling around status bars.
-// Bars on the bottom are favored by this code.
+/**
+ * @brief Refreshes the palettes for the Super Game Boy (SGB) mode.
+ *
+ * This function updates the palettes for the SGB mode, managing both background and window layers.
+ * It takes into account the current state of the screen, scrolling, and window settings.
+ * Note that SGB palettes might not be perfect due to the SGB not necessarily aligning
+ * palettes with tiles, which is mostly problematic when scrolling around status bars.
+ */
 void refreshSgbPalette()
 {
     int winMap = 0, bgMap = 0;
@@ -792,6 +904,12 @@ void refreshSgbPalette()
     }
 }
 
+/**
+ * @brief Displays an icon on the Game Boy screen.
+ * 
+ * @param iconid Identifier of the icon to be displayed.
+ *        ICON_NULL for no icon, ICON_PRINTER for a printer icon.
+ */
 void displayIcon(int iconid)
 {
     const u16 *gfx;
@@ -819,10 +937,21 @@ void displayIcon(int iconid)
     sprites[0].attr2 = 0x200 | ATTR2_PALETTE(15);
 }
 
+/**
+ * @brief Selects a custom border image file for the emulator display.
+ * 
+ * This function allows the user to select a custom border image file in BMP format
+ * for the emulator display. The borderChooserState is loaded and the user is 
+ * prompted to select a BMP file using the file chooser. If a file is selected, its
+ * path is stored in borderPath, the BORDER_NONE is set to force a reload of the border,
+ * and checkBorder is called to check if the border is valid.
+ */
 void selectBorder()
 {
-    muteSND();
+    muteSND(); // Mute the sound before opening file chooser
 
+    // If the current directory is the root and a border is loaded, set the file chooser's
+    // current directory to the directory containing the current border file.
     if (borderChooserState.directory == "/" && borderPath != NULL)
     {
         char dest[256];
@@ -831,11 +960,15 @@ void selectBorder()
         *(strrchr(dest, '/') + 1) = '\0';
         borderChooserState.directory = dest;
     }
-    loadFileChooserState(&borderChooserState);
 
+    // Load the file chooser's state and prompt the user to select a BMP file.
+    loadFileChooserState(&borderChooserState);
     const char *extensions[] = {"bmp"};
     int len = (sizeof(extensions) / sizeof(const char *));
     char *filename = startFileChooser(extensions, len, false, true);
+
+    // If a file is selected, store its path in borderPath, free the filename buffer,
+    // force a reload of the border, and check if the border is valid.
     if (filename != NULL)
     {
         char cwd[256];
@@ -844,21 +977,27 @@ void selectBorder()
         borderPath = (char *)malloc(strlen(cwd) + strlen(filename) + 1);
         strcpy(borderPath, cwd);
         strcat(borderPath, filename);
-
         free(filename);
-
         loadedBorderType = BORDER_NONE; // Force reload
         checkBorder();
     }
 
+    // Save the file chooser's state and reload the ROM file chooser state.
     saveFileChooserState(&borderChooserState);
     loadFileChooserState(&romChooserState);
 
-    unmuteSND();
+    unmuteSND(); // Unmute the sound after closing the file chooser
 }
 
+/**
+ * Loads a custom border image file into VRAM and displays it on the screen.
+ *
+ * @param filename The path and filename of the custom border image file to load.
+ * @return 0 on success, 1 on failure.
+ */
 int loadBorder(const char *filename)
 {
+    // Attempt to open the file.
     FILE *file = fopen(filename, "rb");
     if (file == NULL)
     {
@@ -867,47 +1006,58 @@ int loadBorder(const char *filename)
         printLog("Error opening border.\n");
         return 1;
     }
+
+    // Enable the "Custom Border" menu option and set the custom border flag.
     enableMenuOption("Custom Border");
     customBorderExists = true;
 
+    // Set the VRAM bank to use and start loading the image.
     vramSetBankD(VRAM_D_MAIN_BG_0x06040000);
-    // Start loading
     fseek(file, 0xe, SEEK_SET);
     u8 pixelStart = (u8)fgetc(file) + 0xe;
     fseek(file, pixelStart, SEEK_SET);
+
+    // Load the image data into VRAM.
     for (int y = 191; y >= 168; y--)
     {
         u16 buffer[256];
         fread(buffer, 2, 0x100, file);
         u16 *src = buffer;
+
         for (int i = 0; i < 256; i++)
         {
             u16 val = *(src++);
             BG_GFX[0x20000 + y * 256 + i] = ((val >> 10) & 0x1f) | ((val) & (0x1f << 5)) | (val & 0x1f) << 10 | BIT(15);
         }
     }
+
     for (int y = 167; y >= 24; y--)
     {
         u16 buffer[256];
         fread(buffer, 2, 256, file);
         u16 *src = buffer;
+
         for (int i = 0; i < 48; i++)
         {
             u16 val = *(src++);
             BG_GFX[0x20000 + y * 256 + i] = ((val >> 10) & 0x1f) | ((val) & (0x1f << 5)) | (val & 0x1f) << 10 | BIT(15);
         }
+
         src += 160;
+
         for (int i = 208; i < 256; i++)
         {
             u16 val = *(src++);
             BG_GFX[0x20000 + y * 256 + i] = ((val >> 10) & 0x1f) | ((val) & (0x1f << 5)) | (val & 0x1f) << 10 | BIT(15);
         }
     }
+
     for (int y = 23; y >= 0; y--)
     {
         u16 buffer[256];
         fread(buffer, 2, 0x100, file);
         u16 *src = buffer;
+
         for (int i = 0; i < 256; i++)
         {
             u16 val = *(src++);
@@ -983,6 +1133,14 @@ end:
         }
     }
 }
+
+/**
+ * @brief Refreshes the scaling mode of the video.
+ *
+ * This function is used to refresh the scaling mode of the video depending on the current
+ * scale mode and filter.
+ *
+ */
 void refreshScaleMode()
 {
     int BG2PA, BG2PB, BG2PC, BG2PD;
@@ -1055,42 +1213,74 @@ void refreshScaleMode()
     REG_BG3PD_SUB = BG2PD;
 }
 
+/**
+ * Sets the graphics mask to the given value and performs necessary actions depending on the value.
+ * 
+ * @param mask an integer value representing the graphics mask to be set.
+ */
 void setGFXMask(int mask)
 {
+    // Set the graphics mask to the given value.
     gfxMask = mask;
+
+    // Print a log message indicating the new mask value.
     printLog("Mask %d\n", gfxMask);
+
+    // If the mask is 0, perform necessary actions.
     if (gfxMask == 0)
     {
+        // If the loaded border type is not BORDER_NONE, enable the background of video and set the BG_PALETTE array.
         if (loadedBorderType != BORDER_NONE)
         {
             videoBgEnable(3);
             BG_PALETTE[0] = bgPaletteData[0] | bgPaletteData[1] << 8;
         }
+
+        // Set the winPosY variable to -1.
         winPosY = -1;
     }
 }
 
+/**
+ * Sets the SGB tiles using the given source and flags.
+ *
+ * @param src an unsigned 8-bit integer pointer to the source.
+ * @param flags an unsigned 8-bit integer representing the flags.
+ */
 void setSgbTiles(u8 *src, u8 flags)
 {
+    // If the graphics mask is not 0 and the loaded border type is not BORDER_NONE, disable the video background and set the background palette to the backdrop color.
     if (gfxMask != 0 && loadedBorderType != BORDER_NONE)
     {
         videoBgDisable(3);
         BG_PALETTE[0] = BACKDROP_COLOUR;
     }
+
+    // Initialize index and srcIndex to 0.
     int index = 0, srcIndex = 0;
+
+    // If the first flag bit is set, increment index by 0x80 * 16.
     if (flags & 1)
         index += 0x80 * 16;
+
+    // Iterate over 128 tiles.
     for (int i = 0; i < 128; i++)
     {
+        // Iterate over 8 rows of pixels.
         for (int y = 0; y < 8; y++)
         {
+            // Extract the bit values for each pixel in the row.
             int b1 = src[srcIndex];
             int b2 = src[srcIndex + 1] << 1;
             int b3 = src[srcIndex + 16] << 2;
             int b4 = src[srcIndex + 17] << 3;
             srcIndex += 2;
+
+            // Initialize bb0 and bb1 to 0 and shift to 12.
             int bb0 = 0, bb1 = 0;
             int shift = 12;
+
+            // Iterate over 4 pixels in the row to generate the data for bb1.
             for (int x = 0; x < 4; x++)
             {
                 int colorid = b1 & 1;
@@ -1105,7 +1295,11 @@ void setSgbTiles(u8 *src, u8 flags)
                 bb1 |= (colorid << shift);
                 shift -= 4;
             }
+
+            // Reset shift to 12.
             shift = 12;
+
+            // Iterate over 4 pixels in the row to generate the data for bb0.
             for (int x = 0; x < 4; x++)
             {
                 int colorid = b1 & 1;
@@ -1120,34 +1314,52 @@ void setSgbTiles(u8 *src, u8 flags)
                 bb0 |= (colorid << shift);
                 shift -= 4;
             }
+
+            // Set the data for bb0 and bb1 in the BG_GFX array.
             BG_GFX[0x18000 + index++] = bb0;
             BG_GFX[0x18000 + index++] = bb1;
         }
+
+        // Increment the source index by 16.
         srcIndex += 16;
     }
 }
 
+/**
+ * Sets the SGB map using the given source.
+ *
+ * @param src an unsigned 8-bit integer pointer to the source.
+ */
 void setSgbMap(u8 *src)
 {
+    // Iterate over each tile in the 32x32 map.
     for (int i = 0; i < 32 * 32; i++)
     {
+        // Extract the values for the tile ID, palette ID, flipX, and flipY.
         u16 val = ((u16 *)src)[i];
         int tile = val & 0xff;
         int paletteid = ((val >> 10) & 3) + 8;
         int flipX = (val >> 14) & 1;
         int flipY = (val >> 15) & 1;
+
+        // Set the border map entry with the tile ID, palette ID, flipX, and flipY values.
         borderMap[i] = tile | (paletteid << 12) | (flipX << 10) | (flipY << 11);
     }
 
+    // Flush the data cache for the source and copy the data to the background palette.
     DC_FlushRange(src + 0x800, 0x80);
     dmaCopy(src + 0x800, BG_PALETTE + 8 * 16, 0x80);
 
+    // Set the SGB border loaded flag to true.
     sgbBorderLoaded = true;
+
+    // If SGB borders are enabled, load the SGB border and set the background palette.
     if (sgbBordersEnabled)
     {
         loadSGBBorder();
-
         BG_PALETTE[0] = bgPaletteData[0] | bgPaletteData[1] << 8;
+
+        // If probing for the border, set the probingForBorder flag to false and reset the Game Boy.
         if (probingForBorder)
         {
             probingForBorder = false;
@@ -1156,10 +1368,15 @@ void setSgbMap(u8 *src)
     }
 }
 
+/**
+ * Updates the tile maps.
+ */
 void updateTileMaps()
 {
+    // Iterate over the two tile maps.
     for (int m = 0; m < 2; m++)
     {
+        // While there are changes in the map queue, update the tile map for the changed tile.
         while (changedMapQueueLength[m] != 0)
         {
             int tile = changedMapQueue[m][--changedMapQueueLength[m]];
@@ -1167,17 +1384,33 @@ void updateTileMaps()
         }
     }
 }
+
+/**
+ * @brief Updates the tile map for the given map index and tile number.
+ * 
+ * The updateTileMap function updates the tile map for the given map index m and tile number i. It first sets the changed map flag for the tile to false. It then gets the map address and tile number for the tile.
+ * If the Game Boy mode is CGB, it extracts the flipX, flipY, bank, paletteid, and priority values from the VRAM. If the priority value is set, it sets the overlay map entry with the tile number, bank, palette ID, flipX, and flipY values. Otherwise, it sets the overlay map entry to 0x300.
+ * The function sets the map entry with the tile number, bank, palette ID, flipX, and flipY values. It also sets the color 0 map entry with the palette ID.
+ *
+ * @param m an integer value representing the map index.
+ * @param i an integer value representing the tile number.
+ */
 void updateTileMap(int m, int i)
 {
+    // Set the changed map flag for the tile to false.
     changedMap[m][i] = false;
+
+    // Get the map address and tile number for the tile.
     int mapAddr = (m ? 0x1c00 + i : 0x1800 + i);
     int tileNum = vram[0][mapAddr];
 
+    // Initialize bank, flipX, flipY, paletteid, and priority to 0.
     int bank = 0;
     int flipX = 0, flipY = 0;
     int paletteid = 0;
     int priority = 0;
 
+    // If the Game Boy mode is CGB, extract the flipX, flipY, bank, paletteid, and priority values from the VRAM.
     if (gbMode == CGB)
     {
         flipX = !!(vram[1][mapAddr] & 0x20);
@@ -1186,26 +1419,48 @@ void updateTileMap(int m, int i)
         paletteid = vram[1][mapAddr] & 0x7;
         priority = !!(vram[1][mapAddr] & 0x80);
     }
+
+    // If the priority value is set, set the overlay map entry with the tile number, bank, palette ID, flipX, and flipY values.
     if (priority)
         overlayMap[m][i] = (tileNum + (bank * 0x100)) | (paletteid << 12) | (flipX << 10) | (flipY << 11);
     else
     {
+        // Otherwise, set the overlay map entry to 0x300.
         overlayMap[m][i] = 0x300;
     }
+
+    // Set the map entry with the tile number, bank, palette ID, flipX, and flipY values.
     map[m][i] = (tileNum + (bank * 0x100)) | (paletteid << 12) | (flipX << 10) | (flipY << 11);
+
+    // Set the color 0 map entry with the palette ID.
     color0Map[m][i] = paletteid << 12;
 }
 
+/**
+ * @brief Draws a tile with the given tile number and bank.
+ * The drawTile function draws tiles on the Game Boy's background and sprite graphics planes based on the given tile number and bank.
+ * The function takes in two integer arguments: tileNum, which represents the tile number, and bank, which represents the bank number. The tile number is used to calculate the index of the tile data and to determine whether the tile number is unsigned or signed. The bank number is used to determine which VRAM bank the tile data is stored in.
+ * The function iterates over the 8 rows in the tile and over the 4 pixels in each row. It sets the foreground and background color values for each pixel based on the color ID values in the tile data. It then sets the graphics data for the tile in the appropriate location in the background or sprite graphics planes based on whether the tile number is unsigned or signed.
+ *
+ * @param tileNum an integer value representing the tile number.
+ * @param bank an integer value representing the bank number.
+ */
 void drawTile(int tileNum, int bank)
 {
+    // Calculate the index for the tile and the signed index if the tile number is greater than or equal to 0x100.
     int index = (tileNum << 4) + (bank * 0x100 * 16);
     int signedIndex = index;
     if (tileNum >= 0x100)
         signedIndex -= (0x100 << 4);
 
+    // Determine whether the tile number is unsigned or signed.
     bool unsign = tileNum < 0x100;
     bool sign = tileNum >= 0x80;
+
+    // Get the source data for the tile.
     u8 *src = &vram[bank][tileNum << 4];
+
+    // Iterate over the 8 rows in the tile.
     for (int y = 0; y < 8; y++)
     {
         int b1 = *(src++);
@@ -1214,6 +1469,8 @@ void drawTile(int tileNum, int bank)
         int fb0 = 0, fb1 = 0;
         int sb0 = 0, sb1 = 0;
         int shift = 12;
+
+        // Iterate over the 4 pixels in each row of the tile.
         for (int x = 0; x < 4; x++)
         {
             int colorid = b1 & 1;
@@ -1221,6 +1478,7 @@ void drawTile(int tileNum, int bank)
             colorid |= b2 & 2;
             b2 >>= 1;
 
+            // Set the foreground and background color values.
             fb1 |= (colorid + 1) << shift;
             if (colorid != 0)
                 bb1 |= ((colorid + 1) << shift);
@@ -1243,6 +1501,8 @@ void drawTile(int tileNum, int bank)
                 sb0 |= (colorid << shift);
             shift -= 4;
         }
+
+        // Set the graphics data for the tile based on whether it is unsigned or signed.
         if (unsign)
         {
             BG_GFX[0x8000 + index] = bb0;
@@ -1262,30 +1522,59 @@ void drawTile(int tileNum, int bank)
     }
 }
 
-// Currently not actually used
+/**
+ * @brief Copies a tile from source data to destination data.
+ * The copyTile function copies a tile from the source data to the destination data.
+ * The function takes in two arguments: src, a pointer to the source data for the tile, and dest, a pointer to the destination data for the tile.
+ * The function iterates over the 8 rows in the tile and over the 8 pixels in each row. It gets the color ID for each pixel in the tile data and sets the appropriate color value in the destination data.
+ *
+ * @param src a pointer to the source data for the tile.
+ * @param dest a pointer to the destination data for the tile.
+ */
 void copyTile(u8 *src, u16 *dest)
 {
+    // Iterate over the 8 rows in the tile.
     for (int y = 0; y < 8; y++)
     {
         dest[y * 2] = 0;
         dest[y * 2 + 1] = 0;
         int index = y * 2;
+
+        // Iterate over the 8 pixels in each row of the tile.
         for (int x = 0; x < 8; x++)
         {
+            // Get the color ID for the pixel.
             int colorid;
             colorid = !!(src[index] & (0x80 >> x));
             colorid |= !!(src[index + 1] & (0x80 >> x)) << 1;
+
+            // Set the color value in the destination data.
             int orValue = (colorid << ((x % 4) * 4));
             dest[y * 2 + x / 4] |= orValue;
         }
     }
 }
 
+/**
+ * Draws the screen using the current rendering state.
+ *
+ * If `probingForBorder` is true, the function immediately returns without performing any actions.
+ * Otherwise, if fast forward mode is not enabled, the function waits for vblank and sets the
+ * `didVblank` flag to false. If `interruptWaitMode` is 1, the function always waits for vblank,
+ * otherwise it waits only if vblank has not yet occurred. The `frameFlip_Gameboy` and
+ * `frameFlip_DS` fields of the `sharedData` struct are updated based on the current value of
+ * `REG_VCOUNT`. If `gfxMask` is nonzero, the function immediately returns without performing any
+ * further actions. The `renderingState` and `drawingState` pointers are swapped, and the
+ * `screenDisabled` variable is updated based on the value of the LCD control register. The tile
+ * data and tile maps are updated, and if SGB mode is active, the SGB palette is refreshed.
+ */
 void drawScreen()
 {
+    // If we are probing for a border, return early without performing any actions.
     if (probingForBorder)
         return;
 
+    // If we are not in fast forward mode, wait for vblank and reset the `didVblank` flag.
     if (!(fastForwardMode || fastForwardKey))
     {
         if (interruptWaitMode == 1) // Always wait for Vblank.
@@ -1298,30 +1587,47 @@ void drawScreen()
     }
     didVblank = false;
 
+    // Update the `frameFlip_Gameboy` and `frameFlip_DS` fields of the `sharedData` struct
+    // based on the current value of `REG_VCOUNT`.
     sharedData->frameFlip_Gameboy = !sharedData->frameFlip_Gameboy;
     if (REG_VCOUNT == 192)
         sharedData->frameFlip_DS = sharedData->frameFlip_Gameboy;
 
+    // If `gfxMask` is nonzero, return early without performing any further actions.
     if (gfxMask)
         return;
 
+    // Swap the `renderingState` and `drawingState` pointers.
     ScanlineStruct *tmp = renderingState;
     renderingState = drawingState;
     drawingState = tmp;
 
+    // Update the `screenDisabled` variable based on the value of the LCD control register.
     screenDisabled = lastScreenDisabled;
     if (!(ioRam[0x40] & 0x80))
         screenDisabled = true;
     lastScreenDisabled = !(ioRam[0x40] & 0x80);
 
+    // Reset the window Y position.
     winPosY = -1;
 
+    // Update the tile data and tile maps.
     updateTiles();
     updateTileMaps();
+
+    // If SGB mode is active, refresh the SGB palette.
     if (sgbMode)
         refreshSgbPalette();
 }
 
+/**
+ * @brief Draw sprites on the screen.
+ * This function draws the sprites onto the screen using the sprite data provided.
+ * It uses the sprite data to determine the position, size, tile number, bank,
+ * and other attributes of each sprite.
+ * @param data Pointer to an array containing the sprite data.
+ * @param tall Whether the sprites are tall (2 tiles high) or not.
+*/
 void drawSprites(u8 *data, int tall)
 {
     for (int i = 0; i < 40; i++)
@@ -1404,6 +1710,12 @@ void drawScanline(int scanline) ITCM_CODE;
 
 int winX;
 // Called after mode 2
+/**
+ * @brief Updates the window X position if it has changed and sets the lineModified
+ * and mapsModified flags accordingly.
+ * 
+ * @param scanline Current scanline.
+ */
 void drawScanline(int scanline)
 {
     // This japanese game, "Fushigi no Dungeon - Fuurai no Shiren..." expects
@@ -1420,7 +1732,17 @@ void drawScanline(int scanline)
 
 void drawScanline_P2(int scanline) ITCM_CODE;
 
-// Called after mode 3
+/**
+ * @brief Draw a scanline on the screen using palette data and background maps.
+ * @param scanline The current scanline being drawn.
+ * This function is called after video mode 3. It draws a scanline on the screen using the
+ * palette data and background maps. If HBlank is disabled, the function returns immediately.
+ * The function checks if the window position needs to be adjusted, updates the rendering state
+ * for the scanline, and sets the modified flag if necessary. It then updates the sprite and
+ *  background palettes, as well as the maps and tiles used in the rendering. If the scanline
+ *  is 0, the palettes and maps are marked as modified to ensure they are drawn correctly.
+ *  @return void
+  */
 void drawScanline_P2(int scanline)
 {
     if (hblankDisabled)
@@ -1575,6 +1897,14 @@ void drawScanline_P2(int scanline)
     lineModified = false;
 }
 
+/**
+ * @brief Writes a value to VRAM at the specified address.
+ * This function writes a byte to VRAM at a specified address. It checks if the old value is the same as the new value, and if it is, the function returns without making any changes. If the value has changed, the new value is written to the specified address in VRAM.
+ * If the address is less than 0x1800, the function determines which tile the address belongs to and checks the current scanline. If the current scanline is between 128 and 143, it marks the tile as changed in the current frame. Otherwise, it marks the tile as changed outside of the current frame.
+ * If the address is greater than or equal to 0x1800, the function determines which map the address belongs to and which tile it represents. If the VRAM bank is 1 and the new value has bit 7 set but the old value didn't, it increments the number of tiles that use tile priority for that map. If the new value doesn't have bit 7 set but the old value did, it decrements the number of tiles that use tile priority for that map. The function then marks the map and tile as changed.
+ * @param addr The address to write to.
+ * @param val The value to write.
+ */
 void writeVram(u16 addr, u8 val)
 {
     u8 old = vram[vramBank][addr];
@@ -1621,6 +1951,14 @@ void writeVram(u16 addr, u8 val)
         }
     }
 }
+
+/**
+ * @brief Writes a 16-bit value to VRAM.
+ * The writeVram16 function is responsible for writing 16 bytes of data from the source address to the destination address in video RAM (VRAM). The function checks if the write operation is performed on map flags (in VRAM bank 1), and if so, it adjusts the tile priority accordingly.
+ * After the write operation is performed, the function checks if the affected tiles or maps need to be redrawn, based on whether the operation occurs during the visible screen area or not. If necessary, the function adds the affected tiles or maps to a queue for later redrawing.
+ * @param dest The destination address in VRAM.
+ * @param src The source address in ROM or RAM.
+ */
 void writeVram16(u16 dest, u16 src)
 {
     bool writingToMapFlags = (vramBank == 1 && dest >= 0x1800);
@@ -1686,6 +2024,18 @@ void writeVram16(u16 dest, u16 src)
     }
 }
 
+/**
+ * @brief Updates the tile data and queues the changed tiles to be redrawn.
+ *
+ * The function updates the tile data and queues the changed tiles to be redrawn.
+ * It first processes all the tiles in the @p changedTileQueue, which holds the
+ * tiles that have changed on the current frame. After redrawing these tiles,
+ * it marks them as unmodified. Then, it copies the tiles in the
+ * @p changedTileInFrameQueue, which holds the tiles that have changed in the
+ * current frame but haven't been redrawn yet, to @p changedTileQueue so they
+ * can be redrawn on the next frame. Finally, it marks the tiles in the
+ * @p changedTileInFrame queue as unmodified.
+ */
 void updateTiles()
 {
     while (changedTileQueueLength > 0)
@@ -1707,40 +2057,90 @@ void updateTiles()
     }
 }
 
+/**
+ * @brief Updates a background palette.
+ * This function iterates through each color in the given data and updates the corresponding color in the background palette.
+ * The @p paletteid parameter specifies which palette to update, and @p dmgPal is the palette data for DMG mode, which is used to map
+ * the indices to the correct color values.
+ * The background palette is stored as a linear array of 64 16-bit color values (one for each of the four colors in each of the 16 palette entries).
+ * The first entry is always transparent, so it is skipped in the loop.
+ * @param paletteid ID of the palette to update.
+ * @param data Pointer to the data containing the new palette values.
+ * @param dmgPal DMG palette value.
+ */
 void updateBgPalette(int paletteid, u8 *data, u8 dmgPal)
 {
     for (int i = 0; i < 4; i++)
     {
         int id = (dmgPal >> (i * 2)) & 3;
 
+        // Set the new color values for each palette index
         BG_PALETTE[((paletteid)*16) + i + 1] = data[(paletteid * 8) + (id * 2)] | data[(paletteid * 8) + (id * 2) + 1] << 8;
     }
 }
 
+/**
+ * @brief Updates the Game Boy Color background palette with the specified data.
+ *
+ * @param paletteid The index of the palette to update.
+ * @param data The data to update the palette with.
+ *
+ * @note This function is only used in Game Boy Color mode.
+ */
 void updateBgPalette_GBC(int paletteid, u8 *data)
 {
+    // Compute the destination and source pointers.
     u16 *dest = BG_PALETTE + paletteid * 16 + 1;
     u16 *src = ((u16 *)data) + paletteid * 4;
+
+    // Update the palette with the specified data.
     for (int i = 0; i < 4; i++)
         *(dest++) = *(src++);
 }
+
+/**
+ * @brief Updates the sprite palette in the given paletteid using the provided data and dmgPal
+ * @param paletteid The palette ID to update
+ * @param data The data containing the new color values
+ * @param dmgPal The DMG palette
+ */
 void updateSprPalette(int paletteid, u8 *data, u8 dmgPal)
 {
     int src = paletteid;
-    if (gbMode == GB && paletteid >= 4) // SGB stuff
+    if (gbMode == GB && paletteid >= 4) // Check if we're in SGB mode and adjust the source ID if necessary
         src -= 4;
     for (int i = 0; i < 4; i++)
     {
         int id;
-        if (gbMode == GB)
-            id = (dmgPal >> (i * 2)) & 3;
+        if (gbMode == GB) // Check if we're in DMG or CGB mode
+            id = (dmgPal >> (i * 2)) & 3; // Get the DMG color ID
         else
-            id = i;
+            id = i; // Use the CGB color ID
 
+        // Update the sprite palette with the new color values
         SPRITE_PALETTE[((paletteid)*16) + i] = data[(src * 8) + (id * 2)] | data[(src * 8) + (id * 2) + 1] << 8;
     }
 }
 
+
+/**
+ * @brief Handles writes to video-related I/O registers.
+ * This function is called whenever a write is made to one of the video-related I/O registers.
+ * It handles the register writes by updating any state that is affected by the write.
+ * For example, changes to the LCDC register can affect whether the background and sprites are
+ * displayed, and changes to the DMA register initiate a DMA transfer of sprite data.
+ * The handleVideoRegister function handles write accesses to various video-related IO registers. It takes two parameters, ioReg and val, which correspond to the register being written to and the value being written, respectively. The function contains a switch statement that handles each IO register separately.
+ * For register 0x40, the LCD Control register (LCDC), the function updates the IO register value and sets flags indicating that the screen needs to be redrawn if the LCD is turned on or off, and if the background or sprites should be redrawn. If the LCD is turned off, it also sets the video mode to 0.
+ * For register 0x46, the DMA Transfer register, the function performs a DMA transfer from the source address specified in the IO register multiplied by 0x100 to the HRAM. It also sets flags indicating that the sprites and screen need to be redrawn.
+ * For registers 0x42 and 0x43, the Scroll Y and Scroll X registers, the function updates the IO register values and sets flags indicating that the background maps need to be redrawn.
+ * For register 0x4B, the Window X Position register, the function updates the IO register value.
+ * For register 0x4A, the Window Y Position register, the function updates the IO register value and sets a flag indicating that the window position needs to be updated.
+ * For registers 0x47, 0x48, and 0x49, the Background Palette register, Sprite Palette 0 register, and Sprite Palette 1 register (GB classic only), respectively, the function updates the IO register values and sets flags indicating that the background or sprite palettes need to be redrawn.
+ * For registers 0x69 and 0x6B, the Background Palette Data and Sprite Palette Data registers (GBC only), respectively, the function updates the IO register values, the corresponding palette data, and sets flags indicating that the background or sprite palettes need to be redrawn. These registers also update the palette index register, which is checked in the next write to determine which palette data should be read.
+ * For all other registers, the function simply updates the IO register value.
+ * @param ioReg The I/O register being written to.
+ * @param val The value being written to the I/O register.
+*/
 void handleVideoRegister(u8 ioReg, u8 val)
 {
     switch (ioReg)
@@ -1866,9 +2266,18 @@ void handleVideoRegister(u8 ioReg, u8 val)
     }
 }
 
+/**
+ * Writes a byte to the High RAM at the specified address.
+ *
+ * @param addr The address to write to.
+ * @param val The value to write.
+ */
 void writeHram(u16 addr, u8 val)
 {
+    // Only use the lower 9 bits of the address, as that's all that exists in HRAM.
     hram[addr & 0x1ff] = val;
+
+    // Indicate that the current line and sprites have been modified.
     lineModified = true;
     spritesModified = true;
 }

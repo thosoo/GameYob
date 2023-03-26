@@ -15,6 +15,13 @@
  **************************************************************************************************************/
 
 #define FlashBase 0x08000000
+
+/**
+ * @brief Initializes writing to the NOR flash memory
+ *
+ * This function initializes writing to the NOR flash memory by writing specific values to
+ * several memory addresses.
+ */
 void OpenNorWrite()
 {
     *(vuint16 *)0x9fe0000 = 0xd200;
@@ -25,6 +32,12 @@ void OpenNorWrite()
     *(vuint16 *)0x9fc0000 = 0x1500;
 }
 
+/**
+ * @brief Closes the write operation on the NOR memory
+ * 
+ * This function closes writing to the NOR flash memory by writing specific values to
+ * several memory addresses.
+ */
 void CloseNorWrite()
 {
     *(vuint16 *)0x9fe0000 = 0xd200;
@@ -34,6 +47,11 @@ void CloseNorWrite()
     *(vuint16 *)0x9C40000 = 0xd200;
     *(vuint16 *)0x9fc0000 = 0x1500;
 }
+
+/**
+ * @brief Reads the ID of the NOR flash.
+ * @return uint32 The ID of the NOR flash.
+ */
 uint32 ReadNorFlashID()
 {
     vuint16 id1, id2, id3, id4;
