@@ -1,0 +1,276 @@
+\hypertarget{struct_shared_data}{}\doxysection{Shared\+Data Struct Reference}
+\label{struct_shared_data}\index{SharedData@{SharedData}}
+
+
+{\ttfamily \#include $<$common.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_shared_data_a47b59e2df77853e1827c4b6d990c0e67}{fifos\+Sent}}
+\item 
+int \mbox{\hyperlink{struct_shared_data_a9908c044a6a457f71fabb131e8621151}{fifos\+Received}}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}{scaling\+On}}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_ad9aa2a8dd98de663ae9e21874bd5f7c3}{scale\+Transfer\+Ready}}
+\item 
+bool \mbox{\hyperlink{struct_shared_data_acb46bb7d12888b018e4befc95c981ca0}{hyper\+Sound}}
+\item 
+int \mbox{\hyperlink{struct_shared_data_a40eebec5b7b5809ca80882aa2cb4fdf5}{cycles}}
+\item 
+int \mbox{\hyperlink{struct_shared_data_a03170f2fb237b34a50174fedc41679c1}{ds\+Cycles}}
+\item 
+bool \mbox{\hyperlink{struct_shared_data_a375385b4dc726b4c0edae7a2b438ce48}{frame\+Flip\+\_\+\+Gameboy}}
+\item 
+bool \mbox{\hyperlink{struct_shared_data_afed8946bd180371ec758e171fabdb7ca}{frame\+Flip\+\_\+\+DS}}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_af236d9c76a4a381e084c31147d098b64}{vol\+Control}}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_ad17b2ef59c3309fdb7e6ec80575dae5c}{chan\+Output}}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_ac605d4c380c0f0552376a2521894870a}{chan\+Real\+Vol}} \mbox{[}4\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_shared_data_a6e18f86fe6c9136a69a01e8b638b5ea6}{chan\+Real\+Freq}} \mbox{[}4\mbox{]}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_a5d8f6fd81997d4bf2e51d2b6a700e30b}{chan\+Pan}} \mbox{[}4\mbox{]}
+\item 
+int \mbox{\hyperlink{struct_shared_data_adb89a1853d13d754ccc79720b6898909}{chan\+Duty}} \mbox{[}2\mbox{]}
+\item 
+u8 \mbox{\hyperlink{struct_shared_data_af5b7afec609c180e9d03dc87a9ce59ce}{chan\+On}}
+\item 
+bool \mbox{\hyperlink{struct_shared_data_aeb33df75b64eb91d40147ece8def08a0}{chan\+Enabled}} \mbox{[}4\mbox{]}
+\item 
+bool \mbox{\hyperlink{struct_shared_data_a8b33d9df4ca68bf18116d475ee8eefec}{lfsr7\+Bit}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{struct_shared_data_a127281bde836c9c2fb579261ddbe53e7}{sample\+Data}}
+\item 
+bool \mbox{\hyperlink{struct_shared_data_aa3cf7a41e0900e97c888a6a458c6db00}{enable\+Sleep\+Mode}}
+\item 
+u32 \mbox{\hyperlink{struct_shared_data_aa8d0c908d751e0355e64e00dba2108d5}{message}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00004}{4}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_shared_data_adb89a1853d13d754ccc79720b6898909}\label{struct_shared_data_adb89a1853d13d754ccc79720b6898909}} 
+\index{SharedData@{SharedData}!chanDuty@{chanDuty}}
+\index{chanDuty@{chanDuty}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanDuty}{chanDuty}}
+{\footnotesize\ttfamily int Shared\+Data\+::chan\+Duty\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00023}{23}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_aeb33df75b64eb91d40147ece8def08a0}\label{struct_shared_data_aeb33df75b64eb91d40147ece8def08a0}} 
+\index{SharedData@{SharedData}!chanEnabled@{chanEnabled}}
+\index{chanEnabled@{chanEnabled}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanEnabled}{chanEnabled}}
+{\footnotesize\ttfamily bool Shared\+Data\+::chan\+Enabled\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00025}{25}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_af5b7afec609c180e9d03dc87a9ce59ce}\label{struct_shared_data_af5b7afec609c180e9d03dc87a9ce59ce}} 
+\index{SharedData@{SharedData}!chanOn@{chanOn}}
+\index{chanOn@{chanOn}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanOn}{chanOn}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::chan\+On}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00024}{24}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_ad17b2ef59c3309fdb7e6ec80575dae5c}\label{struct_shared_data_ad17b2ef59c3309fdb7e6ec80575dae5c}} 
+\index{SharedData@{SharedData}!chanOutput@{chanOutput}}
+\index{chanOutput@{chanOutput}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanOutput}{chanOutput}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::chan\+Output}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00019}{19}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a5d8f6fd81997d4bf2e51d2b6a700e30b}\label{struct_shared_data_a5d8f6fd81997d4bf2e51d2b6a700e30b}} 
+\index{SharedData@{SharedData}!chanPan@{chanPan}}
+\index{chanPan@{chanPan}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanPan}{chanPan}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::chan\+Pan\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00022}{22}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a6e18f86fe6c9136a69a01e8b638b5ea6}\label{struct_shared_data_a6e18f86fe6c9136a69a01e8b638b5ea6}} 
+\index{SharedData@{SharedData}!chanRealFreq@{chanRealFreq}}
+\index{chanRealFreq@{chanRealFreq}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanRealFreq}{chanRealFreq}}
+{\footnotesize\ttfamily int Shared\+Data\+::chan\+Real\+Freq\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00021}{21}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_ac605d4c380c0f0552376a2521894870a}\label{struct_shared_data_ac605d4c380c0f0552376a2521894870a}} 
+\index{SharedData@{SharedData}!chanRealVol@{chanRealVol}}
+\index{chanRealVol@{chanRealVol}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{chanRealVol}{chanRealVol}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::chan\+Real\+Vol\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00020}{20}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a40eebec5b7b5809ca80882aa2cb4fdf5}\label{struct_shared_data_a40eebec5b7b5809ca80882aa2cb4fdf5}} 
+\index{SharedData@{SharedData}!cycles@{cycles}}
+\index{cycles@{cycles}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{cycles}{cycles}}
+{\footnotesize\ttfamily int Shared\+Data\+::cycles}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00013}{13}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a03170f2fb237b34a50174fedc41679c1}\label{struct_shared_data_a03170f2fb237b34a50174fedc41679c1}} 
+\index{SharedData@{SharedData}!dsCycles@{dsCycles}}
+\index{dsCycles@{dsCycles}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{dsCycles}{dsCycles}}
+{\footnotesize\ttfamily int Shared\+Data\+::ds\+Cycles}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00014}{14}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_aa3cf7a41e0900e97c888a6a458c6db00}\label{struct_shared_data_aa3cf7a41e0900e97c888a6a458c6db00}} 
+\index{SharedData@{SharedData}!enableSleepMode@{enableSleepMode}}
+\index{enableSleepMode@{enableSleepMode}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{enableSleepMode}{enableSleepMode}}
+{\footnotesize\ttfamily bool Shared\+Data\+::enable\+Sleep\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00029}{29}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a9908c044a6a457f71fabb131e8621151}\label{struct_shared_data_a9908c044a6a457f71fabb131e8621151}} 
+\index{SharedData@{SharedData}!fifosReceived@{fifosReceived}}
+\index{fifosReceived@{fifosReceived}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{fifosReceived}{fifosReceived}}
+{\footnotesize\ttfamily int Shared\+Data\+::fifos\+Received}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00005}{5}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a47b59e2df77853e1827c4b6d990c0e67}\label{struct_shared_data_a47b59e2df77853e1827c4b6d990c0e67}} 
+\index{SharedData@{SharedData}!fifosSent@{fifosSent}}
+\index{fifosSent@{fifosSent}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{fifosSent}{fifosSent}}
+{\footnotesize\ttfamily int Shared\+Data\+::fifos\+Sent}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00005}{5}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_afed8946bd180371ec758e171fabdb7ca}\label{struct_shared_data_afed8946bd180371ec758e171fabdb7ca}} 
+\index{SharedData@{SharedData}!frameFlip\_DS@{frameFlip\_DS}}
+\index{frameFlip\_DS@{frameFlip\_DS}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{frameFlip\_DS}{frameFlip\_DS}}
+{\footnotesize\ttfamily bool Shared\+Data\+::frame\+Flip\+\_\+\+DS}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00016}{16}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a375385b4dc726b4c0edae7a2b438ce48}\label{struct_shared_data_a375385b4dc726b4c0edae7a2b438ce48}} 
+\index{SharedData@{SharedData}!frameFlip\_Gameboy@{frameFlip\_Gameboy}}
+\index{frameFlip\_Gameboy@{frameFlip\_Gameboy}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{frameFlip\_Gameboy}{frameFlip\_Gameboy}}
+{\footnotesize\ttfamily bool Shared\+Data\+::frame\+Flip\+\_\+\+Gameboy}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00015}{15}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_acb46bb7d12888b018e4befc95c981ca0}\label{struct_shared_data_acb46bb7d12888b018e4befc95c981ca0}} 
+\index{SharedData@{SharedData}!hyperSound@{hyperSound}}
+\index{hyperSound@{hyperSound}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{hyperSound}{hyperSound}}
+{\footnotesize\ttfamily bool Shared\+Data\+::hyper\+Sound}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00012}{12}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a8b33d9df4ca68bf18116d475ee8eefec}\label{struct_shared_data_a8b33d9df4ca68bf18116d475ee8eefec}} 
+\index{SharedData@{SharedData}!lfsr7Bit@{lfsr7Bit}}
+\index{lfsr7Bit@{lfsr7Bit}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{lfsr7Bit}{lfsr7Bit}}
+{\footnotesize\ttfamily bool Shared\+Data\+::lfsr7\+Bit}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00026}{26}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_aa8d0c908d751e0355e64e00dba2108d5}\label{struct_shared_data_aa8d0c908d751e0355e64e00dba2108d5}} 
+\index{SharedData@{SharedData}!message@{message}}
+\index{message@{message}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{message}{message}}
+{\footnotesize\ttfamily u32 Shared\+Data\+::message}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00031}{31}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a127281bde836c9c2fb579261ddbe53e7}\label{struct_shared_data_a127281bde836c9c2fb579261ddbe53e7}} 
+\index{SharedData@{SharedData}!sampleData@{sampleData}}
+\index{sampleData@{sampleData}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{sampleData}{sampleData}}
+{\footnotesize\ttfamily u8$\ast$ Shared\+Data\+::sample\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00027}{27}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_ad9aa2a8dd98de663ae9e21874bd5f7c3}\label{struct_shared_data_ad9aa2a8dd98de663ae9e21874bd5f7c3}} 
+\index{SharedData@{SharedData}!scaleTransferReady@{scaleTransferReady}}
+\index{scaleTransferReady@{scaleTransferReady}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{scaleTransferReady}{scaleTransferReady}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::scale\+Transfer\+Ready}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00009}{9}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}\label{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}} 
+\index{SharedData@{SharedData}!scalingOn@{scalingOn}}
+\index{scalingOn@{scalingOn}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{scalingOn}{scalingOn}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::scaling\+On}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00008}{8}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+\mbox{\Hypertarget{struct_shared_data_af236d9c76a4a381e084c31147d098b64}\label{struct_shared_data_af236d9c76a4a381e084c31147d098b64}} 
+\index{SharedData@{SharedData}!volControl@{volControl}}
+\index{volControl@{volControl}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{volControl}{volControl}}
+{\footnotesize\ttfamily u8 Shared\+Data\+::vol\+Control}
+
+
+
+Definition at line \mbox{\hyperlink{common_8h_source_l00018}{18}} of file \mbox{\hyperlink{common_8h_source}{common.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{common_8h}{common.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['m_0',['m',['../structclock_struct.html#a35c2e23e6019c4cae30f5f3914aba87c',1,'clockStruct']]],
+  ['map_1',['map',['../gbgfx_8cpp.html#a1e800a6a0ab719ff1af9a81efd02877a',1,'gbgfx.cpp']]],
+  ['map_5fbase_2',['map_base',['../gbgfx_8cpp.html#a83ace767bc1330b97e1e66dac3d0ec32',1,'gbgfx.cpp']]],
+  ['mapper_3',['mapper',['../inputhelper_8cpp.html#acdd603f2d7e306b125bf39439cba1c50',1,'inputhelper.cpp']]],
+  ['mapsmodified_4',['mapsModified',['../struct_scanline_struct.html#af7c7cb7f298fa852d7747a2734499cee',1,'ScanlineStruct::mapsModified()'],['../gbgfx_8cpp.html#a6d8811638f07e4ef3353977efe34c68b',1,'mapsModified():&#160;gbgfx.cpp']]],
+  ['matchfile_5',['matchFile',['../filechooser_8cpp.html#af5186db5292a8d7b82c1e48a227b70aa',1,'filechooser.cpp']]],
+  ['max_5ffilename_5flen_6',['MAX_FILENAME_LEN',['../filechooser_8cpp.html#a47c98bc90c67ed82124bf45f5d260e3f',1,'filechooser.cpp']]],
+  ['max_5from_5fbanks_7',['MAX_ROM_BANKS',['../inputhelper_8h.html#ab61705f91578371bd97f21bf674aac5b',1,'inputhelper.h']]],
+  ['maxloadedrombanks_8',['maxLoadedRomBanks',['../inputhelper_8h.html#af34cf22a808cb66e6206fd4fabb6e61a',1,'maxLoadedRomBanks():&#160;inputhelper.cpp'],['../inputhelper_8cpp.html#af34cf22a808cb66e6206fd4fabb6e61a',1,'maxLoadedRomBanks():&#160;inputhelper.cpp']]],
+  ['maxwaitcycles_9',['maxWaitCycles',['../gameboy_8cpp.html#ad44ee5bb415a41ee86f2a6bebfc28ff0',1,'gameboy.cpp']]],
+  ['mbc_10',['MBC',['../mmu_8h.html#aaca3d44b9724e7f74f4b539fce226e8f',1,'MBC():&#160;mmu.cpp'],['../mmu_8cpp.html#aaca3d44b9724e7f74f4b539fce226e8f',1,'MBC():&#160;mmu.cpp']]],
+  ['mbc3_11',['mbc3',['../structclock_struct.html#a424be029a19559c57dca1d925bd5fee4',1,'clockStruct']]],
+  ['mbcname_12',['mbcName',['../inputhelper_8cpp.html#aaaed32121c104f21993819303107da35',1,'inputhelper.cpp']]],
+  ['mbcreads_13',['mbcReads',['../mmu_8cpp.html#a8831563aea31e6e2b82b3b79f4f9dee1',1,'mmu.cpp']]],
+  ['mbcwrites_14',['mbcWrites',['../mmu_8cpp.html#a5f170d2bedf050b12eed6290bb9c791e',1,'mmu.cpp']]],
+  ['memory_15',['memory',['../mmu_8h.html#a0f09ea9762f03d69ea68b6c34a0b59d0',1,'memory():&#160;mmu.cpp'],['../mmu_8cpp.html#a0f09ea9762f03d69ea68b6c34a0b59d0',1,'memory():&#160;mmu.cpp']]],
+  ['memorymodel_16',['memoryModel',['../struct_state_struct.html#a2ef8613e389da496be5708a64ead5311',1,'StateStruct::memoryModel()'],['../mmu_8h.html#a07a1fd40504b02fdc6c5c6251b754a42',1,'memoryModel():&#160;mmu.cpp'],['../mmu_8cpp.html#a07a1fd40504b02fdc6c5c6251b754a42',1,'memoryModel():&#160;mmu.cpp']]],
+  ['menu_17',['menu',['../console_8cpp.html#a26b42906c0869d0cef7431a39a162950',1,'console.cpp']]],
+  ['menuconsole_18',['menuConsole',['../console_8h.html#a0b4983e8d2606a5b7649c07d79ae9673',1,'menuConsole():&#160;console.cpp'],['../console_8cpp.html#a0b4983e8d2606a5b7649c07d79ae9673',1,'menuConsole():&#160;console.cpp']]],
+  ['menulist_19',['menuList',['../console_8cpp.html#a1b44931b7baad2b7dbb5b901b8f23836',1,'console.cpp']]],
+  ['menuon_20',['menuOn',['../console_8cpp.html#adc1217201890e09bcc829cf02c20d9ea',1,'console.cpp']]],
+  ['message_21',['message',['../struct_shared_data.html#aa8d0c908d751e0355e64e00dba2108d5',1,'SharedData']]],
+  ['modified_22',['modified',['../struct_scanline_struct.html#a336f890daf27be7a9bd3728673d20a16',1,'ScanlineStruct']]]
+];

@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['initcpu_0',['initCPU',['../gbcpu_8h.html#a5706c99691ce2a042f08bc3c4b50f3ba',1,'initCPU():&#160;gbcpu.cpp'],['../gbcpu_8cpp.html#a5706c99691ce2a042f08bc3c4b50f3ba',1,'initCPU():&#160;gbcpu.cpp']]],
+  ['initgameboymode_1',['initGameboyMode',['../gameboy_8h.html#acfee3a994901b0c2493b3b9ce75bff7b',1,'initGameboyMode():&#160;gameboy.cpp'],['../gameboy_8cpp.html#acfee3a994901b0c2493b3b9ce75bff7b',1,'initGameboyMode():&#160;gameboy.cpp']]],
+  ['initgbcmode_2',['initGBCMode',['../main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9',1,'main.cpp']]],
+  ['initgbmode_3',['initGBMode',['../main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e',1,'main.cpp']]],
+  ['initgbprinter_4',['initGbPrinter',['../gbprinter_8h.html#a8b7f6bd95a6bdb68024751bda063020f',1,'initGbPrinter():&#160;gbprinter.cpp'],['../gbprinter_8cpp.html#a8b7f6bd95a6bdb68024751bda063020f',1,'initGbPrinter():&#160;gbprinter.cpp']]],
+  ['initgfx_5',['initGFX',['../gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e',1,'initGFX():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#ad00fca63a33eb7f18124dc4a19620a2e',1,'initGFX():&#160;gbgfx.cpp']]],
+  ['initgfxpalette_6',['initGFXPalette',['../gbgfx_8h.html#ad55b96f2678da1f09b16057cd76c3fe9',1,'initGFXPalette():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#ad55b96f2678da1f09b16057cd76c3fe9',1,'initGFXPalette():&#160;gbgfx.cpp']]],
+  ['initializegameboy_7',['initializeGameboy',['../main_8h.html#aa1e7d84951bad6e6c0e5b0962495a2d5',1,'initializeGameboy():&#160;main.cpp'],['../main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5',1,'initializeGameboy():&#160;main.cpp']]],
+  ['initializegameboyfirsttime_8',['initializeGameboyFirstTime',['../main_8h.html#a4429766953b588702b57e002f24122a1',1,'initializeGameboyFirstTime():&#160;main.cpp'],['../main_8cpp.html#a4429766953b588702b57e002f24122a1',1,'initializeGameboyFirstTime():&#160;main.cpp']]],
+  ['initinput_9',['initInput',['../inputhelper_8h.html#a3d3188b9d438add4ac7abf5d19f9b74c',1,'initInput():&#160;inputhelper.cpp'],['../inputhelper_8cpp.html#a3d3188b9d438add4ac7abf5d19f9b74c',1,'initInput():&#160;inputhelper.cpp']]],
+  ['initlcd_10',['initLCD',['../gameboy_8h.html#a08529d00f32f8441dc7669b1a1d3783c',1,'initLCD():&#160;gameboy.cpp'],['../gameboy_8cpp.html#a08529d00f32f8441dc7669b1a1d3783c',1,'initLCD():&#160;gameboy.cpp']]],
+  ['initmmu_11',['initMMU',['../mmu_8h.html#a1660bd805506c41836f415364b20440b',1,'initMMU():&#160;mmu.cpp'],['../mmu_8cpp.html#a1660bd805506c41836f415364b20440b',1,'initMMU():&#160;mmu.cpp']]],
+  ['initsgb_12',['initSGB',['../sgb_8h.html#aa21c07d9fc28cda5175e8cc1c534355b',1,'initSGB():&#160;sgb.cpp'],['../sgb_8cpp.html#aa21c07d9fc28cda5175e8cc1c534355b',1,'initSGB():&#160;sgb.cpp']]],
+  ['initsnd_13',['initSND',['../gbsnd_8h.html#a15114ef6911222770c38408ae365c6bd',1,'initSND():&#160;gbsnd.cpp'],['../gbsnd_8cpp.html#a15114ef6911222770c38408ae365c6bd',1,'initSND():&#160;gbsnd.cpp']]],
+  ['installgameboysoundfifo_14',['installGameboySoundFIFO',['../main_8c.html#a8acfbecedff5019a4fa42da181423441',1,'installGameboySoundFIFO():&#160;sound.c'],['../sound_8c.html#a8acfbecedff5019a4fa42da181423441',1,'installGameboySoundFIFO():&#160;sound.c']]],
+  ['iprintfcolored_15',['iprintfColored',['../console_8h.html#a7d2dd305b08db0a13d0a0fa0ffcff78e',1,'iprintfColored(int palette, const char *format,...):&#160;console.cpp'],['../console_8cpp.html#a7d2dd305b08db0a13d0a0fa0ffcff78e',1,'iprintfColored(int palette, const char *format,...):&#160;console.cpp']]],
+  ['isconsoleon_16',['isConsoleOn',['../console_8h.html#a8e51251f1892ec6348218f9f2b84035d',1,'isConsoleOn():&#160;console.cpp'],['../console_8cpp.html#a8e51251f1892ec6348218f9f2b84035d',1,'isConsoleOn():&#160;console.cpp']]],
+  ['isfilechooseron_17',['isFileChooserOn',['../filechooser_8h.html#aacb1ffc04c40322a1b8df970a0fa698b',1,'isFileChooserOn():&#160;filechooser.cpp'],['../filechooser_8cpp.html#aacb1ffc04c40322a1b8df970a0fa698b',1,'isFileChooserOn():&#160;filechooser.cpp']]],
+  ['isgameboypaused_18',['isGameboyPaused',['../gameboy_8h.html#a04f739b2c98ebfeee00219477d8bdd93',1,'isGameboyPaused():&#160;gameboy.cpp'],['../gameboy_8cpp.html#a04f739b2c98ebfeee00219477d8bdd93',1,'isGameboyPaused():&#160;gameboy.cpp']]],
+  ['ismenuon_19',['isMenuOn',['../console_8h.html#a0592872559eb432700e6b54c46b9686d',1,'isMenuOn():&#160;console.cpp'],['../console_8cpp.html#a0592872559eb432700e6b54c46b9686d',1,'isMenuOn():&#160;console.cpp']]],
+  ['isrombankloaded_20',['isRomBankLoaded',['../inputhelper_8h.html#ad1fb302157c34bd360e75b5f461ce83c',1,'isRomBankLoaded(int bank):&#160;inputhelper.cpp'],['../inputhelper_8cpp.html#ad1fb302157c34bd360e75b5f461ce83c',1,'isRomBankLoaded(int bank):&#160;inputhelper.cpp']]],
+  ['issorted_21',['isSorted',['../filechooser_8cpp.html#ae3aa3deeec292f4a6de1e4c914282d24',1,'filechooser.cpp']]]
+];

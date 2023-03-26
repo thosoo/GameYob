@@ -1,0 +1,413 @@
+\hypertarget{sgb_8cpp}{}\doxysection{arm9/source/sgb.cpp File Reference}
+\label{sgb_8cpp}\index{arm9/source/sgb.cpp@{arm9/source/sgb.cpp}}
+{\ttfamily \#include \char`\"{}sgb.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_cmd_data}{Cmd\+Data}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sgb_8cpp_aa21c07d9fc28cda5175e8cc1c534355b}{init\+SGB}} ()
+\item 
+void \mbox{\hyperlink{sgb_8cpp_acc6c37260ac1171a8b837c1870dac7e8}{do\+Vram\+Transfer}} (u8 $\ast$dest)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_af4270fd4d212fa2417cae1235987fb74}{set\+Backdrop}} (u16 val)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a5a048cf7ef6e4eed828e899b472abad0}{sgb\+Load\+Attr\+File}} (int index)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgb\+Pal\+XX}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}{sgb\+Attr\+Block}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}{sgb\+Attr\+Lin}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}{sgb\+Attr\+Div}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}{sgb\+Attr\+Chr}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}{sgb\+Pal\+Set}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}{sgb\+Pal\+Trn}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}{sgb\+Data\+Snd}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a603a100441b56f441700833266adf0fa}{sgb\+Mlt\+Req}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}{sgb\+Chr\+Trn}} (int blonk)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}{sgb\+Pct\+Trn}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}{sgb\+Attr\+Trn}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}{sgb\+Attr\+Set}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}{sgb\+Mask}} (int block)
+\item 
+void \mbox{\hyperlink{sgb_8cpp_a3b13f7d7f0c70b71e45025bd1a08eeaf}{sgb\+Handle\+P1}} (u8 val)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sgb_8cpp_ac1aa6776e8cd8d7260ca8e1a7af7c92d}{sgb\+Packet\+Length}}
+\item 
+int \mbox{\hyperlink{sgb_8cpp_afb686246028a7ea96b2aaca045903e43}{sgb\+Packets\+Transferred}}
+\item 
+int \mbox{\hyperlink{sgb_8cpp_a3cdfcfffebd1f491b86f5cb09b4a8e5a}{sgb\+Packet\+Bit}} = -\/1
+\item 
+u8 \mbox{\hyperlink{sgb_8cpp_af6c9c3f99786d30466044d83ff877df3}{sgb\+Packet}} \mbox{[}16\mbox{]}
+\item 
+u8 \mbox{\hyperlink{sgb_8cpp_a16d8f1d1f6a628ef1473009a55a26222}{sgb\+Command}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{sgb_8cpp_a771f9946522222776ab2a1c99af007b9}{sgb\+Palettes}} = \mbox{\hyperlink{mmu_8h_a7d0ed1b85995cb654491c9e0958abed2}{vram}}\mbox{[}1\mbox{]}
+\item 
+u8 $\ast$ \mbox{\hyperlink{sgb_8cpp_a022ec1dc1819bee00b670bce2084e013}{sgb\+Attr\+Files}} = \mbox{\hyperlink{mmu_8h_a7d0ed1b85995cb654491c9e0958abed2}{vram}}\mbox{[}1\mbox{]} + 0x1000
+\item 
+u8 \mbox{\hyperlink{sgb_8cpp_a15e19c23520a5b3c3a3ddb347af5273b}{sgb\+Map}} \mbox{[}20 $\ast$18\mbox{]}
+\item 
+u8 \mbox{\hyperlink{sgb_8cpp_a08adc94b117c943ef7432e0f3f812ec9}{num\+Controllers}}
+\item 
+u8 \mbox{\hyperlink{sgb_8cpp_a6f2c0c13f24456fae5bba8bfbff4f9b7}{selected\+Controller}}
+\item 
+u8 \mbox{\hyperlink{sgb_8cpp_a0772742b284d8d2fb5643a2322cc497a}{buttons\+Checked}}
+\item 
+struct \mbox{\hyperlink{struct_cmd_data}{Cmd\+Data}} \mbox{\hyperlink{sgb_8cpp_acb133109fc664afffe02d4f76af18d34}{cmd\+Data}}
+\item 
+void($\ast$ \mbox{\hyperlink{sgb_8cpp_a66a56570b35035a4ad8876f1ba522af0}{sgb\+Commands}} \mbox{[}$\,$\mbox{]})(int)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sgb_8cpp_acc6c37260ac1171a8b837c1870dac7e8}\label{sgb_8cpp_acc6c37260ac1171a8b837c1870dac7e8}} 
+\index{sgb.cpp@{sgb.cpp}!doVramTransfer@{doVramTransfer}}
+\index{doVramTransfer@{doVramTransfer}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{doVramTransfer()}{doVramTransfer()}}
+{\footnotesize\ttfamily void do\+Vram\+Transfer (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_aa21c07d9fc28cda5175e8cc1c534355b}\label{sgb_8cpp_aa21c07d9fc28cda5175e8cc1c534355b}} 
+\index{sgb.cpp@{sgb.cpp}!initSGB@{initSGB}}
+\index{initSGB@{initSGB}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{initSGB()}{initSGB()}}
+{\footnotesize\ttfamily void init\+SGB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_af4270fd4d212fa2417cae1235987fb74}\label{sgb_8cpp_af4270fd4d212fa2417cae1235987fb74}} 
+\index{sgb.cpp@{sgb.cpp}!setBackdrop@{setBackdrop}}
+\index{setBackdrop@{setBackdrop}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{setBackdrop()}{setBackdrop()}}
+{\footnotesize\ttfamily void set\+Backdrop (\begin{DoxyParamCaption}\item[{u16}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}\label{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrBlock@{sgbAttrBlock}}
+\index{sgbAttrBlock@{sgbAttrBlock}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrBlock()}{sgbAttrBlock()}}
+{\footnotesize\ttfamily void sgb\+Attr\+Block (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00143}{143}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}\label{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrChr@{sgbAttrChr}}
+\index{sgbAttrChr@{sgbAttrChr}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrChr()}{sgbAttrChr()}}
+{\footnotesize\ttfamily void sgb\+Attr\+Chr (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00309}{309}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}\label{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrDiv@{sgbAttrDiv}}
+\index{sgbAttrDiv@{sgbAttrDiv}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrDiv()}{sgbAttrDiv()}}
+{\footnotesize\ttfamily void sgb\+Attr\+Div (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}\label{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrLin@{sgbAttrLin}}
+\index{sgbAttrLin@{sgbAttrLin}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrLin()}{sgbAttrLin()}}
+{\footnotesize\ttfamily void sgb\+Attr\+Lin (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00232}{232}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}\label{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrSet@{sgbAttrSet}}
+\index{sgbAttrSet@{sgbAttrSet}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrSet()}{sgbAttrSet()}}
+{\footnotesize\ttfamily void sgb\+Attr\+Set (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00414}{414}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}\label{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrTrn@{sgbAttrTrn}}
+\index{sgbAttrTrn@{sgbAttrTrn}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrTrn()}{sgbAttrTrn()}}
+{\footnotesize\ttfamily void sgb\+Attr\+Trn (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00409}{409}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}\label{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}} 
+\index{sgb.cpp@{sgb.cpp}!sgbChrTrn@{sgbChrTrn}}
+\index{sgbChrTrn@{sgbChrTrn}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbChrTrn()}{sgbChrTrn()}}
+{\footnotesize\ttfamily void sgb\+Chr\+Trn (\begin{DoxyParamCaption}\item[{int}]{blonk }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00393}{393}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}\label{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}} 
+\index{sgb.cpp@{sgb.cpp}!sgbDataSnd@{sgbDataSnd}}
+\index{sgbDataSnd@{sgbDataSnd}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbDataSnd()}{sgbDataSnd()}}
+{\footnotesize\ttfamily void sgb\+Data\+Snd (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00379}{379}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a3b13f7d7f0c70b71e45025bd1a08eeaf}\label{sgb_8cpp_a3b13f7d7f0c70b71e45025bd1a08eeaf}} 
+\index{sgb.cpp@{sgb.cpp}!sgbHandleP1@{sgbHandleP1}}
+\index{sgbHandleP1@{sgbHandleP1}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbHandleP1()}{sgbHandleP1()}}
+{\footnotesize\ttfamily void sgb\+Handle\+P1 (\begin{DoxyParamCaption}\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00432}{432}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a5a048cf7ef6e4eed828e899b472abad0}\label{sgb_8cpp_a5a048cf7ef6e4eed828e899b472abad0}} 
+\index{sgb.cpp@{sgb.cpp}!sgbLoadAttrFile@{sgbLoadAttrFile}}
+\index{sgbLoadAttrFile@{sgbLoadAttrFile}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbLoadAttrFile()}{sgbLoadAttrFile()}}
+{\footnotesize\ttfamily void sgb\+Load\+Attr\+File (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}\label{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}} 
+\index{sgb.cpp@{sgb.cpp}!sgbMask@{sgbMask}}
+\index{sgbMask@{sgbMask}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbMask()}{sgbMask()}}
+{\footnotesize\ttfamily void sgb\+Mask (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00421}{421}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a603a100441b56f441700833266adf0fa}\label{sgb_8cpp_a603a100441b56f441700833266adf0fa}} 
+\index{sgb.cpp@{sgb.cpp}!sgbMltReq@{sgbMltReq}}
+\index{sgbMltReq@{sgbMltReq}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbMltReq()}{sgbMltReq()}}
+{\footnotesize\ttfamily void sgb\+Mlt\+Req (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00384}{384}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}\label{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPalSet@{sgbPalSet}}
+\index{sgbPalSet@{sgbPalSet}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPalSet()}{sgbPalSet()}}
+{\footnotesize\ttfamily void sgb\+Pal\+Set (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00355}{355}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}\label{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPalTrn@{sgbPalTrn}}
+\index{sgbPalTrn@{sgbPalTrn}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPalTrn()}{sgbPalTrn()}}
+{\footnotesize\ttfamily void sgb\+Pal\+Trn (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00374}{374}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}\label{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPalXX@{sgbPalXX}}
+\index{sgbPalXX@{sgbPalXX}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPalXX()}{sgbPalXX()}}
+{\footnotesize\ttfamily void sgb\+Pal\+XX (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00110}{110}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}\label{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPctTrn@{sgbPctTrn}}
+\index{sgbPctTrn@{sgbPctTrn}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPctTrn()}{sgbPctTrn()}}
+{\footnotesize\ttfamily void sgb\+Pct\+Trn (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00401}{401}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sgb_8cpp_a0772742b284d8d2fb5643a2322cc497a}\label{sgb_8cpp_a0772742b284d8d2fb5643a2322cc497a}} 
+\index{sgb.cpp@{sgb.cpp}!buttonsChecked@{buttonsChecked}}
+\index{buttonsChecked@{buttonsChecked}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{buttonsChecked}{buttonsChecked}}
+{\footnotesize\ttfamily u8 buttons\+Checked}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_acb133109fc664afffe02d4f76af18d34}\label{sgb_8cpp_acb133109fc664afffe02d4f76af18d34}} 
+\index{sgb.cpp@{sgb.cpp}!cmdData@{cmdData}}
+\index{cmdData@{cmdData}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{cmdData}{cmdData}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_cmd_data}{Cmd\+Data}} cmd\+Data}
+
+\mbox{\Hypertarget{sgb_8cpp_a08adc94b117c943ef7432e0f3f812ec9}\label{sgb_8cpp_a08adc94b117c943ef7432e0f3f812ec9}} 
+\index{sgb.cpp@{sgb.cpp}!numControllers@{numControllers}}
+\index{numControllers@{numControllers}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{numControllers}{numControllers}}
+{\footnotesize\ttfamily u8 num\+Controllers}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a6f2c0c13f24456fae5bba8bfbff4f9b7}\label{sgb_8cpp_a6f2c0c13f24456fae5bba8bfbff4f9b7}} 
+\index{sgb.cpp@{sgb.cpp}!selectedController@{selectedController}}
+\index{selectedController@{selectedController}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{selectedController}{selectedController}}
+{\footnotesize\ttfamily u8 selected\+Controller}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a022ec1dc1819bee00b670bce2084e013}\label{sgb_8cpp_a022ec1dc1819bee00b670bce2084e013}} 
+\index{sgb.cpp@{sgb.cpp}!sgbAttrFiles@{sgbAttrFiles}}
+\index{sgbAttrFiles@{sgbAttrFiles}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbAttrFiles}{sgbAttrFiles}}
+{\footnotesize\ttfamily u8$\ast$ sgb\+Attr\+Files = \mbox{\hyperlink{mmu_8h_a7d0ed1b85995cb654491c9e0958abed2}{vram}}\mbox{[}1\mbox{]} + 0x1000}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a16d8f1d1f6a628ef1473009a55a26222}\label{sgb_8cpp_a16d8f1d1f6a628ef1473009a55a26222}} 
+\index{sgb.cpp@{sgb.cpp}!sgbCommand@{sgbCommand}}
+\index{sgbCommand@{sgbCommand}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbCommand}{sgbCommand}}
+{\footnotesize\ttfamily u8 sgb\+Command}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a66a56570b35035a4ad8876f1ba522af0}\label{sgb_8cpp_a66a56570b35035a4ad8876f1ba522af0}} 
+\index{sgb.cpp@{sgb.cpp}!sgbCommands@{sgbCommands}}
+\index{sgbCommands@{sgbCommands}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbCommands}{sgbCommands}}
+{\footnotesize\ttfamily void($\ast$ sgb\+Commands\mbox{[}$\,$\mbox{]})(int) (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}{sgbAttrBlock}},\ \mbox{\hyperlink{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}{sgbAttrLin}},\ \mbox{\hyperlink{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}{sgbAttrDiv}},\ \mbox{\hyperlink{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}{sgbAttrChr}},}
+\DoxyCodeLine{\ \ \ \ NULL,\ NULL,\ \mbox{\hyperlink{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}{sgbPalSet}},\ \mbox{\hyperlink{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}{sgbPalTrn}},\ NULL,\ NULL,\ NULL,\ \mbox{\hyperlink{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}{sgbDataSnd}},}
+\DoxyCodeLine{\ \ \ \ NULL,\ \mbox{\hyperlink{sgb_8cpp_a603a100441b56f441700833266adf0fa}{sgbMltReq}},\ NULL,\ \mbox{\hyperlink{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}{sgbChrTrn}},\ \mbox{\hyperlink{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}{sgbPctTrn}},\ \mbox{\hyperlink{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}{sgbAttrTrn}},\ \mbox{\hyperlink{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}{sgbAttrSet}},\ \mbox{\hyperlink{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}{sgbMask}},}
+\DoxyCodeLine{\ \ \ \ NULL,\ NULL,\ NULL,\ NULL,\ NULL,\ NULL,\ NULL,\ NULL\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00426}{426}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a15e19c23520a5b3c3a3ddb347af5273b}\label{sgb_8cpp_a15e19c23520a5b3c3a3ddb347af5273b}} 
+\index{sgb.cpp@{sgb.cpp}!sgbMap@{sgbMap}}
+\index{sgbMap@{sgbMap}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbMap}{sgbMap}}
+{\footnotesize\ttfamily u8 sgb\+Map\mbox{[}20 $\ast$18\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_af6c9c3f99786d30466044d83ff877df3}\label{sgb_8cpp_af6c9c3f99786d30466044d83ff877df3}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPacket@{sgbPacket}}
+\index{sgbPacket@{sgbPacket}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPacket}{sgbPacket}}
+{\footnotesize\ttfamily u8 sgb\+Packet\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a3cdfcfffebd1f491b86f5cb09b4a8e5a}\label{sgb_8cpp_a3cdfcfffebd1f491b86f5cb09b4a8e5a}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPacketBit@{sgbPacketBit}}
+\index{sgbPacketBit@{sgbPacketBit}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPacketBit}{sgbPacketBit}}
+{\footnotesize\ttfamily int sgb\+Packet\+Bit = -\/1}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_ac1aa6776e8cd8d7260ca8e1a7af7c92d}\label{sgb_8cpp_ac1aa6776e8cd8d7260ca8e1a7af7c92d}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPacketLength@{sgbPacketLength}}
+\index{sgbPacketLength@{sgbPacketLength}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPacketLength}{sgbPacketLength}}
+{\footnotesize\ttfamily int sgb\+Packet\+Length}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_afb686246028a7ea96b2aaca045903e43}\label{sgb_8cpp_afb686246028a7ea96b2aaca045903e43}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPacketsTransferred@{sgbPacketsTransferred}}
+\index{sgbPacketsTransferred@{sgbPacketsTransferred}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPacketsTransferred}{sgbPacketsTransferred}}
+{\footnotesize\ttfamily int sgb\+Packets\+Transferred}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00008}{8}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a771f9946522222776ab2a1c99af007b9}\label{sgb_8cpp_a771f9946522222776ab2a1c99af007b9}} 
+\index{sgb.cpp@{sgb.cpp}!sgbPalettes@{sgbPalettes}}
+\index{sgbPalettes@{sgbPalettes}!sgb.cpp@{sgb.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbPalettes}{sgbPalettes}}
+{\footnotesize\ttfamily u8$\ast$ sgb\+Palettes = \mbox{\hyperlink{mmu_8h_a7d0ed1b85995cb654491c9e0958abed2}{vram}}\mbox{[}1\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+

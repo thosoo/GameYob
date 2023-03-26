@@ -1,0 +1,426 @@
+\hypertarget{gameboy_8h}{}\doxysection{arm9/include/gameboy.h File Reference}
+\label{gameboy_8h}\index{arm9/include/gameboy.h@{arm9/include/gameboy.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gameboy_8h_a3ef8a2a072dece30a5ed04aa84c3bdc0}{set\+Event\+Cycles}} (int cycles)
+\item 
+void \mbox{\hyperlink{gameboy_8h_a7da5e8e437d792ff019f41ed8254e440}{gameboy\+Check\+Input}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a602f0b93f01be978a0d3b51edbd88c26}{gameboy\+Update\+VBlank}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a6513dc49e5245ec7516447b64ecd706d}{gameboy\+Autosave\+Check}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_aa1504f6d72b07740c4e0839f08d92ae6}{reset\+Gameboy}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a7512b02909147a8b26c34c8a272ee93d}{pause\+Gameboy}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a2048c5bce6dc06e8f6f23d7983aeb4bd}{unpause\+Gameboy}} ()
+\item 
+bool \mbox{\hyperlink{gameboy_8h_a04f739b2c98ebfeee00219477d8bdd93}{is\+Gameboy\+Paused}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a81597fe9593afa9524041c128e8c9517}{run\+Emul}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a08529d00f32f8441dc7669b1a1d3783c}{init\+LCD}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_acfee3a994901b0c2493b3b9ce75bff7b}{init\+Gameboy\+Mode}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a8c50745d9d0e2a05a09fb8bba0593fe3}{check\+LYC}} ()
+\item 
+void \mbox{\hyperlink{gameboy_8h_a2675f9af73dd3b401d72c5b2da78c971}{update\+LCD}} (int cycles)
+\item 
+void \mbox{\hyperlink{gameboy_8h_af559177576173f5f7a282a38f5bca3f1}{update\+Timers}} (int cycles)
+\item 
+void \mbox{\hyperlink{gameboy_8h_a83b8772ae1ef6863e5f4e785ee5be09f}{request\+Interrupt}} (int id)
+\item 
+void \mbox{\hyperlink{gameboy_8h_a362b36e2946a997e3fd48ced932c5477}{set\+Double\+Speed}} (int val)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{gameboy_8h_aa6d14260275d350ffcefde5806d44d76}{scanline\+Counter}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_aac480ac99840c750628f10e5b5bebf7e}{phase\+Counter}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a1335e4b1447c429a82a506225db263e2}{divider\+Counter}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a1fb2fb06ba2c8cc453d71805842b74d9}{timer\+Counter}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a9e1eb41efbef2711d950612d35452bad}{serial\+Counter}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timer\+Period}}
+\item 
+long \mbox{\hyperlink{gameboy_8h_a13f0d742d3412a292db17c9ca64b577f}{periods}} \mbox{[}4\mbox{]}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a308cf5bd4714c05f9f309a73bcda9108}{double\+Speed}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cycles\+To\+Event}}
+\item 
+bool \mbox{\hyperlink{gameboy_8h_ac86f7a6e55f0899d62d5f4424821826a}{fast\+Forward\+Mode}}
+\item 
+bool \mbox{\hyperlink{gameboy_8h_a7a001fcbf25fa32416413978771c6194}{fast\+Forward\+Key}}
+\item 
+bool \mbox{\hyperlink{gameboy_8h_a288f7214a9c0e88365989a10ca48042c}{fps\+Output}}
+\item 
+bool \mbox{\hyperlink{gameboy_8h_ad6fc74900932ddd6c2fc21c514b7c21d}{time\+Output}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_af3ddfcff387d53e03211aeaa7a0c14ef}{gb\+Mode}}
+\item 
+bool \mbox{\hyperlink{gameboy_8h_a5021082cf23612467be2f40ebe83d8e3}{sgb\+Mode}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a720cda0344a935ff996a881c1c06bf8f}{cycles\+Since\+Vblank}}
+\item 
+bool \mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probing\+For\+Border}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interrupt\+Triggered}}
+\item 
+int \mbox{\hyperlink{gameboy_8h_a336d50bc2a8c4ef18daea3f63bbb7608}{gameboy\+Frame\+Counter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gameboy_8h_a8c50745d9d0e2a05a09fb8bba0593fe3}\label{gameboy_8h_a8c50745d9d0e2a05a09fb8bba0593fe3}} 
+\index{gameboy.h@{gameboy.h}!checkLYC@{checkLYC}}
+\index{checkLYC@{checkLYC}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{checkLYC()}{checkLYC()}}
+{\footnotesize\ttfamily void check\+LYC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00472}{472}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a6513dc49e5245ec7516447b64ecd706d}\label{gameboy_8h_a6513dc49e5245ec7516447b64ecd706d}} 
+\index{gameboy.h@{gameboy.h}!gameboyAutosaveCheck@{gameboyAutosaveCheck}}
+\index{gameboyAutosaveCheck@{gameboyAutosaveCheck}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{gameboyAutosaveCheck()}{gameboyAutosaveCheck()}}
+{\footnotesize\ttfamily void gameboy\+Autosave\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gameboy_8h_a7da5e8e437d792ff019f41ed8254e440}\label{gameboy_8h_a7da5e8e437d792ff019f41ed8254e440}} 
+\index{gameboy.h@{gameboy.h}!gameboyCheckInput@{gameboyCheckInput}}
+\index{gameboyCheckInput@{gameboyCheckInput}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{gameboyCheckInput()}{gameboyCheckInput()}}
+{\footnotesize\ttfamily void gameboy\+Check\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a602f0b93f01be978a0d3b51edbd88c26}\label{gameboy_8h_a602f0b93f01be978a0d3b51edbd88c26}} 
+\index{gameboy.h@{gameboy.h}!gameboyUpdateVBlank@{gameboyUpdateVBlank}}
+\index{gameboyUpdateVBlank@{gameboyUpdateVBlank}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{gameboyUpdateVBlank()}{gameboyUpdateVBlank()}}
+{\footnotesize\ttfamily void gameboy\+Update\+VBlank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00203}{203}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_acfee3a994901b0c2493b3b9ce75bff7b}\label{gameboy_8h_acfee3a994901b0c2493b3b9ce75bff7b}} 
+\index{gameboy.h@{gameboy.h}!initGameboyMode@{initGameboyMode}}
+\index{initGameboyMode@{initGameboyMode}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{initGameboyMode()}{initGameboyMode()}}
+{\footnotesize\ttfamily void init\+Gameboy\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00441}{441}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a08529d00f32f8441dc7669b1a1d3783c}\label{gameboy_8h_a08529d00f32f8441dc7669b1a1d3783c}} 
+\index{gameboy.h@{gameboy.h}!initLCD@{initLCD}}
+\index{initLCD@{initLCD}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{initLCD()}{initLCD()}}
+{\footnotesize\ttfamily void init\+LCD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00417}{417}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a04f739b2c98ebfeee00219477d8bdd93}\label{gameboy_8h_a04f739b2c98ebfeee00219477d8bdd93}} 
+\index{gameboy.h@{gameboy.h}!isGameboyPaused@{isGameboyPaused}}
+\index{isGameboyPaused@{isGameboyPaused}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{isGameboyPaused()}{isGameboyPaused()}}
+{\footnotesize\ttfamily bool is\+Gameboy\+Paused (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00322}{322}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a7512b02909147a8b26c34c8a272ee93d}\label{gameboy_8h_a7512b02909147a8b26c34c8a272ee93d}} 
+\index{gameboy.h@{gameboy.h}!pauseGameboy@{pauseGameboy}}
+\index{pauseGameboy@{pauseGameboy}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{pauseGameboy()}{pauseGameboy()}}
+{\footnotesize\ttfamily void pause\+Gameboy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00308}{308}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a83b8772ae1ef6863e5f4e785ee5be09f}\label{gameboy_8h_a83b8772ae1ef6863e5f4e785ee5be09f}} 
+\index{gameboy.h@{gameboy.h}!requestInterrupt@{requestInterrupt}}
+\index{requestInterrupt@{requestInterrupt}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{requestInterrupt()}{requestInterrupt()}}
+{\footnotesize\ttfamily void request\+Interrupt (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00641}{641}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_aa1504f6d72b07740c4e0839f08d92ae6}\label{gameboy_8h_aa1504f6d72b07740c4e0839f08d92ae6}} 
+\index{gameboy.h@{gameboy.h}!resetGameboy@{resetGameboy}}
+\index{resetGameboy@{resetGameboy}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{resetGameboy()}{resetGameboy()}}
+{\footnotesize\ttfamily void reset\+Gameboy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00303}{303}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a81597fe9593afa9524041c128e8c9517}\label{gameboy_8h_a81597fe9593afa9524041c128e8c9517}} 
+\index{gameboy.h@{gameboy.h}!runEmul@{runEmul}}
+\index{runEmul@{runEmul}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{runEmul()}{runEmul()}}
+{\footnotesize\ttfamily void run\+Emul (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00329}{329}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a362b36e2946a997e3fd48ced932c5477}\label{gameboy_8h_a362b36e2946a997e3fd48ced932c5477}} 
+\index{gameboy.h@{gameboy.h}!setDoubleSpeed@{setDoubleSpeed}}
+\index{setDoubleSpeed@{setDoubleSpeed}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{setDoubleSpeed()}{setDoubleSpeed()}}
+{\footnotesize\ttfamily void set\+Double\+Speed (\begin{DoxyParamCaption}\item[{int}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00648}{648}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a3ef8a2a072dece30a5ed04aa84c3bdc0}\label{gameboy_8h_a3ef8a2a072dece30a5ed04aa84c3bdc0}} 
+\index{gameboy.h@{gameboy.h}!setEventCycles@{setEventCycles}}
+\index{setEventCycles@{setEventCycles}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{setEventCycles()}{setEventCycles()}}
+{\footnotesize\ttfamily void set\+Event\+Cycles (\begin{DoxyParamCaption}\item[{int}]{cycles }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a2048c5bce6dc06e8f6f23d7983aeb4bd}\label{gameboy_8h_a2048c5bce6dc06e8f6f23d7983aeb4bd}} 
+\index{gameboy.h@{gameboy.h}!unpauseGameboy@{unpauseGameboy}}
+\index{unpauseGameboy@{unpauseGameboy}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{unpauseGameboy()}{unpauseGameboy()}}
+{\footnotesize\ttfamily void unpause\+Gameboy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00315}{315}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a2675f9af73dd3b401d72c5b2da78c971}\label{gameboy_8h_a2675f9af73dd3b401d72c5b2da78c971}} 
+\index{gameboy.h@{gameboy.h}!updateLCD@{updateLCD}}
+\index{updateLCD@{updateLCD}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{updateLCD()}{updateLCD()}}
+{\footnotesize\ttfamily void update\+LCD (\begin{DoxyParamCaption}\item[{int}]{cycles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00484}{484}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_af559177576173f5f7a282a38f5bca3f1}\label{gameboy_8h_af559177576173f5f7a282a38f5bca3f1}} 
+\index{gameboy.h@{gameboy.h}!updateTimers@{updateTimers}}
+\index{updateTimers@{updateTimers}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{updateTimers()}{updateTimers()}}
+{\footnotesize\ttfamily void update\+Timers (\begin{DoxyParamCaption}\item[{int}]{cycles }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00607}{607}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gameboy_8h_a720cda0344a935ff996a881c1c06bf8f}\label{gameboy_8h_a720cda0344a935ff996a881c1c06bf8f}} 
+\index{gameboy.h@{gameboy.h}!cyclesSinceVblank@{cyclesSinceVblank}}
+\index{cyclesSinceVblank@{cyclesSinceVblank}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{cyclesSinceVblank}{cyclesSinceVblank}}
+{\footnotesize\ttfamily int cycles\+Since\+Vblank\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_aa0a57e3c9fa1af0b8e7cf6e69af8704e}\label{gameboy_8h_aa0a57e3c9fa1af0b8e7cf6e69af8704e}} 
+\index{gameboy.h@{gameboy.h}!cyclesToEvent@{cyclesToEvent}}
+\index{cyclesToEvent@{cyclesToEvent}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{cyclesToEvent}{cyclesToEvent}}
+{\footnotesize\ttfamily int cycles\+To\+Event\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a1335e4b1447c429a82a506225db263e2}\label{gameboy_8h_a1335e4b1447c429a82a506225db263e2}} 
+\index{gameboy.h@{gameboy.h}!dividerCounter@{dividerCounter}}
+\index{dividerCounter@{dividerCounter}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{dividerCounter}{dividerCounter}}
+{\footnotesize\ttfamily int divider\+Counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a308cf5bd4714c05f9f309a73bcda9108}\label{gameboy_8h_a308cf5bd4714c05f9f309a73bcda9108}} 
+\index{gameboy.h@{gameboy.h}!doubleSpeed@{doubleSpeed}}
+\index{doubleSpeed@{doubleSpeed}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{doubleSpeed}{doubleSpeed}}
+{\footnotesize\ttfamily int double\+Speed\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a7a001fcbf25fa32416413978771c6194}\label{gameboy_8h_a7a001fcbf25fa32416413978771c6194}} 
+\index{gameboy.h@{gameboy.h}!fastForwardKey@{fastForwardKey}}
+\index{fastForwardKey@{fastForwardKey}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{fastForwardKey}{fastForwardKey}}
+{\footnotesize\ttfamily bool fast\+Forward\+Key\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_ac86f7a6e55f0899d62d5f4424821826a}\label{gameboy_8h_ac86f7a6e55f0899d62d5f4424821826a}} 
+\index{gameboy.h@{gameboy.h}!fastForwardMode@{fastForwardMode}}
+\index{fastForwardMode@{fastForwardMode}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{fastForwardMode}{fastForwardMode}}
+{\footnotesize\ttfamily bool fast\+Forward\+Mode\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a288f7214a9c0e88365989a10ca48042c}\label{gameboy_8h_a288f7214a9c0e88365989a10ca48042c}} 
+\index{gameboy.h@{gameboy.h}!fpsOutput@{fpsOutput}}
+\index{fpsOutput@{fpsOutput}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{fpsOutput}{fpsOutput}}
+{\footnotesize\ttfamily bool fps\+Output\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a336d50bc2a8c4ef18daea3f63bbb7608}\label{gameboy_8h_a336d50bc2a8c4ef18daea3f63bbb7608}} 
+\index{gameboy.h@{gameboy.h}!gameboyFrameCounter@{gameboyFrameCounter}}
+\index{gameboyFrameCounter@{gameboyFrameCounter}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{gameboyFrameCounter}{gameboyFrameCounter}}
+{\footnotesize\ttfamily int gameboy\+Frame\+Counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_af3ddfcff387d53e03211aeaa7a0c14ef}\label{gameboy_8h_af3ddfcff387d53e03211aeaa7a0c14ef}} 
+\index{gameboy.h@{gameboy.h}!gbMode@{gbMode}}
+\index{gbMode@{gbMode}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{gbMode}{gbMode}}
+{\footnotesize\ttfamily int gb\+Mode\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a5ed78370d9978a532d13248d673d206e}\label{gameboy_8h_a5ed78370d9978a532d13248d673d206e}} 
+\index{gameboy.h@{gameboy.h}!interruptTriggered@{interruptTriggered}}
+\index{interruptTriggered@{interruptTriggered}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{interruptTriggered}{interruptTriggered}}
+{\footnotesize\ttfamily int interrupt\+Triggered\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{gameboy_8h_a13f0d742d3412a292db17c9ca64b577f}\label{gameboy_8h_a13f0d742d3412a292db17c9ca64b577f}} 
+\index{gameboy.h@{gameboy.h}!periods@{periods}}
+\index{periods@{periods}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{periods}{periods}}
+{\footnotesize\ttfamily long periods\mbox{[}4\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_aac480ac99840c750628f10e5b5bebf7e}\label{gameboy_8h_aac480ac99840c750628f10e5b5bebf7e}} 
+\index{gameboy.h@{gameboy.h}!phaseCounter@{phaseCounter}}
+\index{phaseCounter@{phaseCounter}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{phaseCounter}{phaseCounter}}
+{\footnotesize\ttfamily int phase\+Counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}\label{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}} 
+\index{gameboy.h@{gameboy.h}!probingForBorder@{probingForBorder}}
+\index{probingForBorder@{probingForBorder}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{probingForBorder}{probingForBorder}}
+{\footnotesize\ttfamily bool probing\+For\+Border\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_aa6d14260275d350ffcefde5806d44d76}\label{gameboy_8h_aa6d14260275d350ffcefde5806d44d76}} 
+\index{gameboy.h@{gameboy.h}!scanlineCounter@{scanlineCounter}}
+\index{scanlineCounter@{scanlineCounter}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{scanlineCounter}{scanlineCounter}}
+{\footnotesize\ttfamily int scanline\+Counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a9e1eb41efbef2711d950612d35452bad}\label{gameboy_8h_a9e1eb41efbef2711d950612d35452bad}} 
+\index{gameboy.h@{gameboy.h}!serialCounter@{serialCounter}}
+\index{serialCounter@{serialCounter}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{serialCounter}{serialCounter}}
+{\footnotesize\ttfamily int serial\+Counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a5021082cf23612467be2f40ebe83d8e3}\label{gameboy_8h_a5021082cf23612467be2f40ebe83d8e3}} 
+\index{gameboy.h@{gameboy.h}!sgbMode@{sgbMode}}
+\index{sgbMode@{sgbMode}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{sgbMode}{sgbMode}}
+{\footnotesize\ttfamily bool sgb\+Mode\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_ad6fc74900932ddd6c2fc21c514b7c21d}\label{gameboy_8h_ad6fc74900932ddd6c2fc21c514b7c21d}} 
+\index{gameboy.h@{gameboy.h}!timeOutput@{timeOutput}}
+\index{timeOutput@{timeOutput}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{timeOutput}{timeOutput}}
+{\footnotesize\ttfamily bool time\+Output\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a1fb2fb06ba2c8cc453d71805842b74d9}\label{gameboy_8h_a1fb2fb06ba2c8cc453d71805842b74d9}} 
+\index{gameboy.h@{gameboy.h}!timerCounter@{timerCounter}}
+\index{timerCounter@{timerCounter}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{timerCounter}{timerCounter}}
+{\footnotesize\ttfamily int timer\+Counter\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gameboy_8h_a8dafca6cd4bbc33de0e8328f2ee66f9b}\label{gameboy_8h_a8dafca6cd4bbc33de0e8328f2ee66f9b}} 
+\index{gameboy.h@{gameboy.h}!timerPeriod@{timerPeriod}}
+\index{timerPeriod@{timerPeriod}!gameboy.h@{gameboy.h}}
+\doxysubsubsection{\texorpdfstring{timerPeriod}{timerPeriod}}
+{\footnotesize\ttfamily int timer\+Period\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+

@@ -1,0 +1,576 @@
+\hypertarget{gbcpu_8cpp}{}\doxysection{arm9/source/gbcpu.cpp File Reference}
+\label{gbcpu_8cpp}\index{arm9/source/gbcpu.cpp@{arm9/source/gbcpu.cpp}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_ad3e6d21e683244be778e56a39ea4c226}{set\+ZFlag}}()~locF $\vert$= 0x80
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a27c25d845f5fc8473c29e1d52b33dc22}{clear\+ZFlag}}()~locF \&= 0x7F
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_ab744ab1f27d313e93af5eeac593fdffa}{set\+NFlag}}()~locF $\vert$= 0x40
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a917576c92ca074d84c64d8f64051a768}{clear\+NFlag}}()~locF \&= 0x\+BF
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a596bda1e7e47300a1ae0a0e8b0874d70}{set\+HFlag}}()~locF $\vert$= 0x20
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a7a86f3b32bd4bcbb7e3b14deb56e0436}{clear\+HFlag}}()~locF \&= 0x\+DF
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a76ae5fa65dd2085b64463fdfa3ad8483}{set\+CFlag}}()~locF $\vert$= 0x10
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a90e1320ac064541e99a6314771dcbee4}{clear\+CFlag}}()~locF \&= 0x\+EF
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a7328dd638ae707ae5b693d4a88ce94cf}{carry\+Set}}()~(locF \& 0x10 ? 1 \+: 0)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a17efb52b12ef33e04b47ec4632a3f272}{zero\+Set}}()~(locF \& 0x80 ? 1 \+: 0)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a1a9af9dd608861ce5896d9d3a9a88560}{negative\+Set}}()~(locF \& 0x40 ? 1 \+: 0)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a9881ee18f4f306836c5deb38aaed6aed}{half\+Set}}()~(locF \& 0x20 ? 1 \+: 0)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_acfcc867620dad5cad19b90842d49bd80}{numbered\+Gb\+Reg}}(n)~((u8 $\ast$)\&\mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gb\+Regs}} + \mbox{\hyperlink{gbcpu_8cpp_a8557027899780c1e3573ff766771ffe8}{reg8\+Offsets}}\mbox{[}n\mbox{]})
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a69616eddb5db9f8fc2b0c5b1bef9bca4}{set\+PC}}(val)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a36dbbe8c4fe08fb6de05c6b27c6910db}{get\+PC}}()~(gb\+Regs.\+pc.\+w + (pc\+Addr -\/ first\+Pc\+Addr))
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_add4e1f899615ca3c93be54cd11d6295f}{read\+PC}}()~$\ast$(pc\+Addr++)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_aa2208bd5e9650612d6a75f313f61d67f}{read\+PC\+\_\+noinc}}()~($\ast$pc\+Addr)
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_ad3e355f22c9d7a47677227012a1d3c2d}{read\+PC16}}()
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_af864fcd09b5c42480680067fd46ecce0}{read\+PC16\+\_\+noinc}}()~(($\ast$pc\+Addr) $\vert$ (($\ast$(pc\+Addr + 1)) $<$$<$ 8))
+\item 
+\#define \mbox{\hyperlink{gbcpu_8cpp_a96c3c10d379c5c89e738a83ce0ae8fbd}{OP\+\_\+\+JR}}(cond)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+u8 \mbox{\hyperlink{gbcpu_8cpp_a287016f05e7ba62684efbc30eda2350f}{quick\+Read}} (u16 addr)
+\item 
+u8 \mbox{\hyperlink{gbcpu_8cpp_abbaaa767bf999a48b20887dc906be037}{quick\+Read\+IO}} (u8 addr)
+\item 
+u16 \mbox{\hyperlink{gbcpu_8cpp_a81d7150895e5d9a33fd245db2b0aae31}{quick\+Read16}} (u16 addr)
+\item 
+void \mbox{\hyperlink{gbcpu_8cpp_a86342118b7050b2d7265ee53184f68d1}{quick\+Write}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{gbcpu_8cpp_a5706c99691ce2a042f08bc3c4b50f3ba}{init\+CPU}} ()
+\item 
+void \mbox{\hyperlink{gbcpu_8cpp_ac4b3f0121a2ac45668528454fbf14f64}{enable\+Interrupts}} ()
+\item 
+void \mbox{\hyperlink{gbcpu_8cpp_a877f09d7db05b17679190a906e2eefd5}{disable\+Interrupts}} ()
+\item 
+int \mbox{\hyperlink{gbcpu_8cpp_ab0457e24420fa48a0bd28ff9440e9367}{handle\+Interrupts}} (unsigned int \mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interrupt\+Triggered}})
+\item 
+int \mbox{\hyperlink{gbcpu_8cpp_a4fd10c2051baef8fb2117c1f7b4f6c57}{run\+Opcode}} (int cycles)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_registers}{Registers}} \mbox{\hyperlink{gbcpu_8cpp_ae419d75b68e531a5f8051701aa4c7bf5}{gb\+Regs}}
+\item 
+int \mbox{\hyperlink{gbcpu_8cpp_a9a80d626b495810428f2f14b4dae6ecb}{halt}}
+\item 
+u8 \mbox{\hyperlink{gbcpu_8cpp_a1b8cebb922bfe8b6ead217963d0e133a}{op\+Cycles}} \mbox{[}0x100\mbox{]}
+\item 
+u8 \mbox{\hyperlink{gbcpu_8cpp_a441d080de122b45913c7e64930b0db0d}{CBop\+Cycles}} \mbox{[}0x100\mbox{]}
+\item 
+const int \mbox{\hyperlink{gbcpu_8cpp_acacf3ae89ab776bea579de1a985750fb}{clock\+Speed}} = 4194304
+\item 
+int \mbox{\hyperlink{gbcpu_8cpp_a8889a71b1ce95f894a45758861ff1361}{ime}}
+\item 
+const u8 \mbox{\hyperlink{gbcpu_8cpp_a8557027899780c1e3573ff766771ffe8}{reg8\+Offsets}} \mbox{[}$\,$\mbox{]}
+\item 
+int \mbox{\hyperlink{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}{cycles\+To\+Execute}} \mbox{\hyperlink{gbcpu_8cpp_ad4daa2291f714a267feadd5f13dcbbcf}{DTCM\+\_\+\+BSS}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{gbcpu_8cpp_a8fb08fadee761852d902e42f731f99f7}{halt\+Bug\+Addr}} = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gbcpu_8cpp_a7328dd638ae707ae5b693d4a88ce94cf}\label{gbcpu_8cpp_a7328dd638ae707ae5b693d4a88ce94cf}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!carrySet@{carrySet}}
+\index{carrySet@{carrySet}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{carrySet}{carrySet}}
+{\footnotesize\ttfamily \#define carry\+Set(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(locF \& 0x10 ? 1 \+: 0)}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a90e1320ac064541e99a6314771dcbee4}\label{gbcpu_8cpp_a90e1320ac064541e99a6314771dcbee4}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!clearCFlag@{clearCFlag}}
+\index{clearCFlag@{clearCFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{clearCFlag}{clearCFlag}}
+{\footnotesize\ttfamily \#define clear\+CFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF \&= 0x\+EF}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a7a86f3b32bd4bcbb7e3b14deb56e0436}\label{gbcpu_8cpp_a7a86f3b32bd4bcbb7e3b14deb56e0436}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!clearHFlag@{clearHFlag}}
+\index{clearHFlag@{clearHFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{clearHFlag}{clearHFlag}}
+{\footnotesize\ttfamily \#define clear\+HFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF \&= 0x\+DF}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a917576c92ca074d84c64d8f64051a768}\label{gbcpu_8cpp_a917576c92ca074d84c64d8f64051a768}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!clearNFlag@{clearNFlag}}
+\index{clearNFlag@{clearNFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{clearNFlag}{clearNFlag}}
+{\footnotesize\ttfamily \#define clear\+NFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF \&= 0x\+BF}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a27c25d845f5fc8473c29e1d52b33dc22}\label{gbcpu_8cpp_a27c25d845f5fc8473c29e1d52b33dc22}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!clearZFlag@{clearZFlag}}
+\index{clearZFlag@{clearZFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{clearZFlag}{clearZFlag}}
+{\footnotesize\ttfamily \#define clear\+ZFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF \&= 0x7F}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a36dbbe8c4fe08fb6de05c6b27c6910db}\label{gbcpu_8cpp_a36dbbe8c4fe08fb6de05c6b27c6910db}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!getPC@{getPC}}
+\index{getPC@{getPC}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{getPC}{getPC}}
+{\footnotesize\ttfamily \#define get\+PC(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(gb\+Regs.\+pc.\+w + (pc\+Addr -\/ first\+Pc\+Addr))}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00197}{197}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a9881ee18f4f306836c5deb38aaed6aed}\label{gbcpu_8cpp_a9881ee18f4f306836c5deb38aaed6aed}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!halfSet@{halfSet}}
+\index{halfSet@{halfSet}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{halfSet}{halfSet}}
+{\footnotesize\ttfamily \#define half\+Set(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(locF \& 0x20 ? 1 \+: 0)}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a1a9af9dd608861ce5896d9d3a9a88560}\label{gbcpu_8cpp_a1a9af9dd608861ce5896d9d3a9a88560}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!negativeSet@{negativeSet}}
+\index{negativeSet@{negativeSet}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{negativeSet}{negativeSet}}
+{\footnotesize\ttfamily \#define negative\+Set(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(locF \& 0x40 ? 1 \+: 0)}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_acfcc867620dad5cad19b90842d49bd80}\label{gbcpu_8cpp_acfcc867620dad5cad19b90842d49bd80}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!numberedGbReg@{numberedGbReg}}
+\index{numberedGbReg@{numberedGbReg}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{numberedGbReg}{numberedGbReg}}
+{\footnotesize\ttfamily \#define numbered\+Gb\+Reg(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})~((u8 $\ast$)\&\mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gb\+Regs}} + \mbox{\hyperlink{gbcpu_8cpp_a8557027899780c1e3573ff766771ffe8}{reg8\+Offsets}}\mbox{[}n\mbox{]})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a96c3c10d379c5c89e738a83ce0ae8fbd}\label{gbcpu_8cpp_a96c3c10d379c5c89e738a83ce0ae8fbd}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!OP\_JR@{OP\_JR}}
+\index{OP\_JR@{OP\_JR}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{OP\_JR}{OP\_JR}}
+{\footnotesize\ttfamily \#define OP\+\_\+\+JR(\begin{DoxyParamCaption}\item[{}]{cond }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (cond)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ setPC((\mbox{\hyperlink{gbcpu_8cpp_a36dbbe8c4fe08fb6de05c6b27c6910db}{getPC}}()\ +\ (s8)\mbox{\hyperlink{gbcpu_8cpp_aa2208bd5e9650612d6a75f313f61d67f}{readPC\_noinc}}()\ +\ 1)\ \&\ 0xffff);\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ pcAddr++;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ totalCycles\ -\/=\ 4;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00205}{205}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_add4e1f899615ca3c93be54cd11d6295f}\label{gbcpu_8cpp_add4e1f899615ca3c93be54cd11d6295f}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!readPC@{readPC}}
+\index{readPC@{readPC}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{readPC}{readPC}}
+{\footnotesize\ttfamily \#define read\+PC(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~$\ast$(pc\+Addr++)}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00198}{198}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ad3e355f22c9d7a47677227012a1d3c2d}\label{gbcpu_8cpp_ad3e355f22c9d7a47677227012a1d3c2d}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!readPC16@{readPC16}}
+\index{readPC16@{readPC16}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{readPC16}{readPC16}}
+{\footnotesize\ttfamily \#define read\+PC16(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ ((*pcAddr)\ |\ ((*(pcAddr\ +\ 1))\ <<\ 8));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ pcAddr\ +=\ 2}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00200}{200}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_af864fcd09b5c42480680067fd46ecce0}\label{gbcpu_8cpp_af864fcd09b5c42480680067fd46ecce0}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!readPC16\_noinc@{readPC16\_noinc}}
+\index{readPC16\_noinc@{readPC16\_noinc}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{readPC16\_noinc}{readPC16\_noinc}}
+{\footnotesize\ttfamily \#define read\+PC16\+\_\+noinc(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(($\ast$pc\+Addr) $\vert$ (($\ast$(pc\+Addr + 1)) $<$$<$ 8))}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00203}{203}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_aa2208bd5e9650612d6a75f313f61d67f}\label{gbcpu_8cpp_aa2208bd5e9650612d6a75f313f61d67f}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!readPC\_noinc@{readPC\_noinc}}
+\index{readPC\_noinc@{readPC\_noinc}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{readPC\_noinc}{readPC\_noinc}}
+{\footnotesize\ttfamily \#define read\+PC\+\_\+noinc(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~($\ast$pc\+Addr)}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00199}{199}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a76ae5fa65dd2085b64463fdfa3ad8483}\label{gbcpu_8cpp_a76ae5fa65dd2085b64463fdfa3ad8483}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!setCFlag@{setCFlag}}
+\index{setCFlag@{setCFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{setCFlag}{setCFlag}}
+{\footnotesize\ttfamily \#define set\+CFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF $\vert$= 0x10}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a596bda1e7e47300a1ae0a0e8b0874d70}\label{gbcpu_8cpp_a596bda1e7e47300a1ae0a0e8b0874d70}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!setHFlag@{setHFlag}}
+\index{setHFlag@{setHFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{setHFlag}{setHFlag}}
+{\footnotesize\ttfamily \#define set\+HFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF $\vert$= 0x20}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ab744ab1f27d313e93af5eeac593fdffa}\label{gbcpu_8cpp_ab744ab1f27d313e93af5eeac593fdffa}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!setNFlag@{setNFlag}}
+\index{setNFlag@{setNFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{setNFlag}{setNFlag}}
+{\footnotesize\ttfamily \#define set\+NFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF $\vert$= 0x40}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a69616eddb5db9f8fc2b0c5b1bef9bca4}\label{gbcpu_8cpp_a69616eddb5db9f8fc2b0c5b1bef9bca4}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!setPC@{setPC}}
+\index{setPC@{setPC}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{setPC}{setPC}}
+{\footnotesize\ttfamily \#define set\+PC(\begin{DoxyParamCaption}\item[{}]{val }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8cpp_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_a9290eb9afad5ad8caf5e7d981bed1d9a}{pc}}.\mbox{\hyperlink{union_register_a561bf5d9b7682fff3ec2bfda04365452}{w}}\ =\ (val);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ pcAddr\ =\ \&\mbox{\hyperlink{mmu_8h_a0f09ea9762f03d69ea68b6c34a0b59d0}{memory}}[(\mbox{\hyperlink{gbcpu_8cpp_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_a9290eb9afad5ad8caf5e7d981bed1d9a}{pc}}.\mbox{\hyperlink{union_register_a561bf5d9b7682fff3ec2bfda04365452}{w}})\ >>\ 12][(\mbox{\hyperlink{gbcpu_8cpp_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_a9290eb9afad5ad8caf5e7d981bed1d9a}{pc}}.\mbox{\hyperlink{union_register_a561bf5d9b7682fff3ec2bfda04365452}{w}})\ \&\ 0xfff];\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ firstPcAddr\ =\ pcAddr;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00191}{191}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ad3e6d21e683244be778e56a39ea4c226}\label{gbcpu_8cpp_ad3e6d21e683244be778e56a39ea4c226}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!setZFlag@{setZFlag}}
+\index{setZFlag@{setZFlag}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{setZFlag}{setZFlag}}
+{\footnotesize\ttfamily \#define set\+ZFlag(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~locF $\vert$= 0x80}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a17efb52b12ef33e04b47ec4632a3f272}\label{gbcpu_8cpp_a17efb52b12ef33e04b47ec4632a3f272}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!zeroSet@{zeroSet}}
+\index{zeroSet@{zeroSet}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{zeroSet}{zeroSet}}
+{\footnotesize\ttfamily \#define zero\+Set(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})~(locF \& 0x80 ? 1 \+: 0)}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gbcpu_8cpp_a877f09d7db05b17679190a906e2eefd5}\label{gbcpu_8cpp_a877f09d7db05b17679190a906e2eefd5}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!disableInterrupts@{disableInterrupts}}
+\index{disableInterrupts@{disableInterrupts}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{disableInterrupts()}{disableInterrupts()}}
+{\footnotesize\ttfamily void disable\+Interrupts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00138}{138}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ac4b3f0121a2ac45668528454fbf14f64}\label{gbcpu_8cpp_ac4b3f0121a2ac45668528454fbf14f64}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!enableInterrupts@{enableInterrupts}}
+\index{enableInterrupts@{enableInterrupts}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{enableInterrupts()}{enableInterrupts()}}
+{\footnotesize\ttfamily void enable\+Interrupts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00131}{131}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ab0457e24420fa48a0bd28ff9440e9367}\label{gbcpu_8cpp_ab0457e24420fa48a0bd28ff9440e9367}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!handleInterrupts@{handleInterrupts}}
+\index{handleInterrupts@{handleInterrupts}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{handleInterrupts()}{handleInterrupts()}}
+{\footnotesize\ttfamily int handle\+Interrupts (\begin{DoxyParamCaption}\item[{unsigned int}]{interrupt\+Triggered }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00143}{143}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a5706c99691ce2a042f08bc3c4b50f3ba}\label{gbcpu_8cpp_a5706c99691ce2a042f08bc3c4b50f3ba}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!initCPU@{initCPU}}
+\index{initCPU@{initCPU}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{initCPU()}{initCPU()}}
+{\footnotesize\ttfamily void init\+CPU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a287016f05e7ba62684efbc30eda2350f}\label{gbcpu_8cpp_a287016f05e7ba62684efbc30eda2350f}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!quickRead@{quickRead}}
+\index{quickRead@{quickRead}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{quickRead()}{quickRead()}}
+{\footnotesize\ttfamily u8 quick\+Read (\begin{DoxyParamCaption}\item[{u16}]{addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a81d7150895e5d9a33fd245db2b0aae31}\label{gbcpu_8cpp_a81d7150895e5d9a33fd245db2b0aae31}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!quickRead16@{quickRead16}}
+\index{quickRead16@{quickRead16}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{quickRead16()}{quickRead16()}}
+{\footnotesize\ttfamily u16 quick\+Read16 (\begin{DoxyParamCaption}\item[{u16}]{addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_abbaaa767bf999a48b20887dc906be037}\label{gbcpu_8cpp_abbaaa767bf999a48b20887dc906be037}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!quickReadIO@{quickReadIO}}
+\index{quickReadIO@{quickReadIO}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{quickReadIO()}{quickReadIO()}}
+{\footnotesize\ttfamily u8 quick\+Read\+IO (\begin{DoxyParamCaption}\item[{u8}]{addr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a86342118b7050b2d7265ee53184f68d1}\label{gbcpu_8cpp_a86342118b7050b2d7265ee53184f68d1}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!quickWrite@{quickWrite}}
+\index{quickWrite@{quickWrite}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{quickWrite()}{quickWrite()}}
+{\footnotesize\ttfamily void quick\+Write (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a4fd10c2051baef8fb2117c1f7b4f6c57}\label{gbcpu_8cpp_a4fd10c2051baef8fb2117c1f7b4f6c57}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!runOpcode@{runOpcode}}
+\index{runOpcode@{runOpcode}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{runOpcode()}{runOpcode()}}
+{\footnotesize\ttfamily int run\+Opcode (\begin{DoxyParamCaption}\item[{int}]{cycles }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00218}{218}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gbcpu_8cpp_a441d080de122b45913c7e64930b0db0d}\label{gbcpu_8cpp_a441d080de122b45913c7e64930b0db0d}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!CBopCycles@{CBopCycles}}
+\index{CBopCycles@{CBopCycles}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{CBopCycles}{CBopCycles}}
+{\footnotesize\ttfamily u8 CBop\+Cycles\mbox{[}0x100\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 12,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 16,\ 8\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_acacf3ae89ab776bea579de1a985750fb}\label{gbcpu_8cpp_acacf3ae89ab776bea579de1a985750fb}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!clockSpeed@{clockSpeed}}
+\index{clockSpeed@{clockSpeed}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{clockSpeed}{clockSpeed}}
+{\footnotesize\ttfamily const int clock\+Speed = 4194304}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00109}{109}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ad4daa2291f714a267feadd5f13dcbbcf}\label{gbcpu_8cpp_ad4daa2291f714a267feadd5f13dcbbcf}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!DTCM\_BSS@{DTCM\_BSS}}
+\index{DTCM\_BSS@{DTCM\_BSS}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{DTCM\_BSS}{DTCM\_BSS}}
+{\footnotesize\ttfamily u8 $\ast$first\+Pc\+Addr DTCM\+\_\+\+BSS}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00185}{185}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_ae419d75b68e531a5f8051701aa4c7bf5}\label{gbcpu_8cpp_ae419d75b68e531a5f8051701aa4c7bf5}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!gbRegs@{gbRegs}}
+\index{gbRegs@{gbRegs}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{gbRegs}{gbRegs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_registers}{Registers}} gb\+Regs}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a9a80d626b495810428f2f14b4dae6ecb}\label{gbcpu_8cpp_a9a80d626b495810428f2f14b4dae6ecb}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!halt@{halt}}
+\index{halt@{halt}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{halt}{halt}}
+{\footnotesize\ttfamily int halt}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a8fb08fadee761852d902e42f731f99f7}\label{gbcpu_8cpp_a8fb08fadee761852d902e42f731f99f7}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!haltBugAddr@{haltBugAddr}}
+\index{haltBugAddr@{haltBugAddr}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{haltBugAddr}{haltBugAddr}}
+{\footnotesize\ttfamily u8$\ast$ halt\+Bug\+Addr = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00216}{216}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a8889a71b1ce95f894a45758861ff1361}\label{gbcpu_8cpp_a8889a71b1ce95f894a45758861ff1361}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!ime@{ime}}
+\index{ime@{ime}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{ime}{ime}}
+{\footnotesize\ttfamily int ime}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a1b8cebb922bfe8b6ead217963d0e133a}\label{gbcpu_8cpp_a1b8cebb922bfe8b6ead217963d0e133a}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!opCycles@{opCycles}}
+\index{opCycles@{opCycles}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{opCycles}{opCycles}}
+{\footnotesize\ttfamily u8 op\+Cycles\mbox{[}0x100\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 12,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,\ 20,\ 8,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 12,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,\ 12,\ 8,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 12,\ 12,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,\ 12,\ 8,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 12,\ 12,\ 8,\ 8,\ 12,\ 12,\ 12,\ 4,\ 12,\ 8,\ 8,\ 8,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 4,\ 8,\ 4,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 20,\ 12,\ 16,\ 16,\ 24,\ 16,\ 8,\ 16,\ 20,\ 16,\ 16,\ 0,\ 24,\ 24,\ 8,\ 16,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 20,\ 12,\ 16,\ 99,\ 24,\ 16,\ 8,\ 16,\ 20,\ 16,\ 16,\ 99,\ 24,\ 99,\ 8,\ 16,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 12,\ 12,\ 8,\ 99,\ 99,\ 16,\ 8,\ 16,\ 16,\ 4,\ 16,\ 99,\ 99,\ 99,\ 8,\ 16,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ 12,\ 12,\ 8,\ 4,\ 99,\ 16,\ 8,\ 16,\ 12,\ 8,\ 16,\ 4,\ 99,\ 99,\ 8,\ 16}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8cpp_a8557027899780c1e3573ff766771ffe8}\label{gbcpu_8cpp_a8557027899780c1e3573ff766771ffe8}} 
+\index{gbcpu.cpp@{gbcpu.cpp}!reg8Offsets@{reg8Offsets}}
+\index{reg8Offsets@{reg8Offsets}!gbcpu.cpp@{gbcpu.cpp}}
+\doxysubsubsection{\texorpdfstring{reg8Offsets}{reg8Offsets}}
+{\footnotesize\ttfamily const u8 reg8\+Offsets\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ bc.b.h),}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ bc.b.l),}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ de.b.h),}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ de.b.l),}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ hl.b.h),}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ hl.b.l),}
+\DoxyCodeLine{\ \ \ \ 0,}
+\DoxyCodeLine{\ \ \ \ offsetof(\textcolor{keyword}{struct}\ \mbox{\hyperlink{struct_registers}{Registers}},\ af.b.h)\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00175}{175}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+

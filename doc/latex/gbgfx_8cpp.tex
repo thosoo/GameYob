@@ -1,0 +1,1303 @@
+\hypertarget{gbgfx_8cpp}{}\doxysection{arm9/source/gbgfx.cpp File Reference}
+\label{gbgfx_8cpp}\index{arm9/source/gbgfx.cpp@{arm9/source/gbgfx.cpp}}
+{\ttfamily \#include \char`\"{}printer\+Icon.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gbs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sgb.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}filechooser.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}}
+\item 
+struct \mbox{\hyperlink{structsprite_entry}{sprite\+Entry}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gbgfx_8cpp_a075aa9549fd1d8e0bde8b65e2233d169}{BACKDROP\+\_\+\+COLOUR}}~RGB15(0, 0, 0)
+\item 
+\#define \mbox{\hyperlink{gbgfx_8cpp_a34352c8a17802da70f27f22ce225178f}{sprites}}~((\mbox{\hyperlink{structsprite_entry}{sprite\+Entry}} $\ast$)OAM)
+\item 
+\#define \mbox{\hyperlink{gbgfx_8cpp_a8209539684d9069849b50012fd470999}{BG\+\_\+\+CNT}}(x)~($\ast$((vu16 $\ast$)0x4000008 + (x)))
+\item 
+\#define \mbox{\hyperlink{gbgfx_8cpp_a13c0a18ffd7ce55bafcdce0e8c894b56}{BG\+\_\+\+HOFS}}(x)~($\ast$((vu16 $\ast$)0x4000010 + (x)$\ast$2))
+\item 
+\#define \mbox{\hyperlink{gbgfx_8cpp_a45e75e00626ef822da5ea577454a22d7}{BG\+\_\+\+VOFS}}(x)~($\ast$((vu16 $\ast$)0x4000012 + (x)$\ast$2))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+u8 \mbox{\hyperlink{gbgfx_8h_a254d3c52c2ae7fff61e52168c0c37e86}{bg\+Palette\+Data}}\mbox{[}0x40\mbox{]} \mbox{\hyperlink{gbgfx_8cpp_a8355f1c3ad9d0c737c5304f5ca2dba5e}{ALIGN}} (4)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a2c3bc7cf83f9225ce88d2bcbd53875a6}{draw\+Sprites}} (u8 $\ast$data, int tall\+Sprites)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a27a1116d3f41a4a2d146cf8386b99bdd}{draw\+Tile}} (int tile, int bank)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a73afcb774f607a0031a6877ab3059fd3}{update\+Tiles}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a60975f999e5000cce01f957e5061efc2}{update\+Tile\+Maps}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_abaa5f65ef32cc80bd17ba14c47984536}{update\+Tile\+Map}} (int \mbox{\hyperlink{gbgfx_8cpp_a1e800a6a0ab719ff1af9a81efd02877a}{map}}, int i)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a9a8e94462dd86825fa22f6a3a145862e}{update\+Bg\+Palette}} (int paletteid, u8 $\ast$data, u8 dmg\+Pal)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a1214c2484459d4a461f437e67a072694}{update\+Bg\+Palette\+\_\+\+GBC}} (int paletteid, u8 $\ast$data)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a69f15ee8d4cda930e01bfe3e42bbd66a}{update\+Spr\+Palette}} (int paletteid, u8 $\ast$data, u8 dmg\+Pal)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a3299fd8fbf2fadcfd88ee2f18824cbea}{draw\+Line}} (int gb\+Line) ITCM\+\_\+\+CODE
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_af81933618cd850b54967001130817a61}{do\+HBlank}} (int line) ITCM\+\_\+\+CODE
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ab7eb6d540dc38c5d31291f5ef9308f91}{hblank\+Handler}} () ITCM\+\_\+\+CODE
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_abb0c9757b585d53633e72130af93d164}{vcount\+Handler}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a2f55870003e8d34f5d175345f39f4105}{do\+At\+VBlank}} (void($\ast$func)(void))
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a61980113c878f9f0138454e1e1047750}{vblank\+Handler}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a6152d90bc27302b3fcd92f4973a2401c}{load\+SGBBorder}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ad00fca63a33eb7f18124dc4a19620a2e}{init\+GFX}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ad55b96f2678da1f09b16057cd76c3fe9}{init\+GFXPalette}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a62b34356f6149d2c44ee24379cc347a6}{refresh\+GFX}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a484b3e71acef74d4337dbaf8765cb140}{clear\+GFX}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ab69a9c5313c53ae912567230d8ddfcf0}{refresh\+Sgb\+Palette}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_af6eb238b4b25b103654a5cbae07a4138}{display\+Icon}} (int iconid)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a5c68b80f62aca2e37b19134d5885eb57}{select\+Border}} ()
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_ac67a99cc1feaf73626bdeebcd476c33d}{load\+Border}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_aa830515ff224eeaa5ae76432a118cd98}{check\+Border}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_addf38491f7aa4075fc1bb2eb2fe2d096}{refresh\+Scale\+Mode}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ab7865df132d4b365722a1ff879942afc}{set\+GFXMask}} (int mask)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}{set\+Sgb\+Tiles}} (u8 $\ast$src, u8 flags)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a8535091adb0cef3f5ddd47d30e6015bb}{set\+Sgb\+Map}} (u8 $\ast$src)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a211a591c0c34da3c0e17a95361b3b6ab}{copy\+Tile}} (u8 $\ast$src, u16 $\ast$dest)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a156e6af1e5bbf84cd59aaa74d204ee77}{draw\+Screen}} ()
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ad7d241162c9a5a9725e74acbbf4e21a9}{draw\+Scanline}} (int scanline) ITCM\+\_\+\+CODE
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_accfc00674239f8d922416ce6defc9084}{draw\+Scanline\+\_\+\+P2}} (int scanline) ITCM\+\_\+\+CODE
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_aaf17e95c285e77dea221cb54923a91a3}{write\+Vram}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a9631e983076a6906dd0eb1c185bd870c}{write\+Vram16}} (u16 dest, u16 src)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_ae7573347fba5b70225ad712fc48a679c}{handle\+Video\+Register}} (u8 io\+Reg, u8 val)
+\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a496cd2cdb3d9a1f4ca5bf45325ebdc0a}{write\+Hram}} (u16 addr, u8 val)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}{map\+\_\+base}} \mbox{[}$\,$\mbox{]} = \{1, 2\}
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}{color0\+\_\+map\+\_\+base}} \mbox{[}$\,$\mbox{]} = \{3, 4\}
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}{overlay\+\_\+map\+\_\+base}} \mbox{[}$\,$\mbox{]} = \{5, 6\}
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a91ce402e5df15ae36e306bc87e0e8571}{off\+\_\+map\+\_\+base}} = 7
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_abd413371db8b3b61cd83231c431f4479}{border\+\_\+map\+\_\+base}} = 8
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_ad3002ecdd358dc1031b7f3f5367d856d}{OFF\+\_\+\+MAP\+\_\+\+PALETTE\+\_\+\+INDEX}} = 15 $\ast$ 16 + 1
+\item 
+u16 $\ast$const \mbox{\hyperlink{gbgfx_8cpp_a1e800a6a0ab719ff1af9a81efd02877a}{map}} \mbox{[}2\mbox{]} = \{BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}{map\+\_\+base}}\mbox{[}0\mbox{]}), BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}{map\+\_\+base}}\mbox{[}1\mbox{]})\}
+\item 
+u16 $\ast$const \mbox{\hyperlink{gbgfx_8cpp_a11c5fa757d50eb2a76a07eab96e06af2}{color0\+Map}} \mbox{[}2\mbox{]} = \{BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}{color0\+\_\+map\+\_\+base}}\mbox{[}0\mbox{]}), BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}{color0\+\_\+map\+\_\+base}}\mbox{[}1\mbox{]})\}
+\item 
+u16 $\ast$const \mbox{\hyperlink{gbgfx_8cpp_adb86ece52e11b17321b0ba3ae9b2710a}{overlay\+Map}} \mbox{[}2\mbox{]} = \{BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}{overlay\+\_\+map\+\_\+base}}\mbox{[}0\mbox{]}), BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}{overlay\+\_\+map\+\_\+base}}\mbox{[}1\mbox{]})\}
+\item 
+u16 $\ast$const \mbox{\hyperlink{gbgfx_8cpp_a7ec3797409dcee1456d33ccce6eaddde}{off\+Map}} = BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a91ce402e5df15ae36e306bc87e0e8571}{off\+\_\+map\+\_\+base}})
+\item 
+u16 $\ast$const \mbox{\hyperlink{gbgfx_8cpp_a1098ad62439e76ffa2cc640296a8d9f1}{border\+Map}} = BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_abd413371db8b3b61cd83231c431f4479}{border\+\_\+map\+\_\+base}})
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a1b6ed3b899ddd242915f4dd097981b9c}{first\+Gb\+Sprite}} = 128 -\/ 40
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a74f524dec8b515de3783f1ca4fe9966a}{spr\+\_\+priority}} = 2
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_acb5531c62e489ea1cae44400ac9336ee}{spr\+\_\+priority\+\_\+low}} = 3
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_abf4dba0db945ceed11b00da029badbde}{win\+\_\+color0\+\_\+priority}} = 3
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_af31a9f5a39555bd2b4a05dfdbc8c1835}{win\+\_\+priority}} = 2
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a0b46cea5d84f2577ca9084a7ce1938bb}{bg\+\_\+color0\+\_\+priority}} = 3
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a3f02de6a79af2ad2983cd2b9cbfe2442}{bg\+\_\+priority}} = 2
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_af56ca8375678dbe0b7bccaf88aa02469}{bg\+\_\+overlay\+\_\+priority}} = 1
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_ab963a509c56b484cae862e8f1db740dc}{win\+\_\+overlay\+\_\+priority}} = 1
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_ae3246472d110c092ff32a7f01971651e}{bg\+\_\+all\+\_\+priority}} = 2
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a2f7019b05da7580d78d7b80310aca299}{win\+\_\+all\+\_\+priority}} = 2
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_a285192f5390f5531ee1cca872f957d2d}{screen\+OffsX}} = 48
+\item 
+const int \mbox{\hyperlink{gbgfx_8cpp_ae4626134fe8c5a191c8a9d36e9319cbc}{screen\+OffsY}} = 24
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_ae5d63a0df1fc230d6fb3b5c67314393d}{gb\+Graphics\+Disabled}} = false
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_a3b35e4c59fbe530ccfd4fc14c5d4c265}{using\+Tile\+Priority}} \mbox{[}2\mbox{]}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a5458fb138ca4b8f989873109fd0c53d7}{did\+Vblank}} = false
+\item 
+volatile int \mbox{\hyperlink{gbgfx_8cpp_acc585c432eca446ce44bda6d820320d8}{ds\+Frame\+Counter}} = 0
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a542811a076e55daa66e05901298fc57a}{changed\+Tile}} \mbox{[}2\mbox{]}\mbox{[}0x180\mbox{]}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_a45834c0f350c7bfbd7657d32bcf42d43}{changed\+Tile\+Queue\+Length}} = 0
+\item 
+u16 \mbox{\hyperlink{gbgfx_8cpp_ade2d99a4b9f321c5dcb857b655c91f48}{changed\+Tile\+Queue}} \mbox{[}0x300\mbox{]}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_af36bd9924bc4a1c5da12c77c46713f4c}{changed\+Tile\+In\+Frame}} \mbox{[}2\mbox{]}\mbox{[}0x180\mbox{]}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_adb7a4f818a75d747ae51e6b16dbe623f}{changed\+Tile\+In\+Frame\+Queue\+Length}} = 0
+\item 
+u16 \mbox{\hyperlink{gbgfx_8cpp_ae569c6094981c38d5e0754f2dae61816}{changed\+Tile\+In\+Frame\+Queue}} \mbox{[}0x300\mbox{]}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a7a79512469ed835be49735d7e6233390}{changed\+Map}} \mbox{[}2\mbox{]}\mbox{[}0x400\mbox{]}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_aad42beb02a7313afa3778db5e804f851}{changed\+Map\+Queue\+Length}} \mbox{[}2\mbox{]}
+\item 
+u16 \mbox{\hyperlink{gbgfx_8cpp_a9d36dda4f8424acfa6e750cbb86fac06}{changed\+Map\+Queue}} \mbox{[}2\mbox{]}\mbox{[}0x400\mbox{]}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_adf5931a286627b99da8d76dc7eb033df}{win\+PosY}} = 0
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a5823f3af2c35fce45f1b50d16a313df4}{line\+Modified}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a6d8811638f07e4ef3353977efe34c68b}{maps\+Modified}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a751160e1702627464ad6b4d6d063a655}{bg\+Palettes\+Modified}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a7bdc492b1884bde1b603abce41cde89e}{spr\+Palettes\+Modified}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a270d6ce2a8e0be18c9b587c22bd0a9b6}{sprites\+Modified}}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_aa419499bc88635e3e3e2ad6616e17563}{interrupt\+Wait\+Mode}} = 0
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a7e77ece2ff8da663172ec7854ce1ad4a}{window\+Disabled}} = false
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_ab764cbdc62a676940e3d9c4940461cea}{hblank\+Disabled}} = false
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_a156841b066241f0fedaeedc3b9bebe4f}{scale\+Mode}}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_a89e8f23cbae54ca6f6935daecbb1c5c5}{scale\+Filter}} = 1
+\item 
+u8 \mbox{\hyperlink{gbgfx_8cpp_a0e19dccb2272e5ec93cee1dbe5b3fee3}{gfx\+Mask}}
+\item 
+volatile int \mbox{\hyperlink{gbgfx_8cpp_aef6032a39f08d1728cefcc4e8be2d437}{loaded\+Border\+Type}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a6092e57bcfad6a29770fdc99f3f3b221}{custom\+Border\+Exists}} = true
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a134de385e7f51e7cb43357cf0bb4b624}{sgb\+Border\+Loaded}}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_af3e8557b7fc26006b9850248932ddf8b}{SCALE\+\_\+\+BGX}}
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_a2f95b3058774b52ad7e38b3f5c7174f5}{SCALE\+\_\+\+BGY}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a31c7dcff373ddfa6b23617e9298f961d}{last\+Screen\+Disabled}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a097b7a3d0c46cf0afdc98b34bf6f99ed}{screen\+Disabled}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a3cd39047a50d108bad589552d5c28d18}{line\+Completed}} \mbox{[}144\mbox{]}
+\item 
+\mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}} \mbox{\hyperlink{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}{scanline\+Buffers}} \mbox{[}2\mbox{]}\mbox{[}144\mbox{]}
+\item 
+\mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}} $\ast$ \mbox{\hyperlink{gbgfx_8cpp_ab603fe74b48d08c176eb343ade1dc566}{drawing\+State}} = \mbox{\hyperlink{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}{scanline\+Buffers}}\mbox{[}0\mbox{]}
+\item 
+\mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}} $\ast$ \mbox{\hyperlink{gbgfx_8cpp_ae151e70163adb76a07dce9eaacf55800}{rendering\+State}} = \mbox{\hyperlink{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}{scanline\+Buffers}}\mbox{[}1\mbox{]}
+\item 
+std\+::vector$<$ void($\ast$)()$>$ \mbox{\hyperlink{gbgfx_8cpp_a661609bcd9b9316ac391ea66f6b86ac5}{vblank\+Tasks}}
+\item 
+bool \mbox{\hyperlink{gbgfx_8cpp_a9191c29ca1a0cf63adab0803375b342f}{filter\+Flip}} = false
+\item 
+int \mbox{\hyperlink{gbgfx_8cpp_af45ebf8710b5dc93aaf0421a4fe37764}{winX}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gbgfx_8cpp_a075aa9549fd1d8e0bde8b65e2233d169}\label{gbgfx_8cpp_a075aa9549fd1d8e0bde8b65e2233d169}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!BACKDROP\_COLOUR@{BACKDROP\_COLOUR}}
+\index{BACKDROP\_COLOUR@{BACKDROP\_COLOUR}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{BACKDROP\_COLOUR}{BACKDROP\_COLOUR}}
+{\footnotesize\ttfamily \#define BACKDROP\+\_\+\+COLOUR~RGB15(0, 0, 0)}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a8209539684d9069849b50012fd470999}\label{gbgfx_8cpp_a8209539684d9069849b50012fd470999}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!BG\_CNT@{BG\_CNT}}
+\index{BG\_CNT@{BG\_CNT}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{BG\_CNT}{BG\_CNT}}
+{\footnotesize\ttfamily \#define BG\+\_\+\+CNT(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~($\ast$((vu16 $\ast$)0x4000008 + (x)))}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00169}{169}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a13c0a18ffd7ce55bafcdce0e8c894b56}\label{gbgfx_8cpp_a13c0a18ffd7ce55bafcdce0e8c894b56}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!BG\_HOFS@{BG\_HOFS}}
+\index{BG\_HOFS@{BG\_HOFS}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{BG\_HOFS}{BG\_HOFS}}
+{\footnotesize\ttfamily \#define BG\+\_\+\+HOFS(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~($\ast$((vu16 $\ast$)0x4000010 + (x)$\ast$2))}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00170}{170}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a45e75e00626ef822da5ea577454a22d7}\label{gbgfx_8cpp_a45e75e00626ef822da5ea577454a22d7}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!BG\_VOFS@{BG\_VOFS}}
+\index{BG\_VOFS@{BG\_VOFS}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{BG\_VOFS}{BG\_VOFS}}
+{\footnotesize\ttfamily \#define BG\+\_\+\+VOFS(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~($\ast$((vu16 $\ast$)0x4000012 + (x)$\ast$2))}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00171}{171}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a34352c8a17802da70f27f22ce225178f}\label{gbgfx_8cpp_a34352c8a17802da70f27f22ce225178f}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!sprites@{sprites}}
+\index{sprites@{sprites}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{sprites}{sprites}}
+{\footnotesize\ttfamily \#define sprites~((\mbox{\hyperlink{structsprite_entry}{sprite\+Entry}} $\ast$)OAM)}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00167}{167}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gbgfx_8cpp_a8355f1c3ad9d0c737c5304f5ca2dba5e}\label{gbgfx_8cpp_a8355f1c3ad9d0c737c5304f5ca2dba5e}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!ALIGN@{ALIGN}}
+\index{ALIGN@{ALIGN}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{ALIGN()}{ALIGN()}}
+{\footnotesize\ttfamily u8 \mbox{\hyperlink{gbgfx_8h_a254d3c52c2ae7fff61e52168c0c37e86}{bg\+Palette\+Data}}\mbox{[}0x40\mbox{]} ALIGN (\begin{DoxyParamCaption}\item[{4}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gbgfx_8cpp_aa830515ff224eeaa5ae76432a118cd98}\label{gbgfx_8cpp_aa830515ff224eeaa5ae76432a118cd98}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!checkBorder@{checkBorder}}
+\index{checkBorder@{checkBorder}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{checkBorder()}{checkBorder()}}
+{\footnotesize\ttfamily void check\+Border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00923}{923}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a484b3e71acef74d4337dbaf8765cb140}\label{gbgfx_8cpp_a484b3e71acef74d4337dbaf8765cb140}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!clearGFX@{clearGFX}}
+\index{clearGFX@{clearGFX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{clearGFX()}{clearGFX()}}
+{\footnotesize\ttfamily void clear\+GFX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00699}{699}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a211a591c0c34da3c0e17a95361b3b6ab}\label{gbgfx_8cpp_a211a591c0c34da3c0e17a95361b3b6ab}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!copyTile@{copyTile}}
+\index{copyTile@{copyTile}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{copyTile()}{copyTile()}}
+{\footnotesize\ttfamily void copy\+Tile (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{src,  }\item[{u16 $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01266}{1266}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af6eb238b4b25b103654a5cbae07a4138}\label{gbgfx_8cpp_af6eb238b4b25b103654a5cbae07a4138}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!displayIcon@{displayIcon}}
+\index{displayIcon@{displayIcon}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{displayIcon()}{displayIcon()}}
+{\footnotesize\ttfamily void display\+Icon (\begin{DoxyParamCaption}\item[{int}]{iconid }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00795}{795}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a2f55870003e8d34f5d175345f39f4105}\label{gbgfx_8cpp_a2f55870003e8d34f5d175345f39f4105}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!doAtVBlank@{doAtVBlank}}
+\index{doAtVBlank@{doAtVBlank}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{doAtVBlank()}{doAtVBlank()}}
+{\footnotesize\ttfamily void do\+At\+VBlank (\begin{DoxyParamCaption}\item[{void($\ast$)(void)}]{func }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00484}{484}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af81933618cd850b54967001130817a61}\label{gbgfx_8cpp_af81933618cd850b54967001130817a61}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!doHBlank@{doHBlank}}
+\index{doHBlank@{doHBlank}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{doHBlank()}{doHBlank()}}
+{\footnotesize\ttfamily void do\+HBlank (\begin{DoxyParamCaption}\item[{int}]{line }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00422}{422}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a3299fd8fbf2fadcfd88ee2f18824cbea}\label{gbgfx_8cpp_a3299fd8fbf2fadcfd88ee2f18824cbea}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawLine@{drawLine}}
+\index{drawLine@{drawLine}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawLine()}{drawLine()}}
+{\footnotesize\ttfamily void draw\+Line (\begin{DoxyParamCaption}\item[{int}]{gb\+Line }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00179}{179}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ad7d241162c9a5a9725e74acbbf4e21a9}\label{gbgfx_8cpp_ad7d241162c9a5a9725e74acbbf4e21a9}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawScanline@{drawScanline}}
+\index{drawScanline@{drawScanline}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawScanline()}{drawScanline()}}
+{\footnotesize\ttfamily void draw\+Scanline (\begin{DoxyParamCaption}\item[{int}]{scanline }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01407}{1407}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_accfc00674239f8d922416ce6defc9084}\label{gbgfx_8cpp_accfc00674239f8d922416ce6defc9084}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawScanline\_P2@{drawScanline\_P2}}
+\index{drawScanline\_P2@{drawScanline\_P2}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawScanline\_P2()}{drawScanline\_P2()}}
+{\footnotesize\ttfamily void draw\+Scanline\+\_\+\+P2 (\begin{DoxyParamCaption}\item[{int}]{scanline }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01424}{1424}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a156e6af1e5bbf84cd59aaa74d204ee77}\label{gbgfx_8cpp_a156e6af1e5bbf84cd59aaa74d204ee77}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawScreen@{drawScreen}}
+\index{drawScreen@{drawScreen}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawScreen()}{drawScreen()}}
+{\footnotesize\ttfamily void draw\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01284}{1284}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a2c3bc7cf83f9225ce88d2bcbd53875a6}\label{gbgfx_8cpp_a2c3bc7cf83f9225ce88d2bcbd53875a6}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawSprites@{drawSprites}}
+\index{drawSprites@{drawSprites}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawSprites()}{drawSprites()}}
+{\footnotesize\ttfamily void draw\+Sprites (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{data,  }\item[{int}]{tall\+Sprites }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01325}{1325}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a27a1116d3f41a4a2d146cf8386b99bdd}\label{gbgfx_8cpp_a27a1116d3f41a4a2d146cf8386b99bdd}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawTile@{drawTile}}
+\index{drawTile@{drawTile}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawTile()}{drawTile()}}
+{\footnotesize\ttfamily void draw\+Tile (\begin{DoxyParamCaption}\item[{int}]{tile,  }\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01199}{1199}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ae7573347fba5b70225ad712fc48a679c}\label{gbgfx_8cpp_ae7573347fba5b70225ad712fc48a679c}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!handleVideoRegister@{handleVideoRegister}}
+\index{handleVideoRegister@{handleVideoRegister}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{handleVideoRegister()}{handleVideoRegister()}}
+{\footnotesize\ttfamily void handle\+Video\+Register (\begin{DoxyParamCaption}\item[{u8}]{io\+Reg,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01744}{1744}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ab7eb6d540dc38c5d31291f5ef9308f91}\label{gbgfx_8cpp_ab7eb6d540dc38c5d31291f5ef9308f91}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!hblankHandler@{hblankHandler}}
+\index{hblankHandler@{hblankHandler}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{hblankHandler()}{hblankHandler()}}
+{\footnotesize\ttfamily void hblank\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00456}{456}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ad00fca63a33eb7f18124dc4a19620a2e}\label{gbgfx_8cpp_ad00fca63a33eb7f18124dc4a19620a2e}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!initGFX@{initGFX}}
+\index{initGFX@{initGFX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{initGFX()}{initGFX()}}
+{\footnotesize\ttfamily void init\+GFX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00548}{548}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ad55b96f2678da1f09b16057cd76c3fe9}\label{gbgfx_8cpp_ad55b96f2678da1f09b16057cd76c3fe9}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!initGFXPalette@{initGFXPalette}}
+\index{initGFXPalette@{initGFXPalette}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{initGFXPalette()}{initGFXPalette()}}
+{\footnotesize\ttfamily void init\+GFXPalette (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00627}{627}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ac67a99cc1feaf73626bdeebcd476c33d}\label{gbgfx_8cpp_ac67a99cc1feaf73626bdeebcd476c33d}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!loadBorder@{loadBorder}}
+\index{loadBorder@{loadBorder}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{loadBorder()}{loadBorder()}}
+{\footnotesize\ttfamily int load\+Border (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00860}{860}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a6152d90bc27302b3fcd92f4973a2401c}\label{gbgfx_8cpp_a6152d90bc27302b3fcd92f4973a2401c}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!loadSGBBorder@{loadSGBBorder}}
+\index{loadSGBBorder@{loadSGBBorder}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{loadSGBBorder()}{loadSGBBorder()}}
+{\footnotesize\ttfamily void load\+SGBBorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00536}{536}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a62b34356f6149d2c44ee24379cc347a6}\label{gbgfx_8cpp_a62b34356f6149d2c44ee24379cc347a6}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!refreshGFX@{refreshGFX}}
+\index{refreshGFX@{refreshGFX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshGFX()}{refreshGFX()}}
+{\footnotesize\ttfamily void refresh\+GFX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00662}{662}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_addf38491f7aa4075fc1bb2eb2fe2d096}\label{gbgfx_8cpp_addf38491f7aa4075fc1bb2eb2fe2d096}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!refreshScaleMode@{refreshScaleMode}}
+\index{refreshScaleMode@{refreshScaleMode}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshScaleMode()}{refreshScaleMode()}}
+{\footnotesize\ttfamily void refresh\+Scale\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00986}{986}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ab69a9c5313c53ae912567230d8ddfcf0}\label{gbgfx_8cpp_ab69a9c5313c53ae912567230d8ddfcf0}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!refreshSgbPalette@{refreshSgbPalette}}
+\index{refreshSgbPalette@{refreshSgbPalette}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshSgbPalette()}{refreshSgbPalette()}}
+{\footnotesize\ttfamily void refresh\+Sgb\+Palette (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00725}{725}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a5c68b80f62aca2e37b19134d5885eb57}\label{gbgfx_8cpp_a5c68b80f62aca2e37b19134d5885eb57}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!selectBorder@{selectBorder}}
+\index{selectBorder@{selectBorder}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{selectBorder()}{selectBorder()}}
+{\footnotesize\ttfamily void select\+Border (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00822}{822}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ab7865df132d4b365722a1ff879942afc}\label{gbgfx_8cpp_ab7865df132d4b365722a1ff879942afc}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!setGFXMask@{setGFXMask}}
+\index{setGFXMask@{setGFXMask}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{setGFXMask()}{setGFXMask()}}
+{\footnotesize\ttfamily void set\+GFXMask (\begin{DoxyParamCaption}\item[{int}]{mask }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01058}{1058}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a8535091adb0cef3f5ddd47d30e6015bb}\label{gbgfx_8cpp_a8535091adb0cef3f5ddd47d30e6015bb}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!setSgbMap@{setSgbMap}}
+\index{setSgbMap@{setSgbMap}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{setSgbMap()}{setSgbMap()}}
+{\footnotesize\ttfamily void set\+Sgb\+Map (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{src }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01130}{1130}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}\label{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!setSgbTiles@{setSgbTiles}}
+\index{setSgbTiles@{setSgbTiles}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{setSgbTiles()}{setSgbTiles()}}
+{\footnotesize\ttfamily void set\+Sgb\+Tiles (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{src,  }\item[{u8}]{flags }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01073}{1073}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a9a8e94462dd86825fa22f6a3a145862e}\label{gbgfx_8cpp_a9a8e94462dd86825fa22f6a3a145862e}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!updateBgPalette@{updateBgPalette}}
+\index{updateBgPalette@{updateBgPalette}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{updateBgPalette()}{updateBgPalette()}}
+{\footnotesize\ttfamily void update\+Bg\+Palette (\begin{DoxyParamCaption}\item[{int}]{paletteid,  }\item[{u8 $\ast$}]{data,  }\item[{u8}]{dmg\+Pal }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01710}{1710}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a1214c2484459d4a461f437e67a072694}\label{gbgfx_8cpp_a1214c2484459d4a461f437e67a072694}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!updateBgPalette\_GBC@{updateBgPalette\_GBC}}
+\index{updateBgPalette\_GBC@{updateBgPalette\_GBC}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{updateBgPalette\_GBC()}{updateBgPalette\_GBC()}}
+{\footnotesize\ttfamily void update\+Bg\+Palette\+\_\+\+GBC (\begin{DoxyParamCaption}\item[{int}]{paletteid,  }\item[{u8 $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01720}{1720}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a69f15ee8d4cda930e01bfe3e42bbd66a}\label{gbgfx_8cpp_a69f15ee8d4cda930e01bfe3e42bbd66a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!updateSprPalette@{updateSprPalette}}
+\index{updateSprPalette@{updateSprPalette}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{updateSprPalette()}{updateSprPalette()}}
+{\footnotesize\ttfamily void update\+Spr\+Palette (\begin{DoxyParamCaption}\item[{int}]{paletteid,  }\item[{u8 $\ast$}]{data,  }\item[{u8}]{dmg\+Pal }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01727}{1727}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_abaa5f65ef32cc80bd17ba14c47984536}\label{gbgfx_8cpp_abaa5f65ef32cc80bd17ba14c47984536}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!updateTileMap@{updateTileMap}}
+\index{updateTileMap@{updateTileMap}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{updateTileMap()}{updateTileMap()}}
+{\footnotesize\ttfamily void update\+Tile\+Map (\begin{DoxyParamCaption}\item[{int}]{map,  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01170}{1170}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a60975f999e5000cce01f957e5061efc2}\label{gbgfx_8cpp_a60975f999e5000cce01f957e5061efc2}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!updateTileMaps@{updateTileMaps}}
+\index{updateTileMaps@{updateTileMaps}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{updateTileMaps()}{updateTileMaps()}}
+{\footnotesize\ttfamily void update\+Tile\+Maps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01159}{1159}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a73afcb774f607a0031a6877ab3059fd3}\label{gbgfx_8cpp_a73afcb774f607a0031a6877ab3059fd3}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!updateTiles@{updateTiles}}
+\index{updateTiles@{updateTiles}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{updateTiles()}{updateTiles()}}
+{\footnotesize\ttfamily void update\+Tiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01689}{1689}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a61980113c878f9f0138454e1e1047750}\label{gbgfx_8cpp_a61980113c878f9f0138454e1e1047750}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!vblankHandler@{vblankHandler}}
+\index{vblankHandler@{vblankHandler}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{vblankHandler()}{vblankHandler()}}
+{\footnotesize\ttfamily void vblank\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00490}{490}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_abb0c9757b585d53633e72130af93d164}\label{gbgfx_8cpp_abb0c9757b585d53633e72130af93d164}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!vcountHandler@{vcountHandler}}
+\index{vcountHandler@{vcountHandler}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{vcountHandler()}{vcountHandler()}}
+{\footnotesize\ttfamily void vcount\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00465}{465}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a496cd2cdb3d9a1f4ca5bf45325ebdc0a}\label{gbgfx_8cpp_a496cd2cdb3d9a1f4ca5bf45325ebdc0a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!writeHram@{writeHram}}
+\index{writeHram@{writeHram}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{writeHram()}{writeHram()}}
+{\footnotesize\ttfamily void write\+Hram (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01869}{1869}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_aaf17e95c285e77dea221cb54923a91a3}\label{gbgfx_8cpp_aaf17e95c285e77dea221cb54923a91a3}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!writeVram@{writeVram}}
+\index{writeVram@{writeVram}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{writeVram()}{writeVram()}}
+{\footnotesize\ttfamily void write\+Vram (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01578}{1578}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a9631e983076a6906dd0eb1c185bd870c}\label{gbgfx_8cpp_a9631e983076a6906dd0eb1c185bd870c}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!writeVram16@{writeVram16}}
+\index{writeVram16@{writeVram16}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{writeVram16()}{writeVram16()}}
+{\footnotesize\ttfamily void write\+Vram16 (\begin{DoxyParamCaption}\item[{u16}]{dest,  }\item[{u16}]{src }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01624}{1624}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gbgfx_8cpp_ae3246472d110c092ff32a7f01971651e}\label{gbgfx_8cpp_ae3246472d110c092ff32a7f01971651e}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!bg\_all\_priority@{bg\_all\_priority}}
+\index{bg\_all\_priority@{bg\_all\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{bg\_all\_priority}{bg\_all\_priority}}
+{\footnotesize\ttfamily const int bg\+\_\+all\+\_\+priority = 2}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a0b46cea5d84f2577ca9084a7ce1938bb}\label{gbgfx_8cpp_a0b46cea5d84f2577ca9084a7ce1938bb}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!bg\_color0\_priority@{bg\_color0\_priority}}
+\index{bg\_color0\_priority@{bg\_color0\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{bg\_color0\_priority}{bg\_color0\_priority}}
+{\footnotesize\ttfamily const int bg\+\_\+color0\+\_\+priority = 3}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af56ca8375678dbe0b7bccaf88aa02469}\label{gbgfx_8cpp_af56ca8375678dbe0b7bccaf88aa02469}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!bg\_overlay\_priority@{bg\_overlay\_priority}}
+\index{bg\_overlay\_priority@{bg\_overlay\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{bg\_overlay\_priority}{bg\_overlay\_priority}}
+{\footnotesize\ttfamily const int bg\+\_\+overlay\+\_\+priority = 1}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a3f02de6a79af2ad2983cd2b9cbfe2442}\label{gbgfx_8cpp_a3f02de6a79af2ad2983cd2b9cbfe2442}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!bg\_priority@{bg\_priority}}
+\index{bg\_priority@{bg\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{bg\_priority}{bg\_priority}}
+{\footnotesize\ttfamily const int bg\+\_\+priority = 2}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a751160e1702627464ad6b4d6d063a655}\label{gbgfx_8cpp_a751160e1702627464ad6b4d6d063a655}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!bgPalettesModified@{bgPalettesModified}}
+\index{bgPalettesModified@{bgPalettesModified}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{bgPalettesModified}{bgPalettesModified}}
+{\footnotesize\ttfamily bool bg\+Palettes\+Modified}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_abd413371db8b3b61cd83231c431f4479}\label{gbgfx_8cpp_abd413371db8b3b61cd83231c431f4479}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!border\_map\_base@{border\_map\_base}}
+\index{border\_map\_base@{border\_map\_base}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{border\_map\_base}{border\_map\_base}}
+{\footnotesize\ttfamily const int border\+\_\+map\+\_\+base = 8}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a1098ad62439e76ffa2cc640296a8d9f1}\label{gbgfx_8cpp_a1098ad62439e76ffa2cc640296a8d9f1}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!borderMap@{borderMap}}
+\index{borderMap@{borderMap}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{borderMap}{borderMap}}
+{\footnotesize\ttfamily u16$\ast$ const border\+Map = BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_abd413371db8b3b61cd83231c431f4479}{border\+\_\+map\+\_\+base}})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a7a79512469ed835be49735d7e6233390}\label{gbgfx_8cpp_a7a79512469ed835be49735d7e6233390}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedMap@{changedMap}}
+\index{changedMap@{changedMap}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedMap}{changedMap}}
+{\footnotesize\ttfamily bool changed\+Map\mbox{[}2\mbox{]}\mbox{[}0x400\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a9d36dda4f8424acfa6e750cbb86fac06}\label{gbgfx_8cpp_a9d36dda4f8424acfa6e750cbb86fac06}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedMapQueue@{changedMapQueue}}
+\index{changedMapQueue@{changedMapQueue}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedMapQueue}{changedMapQueue}}
+{\footnotesize\ttfamily u16 changed\+Map\+Queue\mbox{[}2\mbox{]}\mbox{[}0x400\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_aad42beb02a7313afa3778db5e804f851}\label{gbgfx_8cpp_aad42beb02a7313afa3778db5e804f851}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedMapQueueLength@{changedMapQueueLength}}
+\index{changedMapQueueLength@{changedMapQueueLength}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedMapQueueLength}{changedMapQueueLength}}
+{\footnotesize\ttfamily int changed\+Map\+Queue\+Length\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a542811a076e55daa66e05901298fc57a}\label{gbgfx_8cpp_a542811a076e55daa66e05901298fc57a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedTile@{changedTile}}
+\index{changedTile@{changedTile}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedTile}{changedTile}}
+{\footnotesize\ttfamily bool changed\+Tile\mbox{[}2\mbox{]}\mbox{[}0x180\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af36bd9924bc4a1c5da12c77c46713f4c}\label{gbgfx_8cpp_af36bd9924bc4a1c5da12c77c46713f4c}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedTileInFrame@{changedTileInFrame}}
+\index{changedTileInFrame@{changedTileInFrame}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedTileInFrame}{changedTileInFrame}}
+{\footnotesize\ttfamily bool changed\+Tile\+In\+Frame\mbox{[}2\mbox{]}\mbox{[}0x180\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ae569c6094981c38d5e0754f2dae61816}\label{gbgfx_8cpp_ae569c6094981c38d5e0754f2dae61816}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedTileInFrameQueue@{changedTileInFrameQueue}}
+\index{changedTileInFrameQueue@{changedTileInFrameQueue}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedTileInFrameQueue}{changedTileInFrameQueue}}
+{\footnotesize\ttfamily u16 changed\+Tile\+In\+Frame\+Queue\mbox{[}0x300\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_adb7a4f818a75d747ae51e6b16dbe623f}\label{gbgfx_8cpp_adb7a4f818a75d747ae51e6b16dbe623f}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedTileInFrameQueueLength@{changedTileInFrameQueueLength}}
+\index{changedTileInFrameQueueLength@{changedTileInFrameQueueLength}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedTileInFrameQueueLength}{changedTileInFrameQueueLength}}
+{\footnotesize\ttfamily int changed\+Tile\+In\+Frame\+Queue\+Length = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ade2d99a4b9f321c5dcb857b655c91f48}\label{gbgfx_8cpp_ade2d99a4b9f321c5dcb857b655c91f48}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedTileQueue@{changedTileQueue}}
+\index{changedTileQueue@{changedTileQueue}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedTileQueue}{changedTileQueue}}
+{\footnotesize\ttfamily u16 changed\+Tile\+Queue\mbox{[}0x300\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a45834c0f350c7bfbd7657d32bcf42d43}\label{gbgfx_8cpp_a45834c0f350c7bfbd7657d32bcf42d43}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!changedTileQueueLength@{changedTileQueueLength}}
+\index{changedTileQueueLength@{changedTileQueueLength}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{changedTileQueueLength}{changedTileQueueLength}}
+{\footnotesize\ttfamily int changed\+Tile\+Queue\+Length = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00070}{70}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}\label{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!color0\_map\_base@{color0\_map\_base}}
+\index{color0\_map\_base@{color0\_map\_base}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{color0\_map\_base}{color0\_map\_base}}
+{\footnotesize\ttfamily const int color0\+\_\+map\+\_\+base\mbox{[}$\,$\mbox{]} = \{3, 4\}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a11c5fa757d50eb2a76a07eab96e06af2}\label{gbgfx_8cpp_a11c5fa757d50eb2a76a07eab96e06af2}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!color0Map@{color0Map}}
+\index{color0Map@{color0Map}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{color0Map}{color0Map}}
+{\footnotesize\ttfamily u16$\ast$ const color0\+Map\mbox{[}2\mbox{]} = \{BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}{color0\+\_\+map\+\_\+base}}\mbox{[}0\mbox{]}), BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_ae6e7b7ff5173baf7ca4316c5de93a2c7}{color0\+\_\+map\+\_\+base}}\mbox{[}1\mbox{]})\}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a6092e57bcfad6a29770fdc99f3f3b221}\label{gbgfx_8cpp_a6092e57bcfad6a29770fdc99f3f3b221}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!customBorderExists@{customBorderExists}}
+\index{customBorderExists@{customBorderExists}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{customBorderExists}{customBorderExists}}
+{\footnotesize\ttfamily bool custom\+Border\+Exists = true}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00103}{103}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a5458fb138ca4b8f989873109fd0c53d7}\label{gbgfx_8cpp_a5458fb138ca4b8f989873109fd0c53d7}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!didVblank@{didVblank}}
+\index{didVblank@{didVblank}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{didVblank}{didVblank}}
+{\footnotesize\ttfamily bool did\+Vblank = false}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ab603fe74b48d08c176eb343ade1dc566}\label{gbgfx_8cpp_ab603fe74b48d08c176eb343ade1dc566}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!drawingState@{drawingState}}
+\index{drawingState@{drawingState}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{drawingState}{drawingState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}}$\ast$ drawing\+State = \mbox{\hyperlink{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}{scanline\+Buffers}}\mbox{[}0\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00156}{156}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_acc585c432eca446ce44bda6d820320d8}\label{gbgfx_8cpp_acc585c432eca446ce44bda6d820320d8}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!dsFrameCounter@{dsFrameCounter}}
+\index{dsFrameCounter@{dsFrameCounter}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{dsFrameCounter}{dsFrameCounter}}
+{\footnotesize\ttfamily volatile int ds\+Frame\+Counter = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00067}{67}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a9191c29ca1a0cf63adab0803375b342f}\label{gbgfx_8cpp_a9191c29ca1a0cf63adab0803375b342f}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!filterFlip@{filterFlip}}
+\index{filterFlip@{filterFlip}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{filterFlip}{filterFlip}}
+{\footnotesize\ttfamily bool filter\+Flip = false}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00489}{489}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a1b6ed3b899ddd242915f4dd097981b9c}\label{gbgfx_8cpp_a1b6ed3b899ddd242915f4dd097981b9c}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!firstGbSprite@{firstGbSprite}}
+\index{firstGbSprite@{firstGbSprite}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{firstGbSprite}{firstGbSprite}}
+{\footnotesize\ttfamily const int first\+Gb\+Sprite = 128 -\/ 40}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ae5d63a0df1fc230d6fb3b5c67314393d}\label{gbgfx_8cpp_ae5d63a0df1fc230d6fb3b5c67314393d}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!gbGraphicsDisabled@{gbGraphicsDisabled}}
+\index{gbGraphicsDisabled@{gbGraphicsDisabled}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{gbGraphicsDisabled}{gbGraphicsDisabled}}
+{\footnotesize\ttfamily bool gb\+Graphics\+Disabled = false}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a0e19dccb2272e5ec93cee1dbe5b3fee3}\label{gbgfx_8cpp_a0e19dccb2272e5ec93cee1dbe5b3fee3}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!gfxMask@{gfxMask}}
+\index{gfxMask@{gfxMask}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{gfxMask}{gfxMask}}
+{\footnotesize\ttfamily u8 gfx\+Mask}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00100}{100}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ab764cbdc62a676940e3d9c4940461cea}\label{gbgfx_8cpp_ab764cbdc62a676940e3d9c4940461cea}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!hblankDisabled@{hblankDisabled}}
+\index{hblankDisabled@{hblankDisabled}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{hblankDisabled}{hblankDisabled}}
+{\footnotesize\ttfamily bool hblank\+Disabled = false}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00096}{96}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_aa419499bc88635e3e3e2ad6616e17563}\label{gbgfx_8cpp_aa419499bc88635e3e3e2ad6616e17563}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!interruptWaitMode@{interruptWaitMode}}
+\index{interruptWaitMode@{interruptWaitMode}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{interruptWaitMode}{interruptWaitMode}}
+{\footnotesize\ttfamily int interrupt\+Wait\+Mode = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a31c7dcff373ddfa6b23617e9298f961d}\label{gbgfx_8cpp_a31c7dcff373ddfa6b23617e9298f961d}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!lastScreenDisabled@{lastScreenDisabled}}
+\index{lastScreenDisabled@{lastScreenDisabled}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{lastScreenDisabled}{lastScreenDisabled}}
+{\footnotesize\ttfamily bool last\+Screen\+Disabled}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a3cd39047a50d108bad589552d5c28d18}\label{gbgfx_8cpp_a3cd39047a50d108bad589552d5c28d18}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!lineCompleted@{lineCompleted}}
+\index{lineCompleted@{lineCompleted}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{lineCompleted}{lineCompleted}}
+{\footnotesize\ttfamily bool line\+Completed\mbox{[}144\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00120}{120}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a5823f3af2c35fce45f1b50d16a313df4}\label{gbgfx_8cpp_a5823f3af2c35fce45f1b50d16a313df4}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!lineModified@{lineModified}}
+\index{lineModified@{lineModified}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{lineModified}{lineModified}}
+{\footnotesize\ttfamily bool line\+Modified}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_aef6032a39f08d1728cefcc4e8be2d437}\label{gbgfx_8cpp_aef6032a39f08d1728cefcc4e8be2d437}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!loadedBorderType@{loadedBorderType}}
+\index{loadedBorderType@{loadedBorderType}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{loadedBorderType}{loadedBorderType}}
+{\footnotesize\ttfamily volatile int loaded\+Border\+Type}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00102}{102}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a1e800a6a0ab719ff1af9a81efd02877a}\label{gbgfx_8cpp_a1e800a6a0ab719ff1af9a81efd02877a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!map@{map}}
+\index{map@{map}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{map}{map}}
+{\footnotesize\ttfamily u16$\ast$ const map\mbox{[}2\mbox{]} = \{BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}{map\+\_\+base}}\mbox{[}0\mbox{]}), BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}{map\+\_\+base}}\mbox{[}1\mbox{]})\}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}\label{gbgfx_8cpp_a83ace767bc1330b97e1e66dac3d0ec32}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!map\_base@{map\_base}}
+\index{map\_base@{map\_base}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{map\_base}{map\_base}}
+{\footnotesize\ttfamily const int map\+\_\+base\mbox{[}$\,$\mbox{]} = \{1, 2\}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a6d8811638f07e4ef3353977efe34c68b}\label{gbgfx_8cpp_a6d8811638f07e4ef3353977efe34c68b}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!mapsModified@{mapsModified}}
+\index{mapsModified@{mapsModified}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{mapsModified}{mapsModified}}
+{\footnotesize\ttfamily bool maps\+Modified}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a91ce402e5df15ae36e306bc87e0e8571}\label{gbgfx_8cpp_a91ce402e5df15ae36e306bc87e0e8571}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!off\_map\_base@{off\_map\_base}}
+\index{off\_map\_base@{off\_map\_base}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{off\_map\_base}{off\_map\_base}}
+{\footnotesize\ttfamily const int off\+\_\+map\+\_\+base = 7}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ad3002ecdd358dc1031b7f3f5367d856d}\label{gbgfx_8cpp_ad3002ecdd358dc1031b7f3f5367d856d}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!OFF\_MAP\_PALETTE\_INDEX@{OFF\_MAP\_PALETTE\_INDEX}}
+\index{OFF\_MAP\_PALETTE\_INDEX@{OFF\_MAP\_PALETTE\_INDEX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{OFF\_MAP\_PALETTE\_INDEX}{OFF\_MAP\_PALETTE\_INDEX}}
+{\footnotesize\ttfamily const int OFF\+\_\+\+MAP\+\_\+\+PALETTE\+\_\+\+INDEX = 15 $\ast$ 16 + 1}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a7ec3797409dcee1456d33ccce6eaddde}\label{gbgfx_8cpp_a7ec3797409dcee1456d33ccce6eaddde}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!offMap@{offMap}}
+\index{offMap@{offMap}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{offMap}{offMap}}
+{\footnotesize\ttfamily u16$\ast$ const off\+Map = BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a91ce402e5df15ae36e306bc87e0e8571}{off\+\_\+map\+\_\+base}})}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}\label{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!overlay\_map\_base@{overlay\_map\_base}}
+\index{overlay\_map\_base@{overlay\_map\_base}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{overlay\_map\_base}{overlay\_map\_base}}
+{\footnotesize\ttfamily const int overlay\+\_\+map\+\_\+base\mbox{[}$\,$\mbox{]} = \{5, 6\}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_adb86ece52e11b17321b0ba3ae9b2710a}\label{gbgfx_8cpp_adb86ece52e11b17321b0ba3ae9b2710a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!overlayMap@{overlayMap}}
+\index{overlayMap@{overlayMap}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{overlayMap}{overlayMap}}
+{\footnotesize\ttfamily u16$\ast$ const overlay\+Map\mbox{[}2\mbox{]} = \{BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}{overlay\+\_\+map\+\_\+base}}\mbox{[}0\mbox{]}), BG\+\_\+\+MAP\+\_\+\+RAM(\mbox{\hyperlink{gbgfx_8cpp_a40bbc77db17292c166f889155e08fe44}{overlay\+\_\+map\+\_\+base}}\mbox{[}1\mbox{]})\}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ae151e70163adb76a07dce9eaacf55800}\label{gbgfx_8cpp_ae151e70163adb76a07dce9eaacf55800}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!renderingState@{renderingState}}
+\index{renderingState@{renderingState}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{renderingState}{renderingState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}}$\ast$ rendering\+State = \mbox{\hyperlink{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}{scanline\+Buffers}}\mbox{[}1\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af3e8557b7fc26006b9850248932ddf8b}\label{gbgfx_8cpp_af3e8557b7fc26006b9850248932ddf8b}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!SCALE\_BGX@{SCALE\_BGX}}
+\index{SCALE\_BGX@{SCALE\_BGX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{SCALE\_BGX}{SCALE\_BGX}}
+{\footnotesize\ttfamily int SCALE\+\_\+\+BGX}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a2f95b3058774b52ad7e38b3f5c7174f5}\label{gbgfx_8cpp_a2f95b3058774b52ad7e38b3f5c7174f5}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!SCALE\_BGY@{SCALE\_BGY}}
+\index{SCALE\_BGY@{SCALE\_BGY}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{SCALE\_BGY}{SCALE\_BGY}}
+{\footnotesize\ttfamily int SCALE\+\_\+\+BGY}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a89e8f23cbae54ca6f6935daecbb1c5c5}\label{gbgfx_8cpp_a89e8f23cbae54ca6f6935daecbb1c5c5}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!scaleFilter@{scaleFilter}}
+\index{scaleFilter@{scaleFilter}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{scaleFilter}{scaleFilter}}
+{\footnotesize\ttfamily int scale\+Filter = 1}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a156841b066241f0fedaeedc3b9bebe4f}\label{gbgfx_8cpp_a156841b066241f0fedaeedc3b9bebe4f}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!scaleMode@{scaleMode}}
+\index{scaleMode@{scaleMode}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{scaleMode}{scaleMode}}
+{\footnotesize\ttfamily int scale\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}\label{gbgfx_8cpp_aa479e9c1666a9411084a3c63974e07ad}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!scanlineBuffers@{scanlineBuffers}}
+\index{scanlineBuffers@{scanlineBuffers}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{scanlineBuffers}{scanlineBuffers}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_scanline_struct}{Scanline\+Struct}} scanline\+Buffers\mbox{[}2\mbox{]}\mbox{[}144\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00154}{154}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a097b7a3d0c46cf0afdc98b34bf6f99ed}\label{gbgfx_8cpp_a097b7a3d0c46cf0afdc98b34bf6f99ed}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!screenDisabled@{screenDisabled}}
+\index{screenDisabled@{screenDisabled}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{screenDisabled}{screenDisabled}}
+{\footnotesize\ttfamily bool screen\+Disabled}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00109}{109}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a285192f5390f5531ee1cca872f957d2d}\label{gbgfx_8cpp_a285192f5390f5531ee1cca872f957d2d}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!screenOffsX@{screenOffsX}}
+\index{screenOffsX@{screenOffsX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{screenOffsX}{screenOffsX}}
+{\footnotesize\ttfamily const int screen\+OffsX = 48}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ae4626134fe8c5a191c8a9d36e9319cbc}\label{gbgfx_8cpp_ae4626134fe8c5a191c8a9d36e9319cbc}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!screenOffsY@{screenOffsY}}
+\index{screenOffsY@{screenOffsY}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{screenOffsY}{screenOffsY}}
+{\footnotesize\ttfamily const int screen\+OffsY = 24}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a134de385e7f51e7cb43357cf0bb4b624}\label{gbgfx_8cpp_a134de385e7f51e7cb43357cf0bb4b624}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!sgbBorderLoaded@{sgbBorderLoaded}}
+\index{sgbBorderLoaded@{sgbBorderLoaded}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbBorderLoaded}{sgbBorderLoaded}}
+{\footnotesize\ttfamily bool sgb\+Border\+Loaded}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00104}{104}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a74f524dec8b515de3783f1ca4fe9966a}\label{gbgfx_8cpp_a74f524dec8b515de3783f1ca4fe9966a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!spr\_priority@{spr\_priority}}
+\index{spr\_priority@{spr\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{spr\_priority}{spr\_priority}}
+{\footnotesize\ttfamily const int spr\+\_\+priority = 2}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_acb5531c62e489ea1cae44400ac9336ee}\label{gbgfx_8cpp_acb5531c62e489ea1cae44400ac9336ee}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!spr\_priority\_low@{spr\_priority\_low}}
+\index{spr\_priority\_low@{spr\_priority\_low}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{spr\_priority\_low}{spr\_priority\_low}}
+{\footnotesize\ttfamily const int spr\+\_\+priority\+\_\+low = 3}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a270d6ce2a8e0be18c9b587c22bd0a9b6}\label{gbgfx_8cpp_a270d6ce2a8e0be18c9b587c22bd0a9b6}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!spritesModified@{spritesModified}}
+\index{spritesModified@{spritesModified}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{spritesModified}{spritesModified}}
+{\footnotesize\ttfamily bool sprites\+Modified}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a7bdc492b1884bde1b603abce41cde89e}\label{gbgfx_8cpp_a7bdc492b1884bde1b603abce41cde89e}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!sprPalettesModified@{sprPalettesModified}}
+\index{sprPalettesModified@{sprPalettesModified}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{sprPalettesModified}{sprPalettesModified}}
+{\footnotesize\ttfamily bool spr\+Palettes\+Modified}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a3b35e4c59fbe530ccfd4fc14c5d4c265}\label{gbgfx_8cpp_a3b35e4c59fbe530ccfd4fc14c5d4c265}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!usingTilePriority@{usingTilePriority}}
+\index{usingTilePriority@{usingTilePriority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{usingTilePriority}{usingTilePriority}}
+{\footnotesize\ttfamily int using\+Tile\+Priority\mbox{[}2\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a661609bcd9b9316ac391ea66f6b86ac5}\label{gbgfx_8cpp_a661609bcd9b9316ac391ea66f6b86ac5}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!vblankTasks@{vblankTasks}}
+\index{vblankTasks@{vblankTasks}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{vblankTasks}{vblankTasks}}
+{\footnotesize\ttfamily std\+::vector$<$void ($\ast$)()$>$ vblank\+Tasks}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00482}{482}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a2f7019b05da7580d78d7b80310aca299}\label{gbgfx_8cpp_a2f7019b05da7580d78d7b80310aca299}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!win\_all\_priority@{win\_all\_priority}}
+\index{win\_all\_priority@{win\_all\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{win\_all\_priority}{win\_all\_priority}}
+{\footnotesize\ttfamily const int win\+\_\+all\+\_\+priority = 2}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_abf4dba0db945ceed11b00da029badbde}\label{gbgfx_8cpp_abf4dba0db945ceed11b00da029badbde}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!win\_color0\_priority@{win\_color0\_priority}}
+\index{win\_color0\_priority@{win\_color0\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{win\_color0\_priority}{win\_color0\_priority}}
+{\footnotesize\ttfamily const int win\+\_\+color0\+\_\+priority = 3}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_ab963a509c56b484cae862e8f1db740dc}\label{gbgfx_8cpp_ab963a509c56b484cae862e8f1db740dc}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!win\_overlay\_priority@{win\_overlay\_priority}}
+\index{win\_overlay\_priority@{win\_overlay\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{win\_overlay\_priority}{win\_overlay\_priority}}
+{\footnotesize\ttfamily const int win\+\_\+overlay\+\_\+priority = 1}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00051}{51}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af31a9f5a39555bd2b4a05dfdbc8c1835}\label{gbgfx_8cpp_af31a9f5a39555bd2b4a05dfdbc8c1835}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!win\_priority@{win\_priority}}
+\index{win\_priority@{win\_priority}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{win\_priority}{win\_priority}}
+{\footnotesize\ttfamily const int win\+\_\+priority = 2}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a7e77ece2ff8da663172ec7854ce1ad4a}\label{gbgfx_8cpp_a7e77ece2ff8da663172ec7854ce1ad4a}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!windowDisabled@{windowDisabled}}
+\index{windowDisabled@{windowDisabled}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{windowDisabled}{windowDisabled}}
+{\footnotesize\ttfamily bool window\+Disabled = false}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_adf5931a286627b99da8d76dc7eb033df}\label{gbgfx_8cpp_adf5931a286627b99da8d76dc7eb033df}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!winPosY@{winPosY}}
+\index{winPosY@{winPosY}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{winPosY}{winPosY}}
+{\footnotesize\ttfamily int win\+PosY = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_af45ebf8710b5dc93aaf0421a4fe37764}\label{gbgfx_8cpp_af45ebf8710b5dc93aaf0421a4fe37764}} 
+\index{gbgfx.cpp@{gbgfx.cpp}!winX@{winX}}
+\index{winX@{winX}!gbgfx.cpp@{gbgfx.cpp}}
+\doxysubsubsection{\texorpdfstring{winX}{winX}}
+{\footnotesize\ttfamily int winX}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01405}{1405}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+

@@ -1,0 +1,264 @@
+\hypertarget{cheats_8cpp}{}\doxysection{arm9/source/cheats.cpp File Reference}
+\label{cheats_8cpp}\index{arm9/source/cheats.cpp@{arm9/source/cheats.cpp}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cheats.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cheats_8cpp_a63aeb403703253a5391dc56c4c5dd7c3}{TO\+\_\+\+INT}}(a)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cheats_8cpp_a78c41cd53a58cd9d88e0b7c1ed3c6914}{enable\+Cheats}} (bool enable)
+\item 
+bool \mbox{\hyperlink{cheats_8cpp_a909f0abd9b8e7c793c27e9c1592d8c48}{add\+Cheat}} (const char $\ast$str)
+\item 
+void \mbox{\hyperlink{cheats_8cpp_ab25e60b64f04206de72e8173d012de17}{toggle\+Cheat}} (int i, bool enabled)
+\item 
+void \mbox{\hyperlink{cheats_8cpp_ad176d0d0b1f3fa0e80f30376e6d6a801}{unapply\+GGCheat}} (int cheat)
+\item 
+void \mbox{\hyperlink{cheats_8cpp_aa6df8ad952d02ffe94c24305f75cdd35}{apply\+GGCheats\+To\+Bank}} (int bank)
+\item 
+void \mbox{\hyperlink{cheats_8cpp_aea77d75e653af4d8848e493887741597}{apply\+GSCheats}} (void) ITCM\+\_\+\+CODE
+\item 
+void \mbox{\hyperlink{cheats_8cpp_a2b80237c5fa9e3bfc73c24f084b062a1}{load\+Cheats}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+void \mbox{\hyperlink{cheats_8cpp_a4a5fa081b7a687f6bc46c7c73f39c653}{redraw\+Cheat\+Menu}} ()
+\item 
+void \mbox{\hyperlink{cheats_8cpp_a75607257febd94122c7a2249ac6da0fa}{update\+Cheat\+Menu}} ()
+\item 
+bool \mbox{\hyperlink{cheats_8cpp_a1c493fcb5391c30ab19eea6310b00083}{start\+Cheat\+Menu}} ()
+\item 
+void \mbox{\hyperlink{cheats_8cpp_ae3c29812aadc45108637a0ca39ff5dac}{save\+Cheats}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{cheats_8cpp_a77d9fae8175282841c0cdda4dd1dc24a}{cheats\+Enabled}} = true
+\item 
+\mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} \mbox{\hyperlink{cheats_8cpp_a90e63aca24096c387b174644b9267723}{cheats}} \mbox{[}\mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{MAX\+\_\+\+CHEATS}}\mbox{]}
+\item 
+int \mbox{\hyperlink{cheats_8cpp_a87e3d45d0a2c77e9b41312f677900af7}{num\+Cheats}} = 0
+\item 
+char \mbox{\hyperlink{cheats_8cpp_a450c4f4745bfe79470e277fc65c57c69}{cheats\+Rom\+Title}} \mbox{[}20\mbox{]} = \char`\"{}\textbackslash{}0\char`\"{}
+\item 
+const int \mbox{\hyperlink{cheats_8cpp_af9bde18f74135df056d3811970f415d5}{cheats\+Per\+Page}} = 18
+\item 
+int \mbox{\hyperlink{cheats_8cpp_aa4b71fb3631d73892f38e1731611bab9}{cheat\+Menu\+Selection}} = 0
+\item 
+bool \mbox{\hyperlink{cheats_8cpp_a56ac3853e3e4dc495ce7b53776b35b5e}{cheat\+Menu\+\_\+gameboy\+Was\+Paused}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cheats_8cpp_a63aeb403703253a5391dc56c4c5dd7c3}\label{cheats_8cpp_a63aeb403703253a5391dc56c4c5dd7c3}} 
+\index{cheats.cpp@{cheats.cpp}!TO\_INT@{TO\_INT}}
+\index{TO\_INT@{TO\_INT}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{TO\_INT}{TO\_INT}}
+{\footnotesize\ttfamily \#define TO\+\_\+\+INT(\begin{DoxyParamCaption}\item[{}]{a }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((a)\ >=\ \textcolor{charliteral}{'a'}\ ?\ (a)\ -\/\ \textcolor{charliteral}{'a'}\ +\ 10\ :\ (a)\ >=\ \textcolor{charliteral}{'A'}\ ?\ (a)\ -\/\ \textcolor{charliteral}{'A'}\ +\ 10\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ (a)\ -\/\ \textcolor{charliteral}{'0'})}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cheats_8cpp_a909f0abd9b8e7c793c27e9c1592d8c48}\label{cheats_8cpp_a909f0abd9b8e7c793c27e9c1592d8c48}} 
+\index{cheats.cpp@{cheats.cpp}!addCheat@{addCheat}}
+\index{addCheat@{addCheat}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{addCheat()}{addCheat()}}
+{\footnotesize\ttfamily bool add\+Cheat (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_aa6df8ad952d02ffe94c24305f75cdd35}\label{cheats_8cpp_aa6df8ad952d02ffe94c24305f75cdd35}} 
+\index{cheats.cpp@{cheats.cpp}!applyGGCheatsToBank@{applyGGCheatsToBank}}
+\index{applyGGCheatsToBank@{applyGGCheatsToBank}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{applyGGCheatsToBank()}{applyGGCheatsToBank()}}
+{\footnotesize\ttfamily void apply\+GGCheats\+To\+Bank (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_aea77d75e653af4d8848e493887741597}\label{cheats_8cpp_aea77d75e653af4d8848e493887741597}} 
+\index{cheats.cpp@{cheats.cpp}!applyGSCheats@{applyGSCheats}}
+\index{applyGSCheats@{applyGSCheats}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{applyGSCheats()}{applyGSCheats()}}
+{\footnotesize\ttfamily void apply\+GSCheats (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00156}{156}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a78c41cd53a58cd9d88e0b7c1ed3c6914}\label{cheats_8cpp_a78c41cd53a58cd9d88e0b7c1ed3c6914}} 
+\index{cheats.cpp@{cheats.cpp}!enableCheats@{enableCheats}}
+\index{enableCheats@{enableCheats}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{enableCheats()}{enableCheats()}}
+{\footnotesize\ttfamily void enable\+Cheats (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a2b80237c5fa9e3bfc73c24f084b062a1}\label{cheats_8cpp_a2b80237c5fa9e3bfc73c24f084b062a1}} 
+\index{cheats.cpp@{cheats.cpp}!loadCheats@{loadCheats}}
+\index{loadCheats@{loadCheats}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{loadCheats()}{loadCheats()}}
+{\footnotesize\ttfamily void load\+Cheats (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00183}{183}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a4a5fa081b7a687f6bc46c7c73f39c653}\label{cheats_8cpp_a4a5fa081b7a687f6bc46c7c73f39c653}} 
+\index{cheats.cpp@{cheats.cpp}!redrawCheatMenu@{redrawCheatMenu}}
+\index{redrawCheatMenu@{redrawCheatMenu}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{redrawCheatMenu()}{redrawCheatMenu()}}
+{\footnotesize\ttfamily void redraw\+Cheat\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00242}{242}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_ae3c29812aadc45108637a0ca39ff5dac}\label{cheats_8cpp_ae3c29812aadc45108637a0ca39ff5dac}} 
+\index{cheats.cpp@{cheats.cpp}!saveCheats@{saveCheats}}
+\index{saveCheats@{saveCheats}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{saveCheats()}{saveCheats()}}
+{\footnotesize\ttfamily void save\+Cheats (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00348}{348}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a1c493fcb5391c30ab19eea6310b00083}\label{cheats_8cpp_a1c493fcb5391c30ab19eea6310b00083}} 
+\index{cheats.cpp@{cheats.cpp}!startCheatMenu@{startCheatMenu}}
+\index{startCheatMenu@{startCheatMenu}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{startCheatMenu()}{startCheatMenu()}}
+{\footnotesize\ttfamily bool start\+Cheat\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00335}{335}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_ab25e60b64f04206de72e8173d012de17}\label{cheats_8cpp_ab25e60b64f04206de72e8173d012de17}} 
+\index{cheats.cpp@{cheats.cpp}!toggleCheat@{toggleCheat}}
+\index{toggleCheat@{toggleCheat}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{toggleCheat()}{toggleCheat()}}
+{\footnotesize\ttfamily void toggle\+Cheat (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00091}{91}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_ad176d0d0b1f3fa0e80f30376e6d6a801}\label{cheats_8cpp_ad176d0d0b1f3fa0e80f30376e6d6a801}} 
+\index{cheats.cpp@{cheats.cpp}!unapplyGGCheat@{unapplyGGCheat}}
+\index{unapplyGGCheat@{unapplyGGCheat}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{unapplyGGCheat()}{unapplyGGCheat()}}
+{\footnotesize\ttfamily void unapply\+GGCheat (\begin{DoxyParamCaption}\item[{int}]{cheat }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a75607257febd94122c7a2249ac6da0fa}\label{cheats_8cpp_a75607257febd94122c7a2249ac6da0fa}} 
+\index{cheats.cpp@{cheats.cpp}!updateCheatMenu@{updateCheatMenu}}
+\index{updateCheatMenu@{updateCheatMenu}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{updateCheatMenu()}{updateCheatMenu()}}
+{\footnotesize\ttfamily void update\+Cheat\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00281}{281}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{cheats_8cpp_a56ac3853e3e4dc495ce7b53776b35b5e}\label{cheats_8cpp_a56ac3853e3e4dc495ce7b53776b35b5e}} 
+\index{cheats.cpp@{cheats.cpp}!cheatMenu\_gameboyWasPaused@{cheatMenu\_gameboyWasPaused}}
+\index{cheatMenu\_gameboyWasPaused@{cheatMenu\_gameboyWasPaused}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{cheatMenu\_gameboyWasPaused}{cheatMenu\_gameboyWasPaused}}
+{\footnotesize\ttfamily bool cheat\+Menu\+\_\+gameboy\+Was\+Paused}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00240}{240}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_aa4b71fb3631d73892f38e1731611bab9}\label{cheats_8cpp_aa4b71fb3631d73892f38e1731611bab9}} 
+\index{cheats.cpp@{cheats.cpp}!cheatMenuSelection@{cheatMenuSelection}}
+\index{cheatMenuSelection@{cheatMenuSelection}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{cheatMenuSelection}{cheatMenuSelection}}
+{\footnotesize\ttfamily int cheat\+Menu\+Selection = 0}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00239}{239}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a90e63aca24096c387b174644b9267723}\label{cheats_8cpp_a90e63aca24096c387b174644b9267723}} 
+\index{cheats.cpp@{cheats.cpp}!cheats@{cheats}}
+\index{cheats@{cheats}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{cheats}{cheats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} cheats\mbox{[}\mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{MAX\+\_\+\+CHEATS}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a77d9fae8175282841c0cdda4dd1dc24a}\label{cheats_8cpp_a77d9fae8175282841c0cdda4dd1dc24a}} 
+\index{cheats.cpp@{cheats.cpp}!cheatsEnabled@{cheatsEnabled}}
+\index{cheatsEnabled@{cheatsEnabled}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{cheatsEnabled}{cheatsEnabled}}
+{\footnotesize\ttfamily bool cheats\+Enabled = true}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_af9bde18f74135df056d3811970f415d5}\label{cheats_8cpp_af9bde18f74135df056d3811970f415d5}} 
+\index{cheats.cpp@{cheats.cpp}!cheatsPerPage@{cheatsPerPage}}
+\index{cheatsPerPage@{cheatsPerPage}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{cheatsPerPage}{cheatsPerPage}}
+{\footnotesize\ttfamily const int cheats\+Per\+Page = 18}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00238}{238}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a450c4f4745bfe79470e277fc65c57c69}\label{cheats_8cpp_a450c4f4745bfe79470e277fc65c57c69}} 
+\index{cheats.cpp@{cheats.cpp}!cheatsRomTitle@{cheatsRomTitle}}
+\index{cheatsRomTitle@{cheatsRomTitle}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{cheatsRomTitle}{cheatsRomTitle}}
+{\footnotesize\ttfamily char cheats\+Rom\+Title\mbox{[}20\mbox{]} = \char`\"{}\textbackslash{}0\char`\"{}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8cpp_a87e3d45d0a2c77e9b41312f677900af7}\label{cheats_8cpp_a87e3d45d0a2c77e9b41312f677900af7}} 
+\index{cheats.cpp@{cheats.cpp}!numCheats@{numCheats}}
+\index{numCheats@{numCheats}!cheats.cpp@{cheats.cpp}}
+\doxysubsubsection{\texorpdfstring{numCheats}{numCheats}}
+{\footnotesize\ttfamily int num\+Cheats = 0}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+

@@ -1,0 +1,1018 @@
+\hypertarget{inputhelper_8cpp}{}\doxysection{arm9/source/inputhelper.cpp File Reference}
+\label{inputhelper_8cpp}\index{arm9/source/inputhelper.cpp@{arm9/source/inputhelper.cpp}}
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include $<$fat.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}libfat\+\_\+fake.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cheats.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sgb.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}filechooser.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_key_config}{Key\+Config}}
+\item 
+struct \mbox{\hyperlink{struct_state_struct}{State\+Struct}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{inputhelper_8cpp_ae8c3643a8763708af82d6e2f78ccbcd8}{FAT\+\_\+\+CACHE\+\_\+\+SIZE}}~16
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a3d3188b9d438add4ac7abf5d19f9b74c}{init\+Input}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a23c95ece954e713c25b36ed4161431f9}{flush\+Fat\+Cache}} ()
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_abf49c675a7b24372ca5d2db910a59dc8}{check\+Key\+Assigned\+To\+Menu}} (\mbox{\hyperlink{struct_key_config}{Key\+Config}} $\ast$config)
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_aaecc753e6e6c2ca11689cfb2160cd6d0}{load\+Key\+Config}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a7eaaf2f7ada20e58f7624e7c4a57b431}{controls\+Parse\+Config}} (const char $\ast$line2)
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_aed48ef8d042ac1f81cd39e86138e24c4}{controls\+Print\+Config}} (FILE $\ast$file)
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a95c7c2afbdbb5e22feb9c38f8a4adc88}{redraw\+Key\+Config\+Chooser}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a849f3efe9f7b9e17bed923221c9d477e}{update\+Key\+Config\+Chooser}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_abffb348f65ce0d1864a65b5c4abf456a}{start\+Key\+Config\+Chooser}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_afa1c8e99f90414e751c1dcc4aecff993}{general\+Parse\+Config}} (const char $\ast$line)
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a1572bbbaa08946d312bb3dcd5fe2374f}{general\+Print\+Config}} (FILE $\ast$file)
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a5a9ea8d08563c440e8a39e3798c96e46}{read\+Config\+File}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a2d7c50d7d21a6d9ac3667f414aac49c6}{write\+Config\+File}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_ac4e4aa8937901a5e1323e1e48af89655}{load\+Bios}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a44f530a60a17c413f2f38291b1e448e2}{load\+Rom}} (char $\ast$f)
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a2fd52cd11f1b80d0a2c8f157a0de62fd}{load\+Rom\+Bank}} ()
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_ad1fb302157c34bd360e75b5f461ce83c}{is\+Rom\+Bank\+Loaded}} (int bank)
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a00233a25987a4b86b36aebf9db07e66f}{get\+Rom\+Bank}} (int bank)
+\item 
+const char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_af07073690b79c4b21cab6a9d62582283}{get\+Rom\+Basename}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_ac19211d01e57489fcb69ce14b4062a72}{unload\+Rom}} ()
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_aaddf13d5a4254f4662b0715db551203b}{load\+Save}} ()
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a3d4388333a1ae565953072aceb1f7c17}{save\+Game}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_ad5ce0ea494ad2dbe10d92a0fb29cf33c}{gameboy\+Sync\+Autosave}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a9359d9ec71ef9149a4b6edce9ede73e2}{update\+Autosave}} ()
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_aa694764bf7a245883042630c19d09b9e}{key\+Pressed}} (int key)
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a99d5423f8f0dc71b84a16d56a51f8e9a}{key\+Pressed\+Auto\+Repeat}} (int key)
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a02a774508142e40a6364db3bc1b4c4ee}{key\+Just\+Pressed}} (int key)
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_ac5fadb7881ae954770d26f6ee7fc4c72}{read\+Keys}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a2b937c97dc39286b96ecb8ab3f84e19a}{force\+Release\+Key}} (int key)
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_adea147396571230af47a2b52caa970b3}{map\+Gb\+Key}} (int gb\+Key)
+\item 
+char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a4a5e629b1d80e1a57e11d7182119e8d4}{get\+Rom\+Title}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_adb6320d305773ad55137c21cc22a853e}{print\+Rom\+Info}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a2d6d0c0c9624eb2d5e35eeada734bf0b}{save\+State}} (int \mbox{\hyperlink{console_8h_a736f6a5a0ef7cbd8892110dc80ae7946}{state\+Num}})
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a475c64591364fd70aab1b2793be8bd33}{load\+State}} (int \mbox{\hyperlink{console_8h_a736f6a5a0ef7cbd8892110dc80ae7946}{state\+Num}})
+\item 
+void \mbox{\hyperlink{inputhelper_8cpp_a60908530a3bffd8d00f787d92cf651ac}{delete\+State}} (int \mbox{\hyperlink{console_8h_a736f6a5a0ef7cbd8892110dc80ae7946}{state\+Num}})
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a6bae4c9c8f11f90b5a01b29e8f021ac9}{check\+State\+Exists}} (int \mbox{\hyperlink{console_8h_a736f6a5a0ef7cbd8892110dc80ae7946}{state\+Num}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+FILE $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a1424df6fc0c600c8645dd2520246d75e}{rom\+File}} = NULL
+\item 
+FILE $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a7fedcafb7925d05c44330e2e1edf3043}{save\+File}} = NULL
+\item 
+char \mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}} \mbox{[}100\mbox{]}
+\item 
+char \mbox{\hyperlink{inputhelper_8cpp_ad474206dea42b7be71a92fc78f13bcc1}{savename}} \mbox{[}100\mbox{]}
+\item 
+char \mbox{\hyperlink{inputhelper_8cpp_ad7c3a20dffadceaf34a8166bfa137e11}{basename}} \mbox{[}100\mbox{]}
+\item 
+char \mbox{\hyperlink{inputhelper_8cpp_ad326c4e5eabe1fdbd910b45cfc450f34}{rom\+Title}} \mbox{[}20\mbox{]}
+\item 
+char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a046c738ffcdc029a5f9a802a32f8267a}{rom\+Path}} = NULL
+\item 
+char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a2bc93d696fb5a226216b654752b8635f}{bios\+Path}} = NULL
+\item 
+char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_afb9e9630607fb784a26fade843b3a663}{border\+Path}} = NULL
+\item 
+u8 \mbox{\hyperlink{inputhelper_8cpp_a636fc76c2e9efef80492d24b366b76f6}{ram\+Size}}
+\item 
+u8 \mbox{\hyperlink{inputhelper_8cpp_acdd603f2d7e306b125bf39439cba1c50}{mapper}}
+\item 
+u8 \mbox{\hyperlink{inputhelper_8cpp_a0a215ebc40161eda078bd1fe6ddf1dd9}{cgb\+Flag}}
+\item 
+u8 \mbox{\hyperlink{inputhelper_8cpp_aa6ad52e140571a5b5adff1cf98f8d83d}{rom\+Size}}
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a200e0c63d275b6b55cb7ef709c4e2fcb}{keys\+Pressed}} = 0
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_ab0f2c89e13dbb39fdfc486e90a392fb4}{last\+Keys\+Pressed}} = 0
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a67c6fa45267cc24f660cc0785ab0d89a}{keys\+Force\+Released}} = 0
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_ae0924f8240607d9d3776899339d2d0e4}{repeat\+Start\+Timer}} = 0
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a669a97cb6329e1b1d93fea5089747e2b}{repeat\+Timer}} = 0
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a6aa99b6d37852312556353dc7f98f954}{advance\+Frame}} = false
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8cpp_ab4926433311d08ecb615d83f8f124e23}{rom\+Slot0}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a547509d84b1ebf035a36a3eb67b7f1e8}{rom\+Slot1}}
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_af34cf22a808cb66e6206fd4fabb6e61a}{max\+Loaded\+Rom\+Banks}}
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_abf183a768656beef29ca6644f603da7b}{num\+Loaded\+Rom\+Banks}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8cpp_af1f7857972b8158237c994f583f2d30c}{rom\+Bank\+Slots}} = NULL
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a5d3f9e13d20537bdd4b79d6b6584beae}{bank\+Slot\+IDs}} \mbox{[}\mbox{\hyperlink{inputhelper_8h_ab61705f91578371bd97f21bf674aac5b}{MAX\+\_\+\+ROM\+\_\+\+BANKS}}\mbox{]}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{inputhelper_8cpp_ad155dfec292382025c3d09d3bd8af2d0}{last\+Banks\+Used}}
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a3a90b3fc29f7dd88ced366105b542e46}{suspend\+State\+Exists}}
+\item 
+const char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a9d2a81500b0b8a1600fd5e596cbc6896}{gb\+Key\+Names}} \mbox{[}$\,$\mbox{]}
+\item 
+const char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_a15110fed35ed99dfa3cb9e679128cca5}{ds\+Key\+Names}} \mbox{[}$\,$\mbox{]}
+\item 
+const int \mbox{\hyperlink{inputhelper_8cpp_ab272be0c4af402e484bcbd8b1d20ad34}{NUM\+\_\+\+DS\+\_\+\+KEYS}} = sizeof(\mbox{\hyperlink{inputhelper_8cpp_a15110fed35ed99dfa3cb9e679128cca5}{ds\+Key\+Names}}) / sizeof(char $\ast$)
+\item 
+const int \mbox{\hyperlink{inputhelper_8cpp_ae418cdf8a0af8daa79b97ff7d03ecb6c}{NUM\+\_\+\+GB\+\_\+\+KEYS}} = sizeof(\mbox{\hyperlink{inputhelper_8cpp_a9d2a81500b0b8a1600fd5e596cbc6896}{gb\+Key\+Names}}) / sizeof(char $\ast$)
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a4b1a03a0aa652a3844881ed353dce773}{keys}} \mbox{[}\mbox{\hyperlink{inputhelper_8cpp_ae418cdf8a0af8daa79b97ff7d03ecb6c}{NUM\+\_\+\+GB\+\_\+\+KEYS}}\mbox{]}
+\item 
+\mbox{\hyperlink{struct_key_config}{Key\+Config}} \mbox{\hyperlink{inputhelper_8cpp_a7f7006faa6f04700cdddb2ffa2075896}{default\+Key\+Config}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{struct_key_config}{Key\+Config}} $>$ \mbox{\hyperlink{inputhelper_8cpp_a22bbb2d2fee8bb83664bdc5617414fb4}{key\+Configs}}
+\item 
+unsigned int \mbox{\hyperlink{inputhelper_8cpp_a91827045b6c2be899de516cdc59f04d2}{selected\+Key\+Config}} = 0
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_ab79a6dd685643fc5965b37c47ec96cf8}{key\+Config\+Chooser\+\_\+option}}
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_aff3c01d7ef8ec01de23d414f9830da1d}{key\+Config\+Chooser\+\_\+print\+Menu\+Warning}} = false
+\item 
+bool \mbox{\hyperlink{inputhelper_8cpp_a0bb95e0d24db6757248c360fb48c8cd1}{wrote\+To\+Sram\+This\+Frame}} = false
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a3fcbe726da3d15558ccd57e5ff2e44b4}{frames\+Since\+Autosave\+Started}} = 0
+\item 
+int \mbox{\hyperlink{inputhelper_8cpp_a8e99d20e7dd2987daaa761f9034ae76c}{read\+Keys\+Last\+Frame\+Counter}} = 0
+\item 
+const char $\ast$ \mbox{\hyperlink{inputhelper_8cpp_aaaed32121c104f21993819303107da35}{mbc\+Name}} \mbox{[}$\,$\mbox{]} = \{\char`\"{}ROM\char`\"{}, \char`\"{}MBC1\char`\"{}, \char`\"{}MBC2\char`\"{}, \char`\"{}MBC3\char`\"{}, \char`\"{}MBC4\char`\"{}, \char`\"{}MBC5\char`\"{}, \char`\"{}MBC7\char`\"{}, \char`\"{}HUC3\char`\"{}, \char`\"{}HUC1\char`\"{}\}
+\item 
+const int \mbox{\hyperlink{inputhelper_8cpp_aad1d81a0504db0802935207beeb3d903}{STATE\+\_\+\+VERSION}} = 5
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{inputhelper_8cpp_ae8c3643a8763708af82d6e2f78ccbcd8}\label{inputhelper_8cpp_ae8c3643a8763708af82d6e2f78ccbcd8}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!FAT\_CACHE\_SIZE@{FAT\_CACHE\_SIZE}}
+\index{FAT\_CACHE\_SIZE@{FAT\_CACHE\_SIZE}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{FAT\_CACHE\_SIZE}{FAT\_CACHE\_SIZE}}
+{\footnotesize\ttfamily \#define FAT\+\_\+\+CACHE\+\_\+\+SIZE~16}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{inputhelper_8cpp_abf49c675a7b24372ca5d2db910a59dc8}\label{inputhelper_8cpp_abf49c675a7b24372ca5d2db910a59dc8}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!checkKeyAssignedToMenu@{checkKeyAssignedToMenu}}
+\index{checkKeyAssignedToMenu@{checkKeyAssignedToMenu}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{checkKeyAssignedToMenu()}{checkKeyAssignedToMenu()}}
+{\footnotesize\ttfamily bool check\+Key\+Assigned\+To\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_key_config}{Key\+Config}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a6bae4c9c8f11f90b5a01b29e8f021ac9}\label{inputhelper_8cpp_a6bae4c9c8f11f90b5a01b29e8f021ac9}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!checkStateExists@{checkStateExists}}
+\index{checkStateExists@{checkStateExists}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{checkStateExists()}{checkStateExists()}}
+{\footnotesize\ttfamily bool check\+State\+Exists (\begin{DoxyParamCaption}\item[{int}]{state\+Num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01239}{1239}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a7eaaf2f7ada20e58f7624e7c4a57b431}\label{inputhelper_8cpp_a7eaaf2f7ada20e58f7624e7c4a57b431}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!controlsParseConfig@{controlsParseConfig}}
+\index{controlsParseConfig@{controlsParseConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{controlsParseConfig()}{controlsParseConfig()}}
+{\footnotesize\ttfamily void controls\+Parse\+Config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{line2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00140}{140}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aed48ef8d042ac1f81cd39e86138e24c4}\label{inputhelper_8cpp_aed48ef8d042ac1f81cd39e86138e24c4}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!controlsPrintConfig@{controlsPrintConfig}}
+\index{controlsPrintConfig@{controlsPrintConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{controlsPrintConfig()}{controlsPrintConfig()}}
+{\footnotesize\ttfamily void controls\+Print\+Config (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00202}{202}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a60908530a3bffd8d00f787d92cf651ac}\label{inputhelper_8cpp_a60908530a3bffd8d00f787d92cf651ac}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!deleteState@{deleteState}}
+\index{deleteState@{deleteState}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{deleteState()}{deleteState()}}
+{\footnotesize\ttfamily void delete\+State (\begin{DoxyParamCaption}\item[{int}]{state\+Num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01225}{1225}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a23c95ece954e713c25b36ed4161431f9}\label{inputhelper_8cpp_a23c95ece954e713c25b36ed4161431f9}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!flushFatCache@{flushFatCache}}
+\index{flushFatCache@{flushFatCache}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{flushFatCache()}{flushFatCache()}}
+{\footnotesize\ttfamily void flush\+Fat\+Cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a2b937c97dc39286b96ecb8ab3f84e19a}\label{inputhelper_8cpp_a2b937c97dc39286b96ecb8ab3f84e19a}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!forceReleaseKey@{forceReleaseKey}}
+\index{forceReleaseKey@{forceReleaseKey}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{forceReleaseKey()}{forceReleaseKey()}}
+{\footnotesize\ttfamily void force\+Release\+Key (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00970}{970}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ad5ce0ea494ad2dbe10d92a0fb29cf33c}\label{inputhelper_8cpp_ad5ce0ea494ad2dbe10d92a0fb29cf33c}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!gameboySyncAutosave@{gameboySyncAutosave}}
+\index{gameboySyncAutosave@{gameboySyncAutosave}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{gameboySyncAutosave()}{gameboySyncAutosave()}}
+{\footnotesize\ttfamily void gameboy\+Sync\+Autosave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00854}{854}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_afa1c8e99f90414e751c1dcc4aecff993}\label{inputhelper_8cpp_afa1c8e99f90414e751c1dcc4aecff993}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!generalParseConfig@{generalParseConfig}}
+\index{generalParseConfig@{generalParseConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{generalParseConfig()}{generalParseConfig()}}
+{\footnotesize\ttfamily void general\+Parse\+Config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00357}{357}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a1572bbbaa08946d312bb3dcd5fe2374f}\label{inputhelper_8cpp_a1572bbbaa08946d312bb3dcd5fe2374f}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!generalPrintConfig@{generalPrintConfig}}
+\index{generalPrintConfig@{generalPrintConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{generalPrintConfig()}{generalPrintConfig()}}
+{\footnotesize\ttfamily void general\+Print\+Config (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00398}{398}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a00233a25987a4b86b36aebf9db07e66f}\label{inputhelper_8cpp_a00233a25987a4b86b36aebf9db07e66f}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!getRomBank@{getRomBank}}
+\index{getRomBank@{getRomBank}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{getRomBank()}{getRomBank()}}
+{\footnotesize\ttfamily u8 $\ast$ get\+Rom\+Bank (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00700}{700}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_af07073690b79c4b21cab6a9d62582283}\label{inputhelper_8cpp_af07073690b79c4b21cab6a9d62582283}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!getRomBasename@{getRomBasename}}
+\index{getRomBasename@{getRomBasename}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{getRomBasename()}{getRomBasename()}}
+{\footnotesize\ttfamily const char $\ast$ get\+Rom\+Basename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00707}{707}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a4a5e629b1d80e1a57e11d7182119e8d4}\label{inputhelper_8cpp_a4a5e629b1d80e1a57e11d7182119e8d4}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!getRomTitle@{getRomTitle}}
+\index{getRomTitle@{getRomTitle}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{getRomTitle()}{getRomTitle()}}
+{\footnotesize\ttfamily char $\ast$ get\+Rom\+Title (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00981}{981}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a3d3188b9d438add4ac7abf5d19f9b74c}\label{inputhelper_8cpp_a3d3188b9d438add4ac7abf5d19f9b74c}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!initInput@{initInput}}
+\index{initInput@{initInput}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{initInput()}{initInput()}}
+{\footnotesize\ttfamily void init\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ad1fb302157c34bd360e75b5f461ce83c}\label{inputhelper_8cpp_ad1fb302157c34bd360e75b5f461ce83c}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!isRomBankLoaded@{isRomBankLoaded}}
+\index{isRomBankLoaded@{isRomBankLoaded}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{isRomBankLoaded()}{isRomBankLoaded()}}
+{\footnotesize\ttfamily bool is\+Rom\+Bank\+Loaded (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00696}{696}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a02a774508142e40a6364db3bc1b4c4ee}\label{inputhelper_8cpp_a02a774508142e40a6364db3bc1b4c4ee}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keyJustPressed@{keyJustPressed}}
+\index{keyJustPressed@{keyJustPressed}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keyJustPressed()}{keyJustPressed()}}
+{\footnotesize\ttfamily bool key\+Just\+Pressed (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00938}{938}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aa694764bf7a245883042630c19d09b9e}\label{inputhelper_8cpp_aa694764bf7a245883042630c19d09b9e}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keyPressed@{keyPressed}}
+\index{keyPressed@{keyPressed}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keyPressed()}{keyPressed()}}
+{\footnotesize\ttfamily bool key\+Pressed (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00920}{920}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a99d5423f8f0dc71b84a16d56a51f8e9a}\label{inputhelper_8cpp_a99d5423f8f0dc71b84a16d56a51f8e9a}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keyPressedAutoRepeat@{keyPressedAutoRepeat}}
+\index{keyPressedAutoRepeat@{keyPressedAutoRepeat}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keyPressedAutoRepeat()}{keyPressedAutoRepeat()}}
+{\footnotesize\ttfamily bool key\+Pressed\+Auto\+Repeat (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00924}{924}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ac4e4aa8937901a5e1323e1e48af89655}\label{inputhelper_8cpp_ac4e4aa8937901a5e1323e1e48af89655}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!loadBios@{loadBios}}
+\index{loadBios@{loadBios}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{loadBios()}{loadBios()}}
+{\footnotesize\ttfamily void load\+Bios (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00480}{480}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aaecc753e6e6c2ca11689cfb2160cd6d0}\label{inputhelper_8cpp_aaecc753e6e6c2ca11689cfb2160cd6d0}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!loadKeyConfig@{loadKeyConfig}}
+\index{loadKeyConfig@{loadKeyConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{loadKeyConfig()}{loadKeyConfig()}}
+{\footnotesize\ttfamily void load\+Key\+Config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00125}{125}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a44f530a60a17c413f2f38291b1e448e2}\label{inputhelper_8cpp_a44f530a60a17c413f2f38291b1e448e2}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!loadRom@{loadRom}}
+\index{loadRom@{loadRom}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{loadRom()}{loadRom()}}
+{\footnotesize\ttfamily int load\+Rom (\begin{DoxyParamCaption}\item[{char $\ast$}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00488}{488}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a2fd52cd11f1b80d0a2c8f157a0de62fd}\label{inputhelper_8cpp_a2fd52cd11f1b80d0a2c8f157a0de62fd}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!loadRomBank@{loadRomBank}}
+\index{loadRomBank@{loadRomBank}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{loadRomBank()}{loadRomBank()}}
+{\footnotesize\ttfamily void load\+Rom\+Bank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00673}{673}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aaddf13d5a4254f4662b0715db551203b}\label{inputhelper_8cpp_aaddf13d5a4254f4662b0715db551203b}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!loadSave@{loadSave}}
+\index{loadSave@{loadSave}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{loadSave()}{loadSave()}}
+{\footnotesize\ttfamily int load\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00728}{728}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a475c64591364fd70aab1b2793be8bd33}\label{inputhelper_8cpp_a475c64591364fd70aab1b2793be8bd33}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!loadState@{loadState}}
+\index{loadState@{loadState}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{loadState()}{loadState()}}
+{\footnotesize\ttfamily int load\+State (\begin{DoxyParamCaption}\item[{int}]{state\+Num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01101}{1101}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_adea147396571230af47a2b52caa970b3}\label{inputhelper_8cpp_adea147396571230af47a2b52caa970b3}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!mapGbKey@{mapGbKey}}
+\index{mapGbKey@{mapGbKey}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{mapGbKey()}{mapGbKey()}}
+{\footnotesize\ttfamily int map\+Gb\+Key (\begin{DoxyParamCaption}\item[{int}]{gb\+Key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00976}{976}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_adb6320d305773ad55137c21cc22a853e}\label{inputhelper_8cpp_adb6320d305773ad55137c21cc22a853e}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!printRomInfo@{printRomInfo}}
+\index{printRomInfo@{printRomInfo}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{printRomInfo()}{printRomInfo()}}
+{\footnotesize\ttfamily void print\+Rom\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00988}{988}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a5a9ea8d08563c440e8a39e3798c96e46}\label{inputhelper_8cpp_a5a9ea8d08563c440e8a39e3798c96e46}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!readConfigFile@{readConfigFile}}
+\index{readConfigFile@{readConfigFile}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{readConfigFile()}{readConfigFile()}}
+{\footnotesize\ttfamily bool read\+Config\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00414}{414}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ac5fadb7881ae954770d26f6ee7fc4c72}\label{inputhelper_8cpp_ac5fadb7881ae954770d26f6ee7fc4c72}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!readKeys@{readKeys}}
+\index{readKeys@{readKeys}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{readKeys()}{readKeys()}}
+{\footnotesize\ttfamily void read\+Keys (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00944}{944}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a95c7c2afbdbb5e22feb9c38f8a4adc88}\label{inputhelper_8cpp_a95c7c2afbdbb5e22feb9c38f8a4adc88}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!redrawKeyConfigChooser@{redrawKeyConfigChooser}}
+\index{redrawKeyConfigChooser@{redrawKeyConfigChooser}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{redrawKeyConfigChooser()}{redrawKeyConfigChooser()}}
+{\footnotesize\ttfamily void redraw\+Key\+Config\+Chooser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00218}{218}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a3d4388333a1ae565953072aceb1f7c17}\label{inputhelper_8cpp_a3d4388333a1ae565953072aceb1f7c17}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!saveGame@{saveGame}}
+\index{saveGame@{saveGame}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{saveGame()}{saveGame()}}
+{\footnotesize\ttfamily int save\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00827}{827}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a2d6d0c0c9624eb2d5e35eeada734bf0b}\label{inputhelper_8cpp_a2d6d0c0c9624eb2d5e35eeada734bf0b}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!saveState@{saveState}}
+\index{saveState@{saveState}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{saveState()}{saveState()}}
+{\footnotesize\ttfamily void save\+State (\begin{DoxyParamCaption}\item[{int}]{state\+Num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01031}{1031}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_abffb348f65ce0d1864a65b5c4abf456a}\label{inputhelper_8cpp_abffb348f65ce0d1864a65b5c4abf456a}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!startKeyConfigChooser@{startKeyConfigChooser}}
+\index{startKeyConfigChooser@{startKeyConfigChooser}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{startKeyConfigChooser()}{startKeyConfigChooser()}}
+{\footnotesize\ttfamily void start\+Key\+Config\+Chooser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00350}{350}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ac19211d01e57489fcb69ce14b4062a72}\label{inputhelper_8cpp_ac19211d01e57489fcb69ce14b4062a72}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!unloadRom@{unloadRom}}
+\index{unloadRom@{unloadRom}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{unloadRom()}{unloadRom()}}
+{\footnotesize\ttfamily void unload\+Rom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00712}{712}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a9359d9ec71ef9149a4b6edce9ede73e2}\label{inputhelper_8cpp_a9359d9ec71ef9149a4b6edce9ede73e2}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!updateAutosave@{updateAutosave}}
+\index{updateAutosave@{updateAutosave}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{updateAutosave()}{updateAutosave()}}
+{\footnotesize\ttfamily void update\+Autosave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00890}{890}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a849f3efe9f7b9e17bed923221c9d477e}\label{inputhelper_8cpp_a849f3efe9f7b9e17bed923221c9d477e}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!updateKeyConfigChooser@{updateKeyConfigChooser}}
+\index{updateKeyConfigChooser@{updateKeyConfigChooser}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{updateKeyConfigChooser()}{updateKeyConfigChooser()}}
+{\footnotesize\ttfamily void update\+Key\+Config\+Chooser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00255}{255}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a2d7c50d7d21a6d9ac3667f414aac49c6}\label{inputhelper_8cpp_a2d7c50d7d21a6d9ac3667f414aac49c6}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!writeConfigFile@{writeConfigFile}}
+\index{writeConfigFile@{writeConfigFile}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{writeConfigFile()}{writeConfigFile()}}
+{\footnotesize\ttfamily void write\+Config\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00464}{464}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{inputhelper_8cpp_a6aa99b6d37852312556353dc7f98f954}\label{inputhelper_8cpp_a6aa99b6d37852312556353dc7f98f954}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!advanceFrame@{advanceFrame}}
+\index{advanceFrame@{advanceFrame}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{advanceFrame}{advanceFrame}}
+{\footnotesize\ttfamily bool advance\+Frame = false}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a5d3f9e13d20537bdd4b79d6b6584beae}\label{inputhelper_8cpp_a5d3f9e13d20537bdd4b79d6b6584beae}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!bankSlotIDs@{bankSlotIDs}}
+\index{bankSlotIDs@{bankSlotIDs}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{bankSlotIDs}{bankSlotIDs}}
+{\footnotesize\ttfamily int bank\+Slot\+IDs\mbox{[}\mbox{\hyperlink{inputhelper_8h_ab61705f91578371bd97f21bf674aac5b}{MAX\+\_\+\+ROM\+\_\+\+BANKS}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ad7c3a20dffadceaf34a8166bfa137e11}\label{inputhelper_8cpp_ad7c3a20dffadceaf34a8166bfa137e11}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!basename@{basename}}
+\index{basename@{basename}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{basename}{basename}}
+{\footnotesize\ttfamily char basename\mbox{[}100\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a2bc93d696fb5a226216b654752b8635f}\label{inputhelper_8cpp_a2bc93d696fb5a226216b654752b8635f}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!biosPath@{biosPath}}
+\index{biosPath@{biosPath}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{biosPath}{biosPath}}
+{\footnotesize\ttfamily char$\ast$ bios\+Path = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_afb9e9630607fb784a26fade843b3a663}\label{inputhelper_8cpp_afb9e9630607fb784a26fade843b3a663}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!borderPath@{borderPath}}
+\index{borderPath@{borderPath}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{borderPath}{borderPath}}
+{\footnotesize\ttfamily char$\ast$ border\+Path = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a0a215ebc40161eda078bd1fe6ddf1dd9}\label{inputhelper_8cpp_a0a215ebc40161eda078bd1fe6ddf1dd9}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!cgbFlag@{cgbFlag}}
+\index{cgbFlag@{cgbFlag}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{cgbFlag}{cgbFlag}}
+{\footnotesize\ttfamily u8 cgb\+Flag}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a7f7006faa6f04700cdddb2ffa2075896}\label{inputhelper_8cpp_a7f7006faa6f04700cdddb2ffa2075896}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!defaultKeyConfig@{defaultKeyConfig}}
+\index{defaultKeyConfig@{defaultKeyConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{defaultKeyConfig}{defaultKeyConfig}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_key_config}{Key\+Config}} default\+Key\+Config}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}Main"{}},}
+\DoxyCodeLine{\ \ \ \ \{\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea962f7f6d8022e74f3f8daeb583325f77}{KEY\_GB\_A}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaa04f27511f218cae4ed97375b2ef4d00}{KEY\_GB\_B}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea034f6424ef4e28e48ab4675a3c2d287c}{KEY\_GB\_SELECT}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4a5e786efa6b76975d576f669efc6ce6}{KEY\_GB\_START}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea338cffadee195ddc56fbcc776c903290}{KEY\_GB\_RIGHT}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4b2e341451e26e0e93073a01b2f53a99}{KEY\_GB\_LEFT}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea455fc967ead9b31dd75272ee869edf2f}{KEY\_GB\_UP}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3cdb47db22796a0bf7e566ae815c5e0c}{KEY\_GB\_DOWN}},}
+\DoxyCodeLine{\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea0483607aa811d9b40ce925494621a188}{KEY\_MENU}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea18192242a877bc93a7aa7a5540355aa2}{KEY\_FAST\_FORWARD}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eafbe4b69d5228172d3dae666c9391e9e4}{KEY\_SAVE}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ead902d3588d279cef5e165c539b9efe03}{KEY\_SCALE}},\ \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea0483607aa811d9b40ce925494621a188}{KEY\_MENU}}\}\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00103}{103}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a15110fed35ed99dfa3cb9e679128cca5}\label{inputhelper_8cpp_a15110fed35ed99dfa3cb9e679128cca5}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!dsKeyNames@{dsKeyNames}}
+\index{dsKeyNames@{dsKeyNames}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{dsKeyNames}{dsKeyNames}}
+{\footnotesize\ttfamily const char$\ast$ ds\+Key\+Names\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\textcolor{stringliteral}{"{}A"{}},\ \textcolor{stringliteral}{"{}B"{}},\ \textcolor{stringliteral}{"{}Select"{}},\ \textcolor{stringliteral}{"{}Start"{}},\ \textcolor{stringliteral}{"{}Right"{}},\ \textcolor{stringliteral}{"{}Left"{}},\ \textcolor{stringliteral}{"{}Up"{}},\ \textcolor{stringliteral}{"{}Down"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}R"{}},\ \textcolor{stringliteral}{"{}L"{}},\ \textcolor{stringliteral}{"{}X"{}},\ \textcolor{stringliteral}{"{}Y"{}},\ \textcolor{stringliteral}{"{}Touch"{}}\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}\label{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!filename@{filename}}
+\index{filename@{filename}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{filename}{filename}}
+{\footnotesize\ttfamily char filename\mbox{[}100\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a3fcbe726da3d15558ccd57e5ff2e44b4}\label{inputhelper_8cpp_a3fcbe726da3d15558ccd57e5ff2e44b4}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!framesSinceAutosaveStarted@{framesSinceAutosaveStarted}}
+\index{framesSinceAutosaveStarted@{framesSinceAutosaveStarted}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{framesSinceAutosaveStarted}{framesSinceAutosaveStarted}}
+{\footnotesize\ttfamily int frames\+Since\+Autosave\+Started = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00852}{852}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a9d2a81500b0b8a1600fd5e596cbc6896}\label{inputhelper_8cpp_a9d2a81500b0b8a1600fd5e596cbc6896}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!gbKeyNames@{gbKeyNames}}
+\index{gbKeyNames@{gbKeyNames}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{gbKeyNames}{gbKeyNames}}
+{\footnotesize\ttfamily const char$\ast$ gb\+Key\+Names\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\textcolor{stringliteral}{"{}-\/"{}},\ \textcolor{stringliteral}{"{}A"{}},\ \textcolor{stringliteral}{"{}B"{}},\ \textcolor{stringliteral}{"{}Left"{}},\ \textcolor{stringliteral}{"{}Right"{}},\ \textcolor{stringliteral}{"{}Up"{}},\ \textcolor{stringliteral}{"{}Down"{}},\ \textcolor{stringliteral}{"{}Start"{}},\ \textcolor{stringliteral}{"{}Select"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Menu"{}},\ \textcolor{stringliteral}{"{}Menu/Pause"{}},\ \textcolor{stringliteral}{"{}Save"{}},\ \textcolor{stringliteral}{"{}Autofire\ A"{}},\ \textcolor{stringliteral}{"{}Autofire\ B"{}},\ \textcolor{stringliteral}{"{}Fast\ Forward"{}},\ \textcolor{stringliteral}{"{}FF\ Toggle"{}},\ \textcolor{stringliteral}{"{}Scale"{}},\ \textcolor{stringliteral}{"{}Reset"{}},\ \textcolor{stringliteral}{"{}A+B+START+SELECT"{}}\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ab79a6dd685643fc5965b37c47ec96cf8}\label{inputhelper_8cpp_ab79a6dd685643fc5965b37c47ec96cf8}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keyConfigChooser\_option@{keyConfigChooser\_option}}
+\index{keyConfigChooser\_option@{keyConfigChooser\_option}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keyConfigChooser\_option}{keyConfigChooser\_option}}
+{\footnotesize\ttfamily int key\+Config\+Chooser\+\_\+option}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00215}{215}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aff3c01d7ef8ec01de23d414f9830da1d}\label{inputhelper_8cpp_aff3c01d7ef8ec01de23d414f9830da1d}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keyConfigChooser\_printMenuWarning@{keyConfigChooser\_printMenuWarning}}
+\index{keyConfigChooser\_printMenuWarning@{keyConfigChooser\_printMenuWarning}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keyConfigChooser\_printMenuWarning}{keyConfigChooser\_printMenuWarning}}
+{\footnotesize\ttfamily bool key\+Config\+Chooser\+\_\+print\+Menu\+Warning = false}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00216}{216}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a22bbb2d2fee8bb83664bdc5617414fb4}\label{inputhelper_8cpp_a22bbb2d2fee8bb83664bdc5617414fb4}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keyConfigs@{keyConfigs}}
+\index{keyConfigs@{keyConfigs}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keyConfigs}{keyConfigs}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{struct_key_config}{Key\+Config}}$>$ key\+Configs}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a4b1a03a0aa652a3844881ed353dce773}\label{inputhelper_8cpp_a4b1a03a0aa652a3844881ed353dce773}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keys@{keys}}
+\index{keys@{keys}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keys}{keys}}
+{\footnotesize\ttfamily int keys\mbox{[}\mbox{\hyperlink{inputhelper_8cpp_ae418cdf8a0af8daa79b97ff7d03ecb6c}{NUM\+\_\+\+GB\+\_\+\+KEYS}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00096}{96}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a67c6fa45267cc24f660cc0785ab0d89a}\label{inputhelper_8cpp_a67c6fa45267cc24f660cc0785ab0d89a}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keysForceReleased@{keysForceReleased}}
+\index{keysForceReleased@{keysForceReleased}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keysForceReleased}{keysForceReleased}}
+{\footnotesize\ttfamily int keys\+Force\+Released = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a200e0c63d275b6b55cb7ef709c4e2fcb}\label{inputhelper_8cpp_a200e0c63d275b6b55cb7ef709c4e2fcb}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!keysPressed@{keysPressed}}
+\index{keysPressed@{keysPressed}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{keysPressed}{keysPressed}}
+{\footnotesize\ttfamily int keys\+Pressed = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ad155dfec292382025c3d09d3bd8af2d0}\label{inputhelper_8cpp_ad155dfec292382025c3d09d3bd8af2d0}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!lastBanksUsed@{lastBanksUsed}}
+\index{lastBanksUsed@{lastBanksUsed}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{lastBanksUsed}{lastBanksUsed}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ last\+Banks\+Used}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ab0f2c89e13dbb39fdfc486e90a392fb4}\label{inputhelper_8cpp_ab0f2c89e13dbb39fdfc486e90a392fb4}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!lastKeysPressed@{lastKeysPressed}}
+\index{lastKeysPressed@{lastKeysPressed}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{lastKeysPressed}{lastKeysPressed}}
+{\footnotesize\ttfamily int last\+Keys\+Pressed = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_acdd603f2d7e306b125bf39439cba1c50}\label{inputhelper_8cpp_acdd603f2d7e306b125bf39439cba1c50}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!mapper@{mapper}}
+\index{mapper@{mapper}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{mapper}{mapper}}
+{\footnotesize\ttfamily u8 mapper}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_af34cf22a808cb66e6206fd4fabb6e61a}\label{inputhelper_8cpp_af34cf22a808cb66e6206fd4fabb6e61a}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!maxLoadedRomBanks@{maxLoadedRomBanks}}
+\index{maxLoadedRomBanks@{maxLoadedRomBanks}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{maxLoadedRomBanks}{maxLoadedRomBanks}}
+{\footnotesize\ttfamily int max\+Loaded\+Rom\+Banks}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aaaed32121c104f21993819303107da35}\label{inputhelper_8cpp_aaaed32121c104f21993819303107da35}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!mbcName@{mbcName}}
+\index{mbcName@{mbcName}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{mbcName}{mbcName}}
+{\footnotesize\ttfamily const char$\ast$ mbc\+Name\mbox{[}$\,$\mbox{]} = \{\char`\"{}ROM\char`\"{}, \char`\"{}MBC1\char`\"{}, \char`\"{}MBC2\char`\"{}, \char`\"{}MBC3\char`\"{}, \char`\"{}MBC4\char`\"{}, \char`\"{}MBC5\char`\"{}, \char`\"{}MBC7\char`\"{}, \char`\"{}HUC3\char`\"{}, \char`\"{}HUC1\char`\"{}\}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00986}{986}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ab272be0c4af402e484bcbd8b1d20ad34}\label{inputhelper_8cpp_ab272be0c4af402e484bcbd8b1d20ad34}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!NUM\_DS\_KEYS@{NUM\_DS\_KEYS}}
+\index{NUM\_DS\_KEYS@{NUM\_DS\_KEYS}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{NUM\_DS\_KEYS}{NUM\_DS\_KEYS}}
+{\footnotesize\ttfamily const int NUM\+\_\+\+DS\+\_\+\+KEYS = sizeof(\mbox{\hyperlink{inputhelper_8cpp_a15110fed35ed99dfa3cb9e679128cca5}{ds\+Key\+Names}}) / sizeof(char $\ast$)}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ae418cdf8a0af8daa79b97ff7d03ecb6c}\label{inputhelper_8cpp_ae418cdf8a0af8daa79b97ff7d03ecb6c}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!NUM\_GB\_KEYS@{NUM\_GB\_KEYS}}
+\index{NUM\_GB\_KEYS@{NUM\_GB\_KEYS}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{NUM\_GB\_KEYS}{NUM\_GB\_KEYS}}
+{\footnotesize\ttfamily const int NUM\+\_\+\+GB\+\_\+\+KEYS = sizeof(\mbox{\hyperlink{inputhelper_8cpp_a9d2a81500b0b8a1600fd5e596cbc6896}{gb\+Key\+Names}}) / sizeof(char $\ast$)}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00094}{94}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_abf183a768656beef29ca6644f603da7b}\label{inputhelper_8cpp_abf183a768656beef29ca6644f603da7b}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!numLoadedRomBanks@{numLoadedRomBanks}}
+\index{numLoadedRomBanks@{numLoadedRomBanks}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{numLoadedRomBanks}{numLoadedRomBanks}}
+{\footnotesize\ttfamily int num\+Loaded\+Rom\+Banks}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a636fc76c2e9efef80492d24b366b76f6}\label{inputhelper_8cpp_a636fc76c2e9efef80492d24b366b76f6}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!ramSize@{ramSize}}
+\index{ramSize@{ramSize}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{ramSize}{ramSize}}
+{\footnotesize\ttfamily u8 ram\+Size}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a8e99d20e7dd2987daaa761f9034ae76c}\label{inputhelper_8cpp_a8e99d20e7dd2987daaa761f9034ae76c}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!readKeysLastFrameCounter@{readKeysLastFrameCounter}}
+\index{readKeysLastFrameCounter@{readKeysLastFrameCounter}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{readKeysLastFrameCounter}{readKeysLastFrameCounter}}
+{\footnotesize\ttfamily int read\+Keys\+Last\+Frame\+Counter = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00943}{943}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ae0924f8240607d9d3776899339d2d0e4}\label{inputhelper_8cpp_ae0924f8240607d9d3776899339d2d0e4}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!repeatStartTimer@{repeatStartTimer}}
+\index{repeatStartTimer@{repeatStartTimer}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{repeatStartTimer}{repeatStartTimer}}
+{\footnotesize\ttfamily int repeat\+Start\+Timer = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a669a97cb6329e1b1d93fea5089747e2b}\label{inputhelper_8cpp_a669a97cb6329e1b1d93fea5089747e2b}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!repeatTimer@{repeatTimer}}
+\index{repeatTimer@{repeatTimer}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{repeatTimer}{repeatTimer}}
+{\footnotesize\ttfamily int repeat\+Timer = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_af1f7857972b8158237c994f583f2d30c}\label{inputhelper_8cpp_af1f7857972b8158237c994f583f2d30c}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romBankSlots@{romBankSlots}}
+\index{romBankSlots@{romBankSlots}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romBankSlots}{romBankSlots}}
+{\footnotesize\ttfamily u8$\ast$ rom\+Bank\+Slots = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a1424df6fc0c600c8645dd2520246d75e}\label{inputhelper_8cpp_a1424df6fc0c600c8645dd2520246d75e}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romFile@{romFile}}
+\index{romFile@{romFile}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romFile}{romFile}}
+{\footnotesize\ttfamily FILE$\ast$ rom\+File = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a046c738ffcdc029a5f9a802a32f8267a}\label{inputhelper_8cpp_a046c738ffcdc029a5f9a802a32f8267a}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romPath@{romPath}}
+\index{romPath@{romPath}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romPath}{romPath}}
+{\footnotesize\ttfamily char$\ast$ rom\+Path = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aa6ad52e140571a5b5adff1cf98f8d83d}\label{inputhelper_8cpp_aa6ad52e140571a5b5adff1cf98f8d83d}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romSize@{romSize}}
+\index{romSize@{romSize}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romSize}{romSize}}
+{\footnotesize\ttfamily u8 rom\+Size}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ab4926433311d08ecb615d83f8f124e23}\label{inputhelper_8cpp_ab4926433311d08ecb615d83f8f124e23}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romSlot0@{romSlot0}}
+\index{romSlot0@{romSlot0}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romSlot0}{romSlot0}}
+{\footnotesize\ttfamily u8$\ast$ rom\+Slot0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a547509d84b1ebf035a36a3eb67b7f1e8}\label{inputhelper_8cpp_a547509d84b1ebf035a36a3eb67b7f1e8}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romSlot1@{romSlot1}}
+\index{romSlot1@{romSlot1}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romSlot1}{romSlot1}}
+{\footnotesize\ttfamily u8$\ast$ rom\+Slot1}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ad326c4e5eabe1fdbd910b45cfc450f34}\label{inputhelper_8cpp_ad326c4e5eabe1fdbd910b45cfc450f34}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!romTitle@{romTitle}}
+\index{romTitle@{romTitle}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{romTitle}{romTitle}}
+{\footnotesize\ttfamily char rom\+Title\mbox{[}20\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a7fedcafb7925d05c44330e2e1edf3043}\label{inputhelper_8cpp_a7fedcafb7925d05c44330e2e1edf3043}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!saveFile@{saveFile}}
+\index{saveFile@{saveFile}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{saveFile}{saveFile}}
+{\footnotesize\ttfamily FILE$\ast$ save\+File = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_ad474206dea42b7be71a92fc78f13bcc1}\label{inputhelper_8cpp_ad474206dea42b7be71a92fc78f13bcc1}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!savename@{savename}}
+\index{savename@{savename}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{savename}{savename}}
+{\footnotesize\ttfamily char savename\mbox{[}100\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a91827045b6c2be899de516cdc59f04d2}\label{inputhelper_8cpp_a91827045b6c2be899de516cdc59f04d2}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!selectedKeyConfig@{selectedKeyConfig}}
+\index{selectedKeyConfig@{selectedKeyConfig}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{selectedKeyConfig}{selectedKeyConfig}}
+{\footnotesize\ttfamily unsigned int selected\+Key\+Config = 0}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00109}{109}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_aad1d81a0504db0802935207beeb3d903}\label{inputhelper_8cpp_aad1d81a0504db0802935207beeb3d903}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!STATE\_VERSION@{STATE\_VERSION}}
+\index{STATE\_VERSION@{STATE\_VERSION}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{STATE\_VERSION}{STATE\_VERSION}}
+{\footnotesize\ttfamily const int STATE\+\_\+\+VERSION = 5}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00997}{997}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a3a90b3fc29f7dd88ced366105b542e46}\label{inputhelper_8cpp_a3a90b3fc29f7dd88ced366105b542e46}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!suspendStateExists@{suspendStateExists}}
+\index{suspendStateExists@{suspendStateExists}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{suspendStateExists}{suspendStateExists}}
+{\footnotesize\ttfamily bool suspend\+State\+Exists}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8cpp_a0bb95e0d24db6757248c360fb48c8cd1}\label{inputhelper_8cpp_a0bb95e0d24db6757248c360fb48c8cd1}} 
+\index{inputhelper.cpp@{inputhelper.cpp}!wroteToSramThisFrame@{wroteToSramThisFrame}}
+\index{wroteToSramThisFrame@{wroteToSramThisFrame}!inputhelper.cpp@{inputhelper.cpp}}
+\doxysubsubsection{\texorpdfstring{wroteToSramThisFrame}{wroteToSramThisFrame}}
+{\footnotesize\ttfamily bool wrote\+To\+Sram\+This\+Frame = false}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00851}{851}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+

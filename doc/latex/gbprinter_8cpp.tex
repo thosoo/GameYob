@@ -1,0 +1,429 @@
+\hypertarget{gbprinter_8cpp}{}\doxysection{arm9/source/gbprinter.cpp File Reference}
+\label{gbprinter_8cpp}\index{arm9/source/gbprinter.cpp@{arm9/source/gbprinter.cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gbprinter.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gbprinter_8cpp_a27fe745b5521c576050dc77457527933}{PRINTER\+\_\+\+STATUS\+\_\+\+READY}}~0x08
+\item 
+\#define \mbox{\hyperlink{gbprinter_8cpp_af2b72ac8e7dc5408721ebf547e151d6e}{PRINTER\+\_\+\+STATUS\+\_\+\+REQUESTED}}~0x04
+\item 
+\#define \mbox{\hyperlink{gbprinter_8cpp_a7da824ff8ca9f1708c493301e797db6c}{PRINTER\+\_\+\+STATUS\+\_\+\+PRINTING}}~0x02
+\item 
+\#define \mbox{\hyperlink{gbprinter_8cpp_a70a870b0cdb7434524e2861305d37eca}{PRINTER\+\_\+\+STATUS\+\_\+\+CHECKSUM}}~0x01
+\item 
+\#define \mbox{\hyperlink{gbprinter_8cpp_a22108f0a7989bd59e02eb3d591cc5663}{PRINTER\+\_\+\+WIDTH}}~160
+\item 
+\#define \mbox{\hyperlink{gbprinter_8cpp_a7a50ab75784b3eec2214fddd5f902f02}{PRINTER\+\_\+\+HEIGHT}}~208
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_a0be880571cffcaceab46e9a22a5ef703}{reset\+Gb\+Printer}} ()
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_ad5dd3d7fa01a8d6ffec0b279d1873aed}{printer\+Send\+Variable\+Len\+Data}} ()
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_ab8be7092da400214088c2a4584c5a285}{printer\+Save\+File}} ()
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_a8b7f6bd95a6bdb68024751bda063020f}{init\+Gb\+Printer}} ()
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_a706e6215223d8f5ca10c2740cdaec97d}{printer\+Send\+Variable\+Len\+Data}} (u8 dat)
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_a5c708f03b0d606199c03f238ba0d50eb}{send\+Gb\+Printer\+Byte}} (u8 dat)
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_a8b6de5a3b517a884c29bd7144da37550}{WRITE\+\_\+32}} (u8 $\ast$ptr, u32 x)
+\item 
+void \mbox{\hyperlink{gbprinter_8cpp_a9d8869d9aa767f42c48f2511ac520e3a}{update\+Gb\+Printer}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a1861011291771bb6329d0da969ca939b}{printer\+Gfx}} \mbox{[}\mbox{\hyperlink{gbprinter_8cpp_a22108f0a7989bd59e02eb3d591cc5663}{PRINTER\+\_\+\+WIDTH}} $\ast$\mbox{\hyperlink{gbprinter_8cpp_a7a50ab75784b3eec2214fddd5f902f02}{PRINTER\+\_\+\+HEIGHT}}/4\mbox{]}
+\item 
+int \mbox{\hyperlink{gbprinter_8cpp_a0345ea8ba6aeebdb5fb92a3517bbd337}{printer\+Gfx\+Index}}
+\item 
+int \mbox{\hyperlink{gbprinter_8cpp_a9a685b0965235c6974cd07e83d150473}{printer\+Packet\+Byte}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_ae9f5dda35405b024f1a1c36ff44fc3af}{printer\+Status}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a03a0941a6b846424a477a5d45ff237ee}{printer\+Cmd}}
+\item 
+u16 \mbox{\hyperlink{gbprinter_8cpp_aa0a660422111bc2a67b970fd36c8759a}{printer\+Cmd\+Length}}
+\item 
+bool \mbox{\hyperlink{gbprinter_8cpp_a43fd096e39c874fc4fd8bd00308c3c31}{printer\+Packet\+Compressed}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a37f3a1ffb29efbe1d6d3283f30ab7bf5}{printer\+Compression\+Byte}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_af72a3cfa302b4eaf4ebdd06f9200af16}{printer\+Compression\+Len}}
+\item 
+u16 \mbox{\hyperlink{gbprinter_8cpp_aeee6a98d0de59083ce1034b4ac01b578}{printer\+Expected\+Checksum}}
+\item 
+u16 \mbox{\hyperlink{gbprinter_8cpp_a4d071f047f9a580f72e724f41d743380}{printer\+Checksum}}
+\item 
+int \mbox{\hyperlink{gbprinter_8cpp_ad893f3864730c8665f1cad0fd5089d05}{printer\+Margins}}
+\item 
+int \mbox{\hyperlink{gbprinter_8cpp_a0898639b5ab2c729a4fc5b6abf1bc36d}{last\+Printer\+Margins}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a4542d1820b4f5b695fb0966770ade46f}{printer\+Cmd2\+Index}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a1ae240bf9859d15d2b33a1a2fceb95ce}{printer\+Palette}}
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a1f68f9d112d5375cc03e9fe41d46abb9}{printer\+Exposure}}
+\item 
+int \mbox{\hyperlink{gbprinter_8cpp_a61e6655ec3e06b5529525d0c869b4481}{num\+Printed}}
+\item 
+int \mbox{\hyperlink{gbprinter_8cpp_a5852ced199c8bcaad9b8ad32ae6728b9}{print\+Counter}} = 0
+\item 
+u8 \mbox{\hyperlink{gbprinter_8cpp_a0a4d70c34d6bce79e86c2b397ca4b900}{bmp\+Header}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gbprinter_8cpp_a7a50ab75784b3eec2214fddd5f902f02}\label{gbprinter_8cpp_a7a50ab75784b3eec2214fddd5f902f02}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!PRINTER\_HEIGHT@{PRINTER\_HEIGHT}}
+\index{PRINTER\_HEIGHT@{PRINTER\_HEIGHT}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{PRINTER\_HEIGHT}{PRINTER\_HEIGHT}}
+{\footnotesize\ttfamily \#define PRINTER\+\_\+\+HEIGHT~208}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a70a870b0cdb7434524e2861305d37eca}\label{gbprinter_8cpp_a70a870b0cdb7434524e2861305d37eca}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!PRINTER\_STATUS\_CHECKSUM@{PRINTER\_STATUS\_CHECKSUM}}
+\index{PRINTER\_STATUS\_CHECKSUM@{PRINTER\_STATUS\_CHECKSUM}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{PRINTER\_STATUS\_CHECKSUM}{PRINTER\_STATUS\_CHECKSUM}}
+{\footnotesize\ttfamily \#define PRINTER\+\_\+\+STATUS\+\_\+\+CHECKSUM~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a7da824ff8ca9f1708c493301e797db6c}\label{gbprinter_8cpp_a7da824ff8ca9f1708c493301e797db6c}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!PRINTER\_STATUS\_PRINTING@{PRINTER\_STATUS\_PRINTING}}
+\index{PRINTER\_STATUS\_PRINTING@{PRINTER\_STATUS\_PRINTING}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{PRINTER\_STATUS\_PRINTING}{PRINTER\_STATUS\_PRINTING}}
+{\footnotesize\ttfamily \#define PRINTER\+\_\+\+STATUS\+\_\+\+PRINTING~0x02}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a27fe745b5521c576050dc77457527933}\label{gbprinter_8cpp_a27fe745b5521c576050dc77457527933}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!PRINTER\_STATUS\_READY@{PRINTER\_STATUS\_READY}}
+\index{PRINTER\_STATUS\_READY@{PRINTER\_STATUS\_READY}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{PRINTER\_STATUS\_READY}{PRINTER\_STATUS\_READY}}
+{\footnotesize\ttfamily \#define PRINTER\+\_\+\+STATUS\+\_\+\+READY~0x08}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_af2b72ac8e7dc5408721ebf547e151d6e}\label{gbprinter_8cpp_af2b72ac8e7dc5408721ebf547e151d6e}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!PRINTER\_STATUS\_REQUESTED@{PRINTER\_STATUS\_REQUESTED}}
+\index{PRINTER\_STATUS\_REQUESTED@{PRINTER\_STATUS\_REQUESTED}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{PRINTER\_STATUS\_REQUESTED}{PRINTER\_STATUS\_REQUESTED}}
+{\footnotesize\ttfamily \#define PRINTER\+\_\+\+STATUS\+\_\+\+REQUESTED~0x04}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a22108f0a7989bd59e02eb3d591cc5663}\label{gbprinter_8cpp_a22108f0a7989bd59e02eb3d591cc5663}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!PRINTER\_WIDTH@{PRINTER\_WIDTH}}
+\index{PRINTER\_WIDTH@{PRINTER\_WIDTH}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{PRINTER\_WIDTH}{PRINTER\_WIDTH}}
+{\footnotesize\ttfamily \#define PRINTER\+\_\+\+WIDTH~160}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gbprinter_8cpp_a8b7f6bd95a6bdb68024751bda063020f}\label{gbprinter_8cpp_a8b7f6bd95a6bdb68024751bda063020f}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!initGbPrinter@{initGbPrinter}}
+\index{initGbPrinter@{initGbPrinter}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{initGbPrinter()}{initGbPrinter()}}
+{\footnotesize\ttfamily void init\+Gb\+Printer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_ab8be7092da400214088c2a4584c5a285}\label{gbprinter_8cpp_ab8be7092da400214088c2a4584c5a285}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerSaveFile@{printerSaveFile}}
+\index{printerSaveFile@{printerSaveFile}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerSaveFile()}{printerSaveFile()}}
+{\footnotesize\ttfamily void printer\+Save\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00258}{258}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_ad5dd3d7fa01a8d6ffec0b279d1873aed}\label{gbprinter_8cpp_ad5dd3d7fa01a8d6ffec0b279d1873aed}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerSendVariableLenData@{printerSendVariableLenData}}
+\index{printerSendVariableLenData@{printerSendVariableLenData}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerSendVariableLenData()}{printerSendVariableLenData()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void printer\+Send\+Variable\+Len\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gbprinter_8cpp_a706e6215223d8f5ca10c2740cdaec97d}\label{gbprinter_8cpp_a706e6215223d8f5ca10c2740cdaec97d}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerSendVariableLenData@{printerSendVariableLenData}}
+\index{printerSendVariableLenData@{printerSendVariableLenData}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerSendVariableLenData()}{printerSendVariableLenData()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void printer\+Send\+Variable\+Len\+Data (\begin{DoxyParamCaption}\item[{u8}]{dat }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a0be880571cffcaceab46e9a22a5ef703}\label{gbprinter_8cpp_a0be880571cffcaceab46e9a22a5ef703}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!resetGbPrinter@{resetGbPrinter}}
+\index{resetGbPrinter@{resetGbPrinter}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{resetGbPrinter()}{resetGbPrinter()}}
+{\footnotesize\ttfamily void reset\+Gb\+Printer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a5c708f03b0d606199c03f238ba0d50eb}\label{gbprinter_8cpp_a5c708f03b0d606199c03f238ba0d50eb}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!sendGbPrinterByte@{sendGbPrinterByte}}
+\index{sendGbPrinterByte@{sendGbPrinterByte}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{sendGbPrinterByte()}{sendGbPrinterByte()}}
+{\footnotesize\ttfamily void send\+Gb\+Printer\+Byte (\begin{DoxyParamCaption}\item[{u8}]{dat }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00106}{106}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a9d8869d9aa767f42c48f2511ac520e3a}\label{gbprinter_8cpp_a9d8869d9aa767f42c48f2511ac520e3a}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!updateGbPrinter@{updateGbPrinter}}
+\index{updateGbPrinter@{updateGbPrinter}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{updateGbPrinter()}{updateGbPrinter()}}
+{\footnotesize\ttfamily void update\+Gb\+Printer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00404}{404}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a8b6de5a3b517a884c29bd7144da37550}\label{gbprinter_8cpp_a8b6de5a3b517a884c29bd7144da37550}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!WRITE\_32@{WRITE\_32}}
+\index{WRITE\_32@{WRITE\_32}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{WRITE\_32()}{WRITE\_32()}}
+{\footnotesize\ttfamily void WRITE\+\_\+32 (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{ptr,  }\item[{u32}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00242}{242}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gbprinter_8cpp_a0a4d70c34d6bce79e86c2b397ca4b900}\label{gbprinter_8cpp_a0a4d70c34d6bce79e86c2b397ca4b900}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!bmpHeader@{bmpHeader}}
+\index{bmpHeader@{bmpHeader}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{bmpHeader}{bmpHeader}}
+{\footnotesize\ttfamily u8 bmp\+Header\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{\ }
+\DoxyCodeLine{\ \ \ \ 0x42,\ 0x4d,\ 0x50,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x46,\ 0x00,\ 0x00,\ 0x00,\ 0x28,\ 0x00,}
+\DoxyCodeLine{\ \ \ \ 0x00,\ 0x00,\ 0x14,\ 0x00,\ 0x00,\ 0x00,\ 0x01,\ 0x00,\ 0x00,\ 0x00,\ 0x01,\ 0x00,\ 0x04,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{\ \ \ \ 0x00,\ 0x00,\ 0x0a,\ 0x00,\ 0x00,\ 0x00,\ 0x12,\ 0x0b,\ 0x00,\ 0x00,\ 0x12,\ 0x0b,\ 0x00,\ 0x00,\ 0x04,\ 0x00,}
+\DoxyCodeLine{\ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x55,\ 0x55,\ 0x55,\ 0x55,\ 0xaa,\ 0xaa,}
+\DoxyCodeLine{\ \ \ \ 0xaa,\ 0xaa,\ 0xff,\ 0xff,\ 0xff,\ 0xff\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00250}{250}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a0898639b5ab2c729a4fc5b6abf1bc36d}\label{gbprinter_8cpp_a0898639b5ab2c729a4fc5b6abf1bc36d}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!lastPrinterMargins@{lastPrinterMargins}}
+\index{lastPrinterMargins@{lastPrinterMargins}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{lastPrinterMargins}{lastPrinterMargins}}
+{\footnotesize\ttfamily int last\+Printer\+Margins}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a61e6655ec3e06b5529525d0c869b4481}\label{gbprinter_8cpp_a61e6655ec3e06b5529525d0c869b4481}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!numPrinted@{numPrinted}}
+\index{numPrinted@{numPrinted}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{numPrinted}{numPrinted}}
+{\footnotesize\ttfamily int num\+Printed}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a5852ced199c8bcaad9b8ad32ae6728b9}\label{gbprinter_8cpp_a5852ced199c8bcaad9b8ad32ae6728b9}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printCounter@{printCounter}}
+\index{printCounter@{printCounter}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printCounter}{printCounter}}
+{\footnotesize\ttfamily int print\+Counter = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a4d071f047f9a580f72e724f41d743380}\label{gbprinter_8cpp_a4d071f047f9a580f72e724f41d743380}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerChecksum@{printerChecksum}}
+\index{printerChecksum@{printerChecksum}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerChecksum}{printerChecksum}}
+{\footnotesize\ttfamily u16 printer\+Checksum}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a03a0941a6b846424a477a5d45ff237ee}\label{gbprinter_8cpp_a03a0941a6b846424a477a5d45ff237ee}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerCmd@{printerCmd}}
+\index{printerCmd@{printerCmd}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerCmd}{printerCmd}}
+{\footnotesize\ttfamily u8 printer\+Cmd}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a4542d1820b4f5b695fb0966770ade46f}\label{gbprinter_8cpp_a4542d1820b4f5b695fb0966770ade46f}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerCmd2Index@{printerCmd2Index}}
+\index{printerCmd2Index@{printerCmd2Index}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerCmd2Index}{printerCmd2Index}}
+{\footnotesize\ttfamily u8 printer\+Cmd2\+Index}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_aa0a660422111bc2a67b970fd36c8759a}\label{gbprinter_8cpp_aa0a660422111bc2a67b970fd36c8759a}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerCmdLength@{printerCmdLength}}
+\index{printerCmdLength@{printerCmdLength}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerCmdLength}{printerCmdLength}}
+{\footnotesize\ttfamily u16 printer\+Cmd\+Length}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a37f3a1ffb29efbe1d6d3283f30ab7bf5}\label{gbprinter_8cpp_a37f3a1ffb29efbe1d6d3283f30ab7bf5}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerCompressionByte@{printerCompressionByte}}
+\index{printerCompressionByte@{printerCompressionByte}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerCompressionByte}{printerCompressionByte}}
+{\footnotesize\ttfamily u8 printer\+Compression\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_af72a3cfa302b4eaf4ebdd06f9200af16}\label{gbprinter_8cpp_af72a3cfa302b4eaf4ebdd06f9200af16}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerCompressionLen@{printerCompressionLen}}
+\index{printerCompressionLen@{printerCompressionLen}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerCompressionLen}{printerCompressionLen}}
+{\footnotesize\ttfamily u8 printer\+Compression\+Len}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_aeee6a98d0de59083ce1034b4ac01b578}\label{gbprinter_8cpp_aeee6a98d0de59083ce1034b4ac01b578}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerExpectedChecksum@{printerExpectedChecksum}}
+\index{printerExpectedChecksum@{printerExpectedChecksum}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerExpectedChecksum}{printerExpectedChecksum}}
+{\footnotesize\ttfamily u16 printer\+Expected\+Checksum}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a1f68f9d112d5375cc03e9fe41d46abb9}\label{gbprinter_8cpp_a1f68f9d112d5375cc03e9fe41d46abb9}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerExposure@{printerExposure}}
+\index{printerExposure@{printerExposure}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerExposure}{printerExposure}}
+{\footnotesize\ttfamily u8 printer\+Exposure}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a1861011291771bb6329d0da969ca939b}\label{gbprinter_8cpp_a1861011291771bb6329d0da969ca939b}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerGfx@{printerGfx}}
+\index{printerGfx@{printerGfx}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerGfx}{printerGfx}}
+{\footnotesize\ttfamily u8 printer\+Gfx\mbox{[}\mbox{\hyperlink{gbprinter_8cpp_a22108f0a7989bd59e02eb3d591cc5663}{PRINTER\+\_\+\+WIDTH}} $\ast$\mbox{\hyperlink{gbprinter_8cpp_a7a50ab75784b3eec2214fddd5f902f02}{PRINTER\+\_\+\+HEIGHT}}/4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a0345ea8ba6aeebdb5fb92a3517bbd337}\label{gbprinter_8cpp_a0345ea8ba6aeebdb5fb92a3517bbd337}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerGfxIndex@{printerGfxIndex}}
+\index{printerGfxIndex@{printerGfxIndex}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerGfxIndex}{printerGfxIndex}}
+{\footnotesize\ttfamily int printer\+Gfx\+Index}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_ad893f3864730c8665f1cad0fd5089d05}\label{gbprinter_8cpp_ad893f3864730c8665f1cad0fd5089d05}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerMargins@{printerMargins}}
+\index{printerMargins@{printerMargins}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerMargins}{printerMargins}}
+{\footnotesize\ttfamily int printer\+Margins}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a9a685b0965235c6974cd07e83d150473}\label{gbprinter_8cpp_a9a685b0965235c6974cd07e83d150473}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerPacketByte@{printerPacketByte}}
+\index{printerPacketByte@{printerPacketByte}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerPacketByte}{printerPacketByte}}
+{\footnotesize\ttfamily int printer\+Packet\+Byte}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a43fd096e39c874fc4fd8bd00308c3c31}\label{gbprinter_8cpp_a43fd096e39c874fc4fd8bd00308c3c31}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerPacketCompressed@{printerPacketCompressed}}
+\index{printerPacketCompressed@{printerPacketCompressed}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerPacketCompressed}{printerPacketCompressed}}
+{\footnotesize\ttfamily bool printer\+Packet\+Compressed}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_a1ae240bf9859d15d2b33a1a2fceb95ce}\label{gbprinter_8cpp_a1ae240bf9859d15d2b33a1a2fceb95ce}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerPalette@{printerPalette}}
+\index{printerPalette@{printerPalette}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerPalette}{printerPalette}}
+{\footnotesize\ttfamily u8 printer\+Palette}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+
+\mbox{\Hypertarget{gbprinter_8cpp_ae9f5dda35405b024f1a1c36ff44fc3af}\label{gbprinter_8cpp_ae9f5dda35405b024f1a1c36ff44fc3af}} 
+\index{gbprinter.cpp@{gbprinter.cpp}!printerStatus@{printerStatus}}
+\index{printerStatus@{printerStatus}!gbprinter.cpp@{gbprinter.cpp}}
+\doxysubsubsection{\texorpdfstring{printerStatus}{printerStatus}}
+{\footnotesize\ttfamily u8 printer\+Status}
+
+
+
+Definition at line \mbox{\hyperlink{gbprinter_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{gbprinter_8cpp_source}{gbprinter.\+cpp}}.
+

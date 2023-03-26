@@ -1,0 +1,51 @@
+\hypertarget{gameboy_8h_source}{}\doxysection{gameboy.\+h}
+\label{gameboy_8h_source}\index{arm9/include/gameboy.h@{arm9/include/gameboy.h}}
+\mbox{\hyperlink{gameboy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00003}00003\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00004}00004\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_aac480ac99840c750628f10e5b5bebf7e}{phaseCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00005}00005\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a1335e4b1447c429a82a506225db263e2}{dividerCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00006}00006\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00007}00007\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a9e1eb41efbef2711d950612d35452bad}{serialCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00008}00008\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timerPeriod}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00009}00009\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{gameboy_8h_a13f0d742d3412a292db17c9ca64b577f}{periods}}[4];}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00011}00011\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00012}00012\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00014}00014\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_ac86f7a6e55f0899d62d5f4424821826a}{fastForwardMode}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00015}00015\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_a7a001fcbf25fa32416413978771c6194}{fastForwardKey}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00017}00017\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_a288f7214a9c0e88365989a10ca48042c}{fpsOutput}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00018}00018\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_ad6fc74900932ddd6c2fc21c514b7c21d}{timeOutput}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00020}00020\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_af3ddfcff387d53e03211aeaa7a0c14ef}{gbMode}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00021}00021\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_a5021082cf23612467be2f40ebe83d8e3}{sgbMode}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00023}00023\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a720cda0344a935ff996a881c1c06bf8f}{cyclesSinceVblank}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00024}00024\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00025}00025\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interruptTriggered}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00026}00026\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a336d50bc2a8c4ef18daea3f63bbb7608}{gameboyFrameCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00028}00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\textcolor{keywordtype}{int}\ cycles);}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00030}00030\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a7da5e8e437d792ff019f41ed8254e440}{gameboyCheckInput}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00031}00031\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a602f0b93f01be978a0d3b51edbd88c26}{gameboyUpdateVBlank}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00032}\mbox{\hyperlink{gameboy_8h_a6513dc49e5245ec7516447b64ecd706d}{00032}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a6513dc49e5245ec7516447b64ecd706d}{gameboyAutosaveCheck}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00034}00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_aa1504f6d72b07740c4e0839f08d92ae6}{resetGameboy}}();\ \textcolor{comment}{//\ This\ may\ be\ called\ even\ from\ the\ context\ of\ "{}runOpcode"{}.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00035}00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a7512b02909147a8b26c34c8a272ee93d}{pauseGameboy}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00036}00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a2048c5bce6dc06e8f6f23d7983aeb4bd}{unpauseGameboy}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00037}00037\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8h_a04f739b2c98ebfeee00219477d8bdd93}{isGameboyPaused}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00038}00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a81597fe9593afa9524041c128e8c9517}{runEmul}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00039}00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a08529d00f32f8441dc7669b1a1d3783c}{initLCD}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00040}00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_acfee3a994901b0c2493b3b9ce75bff7b}{initGameboyMode}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00041}00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a8c50745d9d0e2a05a09fb8bba0593fe3}{checkLYC}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00042}00042\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a2675f9af73dd3b401d72c5b2da78c971}{updateLCD}}(\textcolor{keywordtype}{int}\ cycles);}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00043}00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_af559177576173f5f7a282a38f5bca3f1}{updateTimers}}(\textcolor{keywordtype}{int}\ cycles);}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00044}00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});}
+\DoxyCodeLine{\Hypertarget{gameboy_8h_source_l00045}00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8h_a362b36e2946a997e3fd48ced932c5477}{setDoubleSpeed}}(\textcolor{keywordtype}{int}\ val);}
+
+\end{DoxyCode}

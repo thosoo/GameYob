@@ -1,0 +1,1002 @@
+\hypertarget{mmu_8cpp}{}\doxysection{arm9/source/mmu.cpp File Reference}
+\label{mmu_8cpp}\index{arm9/source/mmu.cpp@{arm9/source/mmu.cpp}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sgb.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbs.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mmu_8cpp_add66663822ebd2a648468eceb44f22b2}{refresh\+Vram\+Bank}}()
+\item 
+\#define \mbox{\hyperlink{mmu_8cpp_a6e29f12e28db7494e9918eada2c9bc0b}{refresh\+Wram\+Bank}}()
+\item 
+\#define \mbox{\hyperlink{mmu_8cpp_ab75400deb214dbfc74b1d869cc54f652}{OVERFLOW}}(x,  val,  y)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}{mbc\+Write}}) (u16, u8)
+\item 
+typedef u8($\ast$ \mbox{\hyperlink{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}{mbc\+Read}}) (u16)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a88eb2ff9cc52f2684345f7c9df1da20e}{refresh\+Rom\+Bank}} (int bank)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a28d14c62697472b84df12d323ff7f754}{refresh\+Ram\+Bank}} (int bank)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_ae264e15091c6c0275300ff978143f792}{handle\+Hu\+C3\+Command}} (u8 cmd)
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_ab8743085681cb593e82617fde2284ac2}{h3r}} (u16 addr)
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_aa66839b53d42f7a42f2c275709ab280c}{m3r}} (u16 addr)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a17a95178bfbd0bc8129707f7d67134df}{write\+Sram}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a85948d959e4fa37d71bc6b647a1db683}{write\+Clock\+Struct}} ()
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a0aad7118163b4e7804f7a9cb4e2f0fe0}{m0w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a54efdc3fb7cc9dcd04d4769f1eac9987}{m2w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_ad1a7654c4525e3f949f54f58f3c1b831}{m3w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_af089f593743244eafde540c0c52588bc}{m1w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a45ffa9a04b688bb984f7562ebc1ea94f}{h1w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_af65c057f0f67e618371abcb7eaa0bae9}{m5w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a77e16810df0b3dcee7faf9faede754e8}{h3w}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a1660bd805506c41836f415364b20440b}{init\+MMU}} ()
+\item 
+void \mbox{\hyperlink{mmu_8cpp_aaff623eef2ec4af523c8a8963b61cf73}{map\+Memory}} ()
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a08fec8c2e7136e93c021a18e4d11e176}{latch\+Clock}} ()
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a14840c955aa72022046ea731262ee843}{read\+Memory}} (u16 addr)
+\item 
+u16 \mbox{\hyperlink{mmu_8cpp_a558bc6fb4a68e2add3fee88eec1c2a6c}{read\+Memory16}} (u16 addr)
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_ab8a42bf79f008339a337f67be30e7282}{read\+IO}} (u8 io\+Reg)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a3e4ce4b7fa59a8e7784a6665e2f8f588}{write\+Memory}} (u16 addr, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a74be1f52cca5cb48d588325e62da730a}{nifi\+Timeout\+Func}} ()
+\item 
+void \mbox{\hyperlink{mmu_8cpp_acf23f43365192603962a5b11716d0102}{write\+IO}} (u8 io\+Reg, u8 val)
+\item 
+void \mbox{\hyperlink{mmu_8cpp_a3afecb5267d14dab19df97a82208cb85}{refresh\+P1}} ()
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a343775d9586e8f6468a3e9062ea782f0}{update\+Hblank\+DMA}} ()
+\item 
+void \mbox{\hyperlink{mmu_8cpp_acc152270575ff7a8e64f2f5ac3d69fda}{do\+Rumble}} (bool rumble\+Val)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+time\+\_\+t \mbox{\hyperlink{mmu_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{raw\+Time}}
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a08a68b1c289b33130f5e3b3d11c49974}{has\+Rumble}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_aa6654eea5fc0c5ae97a818042a1c18c5}{rumble\+Strength}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_aac8b23ae63783721de82945e3fd04585}{rumble\+Inserted}} = 0
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_ab8d5eb3fa3c01de42ea78c58e69ca94c}{rumble\+Value}} = 0
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a9b04a0ad1cf4f56caac6d32c7100f064}{last\+Rumble\+Value}} = 0
+\item 
+\mbox{\hyperlink{structclock_struct}{clock\+Struct}} \mbox{\hyperlink{mmu_8cpp_ada781de9090463464264d9f6eef9a397}{gb\+Clock}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_a1bb6c4f70e5a271b3a713c3e625cade7}{num\+Rom\+Banks}} = 0
+\item 
+int \mbox{\hyperlink{mmu_8cpp_a0ab672ff412b81f8e9bba15e0b2fbf74}{num\+Ram\+Banks}} = 0
+\item 
+int \mbox{\hyperlink{mmu_8cpp_a2595910b448f4f3cb2826c7207f2e5d0}{resultant\+GBMode}}
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a7d8aa7cd05aad3b87cf03fc1067ed3cd}{bios}} \mbox{[}0x900\mbox{]}
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a3afb95c5ba95a8b7a5be05efead3da80}{bios\+Exists}} = false
+\item 
+int \mbox{\hyperlink{mmu_8cpp_a26dbe7db7c352807cdb237605e808268}{bios\+Enabled}}
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a15ebf698d3c867fd1fcd0ef9bcfd5e9e}{bios\+On}} = false
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a7cd98054e31302954e876a68c3aff0d1}{buttons\+Pressed}} = 0xff
+\item 
+u8 $\ast$ \mbox{\hyperlink{mmu_8cpp_a0f09ea9762f03d69ea68b6c34a0b59d0}{memory}} \mbox{[}0x10\mbox{]}
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a7d0ed1b85995cb654491c9e0958abed2}{vram}} \mbox{[}2\mbox{]}\mbox{[}0x2000\mbox{]}
+\item 
+u8 $\ast$ \mbox{\hyperlink{mmu_8cpp_a778a1d929da98073cbc4e7b78f4a5e09}{extern\+Ram}} = NULL
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_abc159efa8df9b452d4a5cfefee7258e5}{wram}} \mbox{[}8\mbox{]}\mbox{[}0x1000\mbox{]}
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a6d89140bb7b275ad027a7b33fd16909d}{highram}} \mbox{[}0x1000\mbox{]}
+\item 
+u8 $\ast$const \mbox{\hyperlink{mmu_8cpp_ac883c44820bf261155e8eb1dc1e6160f}{hram}} = \mbox{\hyperlink{mmu_8cpp_a6d89140bb7b275ad027a7b33fd16909d}{highram}} + 0xe00
+\item 
+u8 $\ast$const \mbox{\hyperlink{mmu_8cpp_a7436ad149c3b3f2974966d6b546d14d9}{io\+Ram}} = \mbox{\hyperlink{mmu_8h_ac883c44820bf261155e8eb1dc1e6160f}{hram}} + 0x100
+\item 
+int \mbox{\hyperlink{mmu_8cpp_ad746f082fa7f3e1b582d29eb9863cc33}{wram\+Bank}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_adf5f76879a2dc41ba5b73a2fbe844c26}{vram\+Bank}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_aaca3d44b9724e7f74f4b539fce226e8f}{MBC}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_a07a1fd40504b02fdc6c5c6251b754a42}{memory\+Model}}
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_afb151a592d6b5795a0f0480d7b3a5690}{rockman\+Mapper}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_aa6f131debd73127c437bad1e4a9a5232}{rom\+Bank}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_ab78a4864c181d598a24f871920962dbb}{current\+Ram\+Bank}}
+\item 
+u16 \mbox{\hyperlink{mmu_8cpp_a612487c10dbac8ba5497ed0d7abc2f18}{dma\+Source}}
+\item 
+u16 \mbox{\hyperlink{mmu_8cpp_ae047b4cc65393b3197a47030b3b49723}{dma\+Dest}}
+\item 
+u16 \mbox{\hyperlink{mmu_8cpp_a343659c9837413cff52cd1c2deec36f7}{dma\+Length}}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_aa74f2ecc0869e77a2834d9c812ca3b40}{dma\+Mode}}
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a2dba7f54476ce8bb4a8f304c33a41075}{save\+Modified}} = false
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a4f780c11cc880eaf89b84736c070f955}{dirty\+Sectors}} \mbox{[}\mbox{\hyperlink{mmu_8h_adc5e4702e0df5a409e3f69c25685d0a4}{MAX\+\_\+\+SRAM\+\_\+\+SIZE}}/\mbox{\hyperlink{inputhelper_8h_a5a3429fb1a49de0b2eafe11a6644a072}{AUTOSAVE\+\_\+\+SECTOR\+\_\+\+SIZE}}\mbox{]}
+\item 
+int \mbox{\hyperlink{mmu_8cpp_a66ef36eca2112011379866bb326fbb62}{num\+Save\+Writes}} = 0
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a2e4495bc83e0afa418034d22fb6cb881}{autosave\+Started}} = false
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_a2fc704c0296f94348be667e775ff23b3}{ram\+Enabled}}
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a84c8ac3809804e3fe8091a69618966bc}{Hu\+C3\+Mode}}
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a691f212de288d6d9dc6b88ebfff77682}{Hu\+C3\+Value}}
+\item 
+u8 \mbox{\hyperlink{mmu_8cpp_a0269fd64d6fc9cb01d065abcbdcf3fa8}{Hu\+C3\+Shift}}
+\item 
+\mbox{\hyperlink{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}{mbc\+Write}} \mbox{\hyperlink{mmu_8cpp_ab2558741c95cd9e8c284297444bc42bb}{write\+Func}}
+\item 
+\mbox{\hyperlink{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}{mbc\+Read}} \mbox{\hyperlink{mmu_8cpp_a0d0f7c5b906a65fe6071f7c45277828b}{read\+Func}}
+\item 
+const \mbox{\hyperlink{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}{mbc\+Read}} \mbox{\hyperlink{mmu_8cpp_a8831563aea31e6e2b82b3b79f4f9dee1}{mbc\+Reads}} \mbox{[}$\,$\mbox{]}
+\item 
+const \mbox{\hyperlink{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}{mbc\+Write}} \mbox{\hyperlink{mmu_8cpp_a5f170d2bedf050b12eed6290bb9c791e}{mbc\+Writes}} \mbox{[}$\,$\mbox{]}
+\item 
+bool \mbox{\hyperlink{mmu_8cpp_ab1539affa638c954993cc8e8b34a473a}{nifi\+Try\+Again}} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{mmu_8cpp_ab75400deb214dbfc74b1d869cc54f652}\label{mmu_8cpp_ab75400deb214dbfc74b1d869cc54f652}} 
+\index{mmu.cpp@{mmu.cpp}!OVERFLOW@{OVERFLOW}}
+\index{OVERFLOW@{OVERFLOW}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{OVERFLOW}{OVERFLOW}}
+{\footnotesize\ttfamily \#define OVERFLOW(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{val,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{do}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ while\ (x\ >=\ val)\ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ x\ -\/=\ val;\ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ y++;\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{while}\ (0)}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00636}{636}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_add66663822ebd2a648468eceb44f22b2}\label{mmu_8cpp_add66663822ebd2a648468eceb44f22b2}} 
+\index{mmu.cpp@{mmu.cpp}!refreshVramBank@{refreshVramBank}}
+\index{refreshVramBank@{refreshVramBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshVramBank}{refreshVramBank}}
+{\footnotesize\ttfamily \#define refresh\+Vram\+Bank(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8cpp_a0f09ea9762f03d69ea68b6c34a0b59d0}{memory}}[0x8]\ =\ \mbox{\hyperlink{mmu_8cpp_a7d0ed1b85995cb654491c9e0958abed2}{vram}}[\mbox{\hyperlink{mmu_8cpp_adf5f76879a2dc41ba5b73a2fbe844c26}{vramBank}}];\ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8cpp_a0f09ea9762f03d69ea68b6c34a0b59d0}{memory}}[0x9]\ =\ \mbox{\hyperlink{mmu_8cpp_a7d0ed1b85995cb654491c9e0958abed2}{vram}}[\mbox{\hyperlink{mmu_8cpp_adf5f76879a2dc41ba5b73a2fbe844c26}{vramBank}}]\ +\ 0x1000;\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a6e29f12e28db7494e9918eada2c9bc0b}\label{mmu_8cpp_a6e29f12e28db7494e9918eada2c9bc0b}} 
+\index{mmu.cpp@{mmu.cpp}!refreshWramBank@{refreshWramBank}}
+\index{refreshWramBank@{refreshWramBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshWramBank}{refreshWramBank}}
+{\footnotesize\ttfamily \#define refresh\+Wram\+Bank(\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8cpp_a0f09ea9762f03d69ea68b6c34a0b59d0}{memory}}[0xd]\ =\ \mbox{\hyperlink{mmu_8cpp_abc159efa8df9b452d4a5cfefee7258e5}{wram}}[\mbox{\hyperlink{mmu_8cpp_ad746f082fa7f3e1b582d29eb9863cc33}{wramBank}}];\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}\label{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}} 
+\index{mmu.cpp@{mmu.cpp}!mbcRead@{mbcRead}}
+\index{mbcRead@{mbcRead}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{mbcRead}{mbcRead}}
+{\footnotesize\ttfamily typedef u8($\ast$ mbc\+Read) (u16)}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}\label{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}} 
+\index{mmu.cpp@{mmu.cpp}!mbcWrite@{mbcWrite}}
+\index{mbcWrite@{mbcWrite}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{mbcWrite}{mbcWrite}}
+{\footnotesize\ttfamily typedef void($\ast$ mbc\+Write) (u16, u8)}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00092}{92}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mmu_8cpp_acc152270575ff7a8e64f2f5ac3d69fda}\label{mmu_8cpp_acc152270575ff7a8e64f2f5ac3d69fda}} 
+\index{mmu.cpp@{mmu.cpp}!doRumble@{doRumble}}
+\index{doRumble@{doRumble}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{doRumble()}{doRumble()}}
+{\footnotesize\ttfamily void do\+Rumble (\begin{DoxyParamCaption}\item[{bool}]{rumble\+Val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l01120}{1120}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a45ffa9a04b688bb984f7562ebc1ea94f}\label{mmu_8cpp_a45ffa9a04b688bb984f7562ebc1ea94f}} 
+\index{mmu.cpp@{mmu.cpp}!h1w@{h1w}}
+\index{h1w@{h1w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{h1w()}{h1w()}}
+{\footnotesize\ttfamily void h1w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00425}{425}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ab8743085681cb593e82617fde2284ac2}\label{mmu_8cpp_ab8743085681cb593e82617fde2284ac2}} 
+\index{mmu.cpp@{mmu.cpp}!h3r@{h3r}}
+\index{h3r@{h3r}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{h3r()}{h3r()}}
+{\footnotesize\ttfamily u8 h3r (\begin{DoxyParamCaption}\item[{u16}]{addr }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00174}{174}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a77e16810df0b3dcee7faf9faede754e8}\label{mmu_8cpp_a77e16810df0b3dcee7faf9faede754e8}} 
+\index{mmu.cpp@{mmu.cpp}!h3w@{h3w}}
+\index{h3w@{h3w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{h3w()}{h3w()}}
+{\footnotesize\ttfamily void h3w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00511}{511}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ae264e15091c6c0275300ff978143f792}\label{mmu_8cpp_ae264e15091c6c0275300ff978143f792}} 
+\index{mmu.cpp@{mmu.cpp}!handleHuC3Command@{handleHuC3Command}}
+\index{handleHuC3Command@{handleHuC3Command}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{handleHuC3Command()}{handleHuC3Command()}}
+{\footnotesize\ttfamily void handle\+Hu\+C3\+Command (\begin{DoxyParamCaption}\item[{u8}]{cmd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00123}{123}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a1660bd805506c41836f415364b20440b}\label{mmu_8cpp_a1660bd805506c41836f415364b20440b}} 
+\index{mmu.cpp@{mmu.cpp}!initMMU@{initMMU}}
+\index{initMMU@{initMMU}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{initMMU()}{initMMU()}}
+{\footnotesize\ttfamily void init\+MMU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00553}{553}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a08fec8c2e7136e93c021a18e4d11e176}\label{mmu_8cpp_a08fec8c2e7136e93c021a18e4d11e176}} 
+\index{mmu.cpp@{mmu.cpp}!latchClock@{latchClock}}
+\index{latchClock@{latchClock}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{latchClock()}{latchClock()}}
+{\footnotesize\ttfamily void latch\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00646}{646}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a0aad7118163b4e7804f7a9cb4e2f0fe0}\label{mmu_8cpp_a0aad7118163b4e7804f7a9cb4e2f0fe0}} 
+\index{mmu.cpp@{mmu.cpp}!m0w@{m0w}}
+\index{m0w@{m0w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{m0w()}{m0w()}}
+{\footnotesize\ttfamily void m0w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00247}{247}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_af089f593743244eafde540c0c52588bc}\label{mmu_8cpp_af089f593743244eafde540c0c52588bc}} 
+\index{mmu.cpp@{mmu.cpp}!m1w@{m1w}}
+\index{m1w@{m1w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{m1w()}{m1w()}}
+{\footnotesize\ttfamily void m1w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00380}{380}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a54efdc3fb7cc9dcd04d4769f1eac9987}\label{mmu_8cpp_a54efdc3fb7cc9dcd04d4769f1eac9987}} 
+\index{mmu.cpp@{mmu.cpp}!m2w@{m2w}}
+\index{m2w@{m2w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{m2w()}{m2w()}}
+{\footnotesize\ttfamily void m2w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00272}{272}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aa66839b53d42f7a42f2c275709ab280c}\label{mmu_8cpp_aa66839b53d42f7a42f2c275709ab280c}} 
+\index{mmu.cpp@{mmu.cpp}!m3r@{m3r}}
+\index{m3r@{m3r}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{m3r()}{m3r()}}
+{\footnotesize\ttfamily u8 m3r (\begin{DoxyParamCaption}\item[{u16}]{addr }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00190}{190}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ad1a7654c4525e3f949f54f58f3c1b831}\label{mmu_8cpp_ad1a7654c4525e3f949f54f58f3c1b831}} 
+\index{mmu.cpp@{mmu.cpp}!m3w@{m3w}}
+\index{m3w@{m3w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{m3w()}{m3w()}}
+{\footnotesize\ttfamily void m3w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00299}{299}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_af65c057f0f67e618371abcb7eaa0bae9}\label{mmu_8cpp_af65c057f0f67e618371abcb7eaa0bae9}} 
+\index{mmu.cpp@{mmu.cpp}!m5w@{m5w}}
+\index{m5w@{m5w}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{m5w()}{m5w()}}
+{\footnotesize\ttfamily void m5w (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00460}{460}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aaff623eef2ec4af523c8a8963b61cf73}\label{mmu_8cpp_aaff623eef2ec4af523c8a8963b61cf73}} 
+\index{mmu.cpp@{mmu.cpp}!mapMemory@{mapMemory}}
+\index{mapMemory@{mapMemory}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{mapMemory()}{mapMemory()}}
+{\footnotesize\ttfamily void map\+Memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00612}{612}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a74be1f52cca5cb48d588325e62da730a}\label{mmu_8cpp_a74be1f52cca5cb48d588325e62da730a}} 
+\index{mmu.cpp@{mmu.cpp}!nifiTimeoutFunc@{nifiTimeoutFunc}}
+\index{nifiTimeoutFunc@{nifiTimeoutFunc}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{nifiTimeoutFunc()}{nifiTimeoutFunc()}}
+{\footnotesize\ttfamily void nifi\+Timeout\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00830}{830}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ab8a42bf79f008339a337f67be30e7282}\label{mmu_8cpp_ab8a42bf79f008339a337f67be30e7282}} 
+\index{mmu.cpp@{mmu.cpp}!readIO@{readIO}}
+\index{readIO@{readIO}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{readIO()}{readIO()}}
+{\footnotesize\ttfamily u8 read\+IO (\begin{DoxyParamCaption}\item[{u8}]{io\+Reg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00728}{728}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a14840c955aa72022046ea731262ee843}\label{mmu_8cpp_a14840c955aa72022046ea731262ee843}} 
+\index{mmu.cpp@{mmu.cpp}!readMemory@{readMemory}}
+\index{readMemory@{readMemory}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{readMemory()}{readMemory()}}
+{\footnotesize\ttfamily u8 read\+Memory (\begin{DoxyParamCaption}\item[{u16}]{addr }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00690}{690}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a558bc6fb4a68e2add3fee88eec1c2a6c}\label{mmu_8cpp_a558bc6fb4a68e2add3fee88eec1c2a6c}} 
+\index{mmu.cpp@{mmu.cpp}!readMemory16@{readMemory16}}
+\index{readMemory16@{readMemory16}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{readMemory16()}{readMemory16()}}
+{\footnotesize\ttfamily u16 read\+Memory16 (\begin{DoxyParamCaption}\item[{u16}]{addr }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00719}{719}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a3afecb5267d14dab19df97a82208cb85}\label{mmu_8cpp_a3afecb5267d14dab19df97a82208cb85}} 
+\index{mmu.cpp@{mmu.cpp}!refreshP1@{refreshP1}}
+\index{refreshP1@{refreshP1}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshP1()}{refreshP1()}}
+{\footnotesize\ttfamily void refresh\+P1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l01074}{1074}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a28d14c62697472b84df12d323ff7f754}\label{mmu_8cpp_a28d14c62697472b84df12d323ff7f754}} 
+\index{mmu.cpp@{mmu.cpp}!refreshRamBank@{refreshRamBank}}
+\index{refreshRamBank@{refreshRamBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshRamBank()}{refreshRamBank()}}
+{\footnotesize\ttfamily void refresh\+Ram\+Bank (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a88eb2ff9cc52f2684345f7c9df1da20e}\label{mmu_8cpp_a88eb2ff9cc52f2684345f7c9df1da20e}} 
+\index{mmu.cpp@{mmu.cpp}!refreshRomBank@{refreshRomBank}}
+\index{refreshRomBank@{refreshRomBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{refreshRomBank()}{refreshRomBank()}}
+{\footnotesize\ttfamily void refresh\+Rom\+Bank (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a343775d9586e8f6468a3e9062ea782f0}\label{mmu_8cpp_a343775d9586e8f6468a3e9062ea782f0}} 
+\index{mmu.cpp@{mmu.cpp}!updateHblankDMA@{updateHblankDMA}}
+\index{updateHblankDMA@{updateHblankDMA}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{updateHblankDMA()}{updateHblankDMA()}}
+{\footnotesize\ttfamily bool update\+Hblank\+DMA (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l01096}{1096}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a85948d959e4fa37d71bc6b647a1db683}\label{mmu_8cpp_a85948d959e4fa37d71bc6b647a1db683}} 
+\index{mmu.cpp@{mmu.cpp}!writeClockStruct@{writeClockStruct}}
+\index{writeClockStruct@{writeClockStruct}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{writeClockStruct()}{writeClockStruct()}}
+{\footnotesize\ttfamily void write\+Clock\+Struct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00234}{234}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_acf23f43365192603962a5b11716d0102}\label{mmu_8cpp_acf23f43365192603962a5b11716d0102}} 
+\index{mmu.cpp@{mmu.cpp}!writeIO@{writeIO}}
+\index{writeIO@{writeIO}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{writeIO()}{writeIO()}}
+{\footnotesize\ttfamily void write\+IO (\begin{DoxyParamCaption}\item[{u8}]{io\+Reg,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00855}{855}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a3e4ce4b7fa59a8e7784a6665e2f8f588}\label{mmu_8cpp_a3e4ce4b7fa59a8e7784a6665e2f8f588}} 
+\index{mmu.cpp@{mmu.cpp}!writeMemory@{writeMemory}}
+\index{writeMemory@{writeMemory}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{writeMemory()}{writeMemory()}}
+{\footnotesize\ttfamily void write\+Memory (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00798}{798}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a17a95178bfbd0bc8129707f7d67134df}\label{mmu_8cpp_a17a95178bfbd0bc8129707f7d67134df}} 
+\index{mmu.cpp@{mmu.cpp}!writeSram@{writeSram}}
+\index{writeSram@{writeSram}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{writeSram()}{writeSram()}}
+{\footnotesize\ttfamily void write\+Sram (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00215}{215}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{mmu_8cpp_a2e4495bc83e0afa418034d22fb6cb881}\label{mmu_8cpp_a2e4495bc83e0afa418034d22fb6cb881}} 
+\index{mmu.cpp@{mmu.cpp}!autosaveStarted@{autosaveStarted}}
+\index{autosaveStarted@{autosaveStarted}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{autosaveStarted}{autosaveStarted}}
+{\footnotesize\ttfamily bool autosave\+Started = false}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a7d8aa7cd05aad3b87cf03fc1067ed3cd}\label{mmu_8cpp_a7d8aa7cd05aad3b87cf03fc1067ed3cd}} 
+\index{mmu.cpp@{mmu.cpp}!bios@{bios}}
+\index{bios@{bios}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{bios}{bios}}
+{\footnotesize\ttfamily u8 bios\mbox{[}0x900\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a26dbe7db7c352807cdb237605e808268}\label{mmu_8cpp_a26dbe7db7c352807cdb237605e808268}} 
+\index{mmu.cpp@{mmu.cpp}!biosEnabled@{biosEnabled}}
+\index{biosEnabled@{biosEnabled}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{biosEnabled}{biosEnabled}}
+{\footnotesize\ttfamily int bios\+Enabled}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a3afb95c5ba95a8b7a5be05efead3da80}\label{mmu_8cpp_a3afb95c5ba95a8b7a5be05efead3da80}} 
+\index{mmu.cpp@{mmu.cpp}!biosExists@{biosExists}}
+\index{biosExists@{biosExists}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{biosExists}{biosExists}}
+{\footnotesize\ttfamily bool bios\+Exists = false}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a15ebf698d3c867fd1fcd0ef9bcfd5e9e}\label{mmu_8cpp_a15ebf698d3c867fd1fcd0ef9bcfd5e9e}} 
+\index{mmu.cpp@{mmu.cpp}!biosOn@{biosOn}}
+\index{biosOn@{biosOn}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{biosOn}{biosOn}}
+{\footnotesize\ttfamily bool bios\+On = false}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a7cd98054e31302954e876a68c3aff0d1}\label{mmu_8cpp_a7cd98054e31302954e876a68c3aff0d1}} 
+\index{mmu.cpp@{mmu.cpp}!buttonsPressed@{buttonsPressed}}
+\index{buttonsPressed@{buttonsPressed}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{buttonsPressed}{buttonsPressed}}
+{\footnotesize\ttfamily u8 buttons\+Pressed = 0xff}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ab78a4864c181d598a24f871920962dbb}\label{mmu_8cpp_ab78a4864c181d598a24f871920962dbb}} 
+\index{mmu.cpp@{mmu.cpp}!currentRamBank@{currentRamBank}}
+\index{currentRamBank@{currentRamBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{currentRamBank}{currentRamBank}}
+{\footnotesize\ttfamily int current\+Ram\+Bank}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00072}{72}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a4f780c11cc880eaf89b84736c070f955}\label{mmu_8cpp_a4f780c11cc880eaf89b84736c070f955}} 
+\index{mmu.cpp@{mmu.cpp}!dirtySectors@{dirtySectors}}
+\index{dirtySectors@{dirtySectors}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{dirtySectors}{dirtySectors}}
+{\footnotesize\ttfamily bool dirty\+Sectors\mbox{[}\mbox{\hyperlink{mmu_8h_adc5e4702e0df5a409e3f69c25685d0a4}{MAX\+\_\+\+SRAM\+\_\+\+SIZE}}/\mbox{\hyperlink{inputhelper_8h_a5a3429fb1a49de0b2eafe11a6644a072}{AUTOSAVE\+\_\+\+SECTOR\+\_\+\+SIZE}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ae047b4cc65393b3197a47030b3b49723}\label{mmu_8cpp_ae047b4cc65393b3197a47030b3b49723}} 
+\index{mmu.cpp@{mmu.cpp}!dmaDest@{dmaDest}}
+\index{dmaDest@{dmaDest}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{dmaDest}{dmaDest}}
+{\footnotesize\ttfamily u16 dma\+Dest}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a343659c9837413cff52cd1c2deec36f7}\label{mmu_8cpp_a343659c9837413cff52cd1c2deec36f7}} 
+\index{mmu.cpp@{mmu.cpp}!dmaLength@{dmaLength}}
+\index{dmaLength@{dmaLength}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{dmaLength}{dmaLength}}
+{\footnotesize\ttfamily u16 dma\+Length}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00076}{76}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aa74f2ecc0869e77a2834d9c812ca3b40}\label{mmu_8cpp_aa74f2ecc0869e77a2834d9c812ca3b40}} 
+\index{mmu.cpp@{mmu.cpp}!dmaMode@{dmaMode}}
+\index{dmaMode@{dmaMode}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{dmaMode}{dmaMode}}
+{\footnotesize\ttfamily int dma\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a612487c10dbac8ba5497ed0d7abc2f18}\label{mmu_8cpp_a612487c10dbac8ba5497ed0d7abc2f18}} 
+\index{mmu.cpp@{mmu.cpp}!dmaSource@{dmaSource}}
+\index{dmaSource@{dmaSource}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{dmaSource}{dmaSource}}
+{\footnotesize\ttfamily u16 dma\+Source}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a778a1d929da98073cbc4e7b78f4a5e09}\label{mmu_8cpp_a778a1d929da98073cbc4e7b78f4a5e09}} 
+\index{mmu.cpp@{mmu.cpp}!externRam@{externRam}}
+\index{externRam@{externRam}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{externRam}{externRam}}
+{\footnotesize\ttfamily u8$\ast$ extern\+Ram = NULL}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ada781de9090463464264d9f6eef9a397}\label{mmu_8cpp_ada781de9090463464264d9f6eef9a397}} 
+\index{mmu.cpp@{mmu.cpp}!gbClock@{gbClock}}
+\index{gbClock@{gbClock}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{gbClock}{gbClock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structclock_struct}{clock\+Struct}} gb\+Clock}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a08a68b1c289b33130f5e3b3d11c49974}\label{mmu_8cpp_a08a68b1c289b33130f5e3b3d11c49974}} 
+\index{mmu.cpp@{mmu.cpp}!hasRumble@{hasRumble}}
+\index{hasRumble@{hasRumble}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{hasRumble}{hasRumble}}
+{\footnotesize\ttfamily bool has\+Rumble}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a6d89140bb7b275ad027a7b33fd16909d}\label{mmu_8cpp_a6d89140bb7b275ad027a7b33fd16909d}} 
+\index{mmu.cpp@{mmu.cpp}!highram@{highram}}
+\index{highram@{highram}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{highram}{highram}}
+{\footnotesize\ttfamily u8 highram\mbox{[}0x1000\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ac883c44820bf261155e8eb1dc1e6160f}\label{mmu_8cpp_ac883c44820bf261155e8eb1dc1e6160f}} 
+\index{mmu.cpp@{mmu.cpp}!hram@{hram}}
+\index{hram@{hram}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{hram}{hram}}
+{\footnotesize\ttfamily u8$\ast$ const hram = \mbox{\hyperlink{mmu_8cpp_a6d89140bb7b275ad027a7b33fd16909d}{highram}} + 0xe00}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a84c8ac3809804e3fe8091a69618966bc}\label{mmu_8cpp_a84c8ac3809804e3fe8091a69618966bc}} 
+\index{mmu.cpp@{mmu.cpp}!HuC3Mode@{HuC3Mode}}
+\index{HuC3Mode@{HuC3Mode}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{HuC3Mode}{HuC3Mode}}
+{\footnotesize\ttfamily u8 Hu\+C3\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00088}{88}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a0269fd64d6fc9cb01d065abcbdcf3fa8}\label{mmu_8cpp_a0269fd64d6fc9cb01d065abcbdcf3fa8}} 
+\index{mmu.cpp@{mmu.cpp}!HuC3Shift@{HuC3Shift}}
+\index{HuC3Shift@{HuC3Shift}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{HuC3Shift}{HuC3Shift}}
+{\footnotesize\ttfamily u8 Hu\+C3\+Shift}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a691f212de288d6d9dc6b88ebfff77682}\label{mmu_8cpp_a691f212de288d6d9dc6b88ebfff77682}} 
+\index{mmu.cpp@{mmu.cpp}!HuC3Value@{HuC3Value}}
+\index{HuC3Value@{HuC3Value}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{HuC3Value}{HuC3Value}}
+{\footnotesize\ttfamily u8 Hu\+C3\+Value}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00089}{89}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a7436ad149c3b3f2974966d6b546d14d9}\label{mmu_8cpp_a7436ad149c3b3f2974966d6b546d14d9}} 
+\index{mmu.cpp@{mmu.cpp}!ioRam@{ioRam}}
+\index{ioRam@{ioRam}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{ioRam}{ioRam}}
+{\footnotesize\ttfamily u8$\ast$ const io\+Ram = \mbox{\hyperlink{mmu_8h_ac883c44820bf261155e8eb1dc1e6160f}{hram}} + 0x100}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a9b04a0ad1cf4f56caac6d32c7100f064}\label{mmu_8cpp_a9b04a0ad1cf4f56caac6d32c7100f064}} 
+\index{mmu.cpp@{mmu.cpp}!lastRumbleValue@{lastRumbleValue}}
+\index{lastRumbleValue@{lastRumbleValue}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{lastRumbleValue}{lastRumbleValue}}
+{\footnotesize\ttfamily bool last\+Rumble\+Value = 0}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aaca3d44b9724e7f74f4b539fce226e8f}\label{mmu_8cpp_aaca3d44b9724e7f74f4b539fce226e8f}} 
+\index{mmu.cpp@{mmu.cpp}!MBC@{MBC}}
+\index{MBC@{MBC}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{MBC}{MBC}}
+{\footnotesize\ttfamily int MBC}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a8831563aea31e6e2b82b3b79f4f9dee1}\label{mmu_8cpp_a8831563aea31e6e2b82b3b79f4f9dee1}} 
+\index{mmu.cpp@{mmu.cpp}!mbcReads@{mbcReads}}
+\index{mbcReads@{mbcReads}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{mbcReads}{mbcReads}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}{mbc\+Read}} mbc\+Reads\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ NULL,\ NULL,\ NULL,\ \mbox{\hyperlink{mmu_8cpp_aa66839b53d42f7a42f2c275709ab280c}{m3r}},\ NULL,\ NULL,\ NULL,\ \mbox{\hyperlink{mmu_8cpp_ab8743085681cb593e82617fde2284ac2}{h3r}},\ NULL\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00212}{212}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a5f170d2bedf050b12eed6290bb9c791e}\label{mmu_8cpp_a5f170d2bedf050b12eed6290bb9c791e}} 
+\index{mmu.cpp@{mmu.cpp}!mbcWrites@{mbcWrites}}
+\index{mbcWrites@{mbcWrites}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{mbcWrites}{mbcWrites}}
+{\footnotesize\ttfamily const \mbox{\hyperlink{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}{mbc\+Write}} mbc\+Writes\mbox{[}$\,$\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{mmu_8cpp_a0aad7118163b4e7804f7a9cb4e2f0fe0}{m0w}},\ \mbox{\hyperlink{mmu_8cpp_af089f593743244eafde540c0c52588bc}{m1w}},\ \mbox{\hyperlink{mmu_8cpp_a54efdc3fb7cc9dcd04d4769f1eac9987}{m2w}},\ \mbox{\hyperlink{mmu_8cpp_ad1a7654c4525e3f949f54f58f3c1b831}{m3w}},\ NULL,\ \mbox{\hyperlink{mmu_8cpp_af65c057f0f67e618371abcb7eaa0bae9}{m5w}},\ NULL,\ \mbox{\hyperlink{mmu_8cpp_a77e16810df0b3dcee7faf9faede754e8}{h3w}},\ \mbox{\hyperlink{mmu_8cpp_a45ffa9a04b688bb984f7562ebc1ea94f}{h1w}}\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00550}{550}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a0f09ea9762f03d69ea68b6c34a0b59d0}\label{mmu_8cpp_a0f09ea9762f03d69ea68b6c34a0b59d0}} 
+\index{mmu.cpp@{mmu.cpp}!memory@{memory}}
+\index{memory@{memory}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{memory}{memory}}
+{\footnotesize\ttfamily u8$\ast$ memory\mbox{[}0x10\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a07a1fd40504b02fdc6c5c6251b754a42}\label{mmu_8cpp_a07a1fd40504b02fdc6c5c6251b754a42}} 
+\index{mmu.cpp@{mmu.cpp}!memoryModel@{memoryModel}}
+\index{memoryModel@{memoryModel}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{memoryModel}{memoryModel}}
+{\footnotesize\ttfamily int memory\+Model}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00067}{67}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ab1539affa638c954993cc8e8b34a473a}\label{mmu_8cpp_ab1539affa638c954993cc8e8b34a473a}} 
+\index{mmu.cpp@{mmu.cpp}!nifiTryAgain@{nifiTryAgain}}
+\index{nifiTryAgain@{nifiTryAgain}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{nifiTryAgain}{nifiTryAgain}}
+{\footnotesize\ttfamily bool nifi\+Try\+Again = true}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00829}{829}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a0ab672ff412b81f8e9bba15e0b2fbf74}\label{mmu_8cpp_a0ab672ff412b81f8e9bba15e0b2fbf74}} 
+\index{mmu.cpp@{mmu.cpp}!numRamBanks@{numRamBanks}}
+\index{numRamBanks@{numRamBanks}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{numRamBanks}{numRamBanks}}
+{\footnotesize\ttfamily int num\+Ram\+Banks = 0}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a1bb6c4f70e5a271b3a713c3e625cade7}\label{mmu_8cpp_a1bb6c4f70e5a271b3a713c3e625cade7}} 
+\index{mmu.cpp@{mmu.cpp}!numRomBanks@{numRomBanks}}
+\index{numRomBanks@{numRomBanks}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{numRomBanks}{numRomBanks}}
+{\footnotesize\ttfamily int num\+Rom\+Banks = 0}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a66ef36eca2112011379866bb326fbb62}\label{mmu_8cpp_a66ef36eca2112011379866bb326fbb62}} 
+\index{mmu.cpp@{mmu.cpp}!numSaveWrites@{numSaveWrites}}
+\index{numSaveWrites@{numSaveWrites}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{numSaveWrites}{numSaveWrites}}
+{\footnotesize\ttfamily int num\+Save\+Writes = 0}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00082}{82}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a2fc704c0296f94348be667e775ff23b3}\label{mmu_8cpp_a2fc704c0296f94348be667e775ff23b3}} 
+\index{mmu.cpp@{mmu.cpp}!ramEnabled@{ramEnabled}}
+\index{ramEnabled@{ramEnabled}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{ramEnabled}{ramEnabled}}
+{\footnotesize\ttfamily bool ram\+Enabled}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a2e99c78e3943a1e70d5e79a314aee490}\label{mmu_8cpp_a2e99c78e3943a1e70d5e79a314aee490}} 
+\index{mmu.cpp@{mmu.cpp}!rawTime@{rawTime}}
+\index{rawTime@{rawTime}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{rawTime}{rawTime}}
+{\footnotesize\ttfamily time\+\_\+t raw\+Time\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a0d0f7c5b906a65fe6071f7c45277828b}\label{mmu_8cpp_a0d0f7c5b906a65fe6071f7c45277828b}} 
+\index{mmu.cpp@{mmu.cpp}!readFunc@{readFunc}}
+\index{readFunc@{readFunc}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{readFunc}{readFunc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmu_8cpp_ad2fbb863d2cbdfe70120038f5b10b5bd}{mbc\+Read}} read\+Func}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00096}{96}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a2595910b448f4f3cb2826c7207f2e5d0}\label{mmu_8cpp_a2595910b448f4f3cb2826c7207f2e5d0}} 
+\index{mmu.cpp@{mmu.cpp}!resultantGBMode@{resultantGBMode}}
+\index{resultantGBMode@{resultantGBMode}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{resultantGBMode}{resultantGBMode}}
+{\footnotesize\ttfamily int resultant\+GBMode}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_afb151a592d6b5795a0f0480d7b3a5690}\label{mmu_8cpp_afb151a592d6b5795a0f0480d7b3a5690}} 
+\index{mmu.cpp@{mmu.cpp}!rockmanMapper@{rockmanMapper}}
+\index{rockmanMapper@{rockmanMapper}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{rockmanMapper}{rockmanMapper}}
+{\footnotesize\ttfamily bool rockman\+Mapper}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00069}{69}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aa6f131debd73127c437bad1e4a9a5232}\label{mmu_8cpp_aa6f131debd73127c437bad1e4a9a5232}} 
+\index{mmu.cpp@{mmu.cpp}!romBank@{romBank}}
+\index{romBank@{romBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{romBank}{romBank}}
+{\footnotesize\ttfamily int rom\+Bank}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aac8b23ae63783721de82945e3fd04585}\label{mmu_8cpp_aac8b23ae63783721de82945e3fd04585}} 
+\index{mmu.cpp@{mmu.cpp}!rumbleInserted@{rumbleInserted}}
+\index{rumbleInserted@{rumbleInserted}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{rumbleInserted}{rumbleInserted}}
+{\footnotesize\ttfamily int rumble\+Inserted = 0}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_aa6654eea5fc0c5ae97a818042a1c18c5}\label{mmu_8cpp_aa6654eea5fc0c5ae97a818042a1c18c5}} 
+\index{mmu.cpp@{mmu.cpp}!rumbleStrength@{rumbleStrength}}
+\index{rumbleStrength@{rumbleStrength}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{rumbleStrength}{rumbleStrength}}
+{\footnotesize\ttfamily int rumble\+Strength}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ab8d5eb3fa3c01de42ea78c58e69ca94c}\label{mmu_8cpp_ab8d5eb3fa3c01de42ea78c58e69ca94c}} 
+\index{mmu.cpp@{mmu.cpp}!rumbleValue@{rumbleValue}}
+\index{rumbleValue@{rumbleValue}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{rumbleValue}{rumbleValue}}
+{\footnotesize\ttfamily bool rumble\+Value = 0}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a2dba7f54476ce8bb4a8f304c33a41075}\label{mmu_8cpp_a2dba7f54476ce8bb4a8f304c33a41075}} 
+\index{mmu.cpp@{mmu.cpp}!saveModified@{saveModified}}
+\index{saveModified@{saveModified}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{saveModified}{saveModified}}
+{\footnotesize\ttfamily bool save\+Modified = false}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_a7d0ed1b85995cb654491c9e0958abed2}\label{mmu_8cpp_a7d0ed1b85995cb654491c9e0958abed2}} 
+\index{mmu.cpp@{mmu.cpp}!vram@{vram}}
+\index{vram@{vram}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{vram}{vram}}
+{\footnotesize\ttfamily u8 vram\mbox{[}2\mbox{]}\mbox{[}0x2000\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_adf5f76879a2dc41ba5b73a2fbe844c26}\label{mmu_8cpp_adf5f76879a2dc41ba5b73a2fbe844c26}} 
+\index{mmu.cpp@{mmu.cpp}!vramBank@{vramBank}}
+\index{vramBank@{vramBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{vramBank}{vramBank}}
+{\footnotesize\ttfamily int vram\+Bank}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_abc159efa8df9b452d4a5cfefee7258e5}\label{mmu_8cpp_abc159efa8df9b452d4a5cfefee7258e5}} 
+\index{mmu.cpp@{mmu.cpp}!wram@{wram}}
+\index{wram@{wram}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{wram}{wram}}
+{\footnotesize\ttfamily u8 wram\mbox{[}8\mbox{]}\mbox{[}0x1000\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ad746f082fa7f3e1b582d29eb9863cc33}\label{mmu_8cpp_ad746f082fa7f3e1b582d29eb9863cc33}} 
+\index{mmu.cpp@{mmu.cpp}!wramBank@{wramBank}}
+\index{wramBank@{wramBank}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{wramBank}{wramBank}}
+{\footnotesize\ttfamily int wram\+Bank}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00063}{63}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{mmu_8cpp_ab2558741c95cd9e8c284297444bc42bb}\label{mmu_8cpp_ab2558741c95cd9e8c284297444bc42bb}} 
+\index{mmu.cpp@{mmu.cpp}!writeFunc@{writeFunc}}
+\index{writeFunc@{writeFunc}!mmu.cpp@{mmu.cpp}}
+\doxysubsubsection{\texorpdfstring{writeFunc}{writeFunc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{mmu_8cpp_ad019ba8ba5869f29e6cfdfe5ef33e06f}{mbc\+Write}} write\+Func}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+

@@ -1,0 +1,50 @@
+\hypertarget{cheats_8h_source}{}\doxysection{cheats.\+h}
+\label{cheats_8h_source}\index{arm9/include/cheats.h@{arm9/include/cheats.h}}
+\mbox{\hyperlink{cheats_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00004}\mbox{\hyperlink{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}{00004}}\ \textcolor{preprocessor}{\#define\ MAX\_CHEAT\_NAME\_LEN\ 24}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00006}\mbox{\hyperlink{structcheat__t}{00006}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcheat__t}{cheat\_t}}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00007}00007\ \{}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00008}\mbox{\hyperlink{structcheat__t_abf6068fb1afbdc7aea9a6340f663c723}{00008}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structcheat__t_abf6068fb1afbdc7aea9a6340f663c723}{name}}[\mbox{\hyperlink{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}{MAX\_CHEAT\_NAME\_LEN}}\ +\ 1];}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00009}\mbox{\hyperlink{structcheat__t_a9fe081038fb1923c06cc290baf50155f}{00009}}\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structcheat__t_a9fe081038fb1923c06cc290baf50155f}{cheatString}}[12];}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00010}\mbox{\hyperlink{structcheat__t_ae24726a80e05c8fe4360a74d27288583}{00010}}\ \ \ \ \ u8\ \mbox{\hyperlink{structcheat__t_ae24726a80e05c8fe4360a74d27288583}{flags}};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00011}\mbox{\hyperlink{structcheat__t_a8518208cca04b4482ea6dfcba5ad86cf}{00011}}\ \ \ \ \ u8\ \mbox{\hyperlink{structcheat__t_a8518208cca04b4482ea6dfcba5ad86cf}{data}};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00012}\mbox{\hyperlink{structcheat__t_a135ba2b10017d1b2c464982d7e7204bc}{00012}}\ \ \ \ \ u16\ \mbox{\hyperlink{structcheat__t_a135ba2b10017d1b2c464982d7e7204bc}{address}};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00013}00013\ \ \ \ \ \textcolor{keyword}{union}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00014}00014\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00015}\mbox{\hyperlink{structcheat__t_a31b5e61dabc1af2a912bbf9631c824ce}{00015}}\ \ \ \ \ \ \ \ \ u8\ \mbox{\hyperlink{structcheat__t_a31b5e61dabc1af2a912bbf9631c824ce}{compare}};\ \textcolor{comment}{/*\ For\ GameGenie\ codes\ */}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00016}\mbox{\hyperlink{structcheat__t_a914574353e98ba0693716bf4188084fd}{00016}}\ \ \ \ \ \ \ \ \ u8\ \mbox{\hyperlink{structcheat__t_a914574353e98ba0693716bf4188084fd}{bank}};\ \ \ \ \textcolor{comment}{/*\ For\ Gameshark\ codes\ */}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00017}00017\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00018}\mbox{\hyperlink{structcheat__t_aa4b706d04851c7b081ce272a61569345}{00018}}\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{structcheat__t_aa4b706d04851c7b081ce272a61569345}{patchedBanks}};\ \ \textcolor{comment}{/*\ For\ GameGenie\ codes\ */}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00019}\mbox{\hyperlink{structcheat__t_a7722ebeb47b1811b59116a6ca9b9b945}{00019}}\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{structcheat__t_a7722ebeb47b1811b59116a6ca9b9b945}{patchedValues}};\ \textcolor{comment}{/*\ For\ GameGenie\ codes\ */}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00020}\mbox{\hyperlink{cheats_8h_a15367848fc65eab384bdffb0381b3ff7}{00020}}\ \}\ \mbox{\hyperlink{structcheat__t}{cheat\_t}};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00022}\mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{00022}}\ \textcolor{preprocessor}{\#define\ MAX\_CHEATS\ 900}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00023}\mbox{\hyperlink{cheats_8h_a1ad4126493640bd1bb51a3e2e1fa4ee9}{00023}}\ \textcolor{preprocessor}{\#define\ FLAG\_ENABLED\ (1\ <<\ 0)}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00024}\mbox{\hyperlink{cheats_8h_a989c487c4492a35771745beb6dda4d36}{00024}}\ \textcolor{preprocessor}{\#define\ FLAG\_TYPE\_MASK\ (3\ <<\ 2)}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00025}\mbox{\hyperlink{cheats_8h_ae14c6bd00e5fe4a6b923271ce431e0e7}{00025}}\ \textcolor{preprocessor}{\#define\ FLAG\_GAMEGENIE\ (1\ <<\ 2)}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00026}\mbox{\hyperlink{cheats_8h_a1eb7e7260a603b7b1fd9cfba3c3d49f7}{00026}}\ \textcolor{preprocessor}{\#define\ FLAG\_GAMEGENIE1\ (2\ <<\ 2)}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00027}\mbox{\hyperlink{cheats_8h_aae0d3ee18ea11040ef15ec2678dacdb8}{00027}}\ \textcolor{preprocessor}{\#define\ FLAG\_GAMESHARK\ (3\ <<\ 2)}}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00029}00029\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{cheats_8h_a77d9fae8175282841c0cdda4dd1dc24a}{cheatsEnabled}};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00030}00030\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structcheat__t}{cheat\_t}}\ \mbox{\hyperlink{cheats_8h_a90e63aca24096c387b174644b9267723}{cheats}}[\mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{MAX\_CHEATS}}];}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00031}00031\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{cheats_8h_a87e3d45d0a2c77e9b41312f677900af7}{numCheats}};}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00033}00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}{enableCheats}}(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00034}00034\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{cheats_8h_a909f0abd9b8e7c793c27e9c1592d8c48}{addCheat}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *str);}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00035}00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_ab25e60b64f04206de72e8173d012de17}{toggleCheat}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00037}00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}{unapplyGGCheat}}(\textcolor{keywordtype}{int}\ cheat);}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00038}00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}{applyGGCheatsToBank}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{mmu_8h_aa6f131debd73127c437bad1e4a9a5232}{romBank}});}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00040}00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_af83e379a1b69795e5899a304e643fc6a}{applyGSCheats}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00042}00042\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}{startCheatMenu}}();}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00043}00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}{loadCheats}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}});}
+\DoxyCodeLine{\Hypertarget{cheats_8h_source_l00044}00044\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}{saveCheats}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}});}
+
+\end{DoxyCode}

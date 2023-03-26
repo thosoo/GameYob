@@ -1,0 +1,216 @@
+\hypertarget{sound_8c}{}\doxysection{arm7/source/sound.c File Reference}
+\label{sound_8c}\index{arm7/source/sound.c@{arm7/source/sound.c}}
+{\ttfamily \#include $<$nds/arm7/audio.\+h$>$}\newline
+{\ttfamily \#include $<$nds/ipc.\+h$>$}\newline
+{\ttfamily \#include $<$nds/fifocommon.\+h$>$}\newline
+{\ttfamily \#include $<$nds/fifomessages.\+h$>$}\newline
+{\ttfamily \#include $<$nds/system.\+h$>$}\newline
+{\ttfamily \#include $<$nds/timers.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}noise.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sound_8c_a0ea92f18bf78e0ba0c2ef6493e6ab88a}{SOUND\+\_\+\+RESOLUTION}}~150
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sound_8c_a9f16139ed89e04bbf426e98e409bf5d8}{start\+Channel}} (int)
+\item 
+void \mbox{\hyperlink{sound_8c_ad8597cd63777668e6153a1ef0f48cf8e}{set\+Channel\+Volume}} (int, bool)
+\item 
+void \mbox{\hyperlink{sound_8c_a210f5cfc9927a09701d10a0668c293aa}{do\+Command}} (u32)
+\item 
+void \mbox{\hyperlink{sound_8c_a4ffc273b6ed9c89c1296b82e04cfd680}{update\+Master\+Volume}} ()
+\item 
+void \mbox{\hyperlink{sound_8c_afc5d21328de513f36d016835d0a935e5}{update\+Channel}} (int, bool)
+\item 
+void \mbox{\hyperlink{sound_8c_a18e3acb918b133462ef8efb03bce74d4}{set\+Hyper\+Sound}} (int)
+\item 
+u8 lfsr7\+Noise\+Sample\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{sound_8c_ab62e524d64b812841067f3f311bde8ab}{ALIGN}} (4)
+\item 
+void \mbox{\hyperlink{sound_8c_ae61918cb73b50984d9baf24e19c3db4d}{timer\+Callback}} ()
+\item 
+void \mbox{\hyperlink{sound_8c_a2517bf8a5f352cd5aa55c71564341f8b}{gameboy\+Sound\+Command\+Handler}} (u32 command, void $\ast$userdata)
+\item 
+void \mbox{\hyperlink{sound_8c_a8acfbecedff5019a4fa42da181423441}{install\+Gameboy\+Sound\+FIFO}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sound_8c_aa1b33e324aea9f7a55ca620c0fd4951e}{channels}} \mbox{[}4\mbox{]} = \{8, 9, 0, 14\}
+\item 
+const int \mbox{\hyperlink{sound_8c_ad09d9caa46ff9c209adc53c160022dae}{duty\+Index}} \mbox{[}4\mbox{]} = \{0, 1, 3, 5\}
+\item 
+u32 \mbox{\hyperlink{sound_8c_a78a757c15ca6c9644374960b8ea64c4f}{schannel\+CR}} \mbox{[}4\mbox{]}
+\item 
+u8 \mbox{\hyperlink{sound_8c_aedd61d10e463df5f1251e8089f554c52}{background\+Sample}} \mbox{[}16\mbox{]}
+\item 
+bool \mbox{\hyperlink{sound_8c_acb4572c2c7c59e6f1b9a5a076a3a7e8d}{current\+Lfsr}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sound_8c_a0ea92f18bf78e0ba0c2ef6493e6ab88a}\label{sound_8c_a0ea92f18bf78e0ba0c2ef6493e6ab88a}} 
+\index{sound.c@{sound.c}!SOUND\_RESOLUTION@{SOUND\_RESOLUTION}}
+\index{SOUND\_RESOLUTION@{SOUND\_RESOLUTION}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{SOUND\_RESOLUTION}{SOUND\_RESOLUTION}}
+{\footnotesize\ttfamily \#define SOUND\+\_\+\+RESOLUTION~150}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00010}{10}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sound_8c_ab62e524d64b812841067f3f311bde8ab}\label{sound_8c_ab62e524d64b812841067f3f311bde8ab}} 
+\index{sound.c@{sound.c}!ALIGN@{ALIGN}}
+\index{ALIGN@{ALIGN}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{ALIGN()}{ALIGN()}}
+{\footnotesize\ttfamily u8 lfsr7\+Noise\+Sample\mbox{[}$\,$\mbox{]} ALIGN (\begin{DoxyParamCaption}\item[{4}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{sound_8c_a210f5cfc9927a09701d10a0668c293aa}\label{sound_8c_a210f5cfc9927a09701d10a0668c293aa}} 
+\index{sound.c@{sound.c}!doCommand@{doCommand}}
+\index{doCommand@{doCommand}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{doCommand()}{doCommand()}}
+{\footnotesize\ttfamily void do\+Command (\begin{DoxyParamCaption}\item[{u32}]{command }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00042}{42}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_a2517bf8a5f352cd5aa55c71564341f8b}\label{sound_8c_a2517bf8a5f352cd5aa55c71564341f8b}} 
+\index{sound.c@{sound.c}!gameboySoundCommandHandler@{gameboySoundCommandHandler}}
+\index{gameboySoundCommandHandler@{gameboySoundCommandHandler}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{gameboySoundCommandHandler()}{gameboySoundCommandHandler()}}
+{\footnotesize\ttfamily void gameboy\+Sound\+Command\+Handler (\begin{DoxyParamCaption}\item[{u32}]{command,  }\item[{void $\ast$}]{userdata }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00268}{268}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_a8acfbecedff5019a4fa42da181423441}\label{sound_8c_a8acfbecedff5019a4fa42da181423441}} 
+\index{sound.c@{sound.c}!installGameboySoundFIFO@{installGameboySoundFIFO}}
+\index{installGameboySoundFIFO@{installGameboySoundFIFO}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{installGameboySoundFIFO()}{installGameboySoundFIFO()}}
+{\footnotesize\ttfamily void install\+Gameboy\+Sound\+FIFO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00274}{274}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_ad8597cd63777668e6153a1ef0f48cf8e}\label{sound_8c_ad8597cd63777668e6153a1ef0f48cf8e}} 
+\index{sound.c@{sound.c}!setChannelVolume@{setChannelVolume}}
+\index{setChannelVolume@{setChannelVolume}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{setChannelVolume()}{setChannelVolume()}}
+{\footnotesize\ttfamily void set\+Channel\+Volume (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{bool}]{write }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00129}{129}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_a18e3acb918b133462ef8efb03bce74d4}\label{sound_8c_a18e3acb918b133462ef8efb03bce74d4}} 
+\index{sound.c@{sound.c}!setHyperSound@{setHyperSound}}
+\index{setHyperSound@{setHyperSound}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{setHyperSound()}{setHyperSound()}}
+{\footnotesize\ttfamily void set\+Hyper\+Sound (\begin{DoxyParamCaption}\item[{int}]{enabled }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00260}{260}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_a9f16139ed89e04bbf426e98e409bf5d8}\label{sound_8c_a9f16139ed89e04bbf426e98e409bf5d8}} 
+\index{sound.c@{sound.c}!startChannel@{startChannel}}
+\index{startChannel@{startChannel}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{startChannel()}{startChannel()}}
+{\footnotesize\ttfamily void start\+Channel (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00150}{150}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_ae61918cb73b50984d9baf24e19c3db4d}\label{sound_8c_ae61918cb73b50984d9baf24e19c3db4d}} 
+\index{sound.c@{sound.c}!timerCallback@{timerCallback}}
+\index{timerCallback@{timerCallback}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{timerCallback()}{timerCallback()}}
+{\footnotesize\ttfamily void timer\+Callback (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00106}{106}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_afc5d21328de513f36d016835d0a935e5}\label{sound_8c_afc5d21328de513f36d016835d0a935e5}} 
+\index{sound.c@{sound.c}!updateChannel@{updateChannel}}
+\index{updateChannel@{updateChannel}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{updateChannel()}{updateChannel()}}
+{\footnotesize\ttfamily void update\+Channel (\begin{DoxyParamCaption}\item[{int}]{c,  }\item[{bool}]{write }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00195}{195}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_a4ffc273b6ed9c89c1296b82e04cfd680}\label{sound_8c_a4ffc273b6ed9c89c1296b82e04cfd680}} 
+\index{sound.c@{sound.c}!updateMasterVolume@{updateMasterVolume}}
+\index{updateMasterVolume@{updateMasterVolume}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{updateMasterVolume()}{updateMasterVolume()}}
+{\footnotesize\ttfamily void update\+Master\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00232}{232}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{sound_8c_aedd61d10e463df5f1251e8089f554c52}\label{sound_8c_aedd61d10e463df5f1251e8089f554c52}} 
+\index{sound.c@{sound.c}!backgroundSample@{backgroundSample}}
+\index{backgroundSample@{backgroundSample}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{backgroundSample}{backgroundSample}}
+{\footnotesize\ttfamily u8 background\+Sample\mbox{[}16\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00023}{23}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_aa1b33e324aea9f7a55ca620c0fd4951e}\label{sound_8c_aa1b33e324aea9f7a55ca620c0fd4951e}} 
+\index{sound.c@{sound.c}!channels@{channels}}
+\index{channels@{channels}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{channels}{channels}}
+{\footnotesize\ttfamily int channels\mbox{[}4\mbox{]} = \{8, 9, 0, 14\}}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00019}{19}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_acb4572c2c7c59e6f1b9a5a076a3a7e8d}\label{sound_8c_acb4572c2c7c59e6f1b9a5a076a3a7e8d}} 
+\index{sound.c@{sound.c}!currentLfsr@{currentLfsr}}
+\index{currentLfsr@{currentLfsr}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{currentLfsr}{currentLfsr}}
+{\footnotesize\ttfamily bool current\+Lfsr}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00025}{25}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_ad09d9caa46ff9c209adc53c160022dae}\label{sound_8c_ad09d9caa46ff9c209adc53c160022dae}} 
+\index{sound.c@{sound.c}!dutyIndex@{dutyIndex}}
+\index{dutyIndex@{dutyIndex}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{dutyIndex}{dutyIndex}}
+{\footnotesize\ttfamily const int duty\+Index\mbox{[}4\mbox{]} = \{0, 1, 3, 5\}}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00020}{20}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{sound_8c_a78a757c15ca6c9644374960b8ea64c4f}\label{sound_8c_a78a757c15ca6c9644374960b8ea64c4f}} 
+\index{sound.c@{sound.c}!schannelCR@{schannelCR}}
+\index{schannelCR@{schannelCR}!sound.c@{sound.c}}
+\doxysubsubsection{\texorpdfstring{schannelCR}{schannelCR}}
+{\footnotesize\ttfamily u32 schannel\+CR\mbox{[}4\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00021}{21}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+

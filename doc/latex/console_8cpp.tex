@@ -1,0 +1,1284 @@
+\hypertarget{console_8cpp}{}\doxysection{arm9/source/console.cpp File Reference}
+\label{console_8cpp}\index{arm9/source/console.cpp@{arm9/source/console.cpp}}
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gbprinter.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}filechooser.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cheats.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}3in1.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_menu_option}{Menu\+Option}}
+\item 
+struct \mbox{\hyperlink{struct_console_sub_menu}{Console\+Sub\+Menu}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{console_8cpp_a88122dbbd2b78b1324a4ce539fb63188}{print\+Version\+Info}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a7e6aec814a0743e7fd2d26fb1874ab05}{sub\+Menu\+Generic\+Update\+Func}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a116d0d406ce2f7e768888dfc2f1b07bf}{suspend\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ad81d08c1a43f05e2d6bddaff30d59602}{exit\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a241d20e6ea1c130a32710d3ae0ab0a47}{exit\+No\+Save\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a79938fc3048d002ef31e01a4d8d1fc22}{console\+Output\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a109c60b14a265338d738c648fd6c7d57}{return\+To\+Launcher\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a851a8d339a5eb6a692ccc5cbfe397496}{nifi\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_afe6b217e36c26d4b5bf65afceb85b2ce}{printer\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ae158cfad2f72c559b05c1e760daae709}{cheat\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a9d1effc4dab05779d217f23d244efcda}{key\+Config\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ad48dc7c2cc7b526ec565fc57fb03e071}{save\+Settings\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a84f53ce1805406b0b9a0cf7a00cb15cc}{state\+Select\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a23f49633a76d01be46e18209234b6405}{state\+Save\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a4ba9cfc99aced55470514316fa12e285}{state\+Load\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a6157963fe8d9fc622254cd8d0abf40c4}{state\+Delete\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_abca7b09b77cd6a37a40b624e0c41a701}{reset\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ac1490f4b2c86307eb90774981a8c94e0}{return\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a16006f6b46f687bcc7223a97ab8e0941}{gameboy\+Mode\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_aec582d55f45271898aa19eeb8f0ec8db}{gba\+Mode\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a331acbcfd4a310ac26f30b658887fb35}{sgb\+Mode\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a671189250d5307e98b66622733c19ccd}{bios\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a4e6ab386fa02f25df5f5310d102d1ace}{set\+Screen\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a76e1fe3cf90260f7cf7120544fdf3958}{set\+Single\+Screen\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_afffe4c69994af0c4971c9802df6308b5}{set\+Scale\+Mode\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a7b3ba0e709ac3bceb4de44d565a34484}{set\+Scale\+Filter\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a94dd43141081856127937db24ed294f0}{custom\+Border\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_aa0ab45f408db004f8dc22f4ac222f258}{sgb\+Border\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_aef95a5d6fb8953628aa4ec412c175b91}{vblank\+Wait\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_aeaaee96010340c6794df62f6828445ed}{hblank\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a372da41534da468e2f31da9cabe05449}{window\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a5b66be9a0b0bd0a47a80b66879d57f52}{sound\+Enable\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a57b769bd41417aecbf31b2e22a68840a}{advance\+Frame\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_af95142da53c3c0bb81185047f718fbb4}{rom\+Info\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a334a019474a39541f3121ebc59d3c033}{version\+Info\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ac85484c9bdd3a771ba03dad2a547128f}{set\+Chan\+Enabled}} (int chan, int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ab11634b7d2759db8f72e9691e08f9c16}{chan1\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a8132633be124dec682d6ebee1960b3ce}{chan2\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a8b5ffaf53d028c85f8032adc2eb00149}{chan3\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a8cda3469daed1d217fe835126bf5d04f}{chan4\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_acd4a7be91660a10d713a9d06f788cb33}{set\+Rumble\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ab3966734a0db7f04a4d55a52fd0390a4}{hyper\+Sound\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_a90926c4b39057470bc28390fcf512cec}{set\+Auto\+Save\+Func}} (int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_ad856b53da91c1cc12f94a5634bf79cda}{set\+Menu\+Defaults}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a59c2926dd9b0968badf463aaf4f91422}{display\+Menu}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_ac8d78534d723d2c92c9dd9f81d97bc97}{close\+Menu}} ()
+\item 
+bool \mbox{\hyperlink{console_8cpp_a0592872559eb432700e6b54c46b9686d}{is\+Menu\+On}} ()
+\item 
+bool \mbox{\hyperlink{console_8cpp_a8e51251f1892ec6348218f9f2b84035d}{is\+Console\+On}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_abbe4f0a9055ffd1709a5407f53186f9a}{redraw\+Menu}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_ac05247c60977ff8e8674fef3132618c3}{update\+Menu}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a5750df6867a9320a7204f17a300e8f17}{print\+Menu\+Message}} (const char $\ast$s)
+\item 
+void \mbox{\hyperlink{console_8cpp_a953cd0c00f8533eec281794adb4755bd}{display\+Sub\+Menu}} (void($\ast$update\+Func)())
+\item 
+void \mbox{\hyperlink{console_8cpp_a02ac40bcc0988bcd6d5721eebfb1b212}{close\+Sub\+Menu}} ()
+\item 
+int \mbox{\hyperlink{console_8cpp_a43ba163fb5b65bd8be355a721dde7d5c}{get\+Menu\+Option}} (const char $\ast$option\+Name)
+\item 
+void \mbox{\hyperlink{console_8cpp_ae61c988f3448b35f7a1e44131d4cd2b7}{set\+Menu\+Option}} (const char $\ast$option\+Name, int value)
+\item 
+void \mbox{\hyperlink{console_8cpp_aaa6a58f35096ea47a82b556745e253d1}{enable\+Menu\+Option}} (const char $\ast$option\+Name)
+\item 
+void \mbox{\hyperlink{console_8cpp_a9dfc9bc2886a833167e88e9579d166d4}{disable\+Menu\+Option}} (const char $\ast$option\+Name)
+\item 
+void \mbox{\hyperlink{console_8cpp_a3025f55f827ec817b7d74c724bece474}{menu\+Parse\+Config}} (const char $\ast$line)
+\item 
+void \mbox{\hyperlink{console_8cpp_a7db892803305864c36632580ad04ad83}{menu\+Print\+Config}} (FILE $\ast$file)
+\item 
+void \mbox{\hyperlink{console_8cpp_a62de465465602ecf44e199d8e1dc876a}{print\+Log}} (const char $\ast$format,...)
+\item 
+void \mbox{\hyperlink{console_8cpp_acef3b66e29b635d390c10d4a3211f49f}{enable\+Console\+Backlight2}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_abf4a1314b19a414712b8757f0a0d3c3f}{enable\+Console\+Backlight}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a500f64b146fc2d165bc55bc326c9b12b}{setup\+Scaled\+Screens2}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_ad1666d5f6f8bd9db1cb2cf66925eda25}{setup\+Scaled\+Screens1}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a066d62f3dd4d016753b4eb1fffff25c7}{setup\+Unscaled\+Screens}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_ac1262443731a422c48aa3187de98adf9}{update\+Screens}} (bool wait\+To\+Finish)
+\item 
+void \mbox{\hyperlink{console_8cpp_a295722636648521691f4dc6fbe0646df}{set\+Print\+Console}} (Print\+Console $\ast$console)
+\item 
+Print\+Console $\ast$ \mbox{\hyperlink{console_8cpp_a74f4527cb67b8d6676eacb30ed7af289}{get\+Print\+Console}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a95137de184d71a8ae5e277695165a38d}{console\+Set\+Pos\+Color}} (int x, int y, int color)
+\item 
+void \mbox{\hyperlink{console_8cpp_aa2f459c798f3af7bde9854a113f79267}{console\+Set\+Line\+Color}} (int line, int color)
+\item 
+void \mbox{\hyperlink{console_8cpp_a7d2dd305b08db0a13d0a0fa0ffcff78e}{iprintf\+Colored}} (int palette, const char $\ast$format,...)
+\item 
+int \mbox{\hyperlink{console_8cpp_a5a0c827e89cd41a72eee36be5d8dbd27}{check\+Rumble}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a60483e1d9c79534c8c4d71cb98654907}{disable\+Sleep\+Mode}} ()
+\item 
+void \mbox{\hyperlink{console_8cpp_a50a69c022725d0b54985ee39f399b45f}{enable\+Sleep\+Mode}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{console_8cpp_a1d1027d31468018c85b9b33197870402}{screen\+Tile\+Width}} = 32
+\item 
+const int \mbox{\hyperlink{console_8cpp_a24877a539aaf8dd5c9b1c06b6371b8f0}{backlights}} \mbox{[}$\,$\mbox{]} = \{PM\+\_\+\+BACKLIGHT\+\_\+\+TOP, PM\+\_\+\+BACKLIGHT\+\_\+\+BOTTOM\}
+\item 
+bool \mbox{\hyperlink{console_8cpp_aa6440b86d57fbc4dd2d279145ca35099}{console\+Debug\+Output}} = false
+\item 
+bool \mbox{\hyperlink{console_8cpp_adc1217201890e09bcc829cf02c20d9ea}{menu\+On}} = false
+\item 
+bool \mbox{\hyperlink{console_8cpp_ab48cf4f68fa4c26febbebca02f21251d}{console\+Initialized}} = false
+\item 
+int \mbox{\hyperlink{console_8cpp_a26b42906c0869d0cef7431a39a162950}{menu}} = 0
+\item 
+int \mbox{\hyperlink{console_8cpp_a96613d07df4205a377ad9cb38b3a9d27}{option}} = -\/1
+\item 
+char \mbox{\hyperlink{console_8cpp_a05ce29cd8679d5fb37264829ebc22254}{print\+Message}} \mbox{[}33\mbox{]}
+\item 
+int \mbox{\hyperlink{console_8cpp_ab3cfa0d4080bf5ad5847aa85b3431557}{game\+Screen}}
+\item 
+int \mbox{\hyperlink{console_8cpp_a5b49f1692d7b0de099f2dca7a94ce812}{single\+Screen\+Mode}}
+\item 
+int \mbox{\hyperlink{console_8cpp_a736f6a5a0ef7cbd8892110dc80ae7946}{state\+Num}} = 0
+\item 
+Print\+Console $\ast$ \mbox{\hyperlink{console_8cpp_a0b4983e8d2606a5b7649c07d79ae9673}{menu\+Console}}
+\item 
+int \mbox{\hyperlink{console_8cpp_afd07a20fda1c1711a0f55764901c8df7}{gbc\+Mode\+Option}} = 0
+\item 
+bool \mbox{\hyperlink{console_8cpp_a9de52d50a90cde2422167a6b27346a34}{gba\+Mode\+Option}} = false
+\item 
+int \mbox{\hyperlink{console_8cpp_a5d5a5bbb3fa33716a2399b9317c82a59}{sgb\+Mode\+Option}} = false
+\item 
+bool \mbox{\hyperlink{console_8cpp_ad3e68069fa016efcb84ec2f382b74bc5}{custom\+Borders\+Enabled}}
+\item 
+bool \mbox{\hyperlink{console_8cpp_a317ff7205cdf33838b77012ea9027eb7}{sgb\+Borders\+Enabled}}
+\item 
+bool \mbox{\hyperlink{console_8cpp_a05d508b721ab9377e3c3a8b96faec074}{auto\+Saving\+Enabled}}
+\item 
+bool \mbox{\hyperlink{console_8cpp_ae4f50f9bd5378a0621603f7e35226f9e}{printer\+Enabled}}
+\item 
+volatile int \mbox{\hyperlink{console_8cpp_a2078567042b322f01cee579b15293627}{console\+Selected\+Row}} = -\/1
+\item 
+void($\ast$ \mbox{\hyperlink{console_8cpp_a849a29e484bcd9e23c629c3849ef9088}{sub\+Menu\+Update\+Func}} )()
+\item 
+int \mbox{\hyperlink{console_8cpp_aa419499bc88635e3e3e2ad6616e17563}{interrupt\+Wait\+Mode}}
+\item 
+bool \mbox{\hyperlink{console_8cpp_a7e77ece2ff8da663172ec7854ce1ad4a}{window\+Disabled}}
+\item 
+bool \mbox{\hyperlink{console_8cpp_ab764cbdc62a676940e3d9c4940461cea}{hblank\+Disabled}}
+\item 
+int \mbox{\hyperlink{console_8cpp_a9a80d626b495810428f2f14b4dae6ecb}{halt}}
+\item 
+int \mbox{\hyperlink{console_8cpp_aac8b23ae63783721de82945e3fd04585}{rumble\+Inserted}}
+\item 
+int \mbox{\hyperlink{console_8cpp_aa6654eea5fc0c5ae97a818042a1c18c5}{rumble\+Strength}}
+\item 
+\mbox{\hyperlink{struct_console_sub_menu}{Console\+Sub\+Menu}} \mbox{\hyperlink{console_8cpp_a1b44931b7baad2b7dbb5b901b8f23836}{menu\+List}} \mbox{[}$\,$\mbox{]}
+\item 
+const int \mbox{\hyperlink{console_8cpp_a08ebdc1aef57bb8856a540416e1ebb52}{num\+Menus}} = sizeof(\mbox{\hyperlink{console_8cpp_a1b44931b7baad2b7dbb5b901b8f23836}{menu\+List}}) / sizeof(\mbox{\hyperlink{struct_console_sub_menu}{Console\+Sub\+Menu}})
+\item 
+Print\+Console $\ast$ \mbox{\hyperlink{console_8cpp_a6a70ff269f0f9e83b116bfee33447818}{print\+Console}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{console_8cpp_a57b769bd41417aecbf31b2e22a68840a}\label{console_8cpp_a57b769bd41417aecbf31b2e22a68840a}} 
+\index{console.cpp@{console.cpp}!advanceFrameFunc@{advanceFrameFunc}}
+\index{advanceFrameFunc@{advanceFrameFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{advanceFrameFunc()}{advanceFrameFunc()}}
+{\footnotesize\ttfamily void advance\+Frame\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00328}{328}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a671189250d5307e98b66622733c19ccd}\label{console_8cpp_a671189250d5307e98b66622733c19ccd}} 
+\index{console.cpp@{console.cpp}!biosEnableFunc@{biosEnableFunc}}
+\index{biosEnableFunc@{biosEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{biosEnableFunc()}{biosEnableFunc()}}
+{\footnotesize\ttfamily void bios\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00244}{244}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ab11634b7d2759db8f72e9691e08f9c16}\label{console_8cpp_ab11634b7d2759db8f72e9691e08f9c16}} 
+\index{console.cpp@{console.cpp}!chan1Func@{chan1Func}}
+\index{chan1Func@{chan1Func}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{chan1Func()}{chan1Func()}}
+{\footnotesize\ttfamily void chan1\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00352}{352}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a8132633be124dec682d6ebee1960b3ce}\label{console_8cpp_a8132633be124dec682d6ebee1960b3ce}} 
+\index{console.cpp@{console.cpp}!chan2Func@{chan2Func}}
+\index{chan2Func@{chan2Func}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{chan2Func()}{chan2Func()}}
+{\footnotesize\ttfamily void chan2\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00356}{356}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a8b5ffaf53d028c85f8032adc2eb00149}\label{console_8cpp_a8b5ffaf53d028c85f8032adc2eb00149}} 
+\index{console.cpp@{console.cpp}!chan3Func@{chan3Func}}
+\index{chan3Func@{chan3Func}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{chan3Func()}{chan3Func()}}
+{\footnotesize\ttfamily void chan3\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00360}{360}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a8cda3469daed1d217fe835126bf5d04f}\label{console_8cpp_a8cda3469daed1d217fe835126bf5d04f}} 
+\index{console.cpp@{console.cpp}!chan4Func@{chan4Func}}
+\index{chan4Func@{chan4Func}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{chan4Func()}{chan4Func()}}
+{\footnotesize\ttfamily void chan4\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00364}{364}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ae158cfad2f72c559b05c1e760daae709}\label{console_8cpp_ae158cfad2f72c559b05c1e760daae709}} 
+\index{console.cpp@{console.cpp}!cheatFunc@{cheatFunc}}
+\index{cheatFunc@{cheatFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{cheatFunc()}{cheatFunc()}}
+{\footnotesize\ttfamily void cheat\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00152}{152}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a5a0c827e89cd41a72eee36be5d8dbd27}\label{console_8cpp_a5a0c827e89cd41a72eee36be5d8dbd27}} 
+\index{console.cpp@{console.cpp}!checkRumble@{checkRumble}}
+\index{checkRumble@{checkRumble}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{checkRumble()}{checkRumble()}}
+{\footnotesize\ttfamily int check\+Rumble (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01080}{1080}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ac8d78534d723d2c92c9dd9f81d97bc97}\label{console_8cpp_ac8d78534d723d2c92c9dd9f81d97bc97}} 
+\index{console.cpp@{console.cpp}!closeMenu@{closeMenu}}
+\index{closeMenu@{closeMenu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{closeMenu()}{closeMenu()}}
+{\footnotesize\ttfamily void close\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00504}{504}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a02ac40bcc0988bcd6d5721eebfb1b212}\label{console_8cpp_a02ac40bcc0988bcd6d5721eebfb1b212}} 
+\index{console.cpp@{console.cpp}!closeSubMenu@{closeSubMenu}}
+\index{closeSubMenu@{closeSubMenu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{closeSubMenu()}{closeSubMenu()}}
+{\footnotesize\ttfamily void close\+Sub\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00750}{750}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a79938fc3048d002ef31e01a4d8d1fc22}\label{console_8cpp_a79938fc3048d002ef31e01a4d8d1fc22}} 
+\index{console.cpp@{console.cpp}!consoleOutputFunc@{consoleOutputFunc}}
+\index{consoleOutputFunc@{consoleOutputFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleOutputFunc()}{consoleOutputFunc()}}
+{\footnotesize\ttfamily void console\+Output\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00098}{98}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aa2f459c798f3af7bde9854a113f79267}\label{console_8cpp_aa2f459c798f3af7bde9854a113f79267}} 
+\index{console.cpp@{console.cpp}!consoleSetLineColor@{consoleSetLineColor}}
+\index{consoleSetLineColor@{consoleSetLineColor}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleSetLineColor()}{consoleSetLineColor()}}
+{\footnotesize\ttfamily void console\+Set\+Line\+Color (\begin{DoxyParamCaption}\item[{int}]{line,  }\item[{int}]{color }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01034}{1034}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a95137de184d71a8ae5e277695165a38d}\label{console_8cpp_a95137de184d71a8ae5e277695165a38d}} 
+\index{console.cpp@{console.cpp}!consoleSetPosColor@{consoleSetPosColor}}
+\index{consoleSetPosColor@{consoleSetPosColor}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleSetPosColor()}{consoleSetPosColor()}}
+{\footnotesize\ttfamily void console\+Set\+Pos\+Color (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{color }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01027}{1027}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a94dd43141081856127937db24ed294f0}\label{console_8cpp_a94dd43141081856127937db24ed294f0}} 
+\index{console.cpp@{console.cpp}!customBorderEnableFunc@{customBorderEnableFunc}}
+\index{customBorderEnableFunc@{customBorderEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{customBorderEnableFunc()}{customBorderEnableFunc()}}
+{\footnotesize\ttfamily void custom\+Border\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00294}{294}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a9dfc9bc2886a833167e88e9579d166d4}\label{console_8cpp_a9dfc9bc2886a833167e88e9579d166d4}} 
+\index{console.cpp@{console.cpp}!disableMenuOption@{disableMenuOption}}
+\index{disableMenuOption@{disableMenuOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{disableMenuOption()}{disableMenuOption()}}
+{\footnotesize\ttfamily void disable\+Menu\+Option (\begin{DoxyParamCaption}\item[{const char $\ast$}]{option\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00802}{802}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a60483e1d9c79534c8c4d71cb98654907}\label{console_8cpp_a60483e1d9c79534c8c4d71cb98654907}} 
+\index{console.cpp@{console.cpp}!disableSleepMode@{disableSleepMode}}
+\index{disableSleepMode@{disableSleepMode}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{disableSleepMode()}{disableSleepMode()}}
+{\footnotesize\ttfamily void disable\+Sleep\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01101}{1101}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a59c2926dd9b0968badf463aaf4f91422}\label{console_8cpp_a59c2926dd9b0968badf463aaf4f91422}} 
+\index{console.cpp@{console.cpp}!displayMenu@{displayMenu}}
+\index{displayMenu@{displayMenu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{displayMenu()}{displayMenu()}}
+{\footnotesize\ttfamily void display\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00493}{493}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a953cd0c00f8533eec281794adb4755bd}\label{console_8cpp_a953cd0c00f8533eec281794adb4755bd}} 
+\index{console.cpp@{console.cpp}!displaySubMenu@{displaySubMenu}}
+\index{displaySubMenu@{displaySubMenu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{displaySubMenu()}{displaySubMenu()}}
+{\footnotesize\ttfamily void display\+Sub\+Menu (\begin{DoxyParamCaption}\item[{void($\ast$)()}]{update\+Func }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00746}{746}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_abf4a1314b19a414712b8757f0a0d3c3f}\label{console_8cpp_abf4a1314b19a414712b8757f0a0d3c3f}} 
+\index{console.cpp@{console.cpp}!enableConsoleBacklight@{enableConsoleBacklight}}
+\index{enableConsoleBacklight@{enableConsoleBacklight}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{enableConsoleBacklight()}{enableConsoleBacklight()}}
+{\footnotesize\ttfamily void enable\+Console\+Backlight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00872}{872}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_acef3b66e29b635d390c10d4a3211f49f}\label{console_8cpp_acef3b66e29b635d390c10d4a3211f49f}} 
+\index{console.cpp@{console.cpp}!enableConsoleBacklight2@{enableConsoleBacklight2}}
+\index{enableConsoleBacklight2@{enableConsoleBacklight2}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{enableConsoleBacklight2()}{enableConsoleBacklight2()}}
+{\footnotesize\ttfamily void enable\+Console\+Backlight2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00868}{868}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aaa6a58f35096ea47a82b556745e253d1}\label{console_8cpp_aaa6a58f35096ea47a82b556745e253d1}} 
+\index{console.cpp@{console.cpp}!enableMenuOption@{enableMenuOption}}
+\index{enableMenuOption@{enableMenuOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{enableMenuOption()}{enableMenuOption()}}
+{\footnotesize\ttfamily void enable\+Menu\+Option (\begin{DoxyParamCaption}\item[{const char $\ast$}]{option\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00785}{785}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a50a69c022725d0b54985ee39f399b45f}\label{console_8cpp_a50a69c022725d0b54985ee39f399b45f}} 
+\index{console.cpp@{console.cpp}!enableSleepMode@{enableSleepMode}}
+\index{enableSleepMode@{enableSleepMode}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{enableSleepMode()}{enableSleepMode()}}
+{\footnotesize\ttfamily void enable\+Sleep\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01110}{1110}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ad81d08c1a43f05e2d6bddaff30d59602}\label{console_8cpp_ad81d08c1a43f05e2d6bddaff30d59602}} 
+\index{console.cpp@{console.cpp}!exitFunc@{exitFunc}}
+\index{exitFunc@{exitFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{exitFunc()}{exitFunc()}}
+{\footnotesize\ttfamily void exit\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a241d20e6ea1c130a32710d3ae0ab0a47}\label{console_8cpp_a241d20e6ea1c130a32710d3ae0ab0a47}} 
+\index{console.cpp@{console.cpp}!exitNoSaveFunc@{exitNoSaveFunc}}
+\index{exitNoSaveFunc@{exitNoSaveFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{exitNoSaveFunc()}{exitNoSaveFunc()}}
+{\footnotesize\ttfamily void exit\+No\+Save\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00092}{92}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a16006f6b46f687bcc7223a97ab8e0941}\label{console_8cpp_a16006f6b46f687bcc7223a97ab8e0941}} 
+\index{console.cpp@{console.cpp}!gameboyModeFunc@{gameboyModeFunc}}
+\index{gameboyModeFunc@{gameboyModeFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{gameboyModeFunc()}{gameboyModeFunc()}}
+{\footnotesize\ttfamily void gameboy\+Mode\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00229}{229}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aec582d55f45271898aa19eeb8f0ec8db}\label{console_8cpp_aec582d55f45271898aa19eeb8f0ec8db}} 
+\index{console.cpp@{console.cpp}!gbaModeFunc@{gbaModeFunc}}
+\index{gbaModeFunc@{gbaModeFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{gbaModeFunc()}{gbaModeFunc()}}
+{\footnotesize\ttfamily void gba\+Mode\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00234}{234}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a43ba163fb5b65bd8be355a721dde7d5c}\label{console_8cpp_a43ba163fb5b65bd8be355a721dde7d5c}} 
+\index{console.cpp@{console.cpp}!getMenuOption@{getMenuOption}}
+\index{getMenuOption@{getMenuOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{getMenuOption()}{getMenuOption()}}
+{\footnotesize\ttfamily int get\+Menu\+Option (\begin{DoxyParamCaption}\item[{const char $\ast$}]{option\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00756}{756}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a74f4527cb67b8d6676eacb30ed7af289}\label{console_8cpp_a74f4527cb67b8d6676eacb30ed7af289}} 
+\index{console.cpp@{console.cpp}!getPrintConsole@{getPrintConsole}}
+\index{getPrintConsole@{getPrintConsole}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{getPrintConsole()}{getPrintConsole()}}
+{\footnotesize\ttfamily Print\+Console $\ast$ get\+Print\+Console (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01022}{1022}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aeaaee96010340c6794df62f6828445ed}\label{console_8cpp_aeaaee96010340c6794df62f6828445ed}} 
+\index{console.cpp@{console.cpp}!hblankEnableFunc@{hblankEnableFunc}}
+\index{hblankEnableFunc@{hblankEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{hblankEnableFunc()}{hblankEnableFunc()}}
+{\footnotesize\ttfamily void hblank\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00310}{310}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ab3966734a0db7f04a4d55a52fd0390a4}\label{console_8cpp_ab3966734a0db7f04a4d55a52fd0390a4}} 
+\index{console.cpp@{console.cpp}!hyperSoundFunc@{hyperSoundFunc}}
+\index{hyperSoundFunc@{hyperSoundFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{hyperSoundFunc()}{hyperSoundFunc()}}
+{\footnotesize\ttfamily void hyper\+Sound\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00376}{376}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a7d2dd305b08db0a13d0a0fa0ffcff78e}\label{console_8cpp_a7d2dd305b08db0a13d0a0fa0ffcff78e}} 
+\index{console.cpp@{console.cpp}!iprintfColored@{iprintfColored}}
+\index{iprintfColored@{iprintfColored}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{iprintfColored()}{iprintfColored()}}
+{\footnotesize\ttfamily void iprintf\+Colored (\begin{DoxyParamCaption}\item[{int}]{palette,  }\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01044}{1044}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a8e51251f1892ec6348218f9f2b84035d}\label{console_8cpp_a8e51251f1892ec6348218f9f2b84035d}} 
+\index{console.cpp@{console.cpp}!isConsoleOn@{isConsoleOn}}
+\index{isConsoleOn@{isConsoleOn}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{isConsoleOn()}{isConsoleOn()}}
+{\footnotesize\ttfamily bool is\+Console\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00516}{516}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a0592872559eb432700e6b54c46b9686d}\label{console_8cpp_a0592872559eb432700e6b54c46b9686d}} 
+\index{console.cpp@{console.cpp}!isMenuOn@{isMenuOn}}
+\index{isMenuOn@{isMenuOn}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{isMenuOn()}{isMenuOn()}}
+{\footnotesize\ttfamily bool is\+Menu\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00512}{512}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a9d1effc4dab05779d217f23d244efcda}\label{console_8cpp_a9d1effc4dab05779d217f23d244efcda}} 
+\index{console.cpp@{console.cpp}!keyConfigFunc@{keyConfigFunc}}
+\index{keyConfigFunc@{keyConfigFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{keyConfigFunc()}{keyConfigFunc()}}
+{\footnotesize\ttfamily void key\+Config\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a3025f55f827ec817b7d74c724bece474}\label{console_8cpp_a3025f55f827ec817b7d74c724bece474}} 
+\index{console.cpp@{console.cpp}!menuParseConfig@{menuParseConfig}}
+\index{menuParseConfig@{menuParseConfig}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{menuParseConfig()}{menuParseConfig()}}
+{\footnotesize\ttfamily void menu\+Parse\+Config (\begin{DoxyParamCaption}\item[{const char $\ast$}]{line }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00820}{820}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a7db892803305864c36632580ad04ad83}\label{console_8cpp_a7db892803305864c36632580ad04ad83}} 
+\index{console.cpp@{console.cpp}!menuPrintConfig@{menuPrintConfig}}
+\index{menuPrintConfig@{menuPrintConfig}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{menuPrintConfig()}{menuPrintConfig()}}
+{\footnotesize\ttfamily void menu\+Print\+Config (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00843}{843}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a851a8d339a5eb6a692ccc5cbfe397496}\label{console_8cpp_a851a8d339a5eb6a692ccc5cbfe397496}} 
+\index{console.cpp@{console.cpp}!nifiEnableFunc@{nifiEnableFunc}}
+\index{nifiEnableFunc@{nifiEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{nifiEnableFunc()}{nifiEnableFunc()}}
+{\footnotesize\ttfamily void nifi\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00130}{130}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_afe6b217e36c26d4b5bf65afceb85b2ce}\label{console_8cpp_afe6b217e36c26d4b5bf65afceb85b2ce}} 
+\index{console.cpp@{console.cpp}!printerEnableFunc@{printerEnableFunc}}
+\index{printerEnableFunc@{printerEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printerEnableFunc()}{printerEnableFunc()}}
+{\footnotesize\ttfamily void printer\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00142}{142}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a62de465465602ecf44e199d8e1dc876a}\label{console_8cpp_a62de465465602ecf44e199d8e1dc876a}} 
+\index{console.cpp@{console.cpp}!printLog@{printLog}}
+\index{printLog@{printLog}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printLog()}{printLog()}}
+{\footnotesize\ttfamily void print\+Log (\begin{DoxyParamCaption}\item[{const char $\ast$}]{format,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00855}{855}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a5750df6867a9320a7204f17a300e8f17}\label{console_8cpp_a5750df6867a9320a7204f17a300e8f17}} 
+\index{console.cpp@{console.cpp}!printMenuMessage@{printMenuMessage}}
+\index{printMenuMessage@{printMenuMessage}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printMenuMessage()}{printMenuMessage()}}
+{\footnotesize\ttfamily void print\+Menu\+Message (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00725}{725}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a88122dbbd2b78b1324a4ce539fb63188}\label{console_8cpp_a88122dbbd2b78b1324a4ce539fb63188}} 
+\index{console.cpp@{console.cpp}!printVersionInfo@{printVersionInfo}}
+\index{printVersionInfo@{printVersionInfo}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printVersionInfo()}{printVersionInfo()}}
+{\footnotesize\ttfamily void print\+Version\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{version_8cpp_source_l00004}{4}} of file \mbox{\hyperlink{version_8cpp_source}{version.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_abbe4f0a9055ffd1709a5407f53186f9a}\label{console_8cpp_abbe4f0a9055ffd1709a5407f53186f9a}} 
+\index{console.cpp@{console.cpp}!redrawMenu@{redrawMenu}}
+\index{redrawMenu@{redrawMenu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{redrawMenu()}{redrawMenu()}}
+{\footnotesize\ttfamily void redraw\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00521}{521}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_abca7b09b77cd6a37a40b624e0c41a701}\label{console_8cpp_abca7b09b77cd6a37a40b624e0c41a701}} 
+\index{console.cpp@{console.cpp}!resetFunc@{resetFunc}}
+\index{resetFunc@{resetFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{resetFunc()}{resetFunc()}}
+{\footnotesize\ttfamily void reset\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00217}{217}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ac1490f4b2c86307eb90774981a8c94e0}\label{console_8cpp_ac1490f4b2c86307eb90774981a8c94e0}} 
+\index{console.cpp@{console.cpp}!returnFunc@{returnFunc}}
+\index{returnFunc@{returnFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{returnFunc()}{returnFunc()}}
+{\footnotesize\ttfamily void return\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00223}{223}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a109c60b14a265338d738c648fd6c7d57}\label{console_8cpp_a109c60b14a265338d738c648fd6c7d57}} 
+\index{console.cpp@{console.cpp}!returnToLauncherFunc@{returnToLauncherFunc}}
+\index{returnToLauncherFunc@{returnToLauncherFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{returnToLauncherFunc()}{returnToLauncherFunc()}}
+{\footnotesize\ttfamily void return\+To\+Launcher\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00125}{125}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_af95142da53c3c0bb81185047f718fbb4}\label{console_8cpp_af95142da53c3c0bb81185047f718fbb4}} 
+\index{console.cpp@{console.cpp}!romInfoFunc@{romInfoFunc}}
+\index{romInfoFunc@{romInfoFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{romInfoFunc()}{romInfoFunc()}}
+{\footnotesize\ttfamily void rom\+Info\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00334}{334}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ad48dc7c2cc7b526ec565fc57fb03e071}\label{console_8cpp_ad48dc7c2cc7b526ec565fc57fb03e071}} 
+\index{console.cpp@{console.cpp}!saveSettingsFunc@{saveSettingsFunc}}
+\index{saveSettingsFunc@{saveSettingsFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{saveSettingsFunc()}{saveSettingsFunc()}}
+{\footnotesize\ttfamily void save\+Settings\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a90926c4b39057470bc28390fcf512cec}\label{console_8cpp_a90926c4b39057470bc28390fcf512cec}} 
+\index{console.cpp@{console.cpp}!setAutoSaveFunc@{setAutoSaveFunc}}
+\index{setAutoSaveFunc@{setAutoSaveFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setAutoSaveFunc()}{setAutoSaveFunc()}}
+{\footnotesize\ttfamily void set\+Auto\+Save\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00384}{384}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ac85484c9bdd3a771ba03dad2a547128f}\label{console_8cpp_ac85484c9bdd3a771ba03dad2a547128f}} 
+\index{console.cpp@{console.cpp}!setChanEnabled@{setChanEnabled}}
+\index{setChanEnabled@{setChanEnabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setChanEnabled()}{setChanEnabled()}}
+{\footnotesize\ttfamily void set\+Chan\+Enabled (\begin{DoxyParamCaption}\item[{int}]{chan,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00345}{345}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ad856b53da91c1cc12f94a5634bf79cda}\label{console_8cpp_ad856b53da91c1cc12f94a5634bf79cda}} 
+\index{console.cpp@{console.cpp}!setMenuDefaults@{setMenuDefaults}}
+\index{setMenuDefaults@{setMenuDefaults}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setMenuDefaults()}{setMenuDefaults()}}
+{\footnotesize\ttfamily void set\+Menu\+Defaults (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00474}{474}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ae61c988f3448b35f7a1e44131d4cd2b7}\label{console_8cpp_ae61c988f3448b35f7a1e44131d4cd2b7}} 
+\index{console.cpp@{console.cpp}!setMenuOption@{setMenuOption}}
+\index{setMenuOption@{setMenuOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setMenuOption()}{setMenuOption()}}
+{\footnotesize\ttfamily void set\+Menu\+Option (\begin{DoxyParamCaption}\item[{const char $\ast$}]{option\+Name,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00770}{770}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a295722636648521691f4dc6fbe0646df}\label{console_8cpp_a295722636648521691f4dc6fbe0646df}} 
+\index{console.cpp@{console.cpp}!setPrintConsole@{setPrintConsole}}
+\index{setPrintConsole@{setPrintConsole}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setPrintConsole()}{setPrintConsole()}}
+{\footnotesize\ttfamily void set\+Print\+Console (\begin{DoxyParamCaption}\item[{Print\+Console $\ast$}]{console }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01016}{1016}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_acd4a7be91660a10d713a9d06f788cb33}\label{console_8cpp_acd4a7be91660a10d713a9d06f788cb33}} 
+\index{console.cpp@{console.cpp}!setRumbleFunc@{setRumbleFunc}}
+\index{setRumbleFunc@{setRumbleFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setRumbleFunc()}{setRumbleFunc()}}
+{\footnotesize\ttfamily void set\+Rumble\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00369}{369}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a7b3ba0e709ac3bceb4de44d565a34484}\label{console_8cpp_a7b3ba0e709ac3bceb4de44d565a34484}} 
+\index{console.cpp@{console.cpp}!setScaleFilterFunc@{setScaleFilterFunc}}
+\index{setScaleFilterFunc@{setScaleFilterFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setScaleFilterFunc()}{setScaleFilterFunc()}}
+{\footnotesize\ttfamily void set\+Scale\+Filter\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00289}{289}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_afffe4c69994af0c4971c9802df6308b5}\label{console_8cpp_afffe4c69994af0c4971c9802df6308b5}} 
+\index{console.cpp@{console.cpp}!setScaleModeFunc@{setScaleModeFunc}}
+\index{setScaleModeFunc@{setScaleModeFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setScaleModeFunc()}{setScaleModeFunc()}}
+{\footnotesize\ttfamily void set\+Scale\+Mode\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00272}{272}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a4e6ab386fa02f25df5f5310d102d1ace}\label{console_8cpp_a4e6ab386fa02f25df5f5310d102d1ace}} 
+\index{console.cpp@{console.cpp}!setScreenFunc@{setScreenFunc}}
+\index{setScreenFunc@{setScreenFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setScreenFunc()}{setScreenFunc()}}
+{\footnotesize\ttfamily void set\+Screen\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00249}{249}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a76e1fe3cf90260f7cf7120544fdf3958}\label{console_8cpp_a76e1fe3cf90260f7cf7120544fdf3958}} 
+\index{console.cpp@{console.cpp}!setSingleScreenFunc@{setSingleScreenFunc}}
+\index{setSingleScreenFunc@{setSingleScreenFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setSingleScreenFunc()}{setSingleScreenFunc()}}
+{\footnotesize\ttfamily void set\+Single\+Screen\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00255}{255}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ad1666d5f6f8bd9db1cb2cf66925eda25}\label{console_8cpp_ad1666d5f6f8bd9db1cb2cf66925eda25}} 
+\index{console.cpp@{console.cpp}!setupScaledScreens1@{setupScaledScreens1}}
+\index{setupScaledScreens1@{setupScaledScreens1}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setupScaledScreens1()}{setupScaledScreens1()}}
+{\footnotesize\ttfamily void setup\+Scaled\+Screens1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00893}{893}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a500f64b146fc2d165bc55bc326c9b12b}\label{console_8cpp_a500f64b146fc2d165bc55bc326c9b12b}} 
+\index{console.cpp@{console.cpp}!setupScaledScreens2@{setupScaledScreens2}}
+\index{setupScaledScreens2@{setupScaledScreens2}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setupScaledScreens2()}{setupScaledScreens2()}}
+{\footnotesize\ttfamily void setup\+Scaled\+Screens2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00879}{879}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a066d62f3dd4d016753b4eb1fffff25c7}\label{console_8cpp_a066d62f3dd4d016753b4eb1fffff25c7}} 
+\index{console.cpp@{console.cpp}!setupUnscaledScreens@{setupUnscaledScreens}}
+\index{setupUnscaledScreens@{setupUnscaledScreens}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{setupUnscaledScreens()}{setupUnscaledScreens()}}
+{\footnotesize\ttfamily void setup\+Unscaled\+Screens (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00907}{907}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aa0ab45f408db004f8dc22f4ac222f258}\label{console_8cpp_aa0ab45f408db004f8dc22f4ac222f258}} 
+\index{console.cpp@{console.cpp}!sgbBorderEnableFunc@{sgbBorderEnableFunc}}
+\index{sgbBorderEnableFunc@{sgbBorderEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbBorderEnableFunc()}{sgbBorderEnableFunc()}}
+{\footnotesize\ttfamily void sgb\+Border\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00300}{300}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a331acbcfd4a310ac26f30b658887fb35}\label{console_8cpp_a331acbcfd4a310ac26f30b658887fb35}} 
+\index{console.cpp@{console.cpp}!sgbModeFunc@{sgbModeFunc}}
+\index{sgbModeFunc@{sgbModeFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbModeFunc()}{sgbModeFunc()}}
+{\footnotesize\ttfamily void sgb\+Mode\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00239}{239}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a5b66be9a0b0bd0a47a80b66879d57f52}\label{console_8cpp_a5b66be9a0b0bd0a47a80b66879d57f52}} 
+\index{console.cpp@{console.cpp}!soundEnableFunc@{soundEnableFunc}}
+\index{soundEnableFunc@{soundEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{soundEnableFunc()}{soundEnableFunc()}}
+{\footnotesize\ttfamily void sound\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00322}{322}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a6157963fe8d9fc622254cd8d0abf40c4}\label{console_8cpp_a6157963fe8d9fc622254cd8d0abf40c4}} 
+\index{console.cpp@{console.cpp}!stateDeleteFunc@{stateDeleteFunc}}
+\index{stateDeleteFunc@{stateDeleteFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{stateDeleteFunc()}{stateDeleteFunc()}}
+{\footnotesize\ttfamily void state\+Delete\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00208}{208}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a4ba9cfc99aced55470514316fa12e285}\label{console_8cpp_a4ba9cfc99aced55470514316fa12e285}} 
+\index{console.cpp@{console.cpp}!stateLoadFunc@{stateLoadFunc}}
+\index{stateLoadFunc@{stateLoadFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{stateLoadFunc()}{stateLoadFunc()}}
+{\footnotesize\ttfamily void state\+Load\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00197}{197}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a23f49633a76d01be46e18209234b6405}\label{console_8cpp_a23f49633a76d01be46e18209234b6405}} 
+\index{console.cpp@{console.cpp}!stateSaveFunc@{stateSaveFunc}}
+\index{stateSaveFunc@{stateSaveFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{stateSaveFunc()}{stateSaveFunc()}}
+{\footnotesize\ttfamily void state\+Save\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00186}{186}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a84f53ce1805406b0b9a0cf7a00cb15cc}\label{console_8cpp_a84f53ce1805406b0b9a0cf7a00cb15cc}} 
+\index{console.cpp@{console.cpp}!stateSelectFunc@{stateSelectFunc}}
+\index{stateSelectFunc@{stateSelectFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{stateSelectFunc()}{stateSelectFunc()}}
+{\footnotesize\ttfamily void state\+Select\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a7e6aec814a0743e7fd2d26fb1874ab05}\label{console_8cpp_a7e6aec814a0743e7fd2d26fb1874ab05}} 
+\index{console.cpp@{console.cpp}!subMenuGenericUpdateFunc@{subMenuGenericUpdateFunc}}
+\index{subMenuGenericUpdateFunc@{subMenuGenericUpdateFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{subMenuGenericUpdateFunc()}{subMenuGenericUpdateFunc()}}
+{\footnotesize\ttfamily void sub\+Menu\+Generic\+Update\+Func (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a116d0d406ce2f7e768888dfc2f1b07bf}\label{console_8cpp_a116d0d406ce2f7e768888dfc2f1b07bf}} 
+\index{console.cpp@{console.cpp}!suspendFunc@{suspendFunc}}
+\index{suspendFunc@{suspendFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{suspendFunc()}{suspendFunc()}}
+{\footnotesize\ttfamily void suspend\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ac05247c60977ff8e8674fef3132618c3}\label{console_8cpp_ac05247c60977ff8e8674fef3132618c3}} 
+\index{console.cpp@{console.cpp}!updateMenu@{updateMenu}}
+\index{updateMenu@{updateMenu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{updateMenu()}{updateMenu()}}
+{\footnotesize\ttfamily void update\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00625}{625}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ac1262443731a422c48aa3187de98adf9}\label{console_8cpp_ac1262443731a422c48aa3187de98adf9}} 
+\index{console.cpp@{console.cpp}!updateScreens@{updateScreens}}
+\index{updateScreens@{updateScreens}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{updateScreens()}{updateScreens()}}
+{\footnotesize\ttfamily void update\+Screens (\begin{DoxyParamCaption}\item[{bool}]{wait\+To\+Finish }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00983}{983}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aef95a5d6fb8953628aa4ec412c175b91}\label{console_8cpp_aef95a5d6fb8953628aa4ec412c175b91}} 
+\index{console.cpp@{console.cpp}!vblankWaitFunc@{vblankWaitFunc}}
+\index{vblankWaitFunc@{vblankWaitFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{vblankWaitFunc()}{vblankWaitFunc()}}
+{\footnotesize\ttfamily void vblank\+Wait\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00306}{306}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a334a019474a39541f3121ebc59d3c033}\label{console_8cpp_a334a019474a39541f3121ebc59d3c033}} 
+\index{console.cpp@{console.cpp}!versionInfoFunc@{versionInfoFunc}}
+\index{versionInfoFunc@{versionInfoFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{versionInfoFunc()}{versionInfoFunc()}}
+{\footnotesize\ttfamily void version\+Info\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00339}{339}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a372da41534da468e2f31da9cabe05449}\label{console_8cpp_a372da41534da468e2f31da9cabe05449}} 
+\index{console.cpp@{console.cpp}!windowEnableFunc@{windowEnableFunc}}
+\index{windowEnableFunc@{windowEnableFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{windowEnableFunc()}{windowEnableFunc()}}
+{\footnotesize\ttfamily void window\+Enable\+Func (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00314}{314}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{console_8cpp_a05d508b721ab9377e3c3a8b96faec074}\label{console_8cpp_a05d508b721ab9377e3c3a8b96faec074}} 
+\index{console.cpp@{console.cpp}!autoSavingEnabled@{autoSavingEnabled}}
+\index{autoSavingEnabled@{autoSavingEnabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{autoSavingEnabled}{autoSavingEnabled}}
+{\footnotesize\ttfamily bool auto\+Saving\+Enabled}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a24877a539aaf8dd5c9b1c06b6371b8f0}\label{console_8cpp_a24877a539aaf8dd5c9b1c06b6371b8f0}} 
+\index{console.cpp@{console.cpp}!backlights@{backlights}}
+\index{backlights@{backlights}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{backlights}{backlights}}
+{\footnotesize\ttfamily const int backlights\mbox{[}$\,$\mbox{]} = \{PM\+\_\+\+BACKLIGHT\+\_\+\+TOP, PM\+\_\+\+BACKLIGHT\+\_\+\+BOTTOM\}}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aa6440b86d57fbc4dd2d279145ca35099}\label{console_8cpp_aa6440b86d57fbc4dd2d279145ca35099}} 
+\index{console.cpp@{console.cpp}!consoleDebugOutput@{consoleDebugOutput}}
+\index{consoleDebugOutput@{consoleDebugOutput}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleDebugOutput}{consoleDebugOutput}}
+{\footnotesize\ttfamily bool console\+Debug\+Output = false}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ab48cf4f68fa4c26febbebca02f21251d}\label{console_8cpp_ab48cf4f68fa4c26febbebca02f21251d}} 
+\index{console.cpp@{console.cpp}!consoleInitialized@{consoleInitialized}}
+\index{consoleInitialized@{consoleInitialized}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleInitialized}{consoleInitialized}}
+{\footnotesize\ttfamily bool console\+Initialized = false}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a2078567042b322f01cee579b15293627}\label{console_8cpp_a2078567042b322f01cee579b15293627}} 
+\index{console.cpp@{console.cpp}!consoleSelectedRow@{consoleSelectedRow}}
+\index{consoleSelectedRow@{consoleSelectedRow}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{consoleSelectedRow}{consoleSelectedRow}}
+{\footnotesize\ttfamily volatile int console\+Selected\+Row = -\/1}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ad3e68069fa016efcb84ec2f382b74bc5}\label{console_8cpp_ad3e68069fa016efcb84ec2f382b74bc5}} 
+\index{console.cpp@{console.cpp}!customBordersEnabled@{customBordersEnabled}}
+\index{customBordersEnabled@{customBordersEnabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{customBordersEnabled}{customBordersEnabled}}
+{\footnotesize\ttfamily bool custom\+Borders\+Enabled}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ab3cfa0d4080bf5ad5847aa85b3431557}\label{console_8cpp_ab3cfa0d4080bf5ad5847aa85b3431557}} 
+\index{console.cpp@{console.cpp}!gameScreen@{gameScreen}}
+\index{gameScreen@{gameScreen}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{gameScreen}{gameScreen}}
+{\footnotesize\ttfamily int game\+Screen}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a9de52d50a90cde2422167a6b27346a34}\label{console_8cpp_a9de52d50a90cde2422167a6b27346a34}} 
+\index{console.cpp@{console.cpp}!gbaModeOption@{gbaModeOption}}
+\index{gbaModeOption@{gbaModeOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{gbaModeOption}{gbaModeOption}}
+{\footnotesize\ttfamily bool gba\+Mode\+Option = false}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_afd07a20fda1c1711a0f55764901c8df7}\label{console_8cpp_afd07a20fda1c1711a0f55764901c8df7}} 
+\index{console.cpp@{console.cpp}!gbcModeOption@{gbcModeOption}}
+\index{gbcModeOption@{gbcModeOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{gbcModeOption}{gbcModeOption}}
+{\footnotesize\ttfamily int gbc\+Mode\+Option = 0}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a9a80d626b495810428f2f14b4dae6ecb}\label{console_8cpp_a9a80d626b495810428f2f14b4dae6ecb}} 
+\index{console.cpp@{console.cpp}!halt@{halt}}
+\index{halt@{halt}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{halt}{halt}}
+{\footnotesize\ttfamily int halt\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ab764cbdc62a676940e3d9c4940461cea}\label{console_8cpp_ab764cbdc62a676940e3d9c4940461cea}} 
+\index{console.cpp@{console.cpp}!hblankDisabled@{hblankDisabled}}
+\index{hblankDisabled@{hblankDisabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{hblankDisabled}{hblankDisabled}}
+{\footnotesize\ttfamily bool hblank\+Disabled\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00096}{96}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aa419499bc88635e3e3e2ad6616e17563}\label{console_8cpp_aa419499bc88635e3e3e2ad6616e17563}} 
+\index{console.cpp@{console.cpp}!interruptWaitMode@{interruptWaitMode}}
+\index{interruptWaitMode@{interruptWaitMode}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{interruptWaitMode}{interruptWaitMode}}
+{\footnotesize\ttfamily int interrupt\+Wait\+Mode\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a26b42906c0869d0cef7431a39a162950}\label{console_8cpp_a26b42906c0869d0cef7431a39a162950}} 
+\index{console.cpp@{console.cpp}!menu@{menu}}
+\index{menu@{menu}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{menu}{menu}}
+{\footnotesize\ttfamily int menu = 0}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a0b4983e8d2606a5b7649c07d79ae9673}\label{console_8cpp_a0b4983e8d2606a5b7649c07d79ae9673}} 
+\index{console.cpp@{console.cpp}!menuConsole@{menuConsole}}
+\index{menuConsole@{menuConsole}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{menuConsole}{menuConsole}}
+{\footnotesize\ttfamily Print\+Console$\ast$ menu\+Console}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a1b44931b7baad2b7dbb5b901b8f23836}\label{console_8cpp_a1b44931b7baad2b7dbb5b901b8f23836}} 
+\index{console.cpp@{console.cpp}!menuList@{menuList}}
+\index{menuList@{menuList}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{menuList}{menuList}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_console_sub_menu}{Console\+Sub\+Menu}} menu\+List\mbox{[}$\,$\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00417}{417}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_adc1217201890e09bcc829cf02c20d9ea}\label{console_8cpp_adc1217201890e09bcc829cf02c20d9ea}} 
+\index{console.cpp@{console.cpp}!menuOn@{menuOn}}
+\index{menuOn@{menuOn}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{menuOn}{menuOn}}
+{\footnotesize\ttfamily bool menu\+On = false}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a08ebdc1aef57bb8856a540416e1ebb52}\label{console_8cpp_a08ebdc1aef57bb8856a540416e1ebb52}} 
+\index{console.cpp@{console.cpp}!numMenus@{numMenus}}
+\index{numMenus@{numMenus}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{numMenus}{numMenus}}
+{\footnotesize\ttfamily const int num\+Menus = sizeof(\mbox{\hyperlink{console_8cpp_a1b44931b7baad2b7dbb5b901b8f23836}{menu\+List}}) / sizeof(\mbox{\hyperlink{struct_console_sub_menu}{Console\+Sub\+Menu}})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00472}{472}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a96613d07df4205a377ad9cb38b3a9d27}\label{console_8cpp_a96613d07df4205a377ad9cb38b3a9d27}} 
+\index{console.cpp@{console.cpp}!option@{option}}
+\index{option@{option}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{option}{option}}
+{\footnotesize\ttfamily int option = -\/1}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a6a70ff269f0f9e83b116bfee33447818}\label{console_8cpp_a6a70ff269f0f9e83b116bfee33447818}} 
+\index{console.cpp@{console.cpp}!printConsole@{printConsole}}
+\index{printConsole@{printConsole}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printConsole}{printConsole}}
+{\footnotesize\ttfamily Print\+Console$\ast$ print\+Console}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l01014}{1014}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_ae4f50f9bd5378a0621603f7e35226f9e}\label{console_8cpp_ae4f50f9bd5378a0621603f7e35226f9e}} 
+\index{console.cpp@{console.cpp}!printerEnabled@{printerEnabled}}
+\index{printerEnabled@{printerEnabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printerEnabled}{printerEnabled}}
+{\footnotesize\ttfamily bool printer\+Enabled}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a05ce29cd8679d5fb37264829ebc22254}\label{console_8cpp_a05ce29cd8679d5fb37264829ebc22254}} 
+\index{console.cpp@{console.cpp}!printMessage@{printMessage}}
+\index{printMessage@{printMessage}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{printMessage}{printMessage}}
+{\footnotesize\ttfamily char print\+Message\mbox{[}33\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aac8b23ae63783721de82945e3fd04585}\label{console_8cpp_aac8b23ae63783721de82945e3fd04585}} 
+\index{console.cpp@{console.cpp}!rumbleInserted@{rumbleInserted}}
+\index{rumbleInserted@{rumbleInserted}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{rumbleInserted}{rumbleInserted}}
+{\footnotesize\ttfamily int rumble\+Inserted\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_aa6654eea5fc0c5ae97a818042a1c18c5}\label{console_8cpp_aa6654eea5fc0c5ae97a818042a1c18c5}} 
+\index{console.cpp@{console.cpp}!rumbleStrength@{rumbleStrength}}
+\index{rumbleStrength@{rumbleStrength}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{rumbleStrength}{rumbleStrength}}
+{\footnotesize\ttfamily int rumble\+Strength\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a1d1027d31468018c85b9b33197870402}\label{console_8cpp_a1d1027d31468018c85b9b33197870402}} 
+\index{console.cpp@{console.cpp}!screenTileWidth@{screenTileWidth}}
+\index{screenTileWidth@{screenTileWidth}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{screenTileWidth}{screenTileWidth}}
+{\footnotesize\ttfamily const int screen\+Tile\+Width = 32}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a317ff7205cdf33838b77012ea9027eb7}\label{console_8cpp_a317ff7205cdf33838b77012ea9027eb7}} 
+\index{console.cpp@{console.cpp}!sgbBordersEnabled@{sgbBordersEnabled}}
+\index{sgbBordersEnabled@{sgbBordersEnabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbBordersEnabled}{sgbBordersEnabled}}
+{\footnotesize\ttfamily bool sgb\+Borders\+Enabled}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00040}{40}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a5d5a5bbb3fa33716a2399b9317c82a59}\label{console_8cpp_a5d5a5bbb3fa33716a2399b9317c82a59}} 
+\index{console.cpp@{console.cpp}!sgbModeOption@{sgbModeOption}}
+\index{sgbModeOption@{sgbModeOption}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{sgbModeOption}{sgbModeOption}}
+{\footnotesize\ttfamily int sgb\+Mode\+Option = false}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a5b49f1692d7b0de099f2dca7a94ce812}\label{console_8cpp_a5b49f1692d7b0de099f2dca7a94ce812}} 
+\index{console.cpp@{console.cpp}!singleScreenMode@{singleScreenMode}}
+\index{singleScreenMode@{singleScreenMode}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{singleScreenMode}{singleScreenMode}}
+{\footnotesize\ttfamily int single\+Screen\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a736f6a5a0ef7cbd8892110dc80ae7946}\label{console_8cpp_a736f6a5a0ef7cbd8892110dc80ae7946}} 
+\index{console.cpp@{console.cpp}!stateNum@{stateNum}}
+\index{stateNum@{stateNum}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{stateNum}{stateNum}}
+{\footnotesize\ttfamily int state\+Num = 0}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00032}{32}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a849a29e484bcd9e23c629c3849ef9088}\label{console_8cpp_a849a29e484bcd9e23c629c3849ef9088}} 
+\index{console.cpp@{console.cpp}!subMenuUpdateFunc@{subMenuUpdateFunc}}
+\index{subMenuUpdateFunc@{subMenuUpdateFunc}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{subMenuUpdateFunc}{subMenuUpdateFunc}}
+{\footnotesize\ttfamily void($\ast$ sub\+Menu\+Update\+Func) () (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{console_8cpp_source_l00047}{47}} of file \mbox{\hyperlink{console_8cpp_source}{console.\+cpp}}.
+
+\mbox{\Hypertarget{console_8cpp_a7e77ece2ff8da663172ec7854ce1ad4a}\label{console_8cpp_a7e77ece2ff8da663172ec7854ce1ad4a}} 
+\index{console.cpp@{console.cpp}!windowDisabled@{windowDisabled}}
+\index{windowDisabled@{windowDisabled}!console.cpp@{console.cpp}}
+\doxysubsubsection{\texorpdfstring{windowDisabled}{windowDisabled}}
+{\footnotesize\ttfamily bool window\+Disabled\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+

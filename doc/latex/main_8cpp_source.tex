@@ -1,0 +1,275 @@
+\hypertarget{main_8cpp_source}{}\doxysection{main.\+cpp}
+\label{main_8cpp_source}\index{arm9/source/main.cpp@{arm9/source/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <nds.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <dirent.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <stdarg.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00007}00007\ \textcolor{comment}{//\ \#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008\ \textcolor{comment}{//\ \#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbgfx_8h}{gbgfx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbcpu_8h}{gbcpu.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{inputhelper_8h}{inputhelper.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{filechooser_8h}{filechooser.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{timer_8h}{timer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbsnd_8h}{gbsnd.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gameboy_8h}{gameboy.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmu_8h}{mmu.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{console_8h}{console.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{nifi_8h}{nifi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cheats_8h}{cheats.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbs_8h}{gbs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024\ \textcolor{keyword}{extern}\ time\_t\ \mbox{\hyperlink{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}00025\ \textcolor{keyword}{extern}\ time\_t\ \mbox{\hyperlink{main_8cpp_ad0ebda86ffac57ba19597a1233125129}{lastRawTime}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}\mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{00027}}\ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{struct_shared_data}{SharedData}}\ *\mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029\ \textcolor{comment}{//\ This\ is\ used\ to\ signal\ sleep\ mode\ starting\ or\ ending.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}\mbox{\hyperlink{main_8cpp_a5e9496c777a9b87b88b024e86e1df765}{00030}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a5e9496c777a9b87b88b024e86e1df765}{fifoValue32Handler}}(u32\ value,\ \textcolor{keywordtype}{void}\ *user\_data)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{keyword}{static}\ u8\ scalingWasOn;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ soundWasDisabled;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ wasPaused;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{switch}\ (value)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{common_8h_aba01db17f4a2bfbc3db60dc172972a25a6e1fb58ca56dd660997afeab864d37d3}{FIFOMSG\_LID\_CLOSED}}:}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Entering\ sleep\ mode}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}00039\ \ \ \ \ \ \ \ \ scalingWasOn\ =\ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}{scalingOn}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040\ \ \ \ \ \ \ \ \ soundWasDisabled\ =\ \mbox{\hyperlink{gbsnd_8h_aae56561200e090019d70871c72b8021d}{soundDisabled}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041\ \ \ \ \ \ \ \ \ wasPaused\ =\ \mbox{\hyperlink{gameboy_8h_a04f739b2c98ebfeee00219477d8bdd93}{isGameboyPaused}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}{scalingOn}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_aae56561200e090019d70871c72b8021d}{soundDisabled}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8h_a7512b02909147a8b26c34c8a272ee93d}{pauseGameboy}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{common_8h_aba01db17f4a2bfbc3db60dc172972a25a435e97d021d51611c1a8435978002c13}{FIFOMSG\_LID\_OPENED}}:}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Exiting\ sleep\ mode}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}{scalingOn}}\ =\ scalingWasOn;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_aae56561200e090019d70871c72b8021d}{soundDisabled}}\ =\ soundWasDisabled;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!wasPaused)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8h_a2048c5bce6dc06e8f6f23d7983aeb4bd}{unpauseGameboy}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Time\ isn't\ incremented\ properly\ in\ sleep\ mode,\ compensate\ here.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ \ \ \ \ \ \ \ \ time(\&\mbox{\hyperlink{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_ad0ebda86ffac57ba19597a1233125129}{lastRawTime}}\ =\ \mbox{\hyperlink{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}\mbox{\hyperlink{main_8h_a54add63a62b11f9bccd4975da8fdd99c}{00060}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a54add63a62b11f9bccd4975da8fdd99c}{selectRom}}()}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00061}00061\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_ac19211d01e57489fcb69ce14b4062a72}{unloadRom}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00064}00064\ \ \ \ \ \mbox{\hyperlink{filechooser_8h_a0585552ff957251a4c6304d2ac819dba}{loadFileChooserState}}(\&\mbox{\hyperlink{filechooser_8h_a1c185a37dc80642d3853e3e2bc73c6a2}{romChooserState}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *extraExtensions[]\ =\ \{\textcolor{stringliteral}{"{}gbs"{}}\};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ (\textcolor{keyword}{sizeof}(extraExtensions)\ /\ \textcolor{keyword}{sizeof}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00067}00067\ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}}\ =\ \mbox{\hyperlink{filechooser_8h_ad9290a6b86d58cddd1af76147abebaee}{startFileChooser}}(extraExtensions,\ len,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{filechooser_8h_a2469bf89eddb75cbc3b1b7712e08bb48}{saveFileChooserState}}(\&\mbox{\hyperlink{filechooser_8h_a1c185a37dc80642d3853e3e2bc73c6a2}{romChooserState}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{mmu_8h_a3afb95c5ba95a8b7a5be05efead3da80}{biosExists}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00071}00071\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00072}00072\ \ \ \ \ \ \ \ \ FILE\ *file;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00073}00073\ \ \ \ \ \ \ \ \ file\ =\ fopen(\textcolor{stringliteral}{"{}gbc\_bios.bin"{}},\ \textcolor{stringliteral}{"{}rb"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a3afb95c5ba95a8b7a5be05efead3da80}{biosExists}}\ =\ file\ !=\ NULL;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a3afb95c5ba95a8b7a5be05efead3da80}{biosExists}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00076}00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ fread(\mbox{\hyperlink{mmu_8h_a7d8aa7cd05aad3b87cf03fc1067ed3cd}{bios}},\ 1,\ 0x900,\ file);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ fclose(file);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a700999c3f0e95c5cb420ab499bbf12ad}{loadRom}}(\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00083}00083\ \ \ \ \ free(\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{console_8h_a1d1c3cd5a61d79618f2045518fae2e70}{updateScreens}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00087}00087\ \ \ \ \ \mbox{\hyperlink{main_8cpp_a4429766953b588702b57e002f24122a1}{initializeGameboyFirstTime}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00088}00088\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00090}\mbox{\hyperlink{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}{00090}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}{initGBMode}}()}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00091}00091\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00092}00092\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_a5d5a5bbb3fa33716a2399b9317c82a59}{sgbModeOption}}\ !=\ 0\ \&\&\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x14b]\ ==\ 0x33\ \&\&\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x146]\ ==\ 0x03)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00095}00095\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00098}00098\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00099}\mbox{\hyperlink{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}{00099}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}{initGBCMode}}()}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00100}00100\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_a5d5a5bbb3fa33716a2399b9317c82a59}{sgbModeOption}}\ ==\ 2\ \&\&\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x14b]\ ==\ 0x33\ \&\&\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x146]\ ==\ 0x03)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00104}00104\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00106}00106\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00107}00107\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00108}\mbox{\hyperlink{main_8h_aa1e7d84951bad6e6c0e5b0962495a2d5}{00108}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}{initializeGameboy}}()}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00109}00109\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00110}00110\ \ \ \ \ \mbox{\hyperlink{console_8h_a50a69c022725d0b54985ee39f399b45f}{enableSleepMode}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00111}00111\ \ \ \ \ \mbox{\hyperlink{gameboy_8h_a336d50bc2a8c4ef18daea3f63bbb7608}{gameboyFrameCounter}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00112}00112\ \ \ \ \ \mbox{\hyperlink{gameboy_8h_a5021082cf23612467be2f40ebe83d8e3}{sgbMode}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00114}00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gbs_8h_a6e7048c5efaac6e4916711ad174944cd}{gbsMode}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00115}00115\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ =\ 1;\ \textcolor{comment}{//\ GBC}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00117}00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00119}00119\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00120}00120\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{console_8h_afd07a20fda1c1711a0f55764901c8df7}{gbcModeOption}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ GB}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}{initGBMode}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ GBC\ if\ needed}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x143]\ ==\ 0xC0)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}{initGBCMode}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}{initGBMode}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ GBC}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x143]\ ==\ 0x80\ ||\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x143]\ ==\ 0xC0)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}{initGBCMode}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}{initGBMode}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ sgbEnhanced\ =\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x14b]\ ==\ 0x33\ \&\&\ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x146]\ ==\ 0x03;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sgbEnhanced\ \&\&\ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ !=\ 2\ \&\&\ \mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00142}00142\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00144}00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00149}00149\ \ \ \ \ \}\ \textcolor{comment}{//\ !gbsMode}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00151}00151\ \ \ \ \ \mbox{\hyperlink{mmu_8h_a1660bd805506c41836f415364b20440b}{initMMU}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00152}00152\ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_a5706c99691ce2a042f08bc3c4b50f3ba}{initCPU}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00153}00153\ \ \ \ \ \mbox{\hyperlink{gameboy_8h_a08529d00f32f8441dc7669b1a1d3783c}{initLCD}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00154}00154\ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_ad00fca63a33eb7f18124dc4a19620a2e}{initGFX}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00155}00155\ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_a15114ef6911222770c38408ae365c6bd}{initSND}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00157}00157\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{gbs_8h_a6e7048c5efaac6e4916711ad174944cd}{gbsMode}}\ \&\&\ !\mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}}\ \&\&\ \mbox{\hyperlink{inputhelper_8h_a3a90b3fc29f7dd88ced366105b542e46}{suspendStateExists}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00158}00158\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00159}00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_ad98183888fd36f8de7ef2ff6ee75c746}{loadState}}(-\/1);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00160}00160\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00162}00162\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gbs_8h_a6e7048c5efaac6e4916711ad174944cd}{gbsMode}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbs_8h_a369dd14d3b470e7277401596f1eab7b6}{gbsInit}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00165}00165\ \ \ \ \ \textcolor{comment}{//\ We\ haven't\ calculated\ the\ \#\ of\ cycles\ to\ the\ next\ hardware\ event.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00166}00166\ \ \ \ \ \mbox{\hyperlink{gameboy_8h_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00167}00167\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00169}\mbox{\hyperlink{main_8h_a4429766953b588702b57e002f24122a1}{00169}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a4429766953b588702b57e002f24122a1}{initializeGameboyFirstTime}}()}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00170}00170\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_a317ff7205cdf33838b77012ea9027eb7}{sgbBordersEnabled}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00172}00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}}\ =\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ This\ will\ be\ ignored\ if\ starting\ in\ sgb\ mode,\ or\ if\ there\ is\ no\ sgb\ mode.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00173}00173\ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_a134de385e7f51e7cb43357cf0bb4b624}{sgbBorderLoaded}}\ =\ \textcolor{keyword}{false};\ \ \ \ \ \textcolor{comment}{//\ Effectively\ unloads\ any\ sgb\ border}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00175}00175\ \ \ \ \ \mbox{\hyperlink{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}{initializeGameboy}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00177}00177\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gbs_8h_a6e7048c5efaac6e4916711ad174944cd}{gbsMode}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00178}00178\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}State\ Slot"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Save\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Load\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00182}00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Delete\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00183}00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Suspend"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00184}00184\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Exit\ without\ saving"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00185}00185\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00187}00187\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00188}00188\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}State\ Slot"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00189}00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}Save\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00190}00190\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}Suspend"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_af174f16d94b3866c8bc8b927a6ec0545}{checkStateExists}}(\mbox{\hyperlink{console_8h_a736f6a5a0ef7cbd8892110dc80ae7946}{stateNum}}))}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00192}00192\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}Load\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}Delete\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00197}00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Load\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Delete\ State"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00200}00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a0ab672ff412b81f8e9bba15e0b2fbf74}{numRamBanks}}\ \&\&\ !\mbox{\hyperlink{console_8h_a05d508b721ab9377e3c3a8b96faec074}{autoSavingEnabled}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}Exit\ without\ saving"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}Exit\ without\ saving"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00206}00206\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a3afb95c5ba95a8b7a5be05efead3da80}{biosExists}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a5309114235fda699b310a34bb8dfe131}{enableMenuOption}}(\textcolor{stringliteral}{"{}GBC\ Bios"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00210}00210\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00211}00211\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a67a8669d5dfb6c692da04af49dc4c510}{disableMenuOption}}(\textcolor{stringliteral}{"{}GBC\ Bios"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00212}00212\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00214}\mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{00214}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[])}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00215}00215\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00216}00216\ \ \ \ \ REG\_POWERCNT\ =\ POWER\_ALL\ \&\ \string~(POWER\_MATRIX\ |\ POWER\_3D\_CORE);\ \textcolor{comment}{//\ don't\ need\ 3D}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00217}00217\ \ \ \ \ consoleDebugInit(DebugDevice\_CONSOLE);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00219}00219\ \ \ \ \ defaultExceptionHandler();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00221}00221\ \ \ \ \ time(\&\mbox{\hyperlink{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00222}00222\ \ \ \ \ \mbox{\hyperlink{main_8cpp_ad0ebda86ffac57ba19597a1233125129}{lastRawTime}}\ =\ \mbox{\hyperlink{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00223}00223\ \ \ \ \ timerStart(0,\ ClockDivider\_1024,\ TIMER\_FREQ\_1024(1),\ \mbox{\hyperlink{timer_8h_a7042121c8f144661521688018c38967b}{clockUpdater}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00225}00225\ \ \ \ \ \textcolor{comment}{/*\ Reset\ the\ EZ3in1\ if\ present\ */}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00226}00226\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{common_8h_ab2f6cb20193495bf269501e9cd545017}{\_\_dsimode}})}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00227}00227\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00228}00228\ \ \ \ \ \ \ \ \ sysSetCartOwner(BUS\_OWNER\_ARM9);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00230}00230\ \ \ \ \ \ \ \ \ GBA\_BUS[0x0000]\ =\ 0xF0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ GBA\_BUS[0x1000]\ =\ 0xF0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00232}00232\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00233}00233\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00234}00234\ \ \ \ \ fifoSetValue32Handler(FIFO\_USER\_02,\ \mbox{\hyperlink{main_8cpp_a5e9496c777a9b87b88b024e86e1df765}{fifoValue32Handler}},\ NULL);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00236}00236\ \ \ \ \ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}\ =\ (\mbox{\hyperlink{struct_shared_data}{SharedData}}\ *)memUncached(malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_shared_data}{SharedData}})));}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00237}00237\ \ \ \ \ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}{scalingOn}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00238}00238\ \ \ \ \ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_aa3cf7a41e0900e97c888a6a458c6db00}{enableSleepMode}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00239}00239\ \ \ \ \ \textcolor{comment}{//\ It\ might\ make\ more\ sense\ to\ use\ "{}fifoSendAddress"{}\ here.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00240}00240\ \ \ \ \ \textcolor{comment}{//\ However\ there\ may\ have\ been\ something\ wrong\ with\ it\ in\ dsi\ mode.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00241}00241\ \ \ \ \ fifoSendValue32(FIFO\_USER\_03,\ ((u32)\mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}})\ \&\ 0x00ffffff);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00243}00243\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a3d3188b9d438add4ac7abf5d19f9b74c}{initInput}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00244}00244\ \ \ \ \ \mbox{\hyperlink{console_8h_ad856b53da91c1cc12f94a5634bf79cda}{setMenuDefaults}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00245}00245\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a5a9ea8d08563c440e8a39e3798c96e46}{readConfigFile}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00246}00246\ \ \ \ \ swiWaitForVBlank();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00247}00247\ \ \ \ \ swiWaitForVBlank();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00248}00248\ \ \ \ \ \textcolor{comment}{//\ initGFX\ is\ called\ in\ initializeGameboy,\ but\ I\ also\ call\ it\ from\ here\ to}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00249}00249\ \ \ \ \ \textcolor{comment}{//\ set\ up\ the\ vblank\ handler\ asap.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00250}00250\ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_ad00fca63a33eb7f18124dc4a19620a2e}{initGFX}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00252}00252\ \ \ \ \ \mbox{\hyperlink{console_8h_ab48cf4f68fa4c26febbebca02f21251d}{consoleInitialized}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00254}00254\ \ \ \ \ \textcolor{keywordflow}{if}\ (argc\ >=\ 2)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00255}00255\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}}\ =\ argv[1];}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00257}00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a700999c3f0e95c5cb420ab499bbf12ad}{loadRom}}(\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a1d1c3cd5a61d79618f2045518fae2e70}{updateScreens}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a4429766953b588702b57e002f24122a1}{initializeGameboyFirstTime}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00260}00260\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00261}00261\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00262}00262\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00263}00263\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a54add63a62b11f9bccd4975da8fdd99c}{selectRom}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00264}00264\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00266}00266\ \ \ \ \ \mbox{\hyperlink{gameboy_8h_a81597fe9593afa9524041c128e8c9517}{runEmul}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00268}00268\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00269}00269\ \}}
+
+\end{DoxyCode}

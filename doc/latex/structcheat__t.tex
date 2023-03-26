@@ -1,0 +1,140 @@
+\hypertarget{structcheat__t}{}\doxysection{cheat\+\_\+t Struct Reference}
+\label{structcheat__t}\index{cheat\_t@{cheat\_t}}
+
+
+{\ttfamily \#include $<$cheats.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structcheat__t_abf6068fb1afbdc7aea9a6340f663c723}{name}} \mbox{[}\mbox{\hyperlink{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}{MAX\+\_\+\+CHEAT\+\_\+\+NAME\+\_\+\+LEN}}+1\mbox{]}
+\item 
+char \mbox{\hyperlink{structcheat__t_a9fe081038fb1923c06cc290baf50155f}{cheat\+String}} \mbox{[}12\mbox{]}
+\item 
+u8 \mbox{\hyperlink{structcheat__t_ae24726a80e05c8fe4360a74d27288583}{flags}}
+\item 
+u8 \mbox{\hyperlink{structcheat__t_a8518208cca04b4482ea6dfcba5ad86cf}{data}}
+\item 
+u16 \mbox{\hyperlink{structcheat__t_a135ba2b10017d1b2c464982d7e7204bc}{address}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>u8 \mbox{\hyperlink{structcheat__t_a31b5e61dabc1af2a912bbf9631c824ce}{compare}}\\
+\>u8 \mbox{\hyperlink{structcheat__t_a914574353e98ba0693716bf4188084fd}{bank}}\\
+\}; \\
+
+\end{tabbing}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{structcheat__t_aa4b706d04851c7b081ce272a61569345}{patched\+Banks}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{structcheat__t_a7722ebeb47b1811b59116a6ca9b9b945}{patched\+Values}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00006}{6}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structcheat__t_a287750e6ad589d1d329f1266d5096c4d}\label{structcheat__t_a287750e6ad589d1d329f1266d5096c4d}} 
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union  \{ ... \}  cheat\+\_\+t\+::@1}
+
+\mbox{\Hypertarget{structcheat__t_a135ba2b10017d1b2c464982d7e7204bc}\label{structcheat__t_a135ba2b10017d1b2c464982d7e7204bc}} 
+\index{cheat\_t@{cheat\_t}!address@{address}}
+\index{address@{address}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily u16 cheat\+\_\+t\+::address}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00012}{12}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_a914574353e98ba0693716bf4188084fd}\label{structcheat__t_a914574353e98ba0693716bf4188084fd}} 
+\index{cheat\_t@{cheat\_t}!bank@{bank}}
+\index{bank@{bank}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{bank}{bank}}
+{\footnotesize\ttfamily u8 cheat\+\_\+t\+::bank}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00016}{16}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_a9fe081038fb1923c06cc290baf50155f}\label{structcheat__t_a9fe081038fb1923c06cc290baf50155f}} 
+\index{cheat\_t@{cheat\_t}!cheatString@{cheatString}}
+\index{cheatString@{cheatString}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{cheatString}{cheatString}}
+{\footnotesize\ttfamily char cheat\+\_\+t\+::cheat\+String\mbox{[}12\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00009}{9}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_a31b5e61dabc1af2a912bbf9631c824ce}\label{structcheat__t_a31b5e61dabc1af2a912bbf9631c824ce}} 
+\index{cheat\_t@{cheat\_t}!compare@{compare}}
+\index{compare@{compare}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{compare}{compare}}
+{\footnotesize\ttfamily u8 cheat\+\_\+t\+::compare}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00015}{15}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_a8518208cca04b4482ea6dfcba5ad86cf}\label{structcheat__t_a8518208cca04b4482ea6dfcba5ad86cf}} 
+\index{cheat\_t@{cheat\_t}!data@{data}}
+\index{data@{data}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily u8 cheat\+\_\+t\+::data}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00011}{11}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_ae24726a80e05c8fe4360a74d27288583}\label{structcheat__t_ae24726a80e05c8fe4360a74d27288583}} 
+\index{cheat\_t@{cheat\_t}!flags@{flags}}
+\index{flags@{flags}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily u8 cheat\+\_\+t\+::flags}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00010}{10}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_abf6068fb1afbdc7aea9a6340f663c723}\label{structcheat__t_abf6068fb1afbdc7aea9a6340f663c723}} 
+\index{cheat\_t@{cheat\_t}!name@{name}}
+\index{name@{name}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char cheat\+\_\+t\+::name\mbox{[}\mbox{\hyperlink{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}{MAX\+\_\+\+CHEAT\+\_\+\+NAME\+\_\+\+LEN}}+1\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00008}{8}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_aa4b706d04851c7b081ce272a61569345}\label{structcheat__t_aa4b706d04851c7b081ce272a61569345}} 
+\index{cheat\_t@{cheat\_t}!patchedBanks@{patchedBanks}}
+\index{patchedBanks@{patchedBanks}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{patchedBanks}{patchedBanks}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ cheat\+\_\+t\+::patched\+Banks}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00018}{18}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{structcheat__t_a7722ebeb47b1811b59116a6ca9b9b945}\label{structcheat__t_a7722ebeb47b1811b59116a6ca9b9b945}} 
+\index{cheat\_t@{cheat\_t}!patchedValues@{patchedValues}}
+\index{patchedValues@{patchedValues}!cheat\_t@{cheat\_t}}
+\doxysubsubsection{\texorpdfstring{patchedValues}{patchedValues}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ cheat\+\_\+t\+::patched\+Values}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00019}{19}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+arm9/include/\mbox{\hyperlink{cheats_8h}{cheats.\+h}}\end{DoxyCompactItemize}

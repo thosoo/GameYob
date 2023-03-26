@@ -1,0 +1,174 @@
+\hypertarget{gbsnd_8h}{}\doxysection{arm9/include/gbsnd.h File Reference}
+\label{gbsnd_8h}\index{arm9/include/gbsnd.h@{arm9/include/gbsnd.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a15114ef6911222770c38408ae365c6bd}{init\+SND}} ()
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a9976c541af3380f744dfaa004ff82fff}{refresh\+SND}} ()
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a7fab9e8cae567ef9c79b711b29909ffb}{mute\+SND}} ()
+\item 
+void \mbox{\hyperlink{gbsnd_8h_ae7ca78c77d7dc2018984e5dfe67c87eb}{unmute\+SND}} ()
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a13eb2198e9ee530dad6418c946532107}{enable\+Channel}} (int i)
+\item 
+void \mbox{\hyperlink{gbsnd_8h_af5b52e2c3b98aea62890a5f5bad27552}{disable\+Channel}} (int i)
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a1840a3078560b98a286226ca593d69e6}{update\+Sound}} (int cycles)
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a53ffcff16dfc65575d8e7031e3f3bbb0}{sound\+Update\+VBlank}} ()
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a01fc1036f2f8d4a5d368abdcbc3172b0}{handle\+Sound\+Register}} (u8 io\+Reg, u8 val)
+\item 
+void \mbox{\hyperlink{gbsnd_8h_adf56904dd8cd20559b11887998ce5e88}{update\+Sound\+Sample}} ()
+\item 
+void \mbox{\hyperlink{gbsnd_8h_a0e29111467df6dca3881926858a1a822}{handle\+SDLCallback}} (void $\ast$userdata, u8 $\ast$buffer, int len)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{gbsnd_8h_aae56561200e090019d70871c72b8021d}{sound\+Disabled}}
+\item 
+bool \mbox{\hyperlink{gbsnd_8h_a50dfa48cdca835c9eb754ea19006c3cf}{hyper\+Sound}}
+\item 
+int \mbox{\hyperlink{gbsnd_8h_a2ba144de5af9053b300a9c09343c1e2f}{cycles\+To\+Sound\+Event}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gbsnd_8h_af5b52e2c3b98aea62890a5f5bad27552}\label{gbsnd_8h_af5b52e2c3b98aea62890a5f5bad27552}} 
+\index{gbsnd.h@{gbsnd.h}!disableChannel@{disableChannel}}
+\index{disableChannel@{disableChannel}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{disableChannel()}{disableChannel()}}
+{\footnotesize\ttfamily void disable\+Channel (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00276}{276}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a13eb2198e9ee530dad6418c946532107}\label{gbsnd_8h_a13eb2198e9ee530dad6418c946532107}} 
+\index{gbsnd.h@{gbsnd.h}!enableChannel@{enableChannel}}
+\index{enableChannel@{enableChannel}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{enableChannel()}{enableChannel()}}
+{\footnotesize\ttfamily void enable\+Channel (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00272}{272}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a0e29111467df6dca3881926858a1a822}\label{gbsnd_8h_a0e29111467df6dca3881926858a1a822}} 
+\index{gbsnd.h@{gbsnd.h}!handleSDLCallback@{handleSDLCallback}}
+\index{handleSDLCallback@{handleSDLCallback}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{handleSDLCallback()}{handleSDLCallback()}}
+{\footnotesize\ttfamily void handle\+SDLCallback (\begin{DoxyParamCaption}\item[{void $\ast$}]{userdata,  }\item[{u8 $\ast$}]{buffer,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{gbsnd_8h_a01fc1036f2f8d4a5d368abdcbc3172b0}\label{gbsnd_8h_a01fc1036f2f8d4a5d368abdcbc3172b0}} 
+\index{gbsnd.h@{gbsnd.h}!handleSoundRegister@{handleSoundRegister}}
+\index{handleSoundRegister@{handleSoundRegister}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{handleSoundRegister()}{handleSoundRegister()}}
+{\footnotesize\ttfamily void handle\+Sound\+Register (\begin{DoxyParamCaption}\item[{u8}]{io\+Reg,  }\item[{u8}]{val }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00389}{389}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a15114ef6911222770c38408ae365c6bd}\label{gbsnd_8h_a15114ef6911222770c38408ae365c6bd}} 
+\index{gbsnd.h@{gbsnd.h}!initSND@{initSND}}
+\index{initSND@{initSND}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{initSND()}{initSND()}}
+{\footnotesize\ttfamily void init\+SND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00185}{185}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a7fab9e8cae567ef9c79b711b29909ffb}\label{gbsnd_8h_a7fab9e8cae567ef9c79b711b29909ffb}} 
+\index{gbsnd.h@{gbsnd.h}!muteSND@{muteSND}}
+\index{muteSND@{muteSND}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{muteSND()}{muteSND()}}
+{\footnotesize\ttfamily void mute\+SND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00261}{261}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a9976c541af3380f744dfaa004ff82fff}\label{gbsnd_8h_a9976c541af3380f744dfaa004ff82fff}} 
+\index{gbsnd.h@{gbsnd.h}!refreshSND@{refreshSND}}
+\index{refreshSND@{refreshSND}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{refreshSND()}{refreshSND()}}
+{\footnotesize\ttfamily void refresh\+SND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00230}{230}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a53ffcff16dfc65575d8e7031e3f3bbb0}\label{gbsnd_8h_a53ffcff16dfc65575d8e7031e3f3bbb0}} 
+\index{gbsnd.h@{gbsnd.h}!soundUpdateVBlank@{soundUpdateVBlank}}
+\index{soundUpdateVBlank@{soundUpdateVBlank}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{soundUpdateVBlank()}{soundUpdateVBlank()}}
+{\footnotesize\ttfamily void sound\+Update\+VBlank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00383}{383}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_ae7ca78c77d7dc2018984e5dfe67c87eb}\label{gbsnd_8h_ae7ca78c77d7dc2018984e5dfe67c87eb}} 
+\index{gbsnd.h@{gbsnd.h}!unmuteSND@{unmuteSND}}
+\index{unmuteSND@{unmuteSND}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{unmuteSND()}{unmuteSND()}}
+{\footnotesize\ttfamily void unmute\+SND (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00266}{266}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a1840a3078560b98a286226ca593d69e6}\label{gbsnd_8h_a1840a3078560b98a286226ca593d69e6}} 
+\index{gbsnd.h@{gbsnd.h}!updateSound@{updateSound}}
+\index{updateSound@{updateSound}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{updateSound()}{updateSound()}}
+{\footnotesize\ttfamily void update\+Sound (\begin{DoxyParamCaption}\item[{int}]{cycles }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00299}{299}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_adf56904dd8cd20559b11887998ce5e88}\label{gbsnd_8h_adf56904dd8cd20559b11887998ce5e88}} 
+\index{gbsnd.h@{gbsnd.h}!updateSoundSample@{updateSoundSample}}
+\index{updateSoundSample@{updateSoundSample}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{updateSoundSample()}{updateSoundSample()}}
+{\footnotesize\ttfamily void update\+Sound\+Sample (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gbsnd_8h_a2ba144de5af9053b300a9c09343c1e2f}\label{gbsnd_8h_a2ba144de5af9053b300a9c09343c1e2f}} 
+\index{gbsnd.h@{gbsnd.h}!cyclesToSoundEvent@{cyclesToSoundEvent}}
+\index{cyclesToSoundEvent@{cyclesToSoundEvent}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{cyclesToSoundEvent}{cyclesToSoundEvent}}
+{\footnotesize\ttfamily int cycles\+To\+Sound\+Event\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_a50dfa48cdca835c9eb754ea19006c3cf}\label{gbsnd_8h_a50dfa48cdca835c9eb754ea19006c3cf}} 
+\index{gbsnd.h@{gbsnd.h}!hyperSound@{hyperSound}}
+\index{hyperSound@{hyperSound}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{hyperSound}{hyperSound}}
+{\footnotesize\ttfamily bool hyper\+Sound\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+
+\mbox{\Hypertarget{gbsnd_8h_aae56561200e090019d70871c72b8021d}\label{gbsnd_8h_aae56561200e090019d70871c72b8021d}} 
+\index{gbsnd.h@{gbsnd.h}!soundDisabled@{soundDisabled}}
+\index{soundDisabled@{soundDisabled}!gbsnd.h@{gbsnd.h}}
+\doxysubsubsection{\texorpdfstring{soundDisabled}{soundDisabled}}
+{\footnotesize\ttfamily bool sound\+Disabled\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbsnd_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{gbsnd_8cpp_source}{gbsnd.\+cpp}}.
+

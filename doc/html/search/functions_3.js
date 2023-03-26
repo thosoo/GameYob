@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['chan1func_0',['chan1Func',['../console_8cpp.html#ab11634b7d2759db8f72e9691e08f9c16',1,'console.cpp']]],
+  ['chan2func_1',['chan2Func',['../console_8cpp.html#a8132633be124dec682d6ebee1960b3ce',1,'console.cpp']]],
+  ['chan3func_2',['chan3Func',['../console_8cpp.html#a8b5ffaf53d028c85f8032adc2eb00149',1,'console.cpp']]],
+  ['chan4func_3',['chan4Func',['../console_8cpp.html#a8cda3469daed1d217fe835126bf5d04f',1,'console.cpp']]],
+  ['cheatfunc_4',['cheatFunc',['../console_8cpp.html#ae158cfad2f72c559b05c1e760daae709',1,'console.cpp']]],
+  ['checkborder_5',['checkBorder',['../gbgfx_8h.html#aa830515ff224eeaa5ae76432a118cd98',1,'checkBorder():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#aa830515ff224eeaa5ae76432a118cd98',1,'checkBorder():&#160;gbgfx.cpp']]],
+  ['checkkeyassignedtomenu_6',['checkKeyAssignedToMenu',['../inputhelper_8cpp.html#abf49c675a7b24372ca5d2db910a59dc8',1,'inputhelper.cpp']]],
+  ['checklyc_7',['checkLYC',['../gameboy_8h.html#a8c50745d9d0e2a05a09fb8bba0593fe3',1,'checkLYC():&#160;gameboy.cpp'],['../gameboy_8cpp.html#a8c50745d9d0e2a05a09fb8bba0593fe3',1,'checkLYC():&#160;gameboy.cpp']]],
+  ['checkrumble_8',['checkRumble',['../console_8h.html#a5a0c827e89cd41a72eee36be5d8dbd27',1,'checkRumble():&#160;console.cpp'],['../console_8cpp.html#a5a0c827e89cd41a72eee36be5d8dbd27',1,'checkRumble():&#160;console.cpp']]],
+  ['checkstateexists_9',['checkStateExists',['../inputhelper_8h.html#af174f16d94b3866c8bc8b927a6ec0545',1,'checkStateExists(int num):&#160;inputhelper.cpp'],['../inputhelper_8cpp.html#a6bae4c9c8f11f90b5a01b29e8f021ac9',1,'checkStateExists(int stateNum):&#160;inputhelper.cpp']]],
+  ['choosepivot_10',['choosePivot',['../filechooser_8cpp.html#a5ea35af18521fda04efc18f51e20ba0c',1,'filechooser.cpp']]],
+  ['clearchan_11',['clearChan',['../gbsnd_8cpp.html#a1ba110d7e8ef53c9251f4a5fd3472446',1,'gbsnd.cpp']]],
+  ['cleargfx_12',['clearGFX',['../gbgfx_8h.html#a484b3e71acef74d4337dbaf8765cb140',1,'clearGFX():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#a484b3e71acef74d4337dbaf8765cb140',1,'clearGFX():&#160;gbgfx.cpp']]],
+  ['clockupdater_13',['clockUpdater',['../timer_8h.html#a7042121c8f144661521688018c38967b',1,'clockUpdater():&#160;timer.cpp'],['../timer_8cpp.html#a7042121c8f144661521688018c38967b',1,'clockUpdater():&#160;timer.cpp']]],
+  ['closemenu_14',['closeMenu',['../console_8h.html#ac8d78534d723d2c92c9dd9f81d97bc97',1,'closeMenu():&#160;console.cpp'],['../console_8cpp.html#ac8d78534d723d2c92c9dd9f81d97bc97',1,'closeMenu():&#160;console.cpp']]],
+  ['closenorwrite_15',['CloseNorWrite',['../3in1_8h.html#aa0c150f7f91c5ccd83a8e677aeb4ea15',1,'CloseNorWrite():&#160;3in1.cpp'],['../3in1_8cpp.html#aa0c150f7f91c5ccd83a8e677aeb4ea15',1,'CloseNorWrite():&#160;3in1.cpp']]],
+  ['closesubmenu_16',['closeSubMenu',['../console_8h.html#a02ac40bcc0988bcd6d5721eebfb1b212',1,'closeSubMenu():&#160;console.cpp'],['../console_8cpp.html#a02ac40bcc0988bcd6d5721eebfb1b212',1,'closeSubMenu():&#160;console.cpp']]],
+  ['consoleoutputfunc_17',['consoleOutputFunc',['../console_8cpp.html#a79938fc3048d002ef31e01a4d8d1fc22',1,'console.cpp']]],
+  ['consolesetlinecolor_18',['consoleSetLineColor',['../console_8h.html#aa2f459c798f3af7bde9854a113f79267',1,'consoleSetLineColor(int line, int color):&#160;console.cpp'],['../console_8cpp.html#aa2f459c798f3af7bde9854a113f79267',1,'consoleSetLineColor(int line, int color):&#160;console.cpp']]],
+  ['consolesetposcolor_19',['consoleSetPosColor',['../console_8h.html#a95137de184d71a8ae5e277695165a38d',1,'consoleSetPosColor(int x, int y, int color):&#160;console.cpp'],['../console_8cpp.html#a95137de184d71a8ae5e277695165a38d',1,'consoleSetPosColor(int x, int y, int color):&#160;console.cpp']]],
+  ['controlsparseconfig_20',['controlsParseConfig',['../inputhelper_8cpp.html#a7eaaf2f7ada20e58f7624e7c4a57b431',1,'inputhelper.cpp']]],
+  ['controlsprintconfig_21',['controlsPrintConfig',['../inputhelper_8cpp.html#aed48ef8d042ac1f81cd39e86138e24c4',1,'inputhelper.cpp']]],
+  ['copytile_22',['copyTile',['../gbgfx_8cpp.html#a211a591c0c34da3c0e17a95361b3b6ab',1,'gbgfx.cpp']]],
+  ['customborderenablefunc_23',['customBorderEnableFunc',['../console_8cpp.html#a94dd43141081856127937db24ed294f0',1,'console.cpp']]]
+];

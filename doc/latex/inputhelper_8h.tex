@@ -1,0 +1,777 @@
+\hypertarget{inputhelper_8h}{}\doxysection{arm9/include/inputhelper.h File Reference}
+\label{inputhelper_8h}\index{arm9/include/inputhelper.h@{arm9/include/inputhelper.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_ad8144b8bcef89af1a9d65066b1873418}{BUTTONA}}~0x1
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_ad7ec376d9d5f252b406d60d2b8da99da}{BUTTONB}}~0x2
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a53dc4af00adc7b3b4d12eafb71596dfc}{SELECT}}~0x4
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a3018c7600b7bb9866400596a56a57af7}{START}}~0x8
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a80fb826a684cf3f0d306b22aa100ddac}{RIGHT}}~0x10
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a437ef08681e7210d6678427030446a54}{LEFT}}~0x20
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a1965eaca47dbf3f87acdafc2208f04eb}{UP}}~0x40
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a4193cd1c8c2e6ebd0e056fa2364a663f}{DOWN}}~0x80
+\item 
+\#define \mbox{\hyperlink{inputhelper_8h_a5a3429fb1a49de0b2eafe11a6644a072}{AUTOSAVE\+\_\+\+SECTOR\+\_\+\+SIZE}}~512
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cab70a3835b1c10d7576218eefb6fa825f}{MBC0}} = 0
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca495c0fef03ab29cc7089dc56e0e0834a}{MBC1}}
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cae6cafab120646e807dfed04747d49be7}{MBC2}}
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cad8977b18fdd6a556bd79510085dc1e87}{MBC3}}
+, \newline
+\mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca7a73b5335a790264368e327c0e9326d7}{MBC4}}
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca1aec967980f5801d965d690b233e0cd9}{MBC5}}
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca595a4e9771e4f691b2b5e5c12fd75ee7}{MBC7}}
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06caa8e56e5ea357dc35e82976fb8008a405}{HUC3}}
+, \newline
+\mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca05b8381068fe776bae8a5c1c07b12146}{HUC1}}
+, \mbox{\hyperlink{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca438328361bd60b4655d1c41353bea604}{MBC\+\_\+\+MAX}}
+ \}
+\item 
+enum \{ \newline
+\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea8b8daa06bdfb9245dc7c1030e6bf845c}{KEY\+\_\+\+NONE}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea962f7f6d8022e74f3f8daeb583325f77}{KEY\+\_\+\+GB\+\_\+A}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaa04f27511f218cae4ed97375b2ef4d00}{KEY\+\_\+\+GB\+\_\+B}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4b2e341451e26e0e93073a01b2f53a99}{KEY\+\_\+\+GB\+\_\+\+LEFT}}
+, \newline
+\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea338cffadee195ddc56fbcc776c903290}{KEY\+\_\+\+GB\+\_\+\+RIGHT}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea455fc967ead9b31dd75272ee869edf2f}{KEY\+\_\+\+GB\+\_\+\+UP}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3cdb47db22796a0bf7e566ae815c5e0c}{KEY\+\_\+\+GB\+\_\+\+DOWN}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4a5e786efa6b76975d576f669efc6ce6}{KEY\+\_\+\+GB\+\_\+\+START}}
+, \newline
+\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea034f6424ef4e28e48ab4675a3c2d287c}{KEY\+\_\+\+GB\+\_\+\+SELECT}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea0483607aa811d9b40ce925494621a188}{KEY\+\_\+\+MENU}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3701a36cba8cf546cbe8315b7acd593b}{KEY\+\_\+\+MENU\+\_\+\+PAUSE}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eafbe4b69d5228172d3dae666c9391e9e4}{KEY\+\_\+\+SAVE}}
+, \newline
+\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea28d556211b85ba8c83e7b8ccfcbb5a19}{KEY\+\_\+\+GB\+\_\+\+AUTO\+\_\+A}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea6509e4bd8f72528fa7e0c5d3483c83ac}{KEY\+\_\+\+GB\+\_\+\+AUTO\+\_\+B}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea18192242a877bc93a7aa7a5540355aa2}{KEY\+\_\+\+FAST\+\_\+\+FORWARD}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea312f08beb744288aafda1615fd5c5568}{KEY\+\_\+\+FAST\+\_\+\+FORWARD\+\_\+\+TOGGLE}}
+, \newline
+\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ead902d3588d279cef5e165c539b9efe03}{KEY\+\_\+\+SCALE}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea36a53b1598543e728ff1ea3d8443711a}{KEY\+\_\+\+RESET}}
+, \mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaddb432d0ec23567564063eb5166ac73a}{KEY\+\_\+\+GB\+\_\+\+A\+\_\+\+B\+\_\+\+START\+\_\+\+SELECT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a3d3188b9d438add4ac7abf5d19f9b74c}{init\+Input}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a23c95ece954e713c25b36ed4161431f9}{flush\+Fat\+Cache}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a1a44001a15f2538b19f07d4001d437ef}{write\+Save\+File\+Sector}} (int start\+Sector, int num\+Sectors)
+\item 
+void \mbox{\hyperlink{inputhelper_8h_abffb348f65ce0d1864a65b5c4abf456a}{start\+Key\+Config\+Chooser}} ()
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_a5a9ea8d08563c440e8a39e3798c96e46}{read\+Config\+File}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a2d7c50d7d21a6d9ac3667f414aac49c6}{write\+Config\+File}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_ac5fadb7881ae954770d26f6ee7fc4c72}{read\+Keys}} ()
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{key\+Pressed}} (int key)
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_a99d5423f8f0dc71b84a16d56a51f8e9a}{key\+Pressed\+Auto\+Repeat}} (int key)
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{key\+Just\+Pressed}} (int key)
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a2b937c97dc39286b96ecb8ab3f84e19a}{force\+Release\+Key}} (int key)
+\item 
+int \mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{map\+Gb\+Key}} (int gb\+Key)
+\item 
+void \mbox{\hyperlink{inputhelper_8h_ac4e4aa8937901a5e1323e1e48af89655}{load\+Bios}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+int \mbox{\hyperlink{inputhelper_8h_a700999c3f0e95c5cb420ab499bbf12ad}{load\+Rom}} (char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a2fd52cd11f1b80d0a2c8f157a0de62fd}{load\+Rom\+Bank}} ()
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_ad1fb302157c34bd360e75b5f461ce83c}{is\+Rom\+Bank\+Loaded}} (int bank)
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8h_a00233a25987a4b86b36aebf9db07e66f}{get\+Rom\+Bank}} (int bank)
+\item 
+const char $\ast$ \mbox{\hyperlink{inputhelper_8h_af07073690b79c4b21cab6a9d62582283}{get\+Rom\+Basename}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_ac19211d01e57489fcb69ce14b4062a72}{unload\+Rom}} ()
+\item 
+int \mbox{\hyperlink{inputhelper_8h_aaddf13d5a4254f4662b0715db551203b}{load\+Save}} ()
+\item 
+int \mbox{\hyperlink{inputhelper_8h_a3d4388333a1ae565953072aceb1f7c17}{save\+Game}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_ad5ce0ea494ad2dbe10d92a0fb29cf33c}{gameboy\+Sync\+Autosave}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a9359d9ec71ef9149a4b6edce9ede73e2}{update\+Autosave}} ()
+\item 
+char $\ast$ \mbox{\hyperlink{inputhelper_8h_a4a5e629b1d80e1a57e11d7182119e8d4}{get\+Rom\+Title}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_adb6320d305773ad55137c21cc22a853e}{print\+Rom\+Info}} ()
+\item 
+void \mbox{\hyperlink{inputhelper_8h_aa77a317fffa4e8eae99208c1c032cca7}{save\+State}} (int num)
+\item 
+int \mbox{\hyperlink{inputhelper_8h_ad98183888fd36f8de7ef2ff6ee75c746}{load\+State}} (int num)
+\item 
+void \mbox{\hyperlink{inputhelper_8h_a1523b49e2ca4656fd528773f1cb45bb0}{delete\+State}} (int num)
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_af174f16d94b3866c8bc8b927a6ec0545}{check\+State\+Exists}} (int num)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{inputhelper_8h_ab61705f91578371bd97f21bf674aac5b}{MAX\+\_\+\+ROM\+\_\+\+BANKS}} = 0x200
+\item 
+int \mbox{\hyperlink{inputhelper_8h_af34cf22a808cb66e6206fd4fabb6e61a}{max\+Loaded\+Rom\+Banks}}
+\item 
+int \mbox{\hyperlink{inputhelper_8h_abf183a768656beef29ca6644f603da7b}{num\+Loaded\+Rom\+Banks}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{rom\+Slot0}}
+\item 
+u8 $\ast$ \mbox{\hyperlink{inputhelper_8h_a547509d84b1ebf035a36a3eb67b7f1e8}{rom\+Slot1}}
+\item 
+u8 \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttons\+Pressed}}
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_a3a90b3fc29f7dd88ced366105b542e46}{suspend\+State\+Exists}}
+\item 
+bool \mbox{\hyperlink{inputhelper_8h_a6aa99b6d37852312556353dc7f98f954}{advance\+Frame}}
+\item 
+FILE $\ast$ \mbox{\hyperlink{inputhelper_8h_a7fedcafb7925d05c44330e2e1edf3043}{save\+File}}
+\item 
+char $\ast$ \mbox{\hyperlink{inputhelper_8h_afb9e9630607fb784a26fade843b3a663}{border\+Path}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{inputhelper_8h_a5a3429fb1a49de0b2eafe11a6644a072}\label{inputhelper_8h_a5a3429fb1a49de0b2eafe11a6644a072}} 
+\index{inputhelper.h@{inputhelper.h}!AUTOSAVE\_SECTOR\_SIZE@{AUTOSAVE\_SECTOR\_SIZE}}
+\index{AUTOSAVE\_SECTOR\_SIZE@{AUTOSAVE\_SECTOR\_SIZE}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{AUTOSAVE\_SECTOR\_SIZE}{AUTOSAVE\_SECTOR\_SIZE}}
+{\footnotesize\ttfamily \#define AUTOSAVE\+\_\+\+SECTOR\+\_\+\+SIZE~512}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00030}{30}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ad8144b8bcef89af1a9d65066b1873418}\label{inputhelper_8h_ad8144b8bcef89af1a9d65066b1873418}} 
+\index{inputhelper.h@{inputhelper.h}!BUTTONA@{BUTTONA}}
+\index{BUTTONA@{BUTTONA}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{BUTTONA}{BUTTONA}}
+{\footnotesize\ttfamily \#define BUTTONA~0x1}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00020}{20}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ad7ec376d9d5f252b406d60d2b8da99da}\label{inputhelper_8h_ad7ec376d9d5f252b406d60d2b8da99da}} 
+\index{inputhelper.h@{inputhelper.h}!BUTTONB@{BUTTONB}}
+\index{BUTTONB@{BUTTONB}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{BUTTONB}{BUTTONB}}
+{\footnotesize\ttfamily \#define BUTTONB~0x2}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00021}{21}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a4193cd1c8c2e6ebd0e056fa2364a663f}\label{inputhelper_8h_a4193cd1c8c2e6ebd0e056fa2364a663f}} 
+\index{inputhelper.h@{inputhelper.h}!DOWN@{DOWN}}
+\index{DOWN@{DOWN}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{DOWN}{DOWN}}
+{\footnotesize\ttfamily \#define DOWN~0x80}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00027}{27}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a437ef08681e7210d6678427030446a54}\label{inputhelper_8h_a437ef08681e7210d6678427030446a54}} 
+\index{inputhelper.h@{inputhelper.h}!LEFT@{LEFT}}
+\index{LEFT@{LEFT}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{LEFT}{LEFT}}
+{\footnotesize\ttfamily \#define LEFT~0x20}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00025}{25}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a80fb826a684cf3f0d306b22aa100ddac}\label{inputhelper_8h_a80fb826a684cf3f0d306b22aa100ddac}} 
+\index{inputhelper.h@{inputhelper.h}!RIGHT@{RIGHT}}
+\index{RIGHT@{RIGHT}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{RIGHT}{RIGHT}}
+{\footnotesize\ttfamily \#define RIGHT~0x10}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00024}{24}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a53dc4af00adc7b3b4d12eafb71596dfc}\label{inputhelper_8h_a53dc4af00adc7b3b4d12eafb71596dfc}} 
+\index{inputhelper.h@{inputhelper.h}!SELECT@{SELECT}}
+\index{SELECT@{SELECT}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{SELECT}{SELECT}}
+{\footnotesize\ttfamily \#define SELECT~0x4}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00022}{22}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a3018c7600b7bb9866400596a56a57af7}\label{inputhelper_8h_a3018c7600b7bb9866400596a56a57af7}} 
+\index{inputhelper.h@{inputhelper.h}!START@{START}}
+\index{START@{START}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{START}{START}}
+{\footnotesize\ttfamily \#define START~0x8}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00023}{23}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a1965eaca47dbf3f87acdafc2208f04eb}\label{inputhelper_8h_a1965eaca47dbf3f87acdafc2208f04eb}} 
+\index{inputhelper.h@{inputhelper.h}!UP@{UP}}
+\index{UP@{UP}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{UP}{UP}}
+{\footnotesize\ttfamily \#define UP~0x40}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00026}{26}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06c}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06c}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC0@{MBC0}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC0@{MBC0}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cab70a3835b1c10d7576218eefb6fa825f}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cab70a3835b1c10d7576218eefb6fa825f}} 
+MBC0&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC1@{MBC1}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC1@{MBC1}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca495c0fef03ab29cc7089dc56e0e0834a}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca495c0fef03ab29cc7089dc56e0e0834a}} 
+MBC1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC2@{MBC2}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC2@{MBC2}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cae6cafab120646e807dfed04747d49be7}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cae6cafab120646e807dfed04747d49be7}} 
+MBC2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC3@{MBC3}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC3@{MBC3}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cad8977b18fdd6a556bd79510085dc1e87}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06cad8977b18fdd6a556bd79510085dc1e87}} 
+MBC3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC4@{MBC4}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC4@{MBC4}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca7a73b5335a790264368e327c0e9326d7}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca7a73b5335a790264368e327c0e9326d7}} 
+MBC4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC5@{MBC5}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC5@{MBC5}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca1aec967980f5801d965d690b233e0cd9}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca1aec967980f5801d965d690b233e0cd9}} 
+MBC5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC7@{MBC7}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC7@{MBC7}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca595a4e9771e4f691b2b5e5c12fd75ee7}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca595a4e9771e4f691b2b5e5c12fd75ee7}} 
+MBC7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HUC3@{HUC3}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!HUC3@{HUC3}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06caa8e56e5ea357dc35e82976fb8008a405}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06caa8e56e5ea357dc35e82976fb8008a405}} 
+HUC3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HUC1@{HUC1}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!HUC1@{HUC1}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca05b8381068fe776bae8a5c1c07b12146}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca05b8381068fe776bae8a5c1c07b12146}} 
+HUC1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MBC\_MAX@{MBC\_MAX}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!MBC\_MAX@{MBC\_MAX}}}\mbox{\Hypertarget{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca438328361bd60b4655d1c41353bea604}\label{inputhelper_8h_adc29c2ff13d900c2f185ee95427fb06ca438328361bd60b4655d1c41353bea604}} 
+MBC\+\_\+\+MAX&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00006}{6}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9e}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9e}} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_NONE@{KEY\_NONE}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_NONE@{KEY\_NONE}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea8b8daa06bdfb9245dc7c1030e6bf845c}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea8b8daa06bdfb9245dc7c1030e6bf845c}} 
+KEY\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_A@{KEY\_GB\_A}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_A@{KEY\_GB\_A}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea962f7f6d8022e74f3f8daeb583325f77}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea962f7f6d8022e74f3f8daeb583325f77}} 
+KEY\+\_\+\+GB\+\_\+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_B@{KEY\_GB\_B}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_B@{KEY\_GB\_B}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaa04f27511f218cae4ed97375b2ef4d00}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaa04f27511f218cae4ed97375b2ef4d00}} 
+KEY\+\_\+\+GB\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_LEFT@{KEY\_GB\_LEFT}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_LEFT@{KEY\_GB\_LEFT}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4b2e341451e26e0e93073a01b2f53a99}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4b2e341451e26e0e93073a01b2f53a99}} 
+KEY\+\_\+\+GB\+\_\+\+LEFT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_RIGHT@{KEY\_GB\_RIGHT}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_RIGHT@{KEY\_GB\_RIGHT}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea338cffadee195ddc56fbcc776c903290}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea338cffadee195ddc56fbcc776c903290}} 
+KEY\+\_\+\+GB\+\_\+\+RIGHT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_UP@{KEY\_GB\_UP}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_UP@{KEY\_GB\_UP}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea455fc967ead9b31dd75272ee869edf2f}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea455fc967ead9b31dd75272ee869edf2f}} 
+KEY\+\_\+\+GB\+\_\+\+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_DOWN@{KEY\_GB\_DOWN}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_DOWN@{KEY\_GB\_DOWN}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3cdb47db22796a0bf7e566ae815c5e0c}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3cdb47db22796a0bf7e566ae815c5e0c}} 
+KEY\+\_\+\+GB\+\_\+\+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_START@{KEY\_GB\_START}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_START@{KEY\_GB\_START}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4a5e786efa6b76975d576f669efc6ce6}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4a5e786efa6b76975d576f669efc6ce6}} 
+KEY\+\_\+\+GB\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_SELECT@{KEY\_GB\_SELECT}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_SELECT@{KEY\_GB\_SELECT}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea034f6424ef4e28e48ab4675a3c2d287c}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea034f6424ef4e28e48ab4675a3c2d287c}} 
+KEY\+\_\+\+GB\+\_\+\+SELECT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_MENU@{KEY\_MENU}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_MENU@{KEY\_MENU}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea0483607aa811d9b40ce925494621a188}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea0483607aa811d9b40ce925494621a188}} 
+KEY\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_MENU\_PAUSE@{KEY\_MENU\_PAUSE}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_MENU\_PAUSE@{KEY\_MENU\_PAUSE}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3701a36cba8cf546cbe8315b7acd593b}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3701a36cba8cf546cbe8315b7acd593b}} 
+KEY\+\_\+\+MENU\+\_\+\+PAUSE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_SAVE@{KEY\_SAVE}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_SAVE@{KEY\_SAVE}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eafbe4b69d5228172d3dae666c9391e9e4}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eafbe4b69d5228172d3dae666c9391e9e4}} 
+KEY\+\_\+\+SAVE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_AUTO\_A@{KEY\_GB\_AUTO\_A}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_AUTO\_A@{KEY\_GB\_AUTO\_A}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea28d556211b85ba8c83e7b8ccfcbb5a19}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea28d556211b85ba8c83e7b8ccfcbb5a19}} 
+KEY\+\_\+\+GB\+\_\+\+AUTO\+\_\+A&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_AUTO\_B@{KEY\_GB\_AUTO\_B}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_AUTO\_B@{KEY\_GB\_AUTO\_B}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea6509e4bd8f72528fa7e0c5d3483c83ac}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea6509e4bd8f72528fa7e0c5d3483c83ac}} 
+KEY\+\_\+\+GB\+\_\+\+AUTO\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_FAST\_FORWARD@{KEY\_FAST\_FORWARD}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_FAST\_FORWARD@{KEY\_FAST\_FORWARD}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea18192242a877bc93a7aa7a5540355aa2}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea18192242a877bc93a7aa7a5540355aa2}} 
+KEY\+\_\+\+FAST\+\_\+\+FORWARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_FAST\_FORWARD\_TOGGLE@{KEY\_FAST\_FORWARD\_TOGGLE}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_FAST\_FORWARD\_TOGGLE@{KEY\_FAST\_FORWARD\_TOGGLE}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea312f08beb744288aafda1615fd5c5568}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea312f08beb744288aafda1615fd5c5568}} 
+KEY\+\_\+\+FAST\+\_\+\+FORWARD\+\_\+\+TOGGLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_SCALE@{KEY\_SCALE}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_SCALE@{KEY\_SCALE}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ead902d3588d279cef5e165c539b9efe03}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ead902d3588d279cef5e165c539b9efe03}} 
+KEY\+\_\+\+SCALE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_RESET@{KEY\_RESET}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_RESET@{KEY\_RESET}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea36a53b1598543e728ff1ea3d8443711a}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea36a53b1598543e728ff1ea3d8443711a}} 
+KEY\+\_\+\+RESET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{KEY\_GB\_A\_B\_START\_SELECT@{KEY\_GB\_A\_B\_START\_SELECT}!inputhelper.h@{inputhelper.h}}\index{inputhelper.h@{inputhelper.h}!KEY\_GB\_A\_B\_START\_SELECT@{KEY\_GB\_A\_B\_START\_SELECT}}}\mbox{\Hypertarget{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaddb432d0ec23567564063eb5166ac73a}\label{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaddb432d0ec23567564063eb5166ac73a}} 
+KEY\+\_\+\+GB\+\_\+\+A\+\_\+\+B\+\_\+\+START\+\_\+\+SELECT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00032}{32}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{inputhelper_8h_af174f16d94b3866c8bc8b927a6ec0545}\label{inputhelper_8h_af174f16d94b3866c8bc8b927a6ec0545}} 
+\index{inputhelper.h@{inputhelper.h}!checkStateExists@{checkStateExists}}
+\index{checkStateExists@{checkStateExists}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{checkStateExists()}{checkStateExists()}}
+{\footnotesize\ttfamily bool check\+State\+Exists (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01239}{1239}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a1523b49e2ca4656fd528773f1cb45bb0}\label{inputhelper_8h_a1523b49e2ca4656fd528773f1cb45bb0}} 
+\index{inputhelper.h@{inputhelper.h}!deleteState@{deleteState}}
+\index{deleteState@{deleteState}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{deleteState()}{deleteState()}}
+{\footnotesize\ttfamily void delete\+State (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01225}{1225}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a23c95ece954e713c25b36ed4161431f9}\label{inputhelper_8h_a23c95ece954e713c25b36ed4161431f9}} 
+\index{inputhelper.h@{inputhelper.h}!flushFatCache@{flushFatCache}}
+\index{flushFatCache@{flushFatCache}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{flushFatCache()}{flushFatCache()}}
+{\footnotesize\ttfamily void flush\+Fat\+Cache (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00080}{80}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a2b937c97dc39286b96ecb8ab3f84e19a}\label{inputhelper_8h_a2b937c97dc39286b96ecb8ab3f84e19a}} 
+\index{inputhelper.h@{inputhelper.h}!forceReleaseKey@{forceReleaseKey}}
+\index{forceReleaseKey@{forceReleaseKey}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{forceReleaseKey()}{forceReleaseKey()}}
+{\footnotesize\ttfamily void force\+Release\+Key (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00970}{970}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ad5ce0ea494ad2dbe10d92a0fb29cf33c}\label{inputhelper_8h_ad5ce0ea494ad2dbe10d92a0fb29cf33c}} 
+\index{inputhelper.h@{inputhelper.h}!gameboySyncAutosave@{gameboySyncAutosave}}
+\index{gameboySyncAutosave@{gameboySyncAutosave}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{gameboySyncAutosave()}{gameboySyncAutosave()}}
+{\footnotesize\ttfamily void gameboy\+Sync\+Autosave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00854}{854}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a00233a25987a4b86b36aebf9db07e66f}\label{inputhelper_8h_a00233a25987a4b86b36aebf9db07e66f}} 
+\index{inputhelper.h@{inputhelper.h}!getRomBank@{getRomBank}}
+\index{getRomBank@{getRomBank}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{getRomBank()}{getRomBank()}}
+{\footnotesize\ttfamily u8 $\ast$ get\+Rom\+Bank (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00700}{700}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_af07073690b79c4b21cab6a9d62582283}\label{inputhelper_8h_af07073690b79c4b21cab6a9d62582283}} 
+\index{inputhelper.h@{inputhelper.h}!getRomBasename@{getRomBasename}}
+\index{getRomBasename@{getRomBasename}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{getRomBasename()}{getRomBasename()}}
+{\footnotesize\ttfamily const char $\ast$ get\+Rom\+Basename (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00707}{707}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a4a5e629b1d80e1a57e11d7182119e8d4}\label{inputhelper_8h_a4a5e629b1d80e1a57e11d7182119e8d4}} 
+\index{inputhelper.h@{inputhelper.h}!getRomTitle@{getRomTitle}}
+\index{getRomTitle@{getRomTitle}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{getRomTitle()}{getRomTitle()}}
+{\footnotesize\ttfamily char $\ast$ get\+Rom\+Title (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00981}{981}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a3d3188b9d438add4ac7abf5d19f9b74c}\label{inputhelper_8h_a3d3188b9d438add4ac7abf5d19f9b74c}} 
+\index{inputhelper.h@{inputhelper.h}!initInput@{initInput}}
+\index{initInput@{initInput}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{initInput()}{initInput()}}
+{\footnotesize\ttfamily void init\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ad1fb302157c34bd360e75b5f461ce83c}\label{inputhelper_8h_ad1fb302157c34bd360e75b5f461ce83c}} 
+\index{inputhelper.h@{inputhelper.h}!isRomBankLoaded@{isRomBankLoaded}}
+\index{isRomBankLoaded@{isRomBankLoaded}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{isRomBankLoaded()}{isRomBankLoaded()}}
+{\footnotesize\ttfamily bool is\+Rom\+Bank\+Loaded (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00696}{696}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}\label{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}} 
+\index{inputhelper.h@{inputhelper.h}!keyJustPressed@{keyJustPressed}}
+\index{keyJustPressed@{keyJustPressed}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{keyJustPressed()}{keyJustPressed()}}
+{\footnotesize\ttfamily bool key\+Just\+Pressed (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00938}{938}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}\label{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}} 
+\index{inputhelper.h@{inputhelper.h}!keyPressed@{keyPressed}}
+\index{keyPressed@{keyPressed}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{keyPressed()}{keyPressed()}}
+{\footnotesize\ttfamily bool key\+Pressed (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00920}{920}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a99d5423f8f0dc71b84a16d56a51f8e9a}\label{inputhelper_8h_a99d5423f8f0dc71b84a16d56a51f8e9a}} 
+\index{inputhelper.h@{inputhelper.h}!keyPressedAutoRepeat@{keyPressedAutoRepeat}}
+\index{keyPressedAutoRepeat@{keyPressedAutoRepeat}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{keyPressedAutoRepeat()}{keyPressedAutoRepeat()}}
+{\footnotesize\ttfamily bool key\+Pressed\+Auto\+Repeat (\begin{DoxyParamCaption}\item[{int}]{key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00924}{924}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ac4e4aa8937901a5e1323e1e48af89655}\label{inputhelper_8h_ac4e4aa8937901a5e1323e1e48af89655}} 
+\index{inputhelper.h@{inputhelper.h}!loadBios@{loadBios}}
+\index{loadBios@{loadBios}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{loadBios()}{loadBios()}}
+{\footnotesize\ttfamily void load\+Bios (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00480}{480}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a700999c3f0e95c5cb420ab499bbf12ad}\label{inputhelper_8h_a700999c3f0e95c5cb420ab499bbf12ad}} 
+\index{inputhelper.h@{inputhelper.h}!loadRom@{loadRom}}
+\index{loadRom@{loadRom}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{loadRom()}{loadRom()}}
+{\footnotesize\ttfamily int load\+Rom (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00488}{488}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a2fd52cd11f1b80d0a2c8f157a0de62fd}\label{inputhelper_8h_a2fd52cd11f1b80d0a2c8f157a0de62fd}} 
+\index{inputhelper.h@{inputhelper.h}!loadRomBank@{loadRomBank}}
+\index{loadRomBank@{loadRomBank}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{loadRomBank()}{loadRomBank()}}
+{\footnotesize\ttfamily void load\+Rom\+Bank (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00673}{673}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_aaddf13d5a4254f4662b0715db551203b}\label{inputhelper_8h_aaddf13d5a4254f4662b0715db551203b}} 
+\index{inputhelper.h@{inputhelper.h}!loadSave@{loadSave}}
+\index{loadSave@{loadSave}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{loadSave()}{loadSave()}}
+{\footnotesize\ttfamily int load\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00728}{728}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ad98183888fd36f8de7ef2ff6ee75c746}\label{inputhelper_8h_ad98183888fd36f8de7ef2ff6ee75c746}} 
+\index{inputhelper.h@{inputhelper.h}!loadState@{loadState}}
+\index{loadState@{loadState}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{loadState()}{loadState()}}
+{\footnotesize\ttfamily int load\+State (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01101}{1101}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_adea147396571230af47a2b52caa970b3}\label{inputhelper_8h_adea147396571230af47a2b52caa970b3}} 
+\index{inputhelper.h@{inputhelper.h}!mapGbKey@{mapGbKey}}
+\index{mapGbKey@{mapGbKey}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{mapGbKey()}{mapGbKey()}}
+{\footnotesize\ttfamily int map\+Gb\+Key (\begin{DoxyParamCaption}\item[{int}]{gb\+Key }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00976}{976}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_adb6320d305773ad55137c21cc22a853e}\label{inputhelper_8h_adb6320d305773ad55137c21cc22a853e}} 
+\index{inputhelper.h@{inputhelper.h}!printRomInfo@{printRomInfo}}
+\index{printRomInfo@{printRomInfo}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{printRomInfo()}{printRomInfo()}}
+{\footnotesize\ttfamily void print\+Rom\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00988}{988}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a5a9ea8d08563c440e8a39e3798c96e46}\label{inputhelper_8h_a5a9ea8d08563c440e8a39e3798c96e46}} 
+\index{inputhelper.h@{inputhelper.h}!readConfigFile@{readConfigFile}}
+\index{readConfigFile@{readConfigFile}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{readConfigFile()}{readConfigFile()}}
+{\footnotesize\ttfamily bool read\+Config\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00414}{414}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ac5fadb7881ae954770d26f6ee7fc4c72}\label{inputhelper_8h_ac5fadb7881ae954770d26f6ee7fc4c72}} 
+\index{inputhelper.h@{inputhelper.h}!readKeys@{readKeys}}
+\index{readKeys@{readKeys}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{readKeys()}{readKeys()}}
+{\footnotesize\ttfamily void read\+Keys (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00944}{944}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a3d4388333a1ae565953072aceb1f7c17}\label{inputhelper_8h_a3d4388333a1ae565953072aceb1f7c17}} 
+\index{inputhelper.h@{inputhelper.h}!saveGame@{saveGame}}
+\index{saveGame@{saveGame}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{saveGame()}{saveGame()}}
+{\footnotesize\ttfamily int save\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00827}{827}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_aa77a317fffa4e8eae99208c1c032cca7}\label{inputhelper_8h_aa77a317fffa4e8eae99208c1c032cca7}} 
+\index{inputhelper.h@{inputhelper.h}!saveState@{saveState}}
+\index{saveState@{saveState}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{saveState()}{saveState()}}
+{\footnotesize\ttfamily void save\+State (\begin{DoxyParamCaption}\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l01031}{1031}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_abffb348f65ce0d1864a65b5c4abf456a}\label{inputhelper_8h_abffb348f65ce0d1864a65b5c4abf456a}} 
+\index{inputhelper.h@{inputhelper.h}!startKeyConfigChooser@{startKeyConfigChooser}}
+\index{startKeyConfigChooser@{startKeyConfigChooser}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{startKeyConfigChooser()}{startKeyConfigChooser()}}
+{\footnotesize\ttfamily void start\+Key\+Config\+Chooser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00350}{350}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ac19211d01e57489fcb69ce14b4062a72}\label{inputhelper_8h_ac19211d01e57489fcb69ce14b4062a72}} 
+\index{inputhelper.h@{inputhelper.h}!unloadRom@{unloadRom}}
+\index{unloadRom@{unloadRom}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{unloadRom()}{unloadRom()}}
+{\footnotesize\ttfamily void unload\+Rom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00712}{712}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a9359d9ec71ef9149a4b6edce9ede73e2}\label{inputhelper_8h_a9359d9ec71ef9149a4b6edce9ede73e2}} 
+\index{inputhelper.h@{inputhelper.h}!updateAutosave@{updateAutosave}}
+\index{updateAutosave@{updateAutosave}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{updateAutosave()}{updateAutosave()}}
+{\footnotesize\ttfamily void update\+Autosave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00890}{890}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a2d7c50d7d21a6d9ac3667f414aac49c6}\label{inputhelper_8h_a2d7c50d7d21a6d9ac3667f414aac49c6}} 
+\index{inputhelper.h@{inputhelper.h}!writeConfigFile@{writeConfigFile}}
+\index{writeConfigFile@{writeConfigFile}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{writeConfigFile()}{writeConfigFile()}}
+{\footnotesize\ttfamily void write\+Config\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00464}{464}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a1a44001a15f2538b19f07d4001d437ef}\label{inputhelper_8h_a1a44001a15f2538b19f07d4001d437ef}} 
+\index{inputhelper.h@{inputhelper.h}!writeSaveFileSector@{writeSaveFileSector}}
+\index{writeSaveFileSector@{writeSaveFileSector}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{writeSaveFileSector()}{writeSaveFileSector()}}
+{\footnotesize\ttfamily void write\+Save\+File\+Sector (\begin{DoxyParamCaption}\item[{int}]{start\+Sector,  }\item[{int}]{num\+Sectors }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{inputhelper_8h_a6aa99b6d37852312556353dc7f98f954}\label{inputhelper_8h_a6aa99b6d37852312556353dc7f98f954}} 
+\index{inputhelper.h@{inputhelper.h}!advanceFrame@{advanceFrame}}
+\index{advanceFrame@{advanceFrame}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{advanceFrame}{advanceFrame}}
+{\footnotesize\ttfamily bool advance\+Frame\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00052}{52}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_afb9e9630607fb784a26fade843b3a663}\label{inputhelper_8h_afb9e9630607fb784a26fade843b3a663}} 
+\index{inputhelper.h@{inputhelper.h}!borderPath@{borderPath}}
+\index{borderPath@{borderPath}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{borderPath}{borderPath}}
+{\footnotesize\ttfamily char$\ast$ border\+Path\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}\label{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}} 
+\index{inputhelper.h@{inputhelper.h}!buttonsPressed@{buttonsPressed}}
+\index{buttonsPressed@{buttonsPressed}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{buttonsPressed}{buttonsPressed}}
+{\footnotesize\ttfamily u8 buttons\+Pressed\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{mmu_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{mmu_8cpp_source}{mmu.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ab61705f91578371bd97f21bf674aac5b}\label{inputhelper_8h_ab61705f91578371bd97f21bf674aac5b}} 
+\index{inputhelper.h@{inputhelper.h}!MAX\_ROM\_BANKS@{MAX\_ROM\_BANKS}}
+\index{MAX\_ROM\_BANKS@{MAX\_ROM\_BANKS}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ROM\_BANKS}{MAX\_ROM\_BANKS}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+ROM\+\_\+\+BANKS = 0x200}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8h_source_l00055}{55}} of file \mbox{\hyperlink{inputhelper_8h_source}{inputhelper.\+h}}.
+
+\mbox{\Hypertarget{inputhelper_8h_af34cf22a808cb66e6206fd4fabb6e61a}\label{inputhelper_8h_af34cf22a808cb66e6206fd4fabb6e61a}} 
+\index{inputhelper.h@{inputhelper.h}!maxLoadedRomBanks@{maxLoadedRomBanks}}
+\index{maxLoadedRomBanks@{maxLoadedRomBanks}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{maxLoadedRomBanks}{maxLoadedRomBanks}}
+{\footnotesize\ttfamily int max\+Loaded\+Rom\+Banks\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_abf183a768656beef29ca6644f603da7b}\label{inputhelper_8h_abf183a768656beef29ca6644f603da7b}} 
+\index{inputhelper.h@{inputhelper.h}!numLoadedRomBanks@{numLoadedRomBanks}}
+\index{numLoadedRomBanks@{numLoadedRomBanks}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{numLoadedRomBanks}{numLoadedRomBanks}}
+{\footnotesize\ttfamily int num\+Loaded\+Rom\+Banks\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00057}{57}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}\label{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}} 
+\index{inputhelper.h@{inputhelper.h}!romSlot0@{romSlot0}}
+\index{romSlot0@{romSlot0}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{romSlot0}{romSlot0}}
+{\footnotesize\ttfamily u8$\ast$ rom\+Slot0\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a547509d84b1ebf035a36a3eb67b7f1e8}\label{inputhelper_8h_a547509d84b1ebf035a36a3eb67b7f1e8}} 
+\index{inputhelper.h@{inputhelper.h}!romSlot1@{romSlot1}}
+\index{romSlot1@{romSlot1}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{romSlot1}{romSlot1}}
+{\footnotesize\ttfamily u8$\ast$ rom\+Slot1\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a7fedcafb7925d05c44330e2e1edf3043}\label{inputhelper_8h_a7fedcafb7925d05c44330e2e1edf3043}} 
+\index{inputhelper.h@{inputhelper.h}!saveFile@{saveFile}}
+\index{saveFile@{saveFile}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{saveFile}{saveFile}}
+{\footnotesize\ttfamily FILE$\ast$ save\+File\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+
+\mbox{\Hypertarget{inputhelper_8h_a3a90b3fc29f7dd88ced366105b542e46}\label{inputhelper_8h_a3a90b3fc29f7dd88ced366105b542e46}} 
+\index{inputhelper.h@{inputhelper.h}!suspendStateExists@{suspendStateExists}}
+\index{suspendStateExists@{suspendStateExists}!inputhelper.h@{inputhelper.h}}
+\doxysubsubsection{\texorpdfstring{suspendStateExists}{suspendStateExists}}
+{\footnotesize\ttfamily bool suspend\+State\+Exists\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{inputhelper_8cpp_source_l00062}{62}} of file \mbox{\hyperlink{inputhelper_8cpp_source}{inputhelper.\+cpp}}.
+

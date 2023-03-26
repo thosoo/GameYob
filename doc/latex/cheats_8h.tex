@@ -1,0 +1,268 @@
+\hypertarget{cheats_8h}{}\doxysection{arm9/include/cheats.h File Reference}
+\label{cheats_8h}\index{arm9/include/cheats.h@{arm9/include/cheats.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}{MAX\+\_\+\+CHEAT\+\_\+\+NAME\+\_\+\+LEN}}~24
+\item 
+\#define \mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{MAX\+\_\+\+CHEATS}}~900
+\item 
+\#define \mbox{\hyperlink{cheats_8h_a1ad4126493640bd1bb51a3e2e1fa4ee9}{FLAG\+\_\+\+ENABLED}}~(1 $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{cheats_8h_a989c487c4492a35771745beb6dda4d36}{FLAG\+\_\+\+TYPE\+\_\+\+MASK}}~(3 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{cheats_8h_ae14c6bd00e5fe4a6b923271ce431e0e7}{FLAG\+\_\+\+GAMEGENIE}}~(1 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{cheats_8h_a1eb7e7260a603b7b1fd9cfba3c3d49f7}{FLAG\+\_\+\+GAMEGENIE1}}~(2 $<$$<$ 2)
+\item 
+\#define \mbox{\hyperlink{cheats_8h_aae0d3ee18ea11040ef15ec2678dacdb8}{FLAG\+\_\+\+GAMESHARK}}~(3 $<$$<$ 2)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} \mbox{\hyperlink{cheats_8h_a15367848fc65eab384bdffb0381b3ff7}{cheat\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}{enable\+Cheats}} (bool enable)
+\item 
+bool \mbox{\hyperlink{cheats_8h_a909f0abd9b8e7c793c27e9c1592d8c48}{add\+Cheat}} (const char $\ast$str)
+\item 
+void \mbox{\hyperlink{cheats_8h_ab25e60b64f04206de72e8173d012de17}{toggle\+Cheat}} (int i, bool enabled)
+\item 
+void \mbox{\hyperlink{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}{unapply\+GGCheat}} (int cheat)
+\item 
+void \mbox{\hyperlink{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}{apply\+GGCheats\+To\+Bank}} (int \mbox{\hyperlink{mmu_8h_aa6f131debd73127c437bad1e4a9a5232}{rom\+Bank}})
+\item 
+void \mbox{\hyperlink{cheats_8h_af83e379a1b69795e5899a304e643fc6a}{apply\+GSCheats}} (void)
+\item 
+bool \mbox{\hyperlink{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}{start\+Cheat\+Menu}} ()
+\item 
+void \mbox{\hyperlink{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}{load\+Cheats}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+void \mbox{\hyperlink{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}{save\+Cheats}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{cheats_8h_a77d9fae8175282841c0cdda4dd1dc24a}{cheats\+Enabled}}
+\item 
+\mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} \mbox{\hyperlink{cheats_8h_a90e63aca24096c387b174644b9267723}{cheats}} \mbox{[}\mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{MAX\+\_\+\+CHEATS}}\mbox{]}
+\item 
+int \mbox{\hyperlink{cheats_8h_a87e3d45d0a2c77e9b41312f677900af7}{num\+Cheats}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{cheats_8h_a1ad4126493640bd1bb51a3e2e1fa4ee9}\label{cheats_8h_a1ad4126493640bd1bb51a3e2e1fa4ee9}} 
+\index{cheats.h@{cheats.h}!FLAG\_ENABLED@{FLAG\_ENABLED}}
+\index{FLAG\_ENABLED@{FLAG\_ENABLED}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_ENABLED}{FLAG\_ENABLED}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+ENABLED~(1 $<$$<$ 0)}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00023}{23}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{cheats_8h_ae14c6bd00e5fe4a6b923271ce431e0e7}\label{cheats_8h_ae14c6bd00e5fe4a6b923271ce431e0e7}} 
+\index{cheats.h@{cheats.h}!FLAG\_GAMEGENIE@{FLAG\_GAMEGENIE}}
+\index{FLAG\_GAMEGENIE@{FLAG\_GAMEGENIE}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_GAMEGENIE}{FLAG\_GAMEGENIE}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+GAMEGENIE~(1 $<$$<$ 2)}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00025}{25}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{cheats_8h_a1eb7e7260a603b7b1fd9cfba3c3d49f7}\label{cheats_8h_a1eb7e7260a603b7b1fd9cfba3c3d49f7}} 
+\index{cheats.h@{cheats.h}!FLAG\_GAMEGENIE1@{FLAG\_GAMEGENIE1}}
+\index{FLAG\_GAMEGENIE1@{FLAG\_GAMEGENIE1}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_GAMEGENIE1}{FLAG\_GAMEGENIE1}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+GAMEGENIE1~(2 $<$$<$ 2)}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00026}{26}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{cheats_8h_aae0d3ee18ea11040ef15ec2678dacdb8}\label{cheats_8h_aae0d3ee18ea11040ef15ec2678dacdb8}} 
+\index{cheats.h@{cheats.h}!FLAG\_GAMESHARK@{FLAG\_GAMESHARK}}
+\index{FLAG\_GAMESHARK@{FLAG\_GAMESHARK}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_GAMESHARK}{FLAG\_GAMESHARK}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+GAMESHARK~(3 $<$$<$ 2)}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00027}{27}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{cheats_8h_a989c487c4492a35771745beb6dda4d36}\label{cheats_8h_a989c487c4492a35771745beb6dda4d36}} 
+\index{cheats.h@{cheats.h}!FLAG\_TYPE\_MASK@{FLAG\_TYPE\_MASK}}
+\index{FLAG\_TYPE\_MASK@{FLAG\_TYPE\_MASK}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{FLAG\_TYPE\_MASK}{FLAG\_TYPE\_MASK}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+TYPE\+\_\+\+MASK~(3 $<$$<$ 2)}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00024}{24}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}\label{cheats_8h_a2a065001fe1b1d26abc72030a942f6dc}} 
+\index{cheats.h@{cheats.h}!MAX\_CHEAT\_NAME\_LEN@{MAX\_CHEAT\_NAME\_LEN}}
+\index{MAX\_CHEAT\_NAME\_LEN@{MAX\_CHEAT\_NAME\_LEN}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_CHEAT\_NAME\_LEN}{MAX\_CHEAT\_NAME\_LEN}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+CHEAT\+\_\+\+NAME\+\_\+\+LEN~24}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00004}{4}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+\mbox{\Hypertarget{cheats_8h_a81552b09767b3ae88d46b147f3959b82}\label{cheats_8h_a81552b09767b3ae88d46b147f3959b82}} 
+\index{cheats.h@{cheats.h}!MAX\_CHEATS@{MAX\_CHEATS}}
+\index{MAX\_CHEATS@{MAX\_CHEATS}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_CHEATS}{MAX\_CHEATS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+CHEATS~900}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8h_source_l00022}{22}} of file \mbox{\hyperlink{cheats_8h_source}{cheats.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{cheats_8h_a15367848fc65eab384bdffb0381b3ff7}\label{cheats_8h_a15367848fc65eab384bdffb0381b3ff7}} 
+\index{cheats.h@{cheats.h}!cheat\_t@{cheat\_t}}
+\index{cheat\_t@{cheat\_t}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{cheat\_t}{cheat\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{cheats_8h_a909f0abd9b8e7c793c27e9c1592d8c48}\label{cheats_8h_a909f0abd9b8e7c793c27e9c1592d8c48}} 
+\index{cheats.h@{cheats.h}!addCheat@{addCheat}}
+\index{addCheat@{addCheat}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{addCheat()}{addCheat()}}
+{\footnotesize\ttfamily bool add\+Cheat (\begin{DoxyParamCaption}\item[{const char $\ast$}]{str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}\label{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}} 
+\index{cheats.h@{cheats.h}!applyGGCheatsToBank@{applyGGCheatsToBank}}
+\index{applyGGCheatsToBank@{applyGGCheatsToBank}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{applyGGCheatsToBank()}{applyGGCheatsToBank()}}
+{\footnotesize\ttfamily void apply\+GGCheats\+To\+Bank (\begin{DoxyParamCaption}\item[{int}]{rom\+Bank }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_af83e379a1b69795e5899a304e643fc6a}\label{cheats_8h_af83e379a1b69795e5899a304e643fc6a}} 
+\index{cheats.h@{cheats.h}!applyGSCheats@{applyGSCheats}}
+\index{applyGSCheats@{applyGSCheats}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{applyGSCheats()}{applyGSCheats()}}
+{\footnotesize\ttfamily void apply\+GSCheats (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00156}{156}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}\label{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}} 
+\index{cheats.h@{cheats.h}!enableCheats@{enableCheats}}
+\index{enableCheats@{enableCheats}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{enableCheats()}{enableCheats()}}
+{\footnotesize\ttfamily void enable\+Cheats (\begin{DoxyParamCaption}\item[{bool}]{enable }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}\label{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}} 
+\index{cheats.h@{cheats.h}!loadCheats@{loadCheats}}
+\index{loadCheats@{loadCheats}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{loadCheats()}{loadCheats()}}
+{\footnotesize\ttfamily void load\+Cheats (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00183}{183}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}\label{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}} 
+\index{cheats.h@{cheats.h}!saveCheats@{saveCheats}}
+\index{saveCheats@{saveCheats}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{saveCheats()}{saveCheats()}}
+{\footnotesize\ttfamily void save\+Cheats (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00348}{348}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}\label{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}} 
+\index{cheats.h@{cheats.h}!startCheatMenu@{startCheatMenu}}
+\index{startCheatMenu@{startCheatMenu}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{startCheatMenu()}{startCheatMenu()}}
+{\footnotesize\ttfamily bool start\+Cheat\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00335}{335}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_ab25e60b64f04206de72e8173d012de17}\label{cheats_8h_ab25e60b64f04206de72e8173d012de17}} 
+\index{cheats.h@{cheats.h}!toggleCheat@{toggleCheat}}
+\index{toggleCheat@{toggleCheat}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{toggleCheat()}{toggleCheat()}}
+{\footnotesize\ttfamily void toggle\+Cheat (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00091}{91}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}\label{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}} 
+\index{cheats.h@{cheats.h}!unapplyGGCheat@{unapplyGGCheat}}
+\index{unapplyGGCheat@{unapplyGGCheat}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{unapplyGGCheat()}{unapplyGGCheat()}}
+{\footnotesize\ttfamily void unapply\+GGCheat (\begin{DoxyParamCaption}\item[{int}]{cheat }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{cheats_8h_a90e63aca24096c387b174644b9267723}\label{cheats_8h_a90e63aca24096c387b174644b9267723}} 
+\index{cheats.h@{cheats.h}!cheats@{cheats}}
+\index{cheats@{cheats}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{cheats}{cheats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} cheats\mbox{[}\mbox{\hyperlink{cheats_8h_a81552b09767b3ae88d46b147f3959b82}{MAX\+\_\+\+CHEATS}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_a77d9fae8175282841c0cdda4dd1dc24a}\label{cheats_8h_a77d9fae8175282841c0cdda4dd1dc24a}} 
+\index{cheats.h@{cheats.h}!cheatsEnabled@{cheatsEnabled}}
+\index{cheatsEnabled@{cheatsEnabled}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{cheatsEnabled}{cheatsEnabled}}
+{\footnotesize\ttfamily bool cheats\+Enabled\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+
+\mbox{\Hypertarget{cheats_8h_a87e3d45d0a2c77e9b41312f677900af7}\label{cheats_8h_a87e3d45d0a2c77e9b41312f677900af7}} 
+\index{cheats.h@{cheats.h}!numCheats@{numCheats}}
+\index{numCheats@{numCheats}!cheats.h@{cheats.h}}
+\doxysubsubsection{\texorpdfstring{numCheats}{numCheats}}
+{\footnotesize\ttfamily int num\+Cheats\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+

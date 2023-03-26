@@ -1,0 +1,130 @@
+\hypertarget{main_8c_source}{}\doxysection{main.\+c}
+\label{main_8c_source}\index{arm7/source/main.c@{arm7/source/main.c}}
+\mbox{\hyperlink{main_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001\ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00002}00002\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00003}00003\ \textcolor{comment}{\ \ This\ is\ file\ derived\ from:}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00004}00004\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00005}00005\ \textcolor{comment}{\ \ \ \ default\ ARM7\ core}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00006}00006\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}00007\ \textcolor{comment}{\ \ \ \ \ \ \ \ Copyright\ (C)\ 2005\ -\/\ 2010}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008\ \textcolor{comment}{\ \ \ \ \ \ \ \ Michael\ Noland\ (joat)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009\ \textcolor{comment}{\ \ \ \ \ \ \ \ Jason\ Rogers\ (dovoto)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010\ \textcolor{comment}{\ \ \ \ \ \ \ \ Dave\ Murphy\ (WinterMute)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00012}00012\ \textcolor{comment}{\ \ \ \ This\ software\ is\ provided\ 'as-\/is',\ without\ any\ express\ or\ implied}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00013}00013\ \textcolor{comment}{\ \ \ \ warranty.\ \ In\ no\ event\ will\ the\ authors\ be\ held\ liable\ for\ any}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00014}00014\ \textcolor{comment}{\ \ \ \ damages\ arising\ from\ the\ use\ of\ this\ software.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00015}00015\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00016}00016\ \textcolor{comment}{\ \ \ \ Permission\ is\ granted\ to\ anyone\ to\ use\ this\ software\ for\ any}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00017}00017\ \textcolor{comment}{\ \ \ \ purpose,\ including\ commercial\ applications,\ and\ to\ alter\ it\ and}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}00018\ \textcolor{comment}{\ \ \ \ redistribute\ it\ freely,\ subject\ to\ the\ following\ restrictions:}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00020}00020\ \textcolor{comment}{\ \ \ \ 1.\ \ The\ origin\ of\ this\ software\ must\ not\ be\ misrepresented;\ you}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00021}00021\ \textcolor{comment}{\ \ \ \ \ \ \ \ must\ not\ claim\ that\ you\ wrote\ the\ original\ software.\ If\ you\ use}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022\ \textcolor{comment}{\ \ \ \ \ \ \ \ this\ software\ in\ a\ product,\ an\ acknowledgment\ in\ the\ product}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00023}00023\ \textcolor{comment}{\ \ \ \ \ \ \ \ documentation\ would\ be\ appreciated\ but\ is\ not\ required.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00024}00024\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00025}00025\ \textcolor{comment}{\ \ \ \ 2.\ \ Altered\ source\ versions\ must\ be\ plainly\ marked\ as\ such,\ and}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00026}00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ must\ not\ be\ misrepresented\ as\ being\ the\ original\ software.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00027}00027\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00028}00028\ \textcolor{comment}{\ \ \ \ 3.\ \ This\ notice\ may\ not\ be\ removed\ or\ altered\ from\ any\ source}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00029}00029\ \textcolor{comment}{\ \ \ \ \ \ \ \ distribution.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00030}00030\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00031}00031\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00032}00032\ \textcolor{preprocessor}{\#include\ <nds.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00033}00033\ \textcolor{preprocessor}{\#include\ <dswifi7.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00036}00036\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a8acfbecedff5019a4fa42da181423441}{installGameboySoundFIFO}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}\mbox{\hyperlink{main_8c_ac36b4578419a73cc8a179a7e8fddc1dc}{00038}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_ac36b4578419a73cc8a179a7e8fddc1dc}{sdmmcMsgHandler}}(\textcolor{keywordtype}{int}\ bytes,\ \textcolor{keywordtype}{void}\ *user\_data);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}\mbox{\hyperlink{main_8c_ac07723fb09323f2dbab33f1126870389}{00039}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_ac07723fb09323f2dbab33f1126870389}{sdmmcValueHandler}}(u32\ value,\ \textcolor{keywordtype}{void}\ *user\_data);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{main_8c_af095c370419773a795867ce4f24e0b40}{sleepIsEnabled}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}\mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{00042}}\ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{struct_shared_data}{SharedData}}\ *\mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00044}\mbox{\hyperlink{main_8c_ac7d4e32ce2e3a5f527553c8c80f78539}{00044}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_ac7d4e32ce2e3a5f527553c8c80f78539}{updateChannel}}(\textcolor{keywordtype}{int}\ c);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00046}\mbox{\hyperlink{main_8c_a50fe8a9915f0229a8577f2c701893dfb}{00046}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{main_8c_a50fe8a9915f0229a8577f2c701893dfb}{lidClosed}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00048}\mbox{\hyperlink{main_8c_a0ffe6d76fac9ababdebf858f686887d1}{00048}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a0ffe6d76fac9ababdebf858f686887d1}{VblankHandler}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00049}00049\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_afed8946bd180371ec758e171fabdb7ca}{frameFlip\_DS}}\ =\ !\mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_afed8946bd180371ec758e171fabdb7ca}{frameFlip\_DS}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00051}00051\ \ \ \ \ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_a03170f2fb237b34a50174fedc41679c1}{dsCycles}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_a2c0c6b195867ee5f8f5c974fcb1d4197}{scalingOn}})}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00054}00054\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ from\ vram\ bank\ D\ to\ C}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ dmaCopyWords(3,\ (u16\ *)0x06000000\ +\ 24\ *\ 256,\ (u16\ *)0x06020000,\ 256\ *\ 144\ *\ 2);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_ad9aa2a8dd98de663ae9e21874bd5f7c3}{scaleTransferReady}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00059}00059\ \ \ \ \ Wifi\_Update();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00060}00060\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00062}\mbox{\hyperlink{main_8c_a02efc624ec758dbc3a83c1a85cca6751}{00062}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a02efc624ec758dbc3a83c1a85cca6751}{VcountHandler}}()}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00063}00063\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00064}00064\ \ \ \ \ inputGetAndSend();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00065}00065\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00067}\mbox{\hyperlink{main_8c_af2b912ca70e262f409b828422075d9b3}{00067}}\ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{main_8c_af2b912ca70e262f409b828422075d9b3}{exitflag}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00069}\mbox{\hyperlink{main_8c_a7ccafc34720625113d2f34a368d3b2e3}{00069}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8c_a7ccafc34720625113d2f34a368d3b2e3}{powerButtonCB}}()}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00070}00070\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{main_8c_af2b912ca70e262f409b828422075d9b3}{exitflag}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00072}00072\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}\mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{00075}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077\ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00078}00078\ \ \ \ \ \textcolor{comment}{//\ clear\ sound\ registers}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00079}00079\ \ \ \ \ dmaFillWords(0,\ (\textcolor{keywordtype}{void}\ *)0x04000400,\ 0x100);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00081}00081\ \ \ \ \ REG\_SOUNDCNT\ |=\ SOUND\_ENABLE;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00082}00082\ \ \ \ \ writePowerManagement(PM\_CONTROL\_REG,\ (readPowerManagement(PM\_CONTROL\_REG)\ \&\ \string~PM\_SOUND\_MUTE)\ |\ PM\_SOUND\_AMP);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00083}00083\ \ \ \ \ powerOn(POWER\_SOUND);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00085}00085\ \ \ \ \ readUserSettings();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00086}00086\ \ \ \ \ ledBlink(0);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00088}00088\ \ \ \ \ irqInit();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00089}00089\ \ \ \ \ \textcolor{comment}{//\ Start\ the\ RTC\ tracking\ IRQ}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ initClockIRQ();\ //windwakr:\ Doesn't\ seem\ to\ work\ on\ 3DS.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00091}00091\ \ \ \ \ resyncClock();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00093}00093\ \ \ \ \ fifoInit();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{while}\ (!fifoCheckValue32(FIFO\_USER\_03))}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ ;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00097}00097\ \ \ \ \ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}\ =\ (\mbox{\hyperlink{struct_shared_data}{SharedData}}\ *)(fifoGetValue32(FIFO\_USER\_03)\ |\ 0x02000000);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00099}00099\ \ \ \ \ SetYtrigger(80);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00101}00101\ \ \ \ \ installWifiFIFO();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00102}00102\ \ \ \ \ installSoundFIFO();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00104}00104\ \ \ \ \ installSystemFIFO();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00106}00106\ \ \ \ \ irqSet(IRQ\_VCOUNT,\ \mbox{\hyperlink{main_8c_a02efc624ec758dbc3a83c1a85cca6751}{VcountHandler}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00107}00107\ \ \ \ \ irqSet(IRQ\_VBLANK,\ \mbox{\hyperlink{main_8c_a0ffe6d76fac9ababdebf858f686887d1}{VblankHandler}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00109}00109\ \ \ \ \ irqEnable(IRQ\_VBLANK\ |\ IRQ\_VCOUNT\ |\ IRQ\_NETWORK);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00111}00111\ \ \ \ \ setPowerButtonCB(\mbox{\hyperlink{main_8c_a7ccafc34720625113d2f34a368d3b2e3}{powerButtonCB}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00113}00113\ \ \ \ \ \mbox{\hyperlink{main_8c_a8acfbecedff5019a4fa42da181423441}{installGameboySoundFIFO}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{main_8c_af2b912ca70e262f409b828422075d9b3}{exitflag}})}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00116}00116\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (0\ ==\ (REG\_KEYINPUT\ \&\ (KEY\_SELECT\ |\ KEY\_START\ |\ KEY\_L\ |\ KEY\_R)))}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_af2b912ca70e262f409b828422075d9b3}{exitflag}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121\ \ \ \ \ \ \ \ \ swiWaitForVBlank();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00122}00122\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00124}00124\ \}}
+
+\end{DoxyCode}

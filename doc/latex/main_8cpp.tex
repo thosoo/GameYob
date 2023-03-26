@@ -1,0 +1,154 @@
+\hypertarget{main_8cpp}{}\doxysection{arm9/source/main.cpp File Reference}
+\label{main_8cpp}\index{arm9/source/main.cpp@{arm9/source/main.cpp}}
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gbgfx.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}filechooser.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nifi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cheats.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a5e9496c777a9b87b88b024e86e1df765}{fifo\+Value32\+Handler}} (u32 value, void $\ast$user\+\_\+data)
+\item 
+void \mbox{\hyperlink{main_8cpp_a54add63a62b11f9bccd4975da8fdd99c}{select\+Rom}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}{init\+GBMode}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}{init\+GBCMode}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}{initialize\+Gameboy}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a4429766953b588702b57e002f24122a1}{initialize\+Gameboy\+First\+Time}} ()
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+time\+\_\+t \mbox{\hyperlink{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{raw\+Time}}
+\item 
+time\+\_\+t \mbox{\hyperlink{main_8cpp_ad0ebda86ffac57ba19597a1233125129}{last\+Raw\+Time}}
+\item 
+volatile \mbox{\hyperlink{struct_shared_data}{Shared\+Data}} $\ast$ \mbox{\hyperlink{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}{shared\+Data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a5e9496c777a9b87b88b024e86e1df765}\label{main_8cpp_a5e9496c777a9b87b88b024e86e1df765}} 
+\index{main.cpp@{main.cpp}!fifoValue32Handler@{fifoValue32Handler}}
+\index{fifoValue32Handler@{fifoValue32Handler}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{fifoValue32Handler()}{fifoValue32Handler()}}
+{\footnotesize\ttfamily void fifo\+Value32\+Handler (\begin{DoxyParamCaption}\item[{u32}]{value,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}\label{main_8cpp_a78e04af5145ec29fb32527bd0bb749f9}} 
+\index{main.cpp@{main.cpp}!initGBCMode@{initGBCMode}}
+\index{initGBCMode@{initGBCMode}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{initGBCMode()}{initGBCMode()}}
+{\footnotesize\ttfamily void init\+GBCMode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00099}{99}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}\label{main_8cpp_a4476c89fd8b9a0783c75f891a47c535e}} 
+\index{main.cpp@{main.cpp}!initGBMode@{initGBMode}}
+\index{initGBMode@{initGBMode}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{initGBMode()}{initGBMode()}}
+{\footnotesize\ttfamily void init\+GBMode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}\label{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}} 
+\index{main.cpp@{main.cpp}!initializeGameboy@{initializeGameboy}}
+\index{initializeGameboy@{initializeGameboy}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{initializeGameboy()}{initializeGameboy()}}
+{\footnotesize\ttfamily void initialize\+Gameboy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a4429766953b588702b57e002f24122a1}\label{main_8cpp_a4429766953b588702b57e002f24122a1}} 
+\index{main.cpp@{main.cpp}!initializeGameboyFirstTime@{initializeGameboyFirstTime}}
+\index{initializeGameboyFirstTime@{initializeGameboyFirstTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{initializeGameboyFirstTime()}{initializeGameboyFirstTime()}}
+{\footnotesize\ttfamily void initialize\+Gameboy\+First\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00169}{169}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00214}{214}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a54add63a62b11f9bccd4975da8fdd99c}\label{main_8cpp_a54add63a62b11f9bccd4975da8fdd99c}} 
+\index{main.cpp@{main.cpp}!selectRom@{selectRom}}
+\index{selectRom@{selectRom}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{selectRom()}{selectRom()}}
+{\footnotesize\ttfamily void select\+Rom (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cpp_ad0ebda86ffac57ba19597a1233125129}\label{main_8cpp_ad0ebda86ffac57ba19597a1233125129}} 
+\index{main.cpp@{main.cpp}!lastRawTime@{lastRawTime}}
+\index{lastRawTime@{lastRawTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{lastRawTime}{lastRawTime}}
+{\footnotesize\ttfamily time\+\_\+t last\+Raw\+Time\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}\label{main_8cpp_a2e99c78e3943a1e70d5e79a314aee490}} 
+\index{main.cpp@{main.cpp}!rawTime@{rawTime}}
+\index{rawTime@{rawTime}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{rawTime}{rawTime}}
+{\footnotesize\ttfamily time\+\_\+t raw\+Time\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}\label{main_8cpp_a2bb32c52cb5d21be737aaa2aefb353d4}} 
+\index{main.cpp@{main.cpp}!sharedData@{sharedData}}
+\index{sharedData@{sharedData}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{sharedData}{sharedData}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{struct_shared_data}{Shared\+Data}}$\ast$ shared\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+

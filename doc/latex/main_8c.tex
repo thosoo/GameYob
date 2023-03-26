@@ -1,0 +1,145 @@
+\hypertarget{main_8c}{}\doxysection{arm7/source/main.c File Reference}
+\label{main_8c}\index{arm7/source/main.c@{arm7/source/main.c}}
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include $<$dswifi7.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a8acfbecedff5019a4fa42da181423441}{install\+Gameboy\+Sound\+FIFO}} ()
+\item 
+void \mbox{\hyperlink{main_8c_ac36b4578419a73cc8a179a7e8fddc1dc}{sdmmc\+Msg\+Handler}} (int bytes, void $\ast$user\+\_\+data)
+\item 
+void \mbox{\hyperlink{main_8c_ac07723fb09323f2dbab33f1126870389}{sdmmc\+Value\+Handler}} (u32 value, void $\ast$user\+\_\+data)
+\item 
+void \mbox{\hyperlink{main_8c_ac7d4e32ce2e3a5f527553c8c80f78539}{update\+Channel}} (int c)
+\item 
+void \mbox{\hyperlink{main_8c_a0ffe6d76fac9ababdebf858f686887d1}{Vblank\+Handler}} (void)
+\item 
+void \mbox{\hyperlink{main_8c_a02efc624ec758dbc3a83c1a85cca6751}{Vcount\+Handler}} ()
+\item 
+void \mbox{\hyperlink{main_8c_a7ccafc34720625113d2f34a368d3b2e3}{power\+Button\+CB}} ()
+\item 
+int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{main_8c_af095c370419773a795867ce4f24e0b40}{sleep\+Is\+Enabled}}
+\item 
+volatile \mbox{\hyperlink{struct_shared_data}{Shared\+Data}} $\ast$ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{shared\+Data}}
+\item 
+bool \mbox{\hyperlink{main_8c_a50fe8a9915f0229a8577f2c701893dfb}{lid\+Closed}} = false
+\item 
+volatile bool \mbox{\hyperlink{main_8c_af2b912ca70e262f409b828422075d9b3}{exitflag}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a8acfbecedff5019a4fa42da181423441}\label{main_8c_a8acfbecedff5019a4fa42da181423441}} 
+\index{main.c@{main.c}!installGameboySoundFIFO@{installGameboySoundFIFO}}
+\index{installGameboySoundFIFO@{installGameboySoundFIFO}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{installGameboySoundFIFO()}{installGameboySoundFIFO()}}
+{\footnotesize\ttfamily void install\+Gameboy\+Sound\+FIFO (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sound_8c_source_l00274}{274}} of file \mbox{\hyperlink{sound_8c_source}{sound.\+c}}.
+
+\mbox{\Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00075}{75}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{main_8c_a7ccafc34720625113d2f34a368d3b2e3}\label{main_8c_a7ccafc34720625113d2f34a368d3b2e3}} 
+\index{main.c@{main.c}!powerButtonCB@{powerButtonCB}}
+\index{powerButtonCB@{powerButtonCB}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{powerButtonCB()}{powerButtonCB()}}
+{\footnotesize\ttfamily void power\+Button\+CB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00069}{69}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{main_8c_ac36b4578419a73cc8a179a7e8fddc1dc}\label{main_8c_ac36b4578419a73cc8a179a7e8fddc1dc}} 
+\index{main.c@{main.c}!sdmmcMsgHandler@{sdmmcMsgHandler}}
+\index{sdmmcMsgHandler@{sdmmcMsgHandler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sdmmcMsgHandler()}{sdmmcMsgHandler()}}
+{\footnotesize\ttfamily void sdmmc\+Msg\+Handler (\begin{DoxyParamCaption}\item[{int}]{bytes,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_ac07723fb09323f2dbab33f1126870389}\label{main_8c_ac07723fb09323f2dbab33f1126870389}} 
+\index{main.c@{main.c}!sdmmcValueHandler@{sdmmcValueHandler}}
+\index{sdmmcValueHandler@{sdmmcValueHandler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sdmmcValueHandler()}{sdmmcValueHandler()}}
+{\footnotesize\ttfamily void sdmmc\+Value\+Handler (\begin{DoxyParamCaption}\item[{u32}]{value,  }\item[{void $\ast$}]{user\+\_\+data }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_ac7d4e32ce2e3a5f527553c8c80f78539}\label{main_8c_ac7d4e32ce2e3a5f527553c8c80f78539}} 
+\index{main.c@{main.c}!updateChannel@{updateChannel}}
+\index{updateChannel@{updateChannel}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{updateChannel()}{updateChannel()}}
+{\footnotesize\ttfamily void update\+Channel (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_a0ffe6d76fac9ababdebf858f686887d1}\label{main_8c_a0ffe6d76fac9ababdebf858f686887d1}} 
+\index{main.c@{main.c}!VblankHandler@{VblankHandler}}
+\index{VblankHandler@{VblankHandler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{VblankHandler()}{VblankHandler()}}
+{\footnotesize\ttfamily void Vblank\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00048}{48}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{main_8c_a02efc624ec758dbc3a83c1a85cca6751}\label{main_8c_a02efc624ec758dbc3a83c1a85cca6751}} 
+\index{main.c@{main.c}!VcountHandler@{VcountHandler}}
+\index{VcountHandler@{VcountHandler}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{VcountHandler()}{VcountHandler()}}
+{\footnotesize\ttfamily void Vcount\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00062}{62}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_af2b912ca70e262f409b828422075d9b3}\label{main_8c_af2b912ca70e262f409b828422075d9b3}} 
+\index{main.c@{main.c}!exitflag@{exitflag}}
+\index{exitflag@{exitflag}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{exitflag}{exitflag}}
+{\footnotesize\ttfamily volatile bool exitflag = false}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00067}{67}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{main_8c_a50fe8a9915f0229a8577f2c701893dfb}\label{main_8c_a50fe8a9915f0229a8577f2c701893dfb}} 
+\index{main.c@{main.c}!lidClosed@{lidClosed}}
+\index{lidClosed@{lidClosed}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{lidClosed}{lidClosed}}
+{\footnotesize\ttfamily bool lid\+Closed = false}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00046}{46}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}\label{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}} 
+\index{main.c@{main.c}!sharedData@{sharedData}}
+\index{sharedData@{sharedData}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sharedData}{sharedData}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{struct_shared_data}{Shared\+Data}}$\ast$ shared\+Data}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00042}{42}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+\mbox{\Hypertarget{main_8c_af095c370419773a795867ce4f24e0b40}\label{main_8c_af095c370419773a795867ce4f24e0b40}} 
+\index{main.c@{main.c}!sleepIsEnabled@{sleepIsEnabled}}
+\index{sleepIsEnabled@{sleepIsEnabled}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{sleepIsEnabled}{sleepIsEnabled}}
+{\footnotesize\ttfamily bool sleep\+Is\+Enabled\hspace{0.3cm}{\ttfamily [extern]}}
+

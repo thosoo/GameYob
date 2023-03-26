@@ -1,0 +1,670 @@
+\hypertarget{gameboy_8cpp_source}{}\doxysection{gameboy.\+cpp}
+\label{gameboy_8cpp_source}\index{arm9/source/gameboy.cpp@{arm9/source/gameboy.cpp}}
+\mbox{\hyperlink{gameboy_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00001}00001\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbprinter_8h}{gbprinter.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gameboy_8h}{gameboy.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00005}00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbcpu_8h}{gbcpu.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00007}00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbgfx_8h}{gbgfx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbsnd_8h}{gbsnd.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mmu_8h}{mmu.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{timer_8h}{timer.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{main_8h}{main.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{inputhelper_8h}{inputhelper.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{nifi_8h}{nifi.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{console_8h}{console.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cheats_8h}{cheats.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sgb_8h}{sgb.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gbs_8h}{gbs.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00019}\mbox{\hyperlink{gameboy_8h_aa6d14260275d350ffcefde5806d44d76}{00019}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00020}\mbox{\hyperlink{gameboy_8h_a308cf5bd4714c05f9f309a73bcda9108}{00020}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00022}\mbox{\hyperlink{gameboy_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{00022}}\ time\_t\ \mbox{\hyperlink{gameboy_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00023}\mbox{\hyperlink{gameboy_8cpp_ad0ebda86ffac57ba19597a1233125129}{00023}}\ time\_t\ \mbox{\hyperlink{gameboy_8cpp_ad0ebda86ffac57ba19597a1233125129}{lastRawTime}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00025}\mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{00025}}\ \textcolor{keyword}{volatile}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00026}\mbox{\hyperlink{gbcpu_8h_a45b67662d620a977a2cfe519f7ab6273}{00026}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a45b67662d620a977a2cfe519f7ab6273}{fps}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00027}\mbox{\hyperlink{gameboy_8h_a288f7214a9c0e88365989a10ca48042c}{00027}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_a288f7214a9c0e88365989a10ca48042c}{fpsOutput}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00028}\mbox{\hyperlink{gameboy_8h_ad6fc74900932ddd6c2fc21c514b7c21d}{00028}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_ad6fc74900932ddd6c2fc21c514b7c21d}{timeOutput}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00029}\mbox{\hyperlink{gameboy_8h_ac86f7a6e55f0899d62d5f4424821826a}{00029}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_ac86f7a6e55f0899d62d5f4424821826a}{fastForwardMode}}\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ controlled\ by\ the\ toggle\ hotkey}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00030}\mbox{\hyperlink{gameboy_8h_a7a001fcbf25fa32416413978771c6194}{00030}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_a7a001fcbf25fa32416413978771c6194}{fastForwardKey}}\ =\ \textcolor{keyword}{false};\ \ \textcolor{comment}{//\ only\ while\ its\ hotkey\ is\ pressed}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00032}00032\ \textcolor{comment}{//\ ...what\ is\ phase?\ I\ think\ I\ made\ that\ up.\ Used\ for\ timing\ when\ the\ gameboy}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00033}00033\ \textcolor{comment}{//\ screen\ is\ off.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00034}\mbox{\hyperlink{gameboy_8h_aac480ac99840c750628f10e5b5bebf7e}{00034}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_aac480ac99840c750628f10e5b5bebf7e}{phaseCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00035}\mbox{\hyperlink{gameboy_8h_a1335e4b1447c429a82a506225db263e2}{00035}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a1335e4b1447c429a82a506225db263e2}{dividerCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00036}\mbox{\hyperlink{gameboy_8h_a9e1eb41efbef2711d950612d35452bad}{00036}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00038}\mbox{\hyperlink{gameboy_8h_a1fb2fb06ba2c8cc453d71805842b74d9}{00038}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00039}\mbox{\hyperlink{gameboy_8h_a8dafca6cd4bbc33de0e8328f2ee66f9b}{00039}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timerPeriod}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00040}\mbox{\hyperlink{gameboy_8h_a13f0d742d3412a292db17c9ca64b577f}{00040}}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{gameboy_8cpp_a13f0d742d3412a292db17c9ca64b577f}{periods}}[4];}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00042}\mbox{\hyperlink{gameboy_8h_af3ddfcff387d53e03211aeaa7a0c14ef}{00042}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_af3ddfcff387d53e03211aeaa7a0c14ef}{gbMode}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00043}\mbox{\hyperlink{gameboy_8h_a5021082cf23612467be2f40ebe83d8e3}{00043}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_a5021082cf23612467be2f40ebe83d8e3}{sgbMode}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00045}\mbox{\hyperlink{gameboy_8cpp_ad44ee5bb415a41ee86f2a6bebfc28ff0}{00045}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_ad44ee5bb415a41ee86f2a6bebfc28ff0}{maxWaitCycles}}\ =\ 1000000;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00046}\mbox{\hyperlink{gameboy_8h_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{00046}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00047}\mbox{\hyperlink{gameboy_8h_a720cda0344a935ff996a881c1c06bf8f}{00047}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a720cda0344a935ff996a881c1c06bf8f}{cyclesSinceVblank}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00049}\mbox{\hyperlink{gameboy_8cpp_ac94d0c888e441218cc5f060e28b7ef0b}{00049}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_ac94d0c888e441218cc5f060e28b7ef0b}{resettingGameboy}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00051}\mbox{\hyperlink{gameboy_8h_af9fb33f9e0c7674ff242adfb4fa0e1b0}{00051}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00053}\mbox{\hyperlink{gameboy_8h_a336d50bc2a8c4ef18daea3f63bbb7608}{00053}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a336d50bc2a8c4ef18daea3f63bbb7608}{gameboyFrameCounter}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00055}\mbox{\hyperlink{gameboy_8h_a3ef8a2a072dece30a5ed04aa84c3bdc0}{00055}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\textcolor{keywordtype}{int}\ cycles)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00056}00056\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (cycles\ <\ \mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00058}00058\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}}\ =\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00061}00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ if\ (cyclesToEvent\ <=\ 0)\ \{}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00062}00062\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ cyclesToEvent\ =\ 1;}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00063}00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00064}00064\ \textcolor{comment}{\ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00066}00066\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00068}\mbox{\hyperlink{gameboy_8cpp_a8963167b926bdc84810065f399dd8ec2}{00068}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a8963167b926bdc84810065f399dd8ec2}{autoFireCounterA}}\ =\ 0,\ \mbox{\hyperlink{gameboy_8cpp_a67e8f2098c49c7d39e862b14ba99a57e}{autoFireCounterB}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00069}\mbox{\hyperlink{gameboy_8h_a7da5e8e437d792ff019f41ed8254e440}{00069}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a7da5e8e437d792ff019f41ed8254e440}{gameboyCheckInput}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00070}00070\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ =\ 0xff;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea455fc967ead9b31dd75272ee869edf2f}{KEY\_GB\_UP}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00077}00077\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00078}00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_a1965eaca47dbf3f87acdafc2208f04eb}{UP}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x10))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3cdb47db22796a0bf7e566ae815c5e0c}{KEY\_GB\_DOWN}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00083}00083\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_a4193cd1c8c2e6ebd0e056fa2364a663f}{DOWN}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x10))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4b2e341451e26e0e93073a01b2f53a99}{KEY\_GB\_LEFT}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00089}00089\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_a437ef08681e7210d6678427030446a54}{LEFT}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x10))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea338cffadee195ddc56fbcc776c903290}{KEY\_GB\_RIGHT}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00095}00095\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_a80fb826a684cf3f0d306b22aa100ddac}{RIGHT}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x10))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea962f7f6d8022e74f3f8daeb583325f77}{KEY\_GB\_A}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00101}00101\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_ad8144b8bcef89af1a9d65066b1873418}{BUTTONA}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00106}00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaa04f27511f218cae4ed97375b2ef4d00}{KEY\_GB\_B}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00107}00107\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_ad7ec376d9d5f252b406d60d2b8da99da}{BUTTONB}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00112}00112\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea4a5e786efa6b76975d576f669efc6ce6}{KEY\_GB\_START}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00113}00113\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00114}00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_a3018c7600b7bb9866400596a56a57af7}{START}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00117}00117\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea034f6424ef4e28e48ab4675a3c2d287c}{KEY\_GB\_SELECT}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00119}00119\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_a53dc4af00adc7b3b4d12eafb71596dfc}{SELECT}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00123}00123\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eaddb432d0ec23567564063eb5166ac73a}{KEY\_GB\_A\_B\_START\_SELECT}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00126}00126\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ (\mbox{\hyperlink{inputhelper_8h_ad8144b8bcef89af1a9d65066b1873418}{BUTTONA}}\ |\ \mbox{\hyperlink{inputhelper_8h_ad7ec376d9d5f252b406d60d2b8da99da}{BUTTONB}}\ |\ \mbox{\hyperlink{inputhelper_8h_a3018c7600b7bb9866400596a56a57af7}{START}}\ |\ \mbox{\hyperlink{inputhelper_8h_a53dc4af00adc7b3b4d12eafb71596dfc}{SELECT}}));}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea28d556211b85ba8c83e7b8ccfcbb5a19}{KEY\_GB\_AUTO\_A}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00133}00133\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a8963167b926bdc84810065f399dd8ec2}{autoFireCounterA}}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00135}00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_ad8144b8bcef89af1a9d65066b1873418}{BUTTONA}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a8963167b926bdc84810065f399dd8ec2}{autoFireCounterA}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00140}00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00141}00141\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a8963167b926bdc84810065f399dd8ec2}{autoFireCounterA}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00142}00142\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea6509e4bd8f72528fa7e0c5d3483c83ac}{KEY\_GB\_AUTO\_B}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00144}00144\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a67e8f2098c49c7d39e862b14ba99a57e}{autoFireCounterB}}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ \&=\ (0xFF\ \string^\ \mbox{\hyperlink{inputhelper_8h_ad7ec376d9d5f252b406d60d2b8da99da}{BUTTONB}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x00]\ \&\ 0x20))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a5e5969c81cac9fe99fbf77b9a025037a}{JOYPAD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a67e8f2098c49c7d39e862b14ba99a57e}{autoFireCounterB}}\ =\ 2;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00151}00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a67e8f2098c49c7d39e862b14ba99a57e}{autoFireCounterB}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00155}00155\ \textcolor{preprocessor}{\#ifdef\ SPEEDHAX}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{mmu_8h_a3afecb5267d14dab19df97a82208cb85}{refreshP1}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00157}00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00159}00159\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{keyJustPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9eafbe4b69d5228172d3dae666c9391e9e4}{KEY\_SAVE}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00160}00160\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{console_8h_a05d508b721ab9377e3c3a8b96faec074}{autoSavingEnabled}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00162}00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a3d4388333a1ae565953072aceb1f7c17}{saveGame}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00165}00165\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00167}00167\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a7a001fcbf25fa32416413978771c6194}{fastForwardKey}}\ =\ \mbox{\hyperlink{inputhelper_8h_aa694764bf7a245883042630c19d09b9e}{keyPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea18192242a877bc93a7aa7a5540355aa2}{KEY\_FAST\_FORWARD}}));}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{keyJustPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea312f08beb744288aafda1615fd5c5568}{KEY\_FAST\_FORWARD\_TOGGLE}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00169}00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ac86f7a6e55f0899d62d5f4424821826a}{fastForwardMode}}\ =\ !\mbox{\hyperlink{gameboy_8cpp_ac86f7a6e55f0899d62d5f4424821826a}{fastForwardMode}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00171}00171\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_a6aa99b6d37852312556353dc7f98f954}{advanceFrame}}\ ||\ \mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{keyJustPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea0483607aa811d9b40ce925494621a188}{KEY\_MENU}})\ |\ \mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3701a36cba8cf546cbe8315b7acd593b}{KEY\_MENU\_PAUSE}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00172}00172\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{keyJustPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea3701a36cba8cf546cbe8315b7acd593b}{KEY\_MENU\_PAUSE}}))\ ||\ \mbox{\hyperlink{console_8h_a5b49f1692d7b0de099f2dca7a94ce812}{singleScreenMode}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a7512b02909147a8b26c34c8a272ee93d}{pauseGameboy}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00176}00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a6aa99b6d37852312556353dc7f98f954}{advanceFrame}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00177}00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a2b937c97dc39286b96ecb8ab3f84e19a}{forceReleaseKey}}(0xffff);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00178}00178\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a7a001fcbf25fa32416413978771c6194}{fastForwardKey}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00179}00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ac86f7a6e55f0899d62d5f4424821826a}{fastForwardMode}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00180}00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a7cd98054e31302954e876a68c3aff0d1}{buttonsPressed}}\ =\ 0xff;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00181}00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a59c2926dd9b0968badf463aaf4f91422}{displayMenu}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00182}00182\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00184}00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{keyJustPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ead902d3588d279cef5e165c539b9efe03}{KEY\_SCALE}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00185}00185\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00186}00186\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_aef95f1afbb3a578ab6f03f829a4736ff}{setMenuOption}}(\textcolor{stringliteral}{"{}Scaling"{}},\ !\mbox{\hyperlink{console_8h_aee1f910884a495c9406fad4818de11fa}{getMenuOption}}(\textcolor{stringliteral}{"{}Scaling"{}}));}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00187}00187\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00189}00189\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a7a001fcbf25fa32416413978771c6194}{fastForwardKey}}\ ||\ \mbox{\hyperlink{gameboy_8cpp_ac86f7a6e55f0899d62d5f4424821826a}{fastForwardMode}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00190}00190\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00191}00191\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_acb46bb7d12888b018e4befc95c981ca0}{hyperSound}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00192}00192\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00193}00193\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00194}00194\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00195}00195\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8c_a2bb32c52cb5d21be737aaa2aefb353d4}{sharedData}}-\/>\mbox{\hyperlink{struct_shared_data_acb46bb7d12888b018e4befc95c981ca0}{hyperSound}}\ =\ \mbox{\hyperlink{gbsnd_8h_a50dfa48cdca835c9eb754ea19006c3cf}{hyperSound}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00196}00196\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00198}00198\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_a02a774508142e40a6364db3bc1b4c4ee}{keyJustPressed}}(\mbox{\hyperlink{inputhelper_8h_adea147396571230af47a2b52caa970b3}{mapGbKey}}(\mbox{\hyperlink{inputhelper_8h_a61dadd085c1777f559549e05962b2c9ea36a53b1598543e728ff1ea3d8443711a}{KEY\_RESET}})))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00199}00199\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa1504f6d72b07740c4e0839f08d92ae6}{resetGameboy}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00200}00200\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00202}00202\ \textcolor{comment}{//\ This\ is\ called\ 60\ times\ per\ gameboy\ second,\ even\ if\ the\ lcd\ is\ off.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00203}\mbox{\hyperlink{gameboy_8h_a602f0b93f01be978a0d3b51edbd88c26}{00203}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a602f0b93f01be978a0d3b51edbd88c26}{gameboyUpdateVBlank}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00204}00204\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00205}00205\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a336d50bc2a8c4ef18daea3f63bbb7608}{gameboyFrameCounter}}++;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00207}00207\ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_ac5fadb7881ae954770d26f6ee7fc4c72}{readKeys}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_a0592872559eb432700e6b54c46b9686d}{isMenuOn}}())}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00209}00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_ac05247c60977ff8e8674fef3132618c3}{updateMenu}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00210}00210\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00211}00211\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00212}00212\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a7da5e8e437d792ff019f41ed8254e440}{gameboyCheckInput}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gbs_8h_a6e7048c5efaac6e4916711ad174944cd}{gbsMode}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbs_8h_ad8052480bdc750a0c994e2835d0c40f8}{gbsCheckInput}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00215}00215\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00217}00217\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00218}00218\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00219}00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_a7fab9e8cae567ef9c79b711b29909ffb}{muteSND}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00221}00221\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ swiWaitForVBlank();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_ac5fadb7881ae954770d26f6ee7fc4c72}{readKeys}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_ac05247c60977ff8e8674fef3132618c3}{updateMenu}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00225}00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00226}00226\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_ae7ca78c77d7dc2018984e5dfe67c87eb}{unmuteSND}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00227}00227\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00228}00228\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00229}00229\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gbs_8h_a6e7048c5efaac6e4916711ad174944cd}{gbsMode}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00230}00230\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00231}00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_a156e6af1e5bbf84cd59aaa74d204ee77}{drawScreen}}();\ \textcolor{comment}{//\ Just\ because\ it\ syncs\ with\ vblank...}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00232}00232\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00233}00233\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00234}00234\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00235}00235\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_a156e6af1e5bbf84cd59aaa74d204ee77}{drawScreen}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00236}00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_a53ffcff16dfc65575d8e7031e3f3bbb0}{soundUpdateVBlank}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_ac94d0c888e441218cc5f060e28b7ef0b}{resettingGameboy}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00239}00239\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8h_aa1e7d84951bad6e6c0e5b0962495a2d5}{initializeGameboy}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ac94d0c888e441218cc5f060e28b7ef0b}{resettingGameboy}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00242}00242\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00244}00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00245}00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a336d50bc2a8c4ef18daea3f63bbb7608}{gameboyFrameCounter}}\ >=\ 450)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Give\ up\ on\ finding\ a\ sgb\ border.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_af9fb33f9e0c7674ff242adfb4fa0e1b0}{probingForBorder}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_a134de385e7f51e7cb43357cf0bb4b624}{sgbBorderLoaded}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa1504f6d72b07740c4e0839f08d92ae6}{resetGameboy}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00254}00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00256}00256\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{inputhelper_8h_a9359d9ec71ef9149a4b6edce9ede73e2}{updateAutosave}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{cheats_8h_a77d9fae8175282841c0cdda4dd1dc24a}{cheatsEnabled}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{cheats_8h_af83e379a1b69795e5899a304e643fc6a}{applyGSCheats}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00261}00261\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbprinter_8h_a9d8869d9aa767f42c48f2511ac520e3a}{updateGbPrinter}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00262}00262\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00264}00264\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_a8e51251f1892ec6348218f9f2b84035d}{isConsoleOn}}()\ \&\&\ !\mbox{\hyperlink{console_8h_a0592872559eb432700e6b54c46b9686d}{isMenuOn}}()\ \&\&\ !\mbox{\hyperlink{console_8h_aa6440b86d57fbc4dd2d279145ca35099}{consoleDebugOutput}}\ \&\&\ (\mbox{\hyperlink{gameboy_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}}\ >\ \mbox{\hyperlink{gameboy_8cpp_ad0ebda86ffac57ba19597a1233125129}{lastRawTime}}))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00265}00265\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00266}00266\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{console_8h_a295722636648521691f4dc6fbe0646df}{setPrintConsole}}(\mbox{\hyperlink{console_8h_a0b4983e8d2606a5b7649c07d79ae9673}{menuConsole}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00267}00267\ \ \ \ \ \ \ \ \ consoleClear();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ line\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a288f7214a9c0e88365989a10ca48042c}{fpsOutput}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00270}00270\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ consoleClear();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ iprintf(\textcolor{stringliteral}{"{}FPS:\ \%d\(\backslash\)n"{}},\ \mbox{\hyperlink{gameboy_8cpp_a45b67662d620a977a2cfe519f7ab6273}{fps}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ line++;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00274}00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00275}00275\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a45b67662d620a977a2cfe519f7ab6273}{fps}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_ad6fc74900932ddd6c2fc21c514b7c21d}{timeOutput}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00277}00277\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ line\ <\ 23\ -\/\ 1;\ line++)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iprintf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *timeString\ =\ ctime(\&\mbox{\hyperlink{gameboy_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;;\ i++)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (timeString[i]\ ==\ \textcolor{charliteral}{':'})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeString\ +=\ i\ -\/\ 2;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ s[50];}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ strncpy(s,\ timeString,\ 50);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ s[49]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ spaces\ =\ 31\ -\/\ strlen(s);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ spaces;\ i++)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ iprintf(\textcolor{stringliteral}{"{}\ "{}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ iprintf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ s);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00296}00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00297}00297\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ad0ebda86ffac57ba19597a1233125129}{lastRawTime}}\ =\ \mbox{\hyperlink{gameboy_8cpp_a2e99c78e3943a1e70d5e79a314aee490}{rawTime}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00298}00298\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00299}00299\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00301}00301\ \textcolor{comment}{//\ This\ function\ can\ be\ called\ from\ weird\ contexts,\ so\ just\ set\ a\ flag\ to\ deal}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00302}00302\ \textcolor{comment}{//\ with\ it\ later.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00303}\mbox{\hyperlink{gameboy_8h_aa1504f6d72b07740c4e0839f08d92ae6}{00303}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_aa1504f6d72b07740c4e0839f08d92ae6}{resetGameboy}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00304}00304\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00305}00305\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ac94d0c888e441218cc5f060e28b7ef0b}{resettingGameboy}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00306}00306\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00308}\mbox{\hyperlink{gameboy_8h_a7512b02909147a8b26c34c8a272ee93d}{00308}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a7512b02909147a8b26c34c8a272ee93d}{pauseGameboy}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00309}00309\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00310}00310\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00311}00311\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00312}00312\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00313}00313\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00314}00314\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00315}\mbox{\hyperlink{gameboy_8h_a2048c5bce6dc06e8f6f23d7983aeb4bd}{00315}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a2048c5bce6dc06e8f6f23d7983aeb4bd}{unpauseGameboy}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00316}00316\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00317}00317\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00318}00318\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00319}00319\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00320}00320\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00321}00321\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00322}\mbox{\hyperlink{gameboy_8h_a04f739b2c98ebfeee00219477d8bdd93}{00322}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{gameboy_8cpp_a04f739b2c98ebfeee00219477d8bdd93}{isGameboyPaused}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00323}00323\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00324}00324\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00325}00325\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00327}\mbox{\hyperlink{gameboy_8cpp_a3395af3c42756b8afdd7f39f85a6b978}{00327}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_a3395af3c42756b8afdd7f39f85a6b978}{soundCycles}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00328}\mbox{\hyperlink{gbcpu_8h_ae74afa8626d5b0f9a7ebcfd329561ef5}{00328}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00329}\mbox{\hyperlink{gameboy_8h_a81597fe9593afa9524041c128e8c9517}{00329}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a81597fe9593afa9524041c128e8c9517}{runEmul}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00330}00330\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00331}00331\ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00332}00332\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00333}00333\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}}\ -\/=\ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00335}00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gbcpu_8h_a9a80d626b495810428f2f14b4dae6ecb}{halt}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ cycles\ =\ \mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ cycles\ =\ \mbox{\hyperlink{gbcpu_8h_a4fd10c2051baef8fb2117c1f7b4f6c57}{runOpcode}}(\mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ opTriggeredInterrupt\ =\ \mbox{\hyperlink{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}{cyclesToExecute}}\ ==\ -\/1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00341}00341\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}{cyclesToExecute}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00343}00343\ \ \ \ \ \ \ \ \ cycles\ +=\ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00345}00345\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa0a57e3c9fa1af0b8e7cf6e69af8704e}{cyclesToEvent}}\ =\ \mbox{\hyperlink{gameboy_8cpp_ad44ee5bb415a41ee86f2a6bebfc28ff0}{maxWaitCycles}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00346}00346\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00348}00348\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a720cda0344a935ff996a881c1c06bf8f}{cyclesSinceVblank}}\ +=\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}}\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00351}00351\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}}\ -\/=\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nifi_8h_acc98586687db446cc7631f248dabaedd}{linkReceivedData}}\ =\ 0xff;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nifi_8h_acd7fc5e1db44e8f8b10a5fd45df53aa1}{transferReady}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00361}00361\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{nifi_8h_acd7fc5e1db44e8f8b10a5fd45df53aa1}{transferReady}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00363}00363\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{nifi_8h_af3c60f1353a1aaf418c586a59ea8c1ef}{nifiEnabled}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x02]\ \&\ 1))}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}{sendPacketByte}}(56,\ \mbox{\hyperlink{nifi_8h_a8e7ddfa9e5a06dc39e71eeab5da1b978}{linkSendData}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timerStop(2);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_ae4f50f9bd5378a0621603f7e35226f9e}{printerEnabled}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbprinter_8h_a5c708f03b0d606199c03f238ba0d50eb}{sendGbPrinterByte}}(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x01]);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nifi_8h_acc98586687db446cc7631f248dabaedd}{linkReceivedData}}\ =\ 0xff;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x01]\ =\ \mbox{\hyperlink{nifi_8h_acc98586687db446cc7631f248dabaedd}{linkReceivedData}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_aae3f0b4211ba45d265973d40ccbb5fd1}{SERIAL}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x02]\ \&=\ \string~0x80;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nifi_8h_acc98586687db446cc7631f248dabaedd}{linkReceivedData}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{nifi_8h_acd7fc5e1db44e8f8b10a5fd45df53aa1}{transferReady}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00383}00383\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00385}00385\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_af559177576173f5f7a282a38f5bca3f1}{updateTimers}}(cycles);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00387}00387\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3395af3c42756b8afdd7f39f85a6b978}{soundCycles}}\ +=\ cycles\ >>\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a3395af3c42756b8afdd7f39f85a6b978}{soundCycles}}\ >=\ \mbox{\hyperlink{gbsnd_8h_a2ba144de5af9053b300a9c09343c1e2f}{cyclesToSoundEvent}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00389}00389\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_a2ba144de5af9053b300a9c09343c1e2f}{cyclesToSoundEvent}}\ =\ 10000;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbsnd_8h_a1840a3078560b98a286226ca593d69e6}{updateSound}}(\mbox{\hyperlink{gameboy_8cpp_a3395af3c42756b8afdd7f39f85a6b978}{soundCycles}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3395af3c42756b8afdd7f39f85a6b978}{soundCycles}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00393}00393\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00394}00394\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\mbox{\hyperlink{gbsnd_8h_a2ba144de5af9053b300a9c09343c1e2f}{cyclesToSoundEvent}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00396}00396\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a2675f9af73dd3b401d72c5b2da78c971}{updateLCD}}(cycles);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00397}00397\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00398}00398\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interruptTriggered}}\ =\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x0F]\ \&\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0xFF];}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interruptTriggered}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00400}00400\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Hack\ to\ fix\ Robocop\ 2\ and\ LEGO\ Racers,\ possibly\ others.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00402}00402\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ Interrupts\ can\ occur\ in\ the\ middle\ of\ an\ opcode.\ The\ result\ of}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00403}00403\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ this\ is\ that\ said\ opcode\ can\ read\ the\ resulting\ state\ -\/\ most}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00404}00404\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ importantly,\ it\ can\ read\ LY=144\ before\ the\ vblank\ interrupt\ takes}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00405}00405\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ over.\ This\ is\ a\ decent\ approximation\ of\ that\ effect.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00406}00406\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ This\ has\ been\ known\ to\ break\ Megaman\ V\ boss\ intros,\ that's\ fixed}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00407}00407\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ by\ the\ "{}opTriggeredInterrupt"{}\ stuff.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00408}00408\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{gbcpu_8h_a9a80d626b495810428f2f14b4dae6ecb}{halt}}\ \&\&\ !opTriggeredInterrupt)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}}\ +=\ \mbox{\hyperlink{gbcpu_8h_a4fd10c2051baef8fb2117c1f7b4f6c57}{runOpcode}}(4);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}}\ +=\ \mbox{\hyperlink{gbcpu_8h_ab0457e24420fa48a0bd28ff9440e9367}{handleInterrupts}}(\mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interruptTriggered}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00413}00413\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00414}00414\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00415}00415\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00417}\mbox{\hyperlink{gameboy_8h_a08529d00f32f8441dc7669b1a1d3783c}{00417}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a08529d00f32f8441dc7669b1a1d3783c}{initLCD}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00418}00418\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00419}00419\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a147cb9dc1bd0b69fc48d4d3d854e033f}{gameboyPaused}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00420}00420\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a362b36e2946a997e3fd48ced932c5477}{setDoubleSpeed}}(0);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00422}00422\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ =\ 456\ *\ (\mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}}\ ?\ 2\ :\ 1);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00423}00423\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aac480ac99840c750628f10e5b5bebf7e}{phaseCounter}}\ =\ 456\ *\ 153;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00424}00424\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00425}00425\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a1335e4b1447c429a82a506225db263e2}{dividerCounter}}\ =\ 256;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00426}00426\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a9e1eb41efbef2711d950612d35452bad}{serialCounter}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00428}00428\ \ \ \ \ \mbox{\hyperlink{gbprinter_8h_a8b7f6bd95a6bdb68024751bda063020f}{initGbPrinter}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00430}00430\ \ \ \ \ \textcolor{comment}{//\ Timer\ stuff}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00431}00431\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a13f0d742d3412a292db17c9ca64b577f}{periods}}[0]\ =\ \mbox{\hyperlink{global_8h_acacf3ae89ab776bea579de1a985750fb}{clockSpeed}}\ /\ 4096;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00432}00432\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a13f0d742d3412a292db17c9ca64b577f}{periods}}[1]\ =\ \mbox{\hyperlink{global_8h_acacf3ae89ab776bea579de1a985750fb}{clockSpeed}}\ /\ 262144;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00433}00433\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a13f0d742d3412a292db17c9ca64b577f}{periods}}[2]\ =\ \mbox{\hyperlink{global_8h_acacf3ae89ab776bea579de1a985750fb}{clockSpeed}}\ /\ 65536;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00434}00434\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a13f0d742d3412a292db17c9ca64b577f}{periods}}[3]\ =\ \mbox{\hyperlink{global_8h_acacf3ae89ab776bea579de1a985750fb}{clockSpeed}}\ /\ 16384;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00435}00435\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timerPeriod}}\ =\ \mbox{\hyperlink{gameboy_8cpp_a13f0d742d3412a292db17c9ca64b577f}{periods}}[0];}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00436}00436\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00437}00437\ \ \ \ \ timerStop(2);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00438}00438\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00439}00439\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00440}00440\ \textcolor{comment}{//\ Called\ either\ from\ startup,\ or\ when\ the\ BIOS\ writes\ to\ FF50.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00441}\mbox{\hyperlink{gameboy_8h_acfee3a994901b0c2493b3b9ce75bff7b}{00441}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_acfee3a994901b0c2493b3b9ce75bff7b}{initGameboyMode}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00442}00442\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00443}00443\ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_aad6bbc5ebe190ec3bee972e46a59e615}{af}}.\mbox{\hyperlink{union_register_a9c98442c30c45ade6b9841dbac176c6d}{b}}.\mbox{\hyperlink{struct_register_1_1_b_a294109be989761cbb31c1c661883f7d3}{l}}\ =\ 0xB0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00444}00444\ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_ab772adac8433c59b754b790f70a67ee4}{bc}}.\mbox{\hyperlink{union_register_a561bf5d9b7682fff3ec2bfda04365452}{w}}\ =\ 0x0013;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00445}00445\ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_afdb815704fdbf5064f5bf9e6733f2953}{de}}.\mbox{\hyperlink{union_register_a561bf5d9b7682fff3ec2bfda04365452}{w}}\ =\ 0x00D8;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00446}00446\ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_a621a70a9e2d67ae03e6064dd62be9251}{hl}}.\mbox{\hyperlink{union_register_a561bf5d9b7682fff3ec2bfda04365452}{w}}\ =\ 0x014D;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00447}00447\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{mmu_8h_a2595910b448f4f3cb2826c7207f2e5d0}{resultantGBMode}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00448}00448\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00449}00449\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ GB}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00450}00450\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_aad6bbc5ebe190ec3bee972e46a59e615}{af}}.\mbox{\hyperlink{union_register_a9c98442c30c45ade6b9841dbac176c6d}{b}}.\mbox{\hyperlink{struct_register_1_1_b_aaa1aed0044076a032052906e5f7ba271}{h}}\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00451}00451\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_af3ddfcff387d53e03211aeaa7a0c14ef}{gbMode}}\ =\ \mbox{\hyperlink{gbcpu_8h_a44172ac633c517cb4c9e278cef36b000}{GB}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00452}00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{inputhelper_8h_ab4926433311d08ecb615d83f8f124e23}{romSlot0}}[0x143]\ ==\ 0x80\ ||\ \mbox{\hyperlink{inputhelper_8h_a547509d84b1ebf035a36a3eb67b7f1e8}{romSlot1}}[0x143]\ ==\ 0xC0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init\ the\ palette\ in\ case\ the\ bios\ overwrote\ it,\ since\ it}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ assumed\ it\ was\ starting\ in\ GBC\ mode.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_ad55b96f2678da1f09b16057cd76c3fe9}{initGFXPalette}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00456}00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00457}00457\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ GBC}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00458}00458\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_aad6bbc5ebe190ec3bee972e46a59e615}{af}}.\mbox{\hyperlink{union_register_a9c98442c30c45ade6b9841dbac176c6d}{b}}.\mbox{\hyperlink{struct_register_1_1_b_aaa1aed0044076a032052906e5f7ba271}{h}}\ =\ 0x11;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00459}00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{console_8h_a9de52d50a90cde2422167a6b27346a34}{gbaModeOption}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_ab772adac8433c59b754b790f70a67ee4}{bc}}.\mbox{\hyperlink{union_register_a9c98442c30c45ade6b9841dbac176c6d}{b}}.\mbox{\hyperlink{struct_register_1_1_b_aaa1aed0044076a032052906e5f7ba271}{h}}\ |=\ 1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00461}00461\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_af3ddfcff387d53e03211aeaa7a0c14ef}{gbMode}}\ =\ \mbox{\hyperlink{gbcpu_8h_a5d6a36e6c1ec6aad48d2db4868de600c}{CGB}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00462}00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00463}00463\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ SGB}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00464}00464\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a5021082cf23612467be2f40ebe83d8e3}{sgbMode}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00465}00465\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gbRegs}}.\mbox{\hyperlink{struct_registers_aad6bbc5ebe190ec3bee972e46a59e615}{af}}.\mbox{\hyperlink{union_register_a9c98442c30c45ade6b9841dbac176c6d}{b}}.\mbox{\hyperlink{struct_register_1_1_b_aaa1aed0044076a032052906e5f7ba271}{h}}\ =\ 0x01;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00466}00466\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_af3ddfcff387d53e03211aeaa7a0c14ef}{gbMode}}\ =\ \mbox{\hyperlink{gbcpu_8h_a44172ac633c517cb4c9e278cef36b000}{GB}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00467}00467\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sgb_8h_aa21c07d9fc28cda5175e8cc1c534355b}{initSGB}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00468}00468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00469}00469\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00470}00470\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00471}00471\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00472}\mbox{\hyperlink{gameboy_8h_a8c50745d9d0e2a05a09fb8bba0593fe3}{00472}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a8c50745d9d0e2a05a09fb8bba0593fe3}{checkLYC}}()}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00473}00473\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00474}00474\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ ==\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x45])}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00475}00475\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00476}00476\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ |=\ 4;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00477}00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 0x40)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_abf2d80992dcfabfd1668184c3dff2733}{LCD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00479}00479\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00480}00480\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00481}00481\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&=\ \string~4;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00482}00482\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00483}00483\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00484}\mbox{\hyperlink{gameboy_8h_a2675f9af73dd3b401d72c5b2da78c971}{00484}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a2675f9af73dd3b401d72c5b2da78c971}{updateLCD}}(\textcolor{keywordtype}{int}\ cycles)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00485}00485\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00486}00486\ \ \ \ \ \textcolor{keywordflow}{if}\ (!(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x40]\ \&\ 0x80))\ \textcolor{comment}{//\ If\ LCD\ is\ off}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00487}00487\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00488}00488\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ =\ 456\ *\ (\mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}}\ ?\ 2\ :\ 1);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00489}00489\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00490}00490\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&=\ 0xF8;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Normally\ timing\ is\ synchronized\ with\ gameboy's\ vblank.\ If\ the\ screen}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00492}00492\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ off,\ this\ code\ kicks\ in.\ The\ "{}phaseCounter"{}\ is\ a\ counter\ until\ the}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00493}00493\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ds\ should\ check\ for\ input\ and\ whatnot.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00494}00494\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aac480ac99840c750628f10e5b5bebf7e}{phaseCounter}}\ -\/=\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00495}00495\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_aac480ac99840c750628f10e5b5bebf7e}{phaseCounter}}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00496}00496\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a45b67662d620a977a2cfe519f7ab6273}{fps}}++;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aac480ac99840c750628f10e5b5bebf7e}{phaseCounter}}\ +=\ 456\ *\ 153\ *\ (\mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}}\ ?\ 2\ :\ 1);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a720cda0344a935ff996a881c1c06bf8f}{cyclesSinceVblank}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Though\ not\ technically\ vblank,\ this\ is\ a\ good\ time\ to\ check\ for}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ input\ and\ whatnot.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a602f0b93f01be978a0d3b51edbd88c26}{gameboyUpdateVBlank}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00503}00503\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00504}00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00505}00505\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00506}00506\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00507}00507\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ -\/=\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00508}00508\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00509}00509\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ >\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00510}00510\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00511}00511\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00512}00512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00513}00513\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00514}00514\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00515}00515\ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 3)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00516}00516\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00517}00517\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00518}00518\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00519}00519\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]++;\ \textcolor{comment}{//\ Set\ mode\ 3}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00520}00520\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ +=\ 172\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00521}00521\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_a1cec0914be5ae980da80f2a7cf47ddc9}{drawScanline}}(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00522}00522\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00523}00523\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00524}00524\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00525}00525\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00526}00526\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&=\ \string~3;\ \textcolor{comment}{//\ Set\ mode\ 0}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00527}00527\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00528}00528\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 0x8)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_abf2d80992dcfabfd1668184c3dff2733}{LCD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00531}00531\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ +=\ 204\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00533}00533\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbgfx_8h_a5f2076cbffa95c8bb5e27e4f4d6f67d5}{drawScanline\_P2}}(\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]);}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00534}00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a343775d9586e8f6468a3e9062ea782f0}{updateHblankDMA}}())}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00535}00535\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_ae74afa8626d5b0f9a7ebcfd329561ef5}{extraCycles}}\ +=\ 50;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00537}00537\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00538}00538\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00539}00539\ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00540}00540\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00541}00541\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00542}00542\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ fall\ through\ to\ next\ case}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00543}00543\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00544}00544\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00545}00545\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ ==\ 0\ \&\&\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 3)\ ==\ 1)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00546}00546\ \ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ End\ of\ vblank}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]++;\ \textcolor{comment}{//\ Set\ mode\ 2}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ +=\ 80\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00549}00549\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00551}00551\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]++;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00553}00553\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ <\ 144\ ||\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ >=\ 153)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{//\ Not\ in\ vblank}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 0x20)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_abf2d80992dcfabfd1668184c3dff2733}{LCD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00560}00560\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ >=\ 153)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Don't\ change\ the\ mode.\ Scanline\ 0\ is\ twice\ as}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ long\ as\ normal\ -\/\ half\ of\ it\ identifies\ as\ being}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ in\ the\ vblank\ period.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ +=\ 456\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{//\ End\ of\ hblank}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&=\ \string~3;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ |=\ 2;\ \textcolor{comment}{//\ Set\ mode\ 2}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 0x20)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_abf2d80992dcfabfd1668184c3dff2733}{LCD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ +=\ 80\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00578}00578\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a8c50745d9d0e2a05a09fb8bba0593fe3}{checkLYC}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00580}00580\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ >=\ 144)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00582}00582\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \textcolor{comment}{//\ In\ vblank}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ +=\ 456\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x44]\ ==\ 144)\ \textcolor{comment}{//\ Beginning\ of\ vblank}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&=\ \string~3;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ |=\ 1;\ \textcolor{comment}{//\ Set\ mode\ 1}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00589}00589\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00590}00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a0626a5926d1d4bb803aa989065220b96}{VBLANK}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00591}00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x41]\ \&\ 0x10)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00592}00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_abf2d80992dcfabfd1668184c3dff2733}{LCD}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00593}00593\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a45b67662d620a977a2cfe519f7ab6273}{fps}}++;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a720cda0344a935ff996a881c1c06bf8f}{cyclesSinceVblank}}\ =\ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ -\/\ (456\ <<\ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a602f0b93f01be978a0d3b51edbd88c26}{gameboyUpdateVBlank}}();}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00598}00598\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00599}00599\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00600}00600\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00601}00601\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00602}00602\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00603}00603\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00604}00604\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00605}00605\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00606}00606\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00607}\mbox{\hyperlink{gameboy_8h_af559177576173f5f7a282a38f5bca3f1}{00607}}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_af559177576173f5f7a282a38f5bca3f1}{updateTimers}}(\textcolor{keywordtype}{int}\ cycles)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00608}00608\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00609}00609\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x07]\ \&\ 0x4)\ \textcolor{comment}{//\ Timers\ enabled}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00610}00610\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00611}00611\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}}\ -\/=\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00612}00612\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00613}00613\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ clocksAdded\ =\ (-\/\mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}})\ /\ \mbox{\hyperlink{gameboy_8cpp_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timerPeriod}}\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}}\ +=\ \mbox{\hyperlink{gameboy_8cpp_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timerPeriod}}\ *\ clocksAdded;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00616}00616\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sum\ =\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x05]\ +\ clocksAdded;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00617}00617\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sum\ >\ 0xff)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\mbox{\hyperlink{global_8h_a599217205dc3092c26567a2bd868ef3a}{TIMER}});}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x05]\ =\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x06];}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x05]\ =\ (u8)sum;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00624}00624\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00625}00625\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ cycles\ until\ the\ timer\ will\ trigger\ an\ interrupt.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00626}00626\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reads\ from\ [0xff05]\ may\ be\ inaccurate.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00627}00627\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ However\ Castlevania\ and\ Alone\ in\ the\ Dark\ are\ extremely\ slow}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00628}00628\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ this\ is\ updated\ each\ time\ [0xff05]\ is\ changed.}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00629}00629\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a3ef8a2a072dece30a5ed04aa84c3bdc0}{setEventCycles}}(\mbox{\hyperlink{gameboy_8cpp_a1fb2fb06ba2c8cc453d71805842b74d9}{timerCounter}}\ +\ \mbox{\hyperlink{gameboy_8cpp_a8dafca6cd4bbc33de0e8328f2ee66f9b}{timerPeriod}}\ *\ (255\ -\/\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x05]));}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00630}00630\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00631}00631\ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a1335e4b1447c429a82a506225db263e2}{dividerCounter}}\ -\/=\ cycles;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00632}00632\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a1335e4b1447c429a82a506225db263e2}{dividerCounter}}\ <=\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00633}00633\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00634}00634\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ divsAdded\ =\ -\/\mbox{\hyperlink{gameboy_8cpp_a1335e4b1447c429a82a506225db263e2}{dividerCounter}}\ /\ 256\ +\ 1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00635}00635\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a1335e4b1447c429a82a506225db263e2}{dividerCounter}}\ +=\ divsAdded\ *\ 256;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00636}00636\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x04]\ +=\ divsAdded;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00637}00637\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00638}00638\ \ \ \ \ \textcolor{comment}{//\ setEventCycles(dividerCounter);}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00639}00639\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00640}00640\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00641}\mbox{\hyperlink{gameboy_8h_a83b8772ae1ef6863e5f4e785ee5be09f}{00641}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a83b8772ae1ef6863e5f4e785ee5be09f}{requestInterrupt}}(\textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00642}00642\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00643}00643\ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x0F]\ |=\ id;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00644}00644\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x0F]\ \&\ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0xFF])}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00645}00645\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}{cyclesToExecute}}\ =\ -\/1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00646}00646\ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00647}00647\ }
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00648}\mbox{\hyperlink{gameboy_8h_a362b36e2946a997e3fd48ced932c5477}{00648}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gameboy_8cpp_a362b36e2946a997e3fd48ced932c5477}{setDoubleSpeed}}(\textcolor{keywordtype}{int}\ val)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00649}00649\ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00650}00650\ \ \ \ \ \textcolor{keywordflow}{if}\ (val\ ==\ 0)}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00651}00651\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00652}00652\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ >>=\ 1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00654}00654\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00655}00655\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x4D]\ \&=\ \string~0x80;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00656}00656\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00657}00657\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00658}00658\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00659}00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}})}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_aa6d14260275d350ffcefde5806d44d76}{scanlineCounter}}\ <<=\ 1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00661}00661\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{gameboy_8cpp_a308cf5bd4714c05f9f309a73bcda9108}{doubleSpeed}}\ =\ 1;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00662}00662\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mmu_8h_a7436ad149c3b3f2974966d6b546d14d9}{ioRam}}[0x4D]\ |=\ 0x80;}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00663}00663\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gameboy_8cpp_source_l00664}00664\ \}}
+
+\end{DoxyCode}

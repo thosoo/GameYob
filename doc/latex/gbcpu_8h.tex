@@ -1,0 +1,182 @@
+\hypertarget{gbcpu_8h}{}\doxysection{arm9/include/gbcpu.h File Reference}
+\label{gbcpu_8h}\index{arm9/include/gbcpu.h@{arm9/include/gbcpu.h}}
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{union_register}{Register}}
+\item 
+struct \mbox{\hyperlink{struct_register_1_1_b}{Register\+::B}}
+\item 
+struct \mbox{\hyperlink{struct_registers}{Registers}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gbcpu_8h_a44172ac633c517cb4c9e278cef36b000}{GB}}~0
+\item 
+\#define \mbox{\hyperlink{gbcpu_8h_a5d6a36e6c1ec6aad48d2db4868de600c}{CGB}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gbcpu_8h_a5706c99691ce2a042f08bc3c4b50f3ba}{init\+CPU}} ()
+\item 
+void \mbox{\hyperlink{gbcpu_8h_ac4b3f0121a2ac45668528454fbf14f64}{enable\+Interrupts}} ()
+\item 
+void \mbox{\hyperlink{gbcpu_8h_a877f09d7db05b17679190a906e2eefd5}{disable\+Interrupts}} ()
+\item 
+int \mbox{\hyperlink{gbcpu_8h_ab0457e24420fa48a0bd28ff9440e9367}{handle\+Interrupts}} (unsigned int \mbox{\hyperlink{gameboy_8h_a5ed78370d9978a532d13248d673d206e}{interrupt\+Triggered}})
+\item 
+int \mbox{\hyperlink{gbcpu_8h_a4fd10c2051baef8fb2117c1f7b4f6c57}{run\+Opcode}} (int cycles)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_registers}{Registers}} \mbox{\hyperlink{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}{gb\+Regs}}
+\item 
+int \mbox{\hyperlink{gbcpu_8h_a45b67662d620a977a2cfe519f7ab6273}{fps}}
+\item 
+int \mbox{\hyperlink{gbcpu_8h_a9a80d626b495810428f2f14b4dae6ecb}{halt}}
+\item 
+int \mbox{\hyperlink{gbcpu_8h_a8889a71b1ce95f894a45758861ff1361}{ime}}
+\item 
+int \mbox{\hyperlink{gbcpu_8h_ae74afa8626d5b0f9a7ebcfd329561ef5}{extra\+Cycles}}
+\item 
+int \mbox{\hyperlink{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}{cycles\+To\+Execute}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gbcpu_8h_a5d6a36e6c1ec6aad48d2db4868de600c}\label{gbcpu_8h_a5d6a36e6c1ec6aad48d2db4868de600c}} 
+\index{gbcpu.h@{gbcpu.h}!CGB@{CGB}}
+\index{CGB@{CGB}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{CGB}{CGB}}
+{\footnotesize\ttfamily \#define CGB~1}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8h_source_l00005}{5}} of file \mbox{\hyperlink{gbcpu_8h_source}{gbcpu.\+h}}.
+
+\mbox{\Hypertarget{gbcpu_8h_a44172ac633c517cb4c9e278cef36b000}\label{gbcpu_8h_a44172ac633c517cb4c9e278cef36b000}} 
+\index{gbcpu.h@{gbcpu.h}!GB@{GB}}
+\index{GB@{GB}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{GB}{GB}}
+{\footnotesize\ttfamily \#define GB~0}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8h_source_l00004}{4}} of file \mbox{\hyperlink{gbcpu_8h_source}{gbcpu.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gbcpu_8h_a877f09d7db05b17679190a906e2eefd5}\label{gbcpu_8h_a877f09d7db05b17679190a906e2eefd5}} 
+\index{gbcpu.h@{gbcpu.h}!disableInterrupts@{disableInterrupts}}
+\index{disableInterrupts@{disableInterrupts}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{disableInterrupts()}{disableInterrupts()}}
+{\footnotesize\ttfamily void disable\+Interrupts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00138}{138}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_ac4b3f0121a2ac45668528454fbf14f64}\label{gbcpu_8h_ac4b3f0121a2ac45668528454fbf14f64}} 
+\index{gbcpu.h@{gbcpu.h}!enableInterrupts@{enableInterrupts}}
+\index{enableInterrupts@{enableInterrupts}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{enableInterrupts()}{enableInterrupts()}}
+{\footnotesize\ttfamily void enable\+Interrupts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00131}{131}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_ab0457e24420fa48a0bd28ff9440e9367}\label{gbcpu_8h_ab0457e24420fa48a0bd28ff9440e9367}} 
+\index{gbcpu.h@{gbcpu.h}!handleInterrupts@{handleInterrupts}}
+\index{handleInterrupts@{handleInterrupts}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{handleInterrupts()}{handleInterrupts()}}
+{\footnotesize\ttfamily int handle\+Interrupts (\begin{DoxyParamCaption}\item[{unsigned int}]{interrupt\+Triggered }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00143}{143}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_a5706c99691ce2a042f08bc3c4b50f3ba}\label{gbcpu_8h_a5706c99691ce2a042f08bc3c4b50f3ba}} 
+\index{gbcpu.h@{gbcpu.h}!initCPU@{initCPU}}
+\index{initCPU@{initCPU}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{initCPU()}{initCPU()}}
+{\footnotesize\ttfamily void init\+CPU (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_a4fd10c2051baef8fb2117c1f7b4f6c57}\label{gbcpu_8h_a4fd10c2051baef8fb2117c1f7b4f6c57}} 
+\index{gbcpu.h@{gbcpu.h}!runOpcode@{runOpcode}}
+\index{runOpcode@{runOpcode}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{runOpcode()}{runOpcode()}}
+{\footnotesize\ttfamily int run\+Opcode (\begin{DoxyParamCaption}\item[{int}]{cycles }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00218}{218}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}\label{gbcpu_8h_abdb1b716dc565a1e49d527bb77302c31}} 
+\index{gbcpu.h@{gbcpu.h}!cyclesToExecute@{cyclesToExecute}}
+\index{cyclesToExecute@{cyclesToExecute}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{cyclesToExecute}{cyclesToExecute}}
+{\footnotesize\ttfamily int cycles\+To\+Execute\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{gbcpu_8h_ae74afa8626d5b0f9a7ebcfd329561ef5}\label{gbcpu_8h_ae74afa8626d5b0f9a7ebcfd329561ef5}} 
+\index{gbcpu.h@{gbcpu.h}!extraCycles@{extraCycles}}
+\index{extraCycles@{extraCycles}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{extraCycles}{extraCycles}}
+{\footnotesize\ttfamily int extra\+Cycles\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00328}{328}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_a45b67662d620a977a2cfe519f7ab6273}\label{gbcpu_8h_a45b67662d620a977a2cfe519f7ab6273}} 
+\index{gbcpu.h@{gbcpu.h}!fps@{fps}}
+\index{fps@{fps}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily int fps\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gameboy_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{gameboy_8cpp_source}{gameboy.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}\label{gbcpu_8h_ae419d75b68e531a5f8051701aa4c7bf5}} 
+\index{gbcpu.h@{gbcpu.h}!gbRegs@{gbRegs}}
+\index{gbRegs@{gbRegs}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{gbRegs}{gbRegs}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct_registers}{Registers}} gb\+Regs\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00049}{49}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_a9a80d626b495810428f2f14b4dae6ecb}\label{gbcpu_8h_a9a80d626b495810428f2f14b4dae6ecb}} 
+\index{gbcpu.h@{gbcpu.h}!halt@{halt}}
+\index{halt@{halt}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{halt}{halt}}
+{\footnotesize\ttfamily int halt\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+
+\mbox{\Hypertarget{gbcpu_8h_a8889a71b1ce95f894a45758861ff1361}\label{gbcpu_8h_a8889a71b1ce95f894a45758861ff1361}} 
+\index{gbcpu.h@{gbcpu.h}!ime@{ime}}
+\index{ime@{ime}!gbcpu.h@{gbcpu.h}}
+\doxysubsubsection{\texorpdfstring{ime}{ime}}
+{\footnotesize\ttfamily int ime\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbcpu_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{gbcpu_8cpp_source}{gbcpu.\+cpp}}.
+

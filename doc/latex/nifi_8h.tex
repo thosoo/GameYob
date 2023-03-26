@@ -1,0 +1,130 @@
+\hypertarget{nifi_8h}{}\doxysection{arm9/include/nifi.h File Reference}
+\label{nifi_8h}\index{arm9/include/nifi.h@{arm9/include/nifi.h}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{nifi_8h_a0a7f425c3694fcef721d52ab5b6a4442}{enable\+Nifi}} ()
+\item 
+void \mbox{\hyperlink{nifi_8h_ae9d355d8f542fe7b2706f431ca07980e}{disable\+Nifi}} ()
+\item 
+void \mbox{\hyperlink{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}{send\+Packet\+Byte}} (u8 command, u8 data)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile int \mbox{\hyperlink{nifi_8h_acc98586687db446cc7631f248dabaedd}{link\+Received\+Data}}
+\item 
+volatile int \mbox{\hyperlink{nifi_8h_a8e7ddfa9e5a06dc39e71eeab5da1b978}{link\+Send\+Data}}
+\item 
+volatile bool \mbox{\hyperlink{nifi_8h_a952691097c89a5372cef7aa31056c5f2}{transfer\+Waiting}}
+\item 
+volatile bool \mbox{\hyperlink{nifi_8h_acd7fc5e1db44e8f8b10a5fd45df53aa1}{transfer\+Ready}}
+\item 
+volatile bool \mbox{\hyperlink{nifi_8h_a938529c5c61f23bdddb9f4c509c298d6}{received\+Packet}}
+\item 
+volatile int \mbox{\hyperlink{nifi_8h_a986667ac77a6f03db6e0bb203903b6be}{nifi\+Sendid}}
+\item 
+bool \mbox{\hyperlink{nifi_8h_af3c60f1353a1aaf418c586a59ea8c1ef}{nifi\+Enabled}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{nifi_8h_ae9d355d8f542fe7b2706f431ca07980e}\label{nifi_8h_ae9d355d8f542fe7b2706f431ca07980e}} 
+\index{nifi.h@{nifi.h}!disableNifi@{disableNifi}}
+\index{disableNifi@{disableNifi}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{disableNifi()}{disableNifi()}}
+{\footnotesize\ttfamily void disable\+Nifi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00123}{123}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_a0a7f425c3694fcef721d52ab5b6a4442}\label{nifi_8h_a0a7f425c3694fcef721d52ab5b6a4442}} 
+\index{nifi.h@{nifi.h}!enableNifi@{enableNifi}}
+\index{enableNifi@{enableNifi}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{enableNifi()}{enableNifi()}}
+{\footnotesize\ttfamily void enable\+Nifi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}\label{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}} 
+\index{nifi.h@{nifi.h}!sendPacketByte@{sendPacketByte}}
+\index{sendPacketByte@{sendPacketByte}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{sendPacketByte()}{sendPacketByte()}}
+{\footnotesize\ttfamily void send\+Packet\+Byte (\begin{DoxyParamCaption}\item[{u8}]{command,  }\item[{u8}]{data }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{nifi_8h_acc98586687db446cc7631f248dabaedd}\label{nifi_8h_acc98586687db446cc7631f248dabaedd}} 
+\index{nifi.h@{nifi.h}!linkReceivedData@{linkReceivedData}}
+\index{linkReceivedData@{linkReceivedData}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{linkReceivedData}{linkReceivedData}}
+{\footnotesize\ttfamily volatile int link\+Received\+Data\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_a8e7ddfa9e5a06dc39e71eeab5da1b978}\label{nifi_8h_a8e7ddfa9e5a06dc39e71eeab5da1b978}} 
+\index{nifi.h@{nifi.h}!linkSendData@{linkSendData}}
+\index{linkSendData@{linkSendData}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{linkSendData}{linkSendData}}
+{\footnotesize\ttfamily volatile int link\+Send\+Data\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_af3c60f1353a1aaf418c586a59ea8c1ef}\label{nifi_8h_af3c60f1353a1aaf418c586a59ea8c1ef}} 
+\index{nifi.h@{nifi.h}!nifiEnabled@{nifiEnabled}}
+\index{nifiEnabled@{nifiEnabled}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{nifiEnabled}{nifiEnabled}}
+{\footnotesize\ttfamily bool nifi\+Enabled\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_a986667ac77a6f03db6e0bb203903b6be}\label{nifi_8h_a986667ac77a6f03db6e0bb203903b6be}} 
+\index{nifi.h@{nifi.h}!nifiSendid@{nifiSendid}}
+\index{nifiSendid@{nifiSendid}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{nifiSendid}{nifiSendid}}
+{\footnotesize\ttfamily volatile int nifi\+Sendid\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_a938529c5c61f23bdddb9f4c509c298d6}\label{nifi_8h_a938529c5c61f23bdddb9f4c509c298d6}} 
+\index{nifi.h@{nifi.h}!receivedPacket@{receivedPacket}}
+\index{receivedPacket@{receivedPacket}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{receivedPacket}{receivedPacket}}
+{\footnotesize\ttfamily volatile bool received\+Packet\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{nifi_8h_acd7fc5e1db44e8f8b10a5fd45df53aa1}\label{nifi_8h_acd7fc5e1db44e8f8b10a5fd45df53aa1}} 
+\index{nifi.h@{nifi.h}!transferReady@{transferReady}}
+\index{transferReady@{transferReady}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{transferReady}{transferReady}}
+{\footnotesize\ttfamily volatile bool transfer\+Ready\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+
+\mbox{\Hypertarget{nifi_8h_a952691097c89a5372cef7aa31056c5f2}\label{nifi_8h_a952691097c89a5372cef7aa31056c5f2}} 
+\index{nifi.h@{nifi.h}!transferWaiting@{transferWaiting}}
+\index{transferWaiting@{transferWaiting}!nifi.h@{nifi.h}}
+\doxysubsubsection{\texorpdfstring{transferWaiting}{transferWaiting}}
+{\footnotesize\ttfamily volatile bool transfer\+Waiting\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+

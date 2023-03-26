@@ -1,0 +1,218 @@
+\hypertarget{gbs_8cpp}{}\doxysection{arm9/source/gbs.cpp File Reference}
+\label{gbs_8cpp}\index{arm9/source/gbs.cpp@{arm9/source/gbs.cpp}}
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}gbs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mmu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbcpu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gameboy.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gbsnd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{gbs_8cpp_aa9a35836492b7b901d60cb746eca10ab}{READ16}}(src)~($\ast$(src) $\vert$ $\ast$(src + 1) $<$$<$ 8)
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{gbs_8cpp_a8b0c7a47e3275ba841a9ada435182303}{gbs\+Redraw}} ()
+\item 
+void \mbox{\hyperlink{gbs_8cpp_a0f14d5fbca26efc9e176e9a49d1ecb8b}{gbs\+Load\+Song}} ()
+\item 
+void \mbox{\hyperlink{gbs_8cpp_a434edf584594d5aac0737f0b5293c6b8}{gbs\+Read\+Header}} ()
+\item 
+void \mbox{\hyperlink{gbs_8cpp_a369dd14d3b470e7277401596f1eab7b6}{gbs\+Init}} ()
+\item 
+void \mbox{\hyperlink{gbs_8cpp_ad8052480bdc750a0c994e2835d0c40f8}{gbs\+Check\+Input}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{gbs_8cpp_a6e7048c5efaac6e4916711ad174944cd}{gbs\+Mode}}
+\item 
+u8 \mbox{\hyperlink{gbs_8cpp_ac0bac384f753cca98e4b319e66197d23}{gbs\+Header}} \mbox{[}0x70\mbox{]}
+\item 
+u8 \mbox{\hyperlink{gbs_8cpp_a338072ed93ced41ed1b6232e4fc99f20}{gbs\+Num\+Songs}}
+\item 
+u16 \mbox{\hyperlink{gbs_8cpp_a0daba745c8a0722d6e31d5e80e7a0fd1}{gbs\+Load\+Address}}
+\item 
+u16 \mbox{\hyperlink{gbs_8cpp_a0e2cffbed8493c14db1ded55395af8cf}{gbs\+Init\+Address}}
+\item 
+u16 \mbox{\hyperlink{gbs_8cpp_a9bbb97c3a404d267c6831ad62c352421}{gbs\+Play\+Address}}
+\item 
+u8 \mbox{\hyperlink{gbs_8cpp_a33d532274d92f42955d87099e3f3bf01}{gbs\+Selected\+Song}}
+\item 
+int \mbox{\hyperlink{gbs_8cpp_a00a26d4fbcaa8ac47c72913cb2550882}{gbs\+Playing\+Song}}
+\item 
+Print\+Console $\ast$ \mbox{\hyperlink{gbs_8cpp_a8f4928376be33912f91d88f4e4f25144}{gbs\+Console}} = 0
+\item 
+Print\+Console \mbox{\hyperlink{gbs_8cpp_a26933da88e134b45bd2622bef71566f3}{default\+Console}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{gbs_8cpp_aa9a35836492b7b901d60cb746eca10ab}\label{gbs_8cpp_aa9a35836492b7b901d60cb746eca10ab}} 
+\index{gbs.cpp@{gbs.cpp}!READ16@{READ16}}
+\index{READ16@{READ16}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{READ16}{READ16}}
+{\footnotesize\ttfamily \#define READ16(\begin{DoxyParamCaption}\item[{}]{src }\end{DoxyParamCaption})~($\ast$(src) $\vert$ $\ast$(src + 1) $<$$<$ 8)}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{gbs_8cpp_ad8052480bdc750a0c994e2835d0c40f8}\label{gbs_8cpp_ad8052480bdc750a0c994e2835d0c40f8}} 
+\index{gbs.cpp@{gbs.cpp}!gbsCheckInput@{gbsCheckInput}}
+\index{gbsCheckInput@{gbsCheckInput}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsCheckInput()}{gbsCheckInput()}}
+{\footnotesize\ttfamily void gbs\+Check\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00153}{153}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a369dd14d3b470e7277401596f1eab7b6}\label{gbs_8cpp_a369dd14d3b470e7277401596f1eab7b6}} 
+\index{gbs.cpp@{gbs.cpp}!gbsInit@{gbsInit}}
+\index{gbsInit@{gbsInit}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsInit()}{gbsInit()}}
+{\footnotesize\ttfamily void gbs\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00113}{113}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a0f14d5fbca26efc9e176e9a49d1ecb8b}\label{gbs_8cpp_a0f14d5fbca26efc9e176e9a49d1ecb8b}} 
+\index{gbs.cpp@{gbs.cpp}!gbsLoadSong@{gbsLoadSong}}
+\index{gbsLoadSong@{gbsLoadSong}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsLoadSong()}{gbsLoadSong()}}
+{\footnotesize\ttfamily void gbs\+Load\+Song (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a434edf584594d5aac0737f0b5293c6b8}\label{gbs_8cpp_a434edf584594d5aac0737f0b5293c6b8}} 
+\index{gbs.cpp@{gbs.cpp}!gbsReadHeader@{gbsReadHeader}}
+\index{gbsReadHeader@{gbsReadHeader}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsReadHeader()}{gbsReadHeader()}}
+{\footnotesize\ttfamily void gbs\+Read\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00105}{105}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a8b0c7a47e3275ba841a9ada435182303}\label{gbs_8cpp_a8b0c7a47e3275ba841a9ada435182303}} 
+\index{gbs.cpp@{gbs.cpp}!gbsRedraw@{gbsRedraw}}
+\index{gbsRedraw@{gbsRedraw}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsRedraw()}{gbsRedraw()}}
+{\footnotesize\ttfamily void gbs\+Redraw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{gbs_8cpp_a26933da88e134b45bd2622bef71566f3}\label{gbs_8cpp_a26933da88e134b45bd2622bef71566f3}} 
+\index{gbs.cpp@{gbs.cpp}!defaultConsole@{defaultConsole}}
+\index{defaultConsole@{defaultConsole}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{defaultConsole}{defaultConsole}}
+{\footnotesize\ttfamily Print\+Console default\+Console\hspace{0.3cm}{\ttfamily [extern]}}
+
+\mbox{\Hypertarget{gbs_8cpp_a8f4928376be33912f91d88f4e4f25144}\label{gbs_8cpp_a8f4928376be33912f91d88f4e4f25144}} 
+\index{gbs.cpp@{gbs.cpp}!gbsConsole@{gbsConsole}}
+\index{gbsConsole@{gbsConsole}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsConsole}{gbsConsole}}
+{\footnotesize\ttfamily Print\+Console$\ast$ gbs\+Console = 0}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_ac0bac384f753cca98e4b319e66197d23}\label{gbs_8cpp_ac0bac384f753cca98e4b319e66197d23}} 
+\index{gbs.cpp@{gbs.cpp}!gbsHeader@{gbsHeader}}
+\index{gbsHeader@{gbsHeader}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsHeader}{gbsHeader}}
+{\footnotesize\ttfamily u8 gbs\+Header\mbox{[}0x70\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a0e2cffbed8493c14db1ded55395af8cf}\label{gbs_8cpp_a0e2cffbed8493c14db1ded55395af8cf}} 
+\index{gbs.cpp@{gbs.cpp}!gbsInitAddress@{gbsInitAddress}}
+\index{gbsInitAddress@{gbsInitAddress}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsInitAddress}{gbsInitAddress}}
+{\footnotesize\ttfamily u16 gbs\+Init\+Address}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a0daba745c8a0722d6e31d5e80e7a0fd1}\label{gbs_8cpp_a0daba745c8a0722d6e31d5e80e7a0fd1}} 
+\index{gbs.cpp@{gbs.cpp}!gbsLoadAddress@{gbsLoadAddress}}
+\index{gbsLoadAddress@{gbsLoadAddress}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsLoadAddress}{gbsLoadAddress}}
+{\footnotesize\ttfamily u16 gbs\+Load\+Address}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a6e7048c5efaac6e4916711ad174944cd}\label{gbs_8cpp_a6e7048c5efaac6e4916711ad174944cd}} 
+\index{gbs.cpp@{gbs.cpp}!gbsMode@{gbsMode}}
+\index{gbsMode@{gbsMode}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsMode}{gbsMode}}
+{\footnotesize\ttfamily bool gbs\+Mode}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a338072ed93ced41ed1b6232e4fc99f20}\label{gbs_8cpp_a338072ed93ced41ed1b6232e4fc99f20}} 
+\index{gbs.cpp@{gbs.cpp}!gbsNumSongs@{gbsNumSongs}}
+\index{gbsNumSongs@{gbsNumSongs}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsNumSongs}{gbsNumSongs}}
+{\footnotesize\ttfamily u8 gbs\+Num\+Songs}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a9bbb97c3a404d267c6831ad62c352421}\label{gbs_8cpp_a9bbb97c3a404d267c6831ad62c352421}} 
+\index{gbs.cpp@{gbs.cpp}!gbsPlayAddress@{gbsPlayAddress}}
+\index{gbsPlayAddress@{gbsPlayAddress}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsPlayAddress}{gbsPlayAddress}}
+{\footnotesize\ttfamily u16 gbs\+Play\+Address}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a00a26d4fbcaa8ac47c72913cb2550882}\label{gbs_8cpp_a00a26d4fbcaa8ac47c72913cb2550882}} 
+\index{gbs.cpp@{gbs.cpp}!gbsPlayingSong@{gbsPlayingSong}}
+\index{gbsPlayingSong@{gbsPlayingSong}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsPlayingSong}{gbsPlayingSong}}
+{\footnotesize\ttfamily int gbs\+Playing\+Song}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+
+\mbox{\Hypertarget{gbs_8cpp_a33d532274d92f42955d87099e3f3bf01}\label{gbs_8cpp_a33d532274d92f42955d87099e3f3bf01}} 
+\index{gbs.cpp@{gbs.cpp}!gbsSelectedSong@{gbsSelectedSong}}
+\index{gbsSelectedSong@{gbsSelectedSong}!gbs.cpp@{gbs.cpp}}
+\doxysubsubsection{\texorpdfstring{gbsSelectedSong}{gbsSelectedSong}}
+{\footnotesize\ttfamily u8 gbs\+Selected\+Song}
+
+
+
+Definition at line \mbox{\hyperlink{gbs_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{gbs_8cpp_source}{gbs.\+cpp}}.
+

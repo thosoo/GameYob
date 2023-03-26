@@ -1,0 +1,321 @@
+\hypertarget{filechooser_8cpp}{}\doxysection{arm9/source/filechooser.cpp File Reference}
+\label{filechooser_8cpp}\index{arm9/source/filechooser.cpp@{arm9/source/filechooser.cpp}}
+{\ttfamily \#include $<$nds.\+h$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}filechooser.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}inputhelper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}console.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{filechooser_8cpp_a39e762b0ef46701148bb8337867bfd1a}{FLAG\+\_\+\+DIRECTORY}}~1
+\item 
+\#define \mbox{\hyperlink{filechooser_8cpp_aa9ac2ee274e48cc30cbdf95682d78524}{FLAG\+\_\+\+SUSPENDED}}~2
+\item 
+\#define \mbox{\hyperlink{filechooser_8cpp_a02a994c8dae4268c6b548cfb4cd93a79}{FLAG\+\_\+\+ROM}}~4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{filechooser_8cpp_af99c40924f07a9b9aaf9057edb808c6d}{update\+Scroll\+Down}} ()
+\item 
+void \mbox{\hyperlink{filechooser_8cpp_ab85785a4308bce8b424567efcbb893e2}{update\+Scroll\+Up}} ()
+\item 
+int \mbox{\hyperlink{filechooser_8cpp_a38788159fec49f323858d30ac4de072a}{name\+Sort\+Function}} (char $\ast$\&a, char $\ast$\&b)
+\item 
+{\footnotesize template$<$class Data $>$ }\\bool \mbox{\hyperlink{filechooser_8cpp_ae3aa3deeec292f4a6de1e4c914282d24}{is\+Sorted}} (std\+::vector$<$ Data $>$ \&data, int($\ast$sort\+Function)(Data \&, Data \&), const unsigned int from, const unsigned int to)
+\item 
+{\footnotesize template$<$class Data $>$ }\\unsigned int \mbox{\hyperlink{filechooser_8cpp_a5ea35af18521fda04efc18f51e20ba0c}{choose\+Pivot}} (std\+::vector$<$ Data $>$ \&data, int($\ast$sort\+Function)(Data \&, Data \&), const unsigned int from, const unsigned int to)
+\item 
+{\footnotesize template$<$class Data , class Metadata $>$ }\\unsigned int \mbox{\hyperlink{filechooser_8cpp_a60cbbc7ebf4dea03b82983c0f4066892}{partition}} (std\+::vector$<$ Data $>$ \&data, std\+::vector$<$ Metadata $>$ \&metadata, int($\ast$sort\+Function)(Data \&, Data \&), const unsigned int from, const unsigned int to, const unsigned int pivot\+Index)
+\item 
+{\footnotesize template$<$class Data , class Metadata $>$ }\\void \mbox{\hyperlink{filechooser_8cpp_a5d0a729ff32a3e7f26f10ad75e82a627}{quick\+Sort}} (std\+::vector$<$ Data $>$ \&data, std\+::vector$<$ Metadata $>$ \&metadata, int($\ast$sort\+Function)(Data \&, Data \&), const unsigned int from, const unsigned int to)
+\item 
+char $\ast$ \mbox{\hyperlink{filechooser_8cpp_a14f9dfb66d88f39ef47601be0908f007}{start\+File\+Chooser}} (const char $\ast$extensions\mbox{[}$\,$\mbox{]}, int len, bool rom\+Extensions, bool can\+Quit)
+\item 
+bool \mbox{\hyperlink{filechooser_8cpp_aacb1ffc04c40322a1b8df970a0fa698b}{is\+File\+Chooser\+On}} ()
+\item 
+void \mbox{\hyperlink{filechooser_8cpp_a1ce1ee9c7f2b538eb7ede7cc4ae43b2e}{set\+File\+Chooser\+Match\+File}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
+\item 
+void \mbox{\hyperlink{filechooser_8cpp_a2469bf89eddb75cbc3b1b7712e08bb48}{save\+File\+Chooser\+State}} (\mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} $\ast$state)
+\item 
+void \mbox{\hyperlink{filechooser_8cpp_a0585552ff957251a4c6304d2ac819dba}{load\+File\+Chooser\+State}} (\mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} $\ast$state)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} \mbox{\hyperlink{filechooser_8cpp_a1c185a37dc80642d3853e3e2bc73c6a2}{rom\+Chooser\+State}} = \{0, \char`\"{}/lameboy\char`\"{}\}
+\item 
+\mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} \mbox{\hyperlink{filechooser_8cpp_aae617de565d7031c7d254a6b55b8e01f}{border\+Chooser\+State}} = \{0, \char`\"{}/\char`\"{}\}
+\item 
+const int \mbox{\hyperlink{filechooser_8cpp_a47c98bc90c67ed82124bf45f5d260e3f}{MAX\+\_\+\+FILENAME\+\_\+\+LEN}} = 100
+\item 
+int \mbox{\hyperlink{filechooser_8cpp_a5773a1128923774064e4b0592933aa16}{files\+Per\+Page}} = 24
+\item 
+int \mbox{\hyperlink{filechooser_8cpp_ac55fe61967bfc3ea816d6d4ed88a142c}{num\+Files}}
+\item 
+int \mbox{\hyperlink{filechooser_8cpp_a0607694a162c0ee989445c0007831114}{scrollY}} = 0
+\item 
+int \mbox{\hyperlink{filechooser_8cpp_ade7d5cde95c6caeaa389d9d6c20d7257}{file\+Selection}} = 0
+\item 
+bool \mbox{\hyperlink{filechooser_8cpp_a1b33f956fdaa3a4e45ca90aa4627a4eb}{file\+Chooser\+On}} = false
+\item 
+string \mbox{\hyperlink{filechooser_8cpp_af5186db5292a8d7b82c1e48a227b70aa}{match\+File}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{filechooser_8cpp_a39e762b0ef46701148bb8337867bfd1a}\label{filechooser_8cpp_a39e762b0ef46701148bb8337867bfd1a}} 
+\index{filechooser.cpp@{filechooser.cpp}!FLAG\_DIRECTORY@{FLAG\_DIRECTORY}}
+\index{FLAG\_DIRECTORY@{FLAG\_DIRECTORY}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{FLAG\_DIRECTORY}{FLAG\_DIRECTORY}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+DIRECTORY~1}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00011}{11}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a02a994c8dae4268c6b548cfb4cd93a79}\label{filechooser_8cpp_a02a994c8dae4268c6b548cfb4cd93a79}} 
+\index{filechooser.cpp@{filechooser.cpp}!FLAG\_ROM@{FLAG\_ROM}}
+\index{FLAG\_ROM@{FLAG\_ROM}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{FLAG\_ROM}{FLAG\_ROM}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+ROM~4}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_aa9ac2ee274e48cc30cbdf95682d78524}\label{filechooser_8cpp_aa9ac2ee274e48cc30cbdf95682d78524}} 
+\index{filechooser.cpp@{filechooser.cpp}!FLAG\_SUSPENDED@{FLAG\_SUSPENDED}}
+\index{FLAG\_SUSPENDED@{FLAG\_SUSPENDED}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{FLAG\_SUSPENDED}{FLAG\_SUSPENDED}}
+{\footnotesize\ttfamily \#define FLAG\+\_\+\+SUSPENDED~2}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{filechooser_8cpp_a5ea35af18521fda04efc18f51e20ba0c}\label{filechooser_8cpp_a5ea35af18521fda04efc18f51e20ba0c}} 
+\index{filechooser.cpp@{filechooser.cpp}!choosePivot@{choosePivot}}
+\index{choosePivot@{choosePivot}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{choosePivot()}{choosePivot()}}
+{\footnotesize\ttfamily template$<$class Data $>$ \\
+unsigned int choose\+Pivot (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Data $>$ \&}]{data,  }\item[{int($\ast$)(Data \&, Data \&)}]{sort\+Function,  }\item[{const unsigned int}]{from,  }\item[{const unsigned int}]{to }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00114}{114}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_aacb1ffc04c40322a1b8df970a0fa698b}\label{filechooser_8cpp_aacb1ffc04c40322a1b8df970a0fa698b}} 
+\index{filechooser.cpp@{filechooser.cpp}!isFileChooserOn@{isFileChooserOn}}
+\index{isFileChooserOn@{isFileChooserOn}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{isFileChooserOn()}{isFileChooserOn()}}
+{\footnotesize\ttfamily bool is\+File\+Chooser\+On (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00495}{495}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_ae3aa3deeec292f4a6de1e4c914282d24}\label{filechooser_8cpp_ae3aa3deeec292f4a6de1e4c914282d24}} 
+\index{filechooser.cpp@{filechooser.cpp}!isSorted@{isSorted}}
+\index{isSorted@{isSorted}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{isSorted()}{isSorted()}}
+{\footnotesize\ttfamily template$<$class Data $>$ \\
+bool is\+Sorted (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Data $>$ \&}]{data,  }\item[{int($\ast$)(Data \&, Data \&)}]{sort\+Function,  }\item[{const unsigned int}]{from,  }\item[{const unsigned int}]{to }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a0585552ff957251a4c6304d2ac819dba}\label{filechooser_8cpp_a0585552ff957251a4c6304d2ac819dba}} 
+\index{filechooser.cpp@{filechooser.cpp}!loadFileChooserState@{loadFileChooserState}}
+\index{loadFileChooserState@{loadFileChooserState}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{loadFileChooserState()}{loadFileChooserState()}}
+{\footnotesize\ttfamily void load\+File\+Chooser\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00512}{512}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a38788159fec49f323858d30ac4de072a}\label{filechooser_8cpp_a38788159fec49f323858d30ac4de072a}} 
+\index{filechooser.cpp@{filechooser.cpp}!nameSortFunction@{nameSortFunction}}
+\index{nameSortFunction@{nameSortFunction}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{nameSortFunction()}{nameSortFunction()}}
+{\footnotesize\ttfamily int name\+Sort\+Function (\begin{DoxyParamCaption}\item[{char $\ast$\&}]{a,  }\item[{char $\ast$\&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a60cbbc7ebf4dea03b82983c0f4066892}\label{filechooser_8cpp_a60cbbc7ebf4dea03b82983c0f4066892}} 
+\index{filechooser.cpp@{filechooser.cpp}!partition@{partition}}
+\index{partition@{partition}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{partition()}{partition()}}
+{\footnotesize\ttfamily template$<$class Data , class Metadata $>$ \\
+unsigned int partition (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Data $>$ \&}]{data,  }\item[{std\+::vector$<$ Metadata $>$ \&}]{metadata,  }\item[{int($\ast$)(Data \&, Data \&)}]{sort\+Function,  }\item[{const unsigned int}]{from,  }\item[{const unsigned int}]{to,  }\item[{const unsigned int}]{pivot\+Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00142}{142}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a5d0a729ff32a3e7f26f10ad75e82a627}\label{filechooser_8cpp_a5d0a729ff32a3e7f26f10ad75e82a627}} 
+\index{filechooser.cpp@{filechooser.cpp}!quickSort@{quickSort}}
+\index{quickSort@{quickSort}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{quickSort()}{quickSort()}}
+{\footnotesize\ttfamily template$<$class Data , class Metadata $>$ \\
+void quick\+Sort (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Data $>$ \&}]{data,  }\item[{std\+::vector$<$ Metadata $>$ \&}]{metadata,  }\item[{int($\ast$)(Data \&, Data \&)}]{sort\+Function,  }\item[{const unsigned int}]{from,  }\item[{const unsigned int}]{to }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00194}{194}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a2469bf89eddb75cbc3b1b7712e08bb48}\label{filechooser_8cpp_a2469bf89eddb75cbc3b1b7712e08bb48}} 
+\index{filechooser.cpp@{filechooser.cpp}!saveFileChooserState@{saveFileChooserState}}
+\index{saveFileChooserState@{saveFileChooserState}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{saveFileChooserState()}{saveFileChooserState()}}
+{\footnotesize\ttfamily void save\+File\+Chooser\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} $\ast$}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00505}{505}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a1ce1ee9c7f2b538eb7ede7cc4ae43b2e}\label{filechooser_8cpp_a1ce1ee9c7f2b538eb7ede7cc4ae43b2e}} 
+\index{filechooser.cpp@{filechooser.cpp}!setFileChooserMatchFile@{setFileChooserMatchFile}}
+\index{setFileChooserMatchFile@{setFileChooserMatchFile}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{setFileChooserMatchFile()}{setFileChooserMatchFile()}}
+{\footnotesize\ttfamily void set\+File\+Chooser\+Match\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00500}{500}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a14f9dfb66d88f39ef47601be0908f007}\label{filechooser_8cpp_a14f9dfb66d88f39ef47601be0908f007}} 
+\index{filechooser.cpp@{filechooser.cpp}!startFileChooser@{startFileChooser}}
+\index{startFileChooser@{startFileChooser}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{startFileChooser()}{startFileChooser()}}
+{\footnotesize\ttfamily char $\ast$ start\+File\+Chooser (\begin{DoxyParamCaption}\item[{const char $\ast$}]{extensions\mbox{[}$\,$\mbox{]},  }\item[{int}]{len,  }\item[{bool}]{rom\+Extensions,  }\item[{bool}]{can\+Quit }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00212}{212}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_af99c40924f07a9b9aaf9057edb808c6d}\label{filechooser_8cpp_af99c40924f07a9b9aaf9057edb808c6d}} 
+\index{filechooser.cpp@{filechooser.cpp}!updateScrollDown@{updateScrollDown}}
+\index{updateScrollDown@{updateScrollDown}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{updateScrollDown()}{updateScrollDown()}}
+{\footnotesize\ttfamily void update\+Scroll\+Down (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_ab85785a4308bce8b424567efcbb893e2}\label{filechooser_8cpp_ab85785a4308bce8b424567efcbb893e2}} 
+\index{filechooser.cpp@{filechooser.cpp}!updateScrollUp@{updateScrollUp}}
+\index{updateScrollUp@{updateScrollUp}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{updateScrollUp()}{updateScrollUp()}}
+{\footnotesize\ttfamily void update\+Scroll\+Up (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{filechooser_8cpp_aae617de565d7031c7d254a6b55b8e01f}\label{filechooser_8cpp_aae617de565d7031c7d254a6b55b8e01f}} 
+\index{filechooser.cpp@{filechooser.cpp}!borderChooserState@{borderChooserState}}
+\index{borderChooserState@{borderChooserState}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{borderChooserState}{borderChooserState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} border\+Chooser\+State = \{0, \char`\"{}/\char`\"{}\}}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a1b33f956fdaa3a4e45ca90aa4627a4eb}\label{filechooser_8cpp_a1b33f956fdaa3a4e45ca90aa4627a4eb}} 
+\index{filechooser.cpp@{filechooser.cpp}!fileChooserOn@{fileChooserOn}}
+\index{fileChooserOn@{fileChooserOn}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{fileChooserOn}{fileChooserOn}}
+{\footnotesize\ttfamily bool file\+Chooser\+On = false}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_ade7d5cde95c6caeaa389d9d6c20d7257}\label{filechooser_8cpp_ade7d5cde95c6caeaa389d9d6c20d7257}} 
+\index{filechooser.cpp@{filechooser.cpp}!fileSelection@{fileSelection}}
+\index{fileSelection@{fileSelection}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{fileSelection}{fileSelection}}
+{\footnotesize\ttfamily int file\+Selection = 0}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a5773a1128923774064e4b0592933aa16}\label{filechooser_8cpp_a5773a1128923774064e4b0592933aa16}} 
+\index{filechooser.cpp@{filechooser.cpp}!filesPerPage@{filesPerPage}}
+\index{filesPerPage@{filesPerPage}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{filesPerPage}{filesPerPage}}
+{\footnotesize\ttfamily int files\+Per\+Page = 24}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_af5186db5292a8d7b82c1e48a227b70aa}\label{filechooser_8cpp_af5186db5292a8d7b82c1e48a227b70aa}} 
+\index{filechooser.cpp@{filechooser.cpp}!matchFile@{matchFile}}
+\index{matchFile@{matchFile}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{matchFile}{matchFile}}
+{\footnotesize\ttfamily string match\+File}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a47c98bc90c67ed82124bf45f5d260e3f}\label{filechooser_8cpp_a47c98bc90c67ed82124bf45f5d260e3f}} 
+\index{filechooser.cpp@{filechooser.cpp}!MAX\_FILENAME\_LEN@{MAX\_FILENAME\_LEN}}
+\index{MAX\_FILENAME\_LEN@{MAX\_FILENAME\_LEN}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_FILENAME\_LEN}{MAX\_FILENAME\_LEN}}
+{\footnotesize\ttfamily const int MAX\+\_\+\+FILENAME\+\_\+\+LEN = 100}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_ac55fe61967bfc3ea816d6d4ed88a142c}\label{filechooser_8cpp_ac55fe61967bfc3ea816d6d4ed88a142c}} 
+\index{filechooser.cpp@{filechooser.cpp}!numFiles@{numFiles}}
+\index{numFiles@{numFiles}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{numFiles}{numFiles}}
+{\footnotesize\ttfamily int num\+Files}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00024}{24}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a1c185a37dc80642d3853e3e2bc73c6a2}\label{filechooser_8cpp_a1c185a37dc80642d3853e3e2bc73c6a2}} 
+\index{filechooser.cpp@{filechooser.cpp}!romChooserState@{romChooserState}}
+\index{romChooserState@{romChooserState}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{romChooserState}{romChooserState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_file_chooser_state}{File\+Chooser\+State}} rom\+Chooser\+State = \{0, \char`\"{}/lameboy\char`\"{}\}}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+
+\mbox{\Hypertarget{filechooser_8cpp_a0607694a162c0ee989445c0007831114}\label{filechooser_8cpp_a0607694a162c0ee989445c0007831114}} 
+\index{filechooser.cpp@{filechooser.cpp}!scrollY@{scrollY}}
+\index{scrollY@{scrollY}!filechooser.cpp@{filechooser.cpp}}
+\doxysubsubsection{\texorpdfstring{scrollY}{scrollY}}
+{\footnotesize\ttfamily int scrollY = 0}
+
+
+
+Definition at line \mbox{\hyperlink{filechooser_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{filechooser_8cpp_source}{filechooser.\+cpp}}.
+

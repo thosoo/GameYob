@@ -1,0 +1,23 @@
+\hypertarget{filechooser_8h_source}{}\doxysection{filechooser.\+h}
+\label{filechooser_8h_source}\index{arm9/include/filechooser.h@{arm9/include/filechooser.h}}
+\mbox{\hyperlink{filechooser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00001}00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00004}\mbox{\hyperlink{struct_file_chooser_state}{00004}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_file_chooser_state}{FileChooserState}}}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00006}\mbox{\hyperlink{struct_file_chooser_state_a684df1a600d237f4d37ee77936567219}{00006}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_file_chooser_state_a684df1a600d237f4d37ee77936567219}{selection}};}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00007}\mbox{\hyperlink{struct_file_chooser_state_a34c3a0d8034c7794d02d5f0e3599c130}{00007}}\ \ \ \ \ std::string\ \mbox{\hyperlink{struct_file_chooser_state_a34c3a0d8034c7794d02d5f0e3599c130}{directory}};}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00008}00008\ \};}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00010}00010\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{filechooser_8h_ad9290a6b86d58cddd1af76147abebaee}{startFileChooser}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *extensions[],\ \textcolor{keywordtype}{int}\ len,\ \textcolor{keywordtype}{bool}\ romExtensions,\ \textcolor{keywordtype}{bool}\ canQuit\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00011}00011\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{filechooser_8h_aacb1ffc04c40322a1b8df970a0fa698b}{isFileChooserOn}}();}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00012}00012\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{filechooser_8h_a1ce1ee9c7f2b538eb7ede7cc4ae43b2e}{setFileChooserMatchFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}});\ \textcolor{comment}{//\ Auto-\/select\ this\ file\ in\ the\ directory}}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00014}00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{filechooser_8h_a2469bf89eddb75cbc3b1b7712e08bb48}{saveFileChooserState}}(\mbox{\hyperlink{struct_file_chooser_state}{FileChooserState}}\ *state);}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00015}00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{filechooser_8h_a0585552ff957251a4c6304d2ac819dba}{loadFileChooserState}}(\mbox{\hyperlink{struct_file_chooser_state}{FileChooserState}}\ *state);}
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{filechooser_8h_source_l00017}\mbox{\hyperlink{filechooser_8h_aae617de565d7031c7d254a6b55b8e01f}{00017}}\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_file_chooser_state}{FileChooserState}}\ \mbox{\hyperlink{filechooser_8h_a1c185a37dc80642d3853e3e2bc73c6a2}{romChooserState}},\ \mbox{\hyperlink{filechooser_8h_aae617de565d7031c7d254a6b55b8e01f}{borderChooserState}};}
+
+\end{DoxyCode}

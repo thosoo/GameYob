@@ -1,0 +1,89 @@
+\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md1}{}\doxysection{Version 0.\+5.\+2}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md1}
+
+\begin{DoxyItemize}
+\item Updated to Devkit\+ARM r46 for better DSi support.
+\item Added an installable CIA file to run as DSi\+Ware.
+\item Certain 3DS-\/side launchers such as TWLoader now work again.
+\item Added \char`\"{}touch\char`\"{} as a configurable button.
+\begin{DoxyItemize}
+\item When running as a CIA on the New 3DS, the \char`\"{}touch\char`\"{} input gets spammed for no reason. It can now be disabled as a workaround.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md2}{}\doxysection{Version 0.\+5.\+1}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md2}
+
+\begin{DoxyItemize}
+\item Savegame management has been modified to prevent corruption as reported by some.
+\item Autosaving is laggier due to the above. Consider turning it off.
+\item The configuration file has been moved from \char`\"{}gameyob.\+ini\char`\"{} to \char`\"{}gameyobds.\+ini\char`\"{} to prevent conflicts with Game\+Yob 3DS.
+\item A \char`\"{}single-\/screen mode\char`\"{} has been added.
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md3}{}\doxysection{Version 0.\+5}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Added Gameboy Printer emulation
+\item Added GBS playback feature
+\item Added \char`\"{}scale\char`\"{} button
+\item Semi-\/overhauled menu\+: now colorized, and does not interrupt emulation.
+\item Improved Super Gameboy emulation
+\item Selectable custom borders
+\item Reduced autosaving lag (results may vary between flashcards and SD cards)
+\item Implemented the halt bug (fixes The Smurfs)
+\item Wram register has unused bits set (fixes Metal Gear Solid)
+\item More fixes to emulation accuracy, sound, etc
+\item Stability fixes (most notably for sleep mode), many other minor bugfixes
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md4}{}\doxysection{Version 0.\+4.\+1}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md4}
+
+\begin{DoxyItemize}
+\item Fixed \char`\"{}save\char`\"{} button (which was bugged) and reduced autosaving lag
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md5}{}\doxysection{Version 0.\+4}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md5}
+
+\begin{DoxyItemize}
+\item New Icon by Corbin Davenport
+\item Implemented Super Gameboy support
+\item Implemented scaling (for those who don\textquotesingle{}t like borders)
+\item Implemented custom borders (for those who don\textquotesingle{}t like scaling)
+\item Implemented autosaving (causes lag in some games; off by default)
+\item Added \char`\"{}\+Detect GBA\char`\"{} option to access the advance shop in the Oracle games
+\item Added Fast Forward toggle button
+\item Added \char`\"{}\+Sound Fix\char`\"{} option for very accurate sound timing; it may use more power.
+\item Added Rumble Pak Support for Ez-\/3in1 and Warioware Twisted carts (thanks to windwakr)
+\item Added support for Gameshark and Game Genie codes (thanks to Lemon\+Boy)
+\item Support for Rockman 8, Hu\+C1/\+Hu\+C3 mappers and Robopon games (thanks to Lemon\+Boy)
+\item Second screen\textquotesingle{}s backlight is disabled when not needed to save power
+\item (partial) Stereo sound emulation
+\item More improvements to emulation \& sound accuracy
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md6}{}\doxysection{Version 0.\+3}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md6}
+
+\begin{DoxyItemize}
+\item Surpasses Lameboy in speed by about 10 FPS, thanks to optimizations by Nebuleon and myself
+\item Added fast forward mode (courtesy of Nebuleon)
+\item Added support for many exotic graphical effects \& fixed screen-\/change graphical bugs
+\item Added MBC2 support (for Kid Icarus, Final Fantasy Adventure)
+\item Added save states and suspending (temporary states)
+\item Added option to save settings to gameyob.\+ini
+\item Added HIGHLY EXPERIMENTAL Ni\+Fi link cable emulation (works with Tetris, Dr. Mario, and Pokemon if you\textquotesingle{}re lucky)
+\item Fixed various emulation bugs, increasing compatibility
+\item Fixed many causes of crashes (DSi mode works now)
+\item Soft resetting works (L+\+R+\+Start+\+Select)
+\item 100\% remappable controls
+\item Sound bugfixes
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md7}{}\doxysection{Version 0.\+2}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md7}
+
+\begin{DoxyItemize}
+\item Fixed some sound emulation bugs
+\item Fixed sleep-\/mode crashes
+\item Fixed window behaviour when modified mid-\/frame (fixes text in Resident Evil Gaiden)
+\item Fixed interrupt behaviour (fixes boss intros in Megaman V \& passes blargg\textquotesingle{}s cpu test \#2)
+\item Fixed crashes in some games without sram (Avenging Spirit)
+\item Set default \# of ram banks to 4 (workaround for Japanese Crystal)
+\item Added GBC Bios support
+\item Added \char`\"{}\+B/\+Y\char`\"{} control option
+\item Added a little clock
+\item Capitalized rom extensions are detected properly
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md8}{}\doxysection{Version 0.\+1.\+2}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Fixed Z flag for sla (hl) and rl (hl) opcodes
+\end{DoxyItemize}\hypertarget{md__c_h_a_n_g_e_l_o_g_autotoc_md9}{}\doxysection{Version 0.\+1.\+1}\label{md__c_h_a_n_g_e_l_o_g_autotoc_md9}
+
+\begin{DoxyItemize}
+\item Removed limit on number of files per directory 
+\end{DoxyItemize}
