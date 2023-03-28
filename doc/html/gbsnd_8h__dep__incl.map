@@ -1,0 +1,12 @@
+<map id="arm9/include/gbsnd.h" name="arm9/include/gbsnd.h">
+<area shape="rect" id="node1" title=" " alt="" coords="821,5,984,32"/>
+<area shape="rect" id="node2" href="$console_8cpp.html" title=" " alt="" coords="5,80,189,107"/>
+<area shape="rect" id="node3" href="$gameboy_8cpp.html" title=" " alt="" coords="214,80,407,107"/>
+<area shape="rect" id="node4" href="$gbcpu_8cpp.html" title=" " alt="" coords="432,80,605,107"/>
+<area shape="rect" id="node5" href="$gbgfx_8cpp.html" title=" " alt="" coords="629,80,800,107"/>
+<area shape="rect" id="node6" href="$gbs_8cpp.html" title=" " alt="" coords="824,80,981,107"/>
+<area shape="rect" id="node7" href="$gbsnd_8cpp.html" title=" " alt="" coords="1005,80,1179,107"/>
+<area shape="rect" id="node8" href="$inputhelper_8cpp.html" title=" " alt="" coords="1203,80,1410,107"/>
+<area shape="rect" id="node9" href="$main_8cpp.html" title=" " alt="" coords="1434,80,1601,107"/>
+<area shape="rect" id="node10" href="$mmu_8cpp.html" title=" " alt="" coords="1625,80,1793,107"/>
+</map>

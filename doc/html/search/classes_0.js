@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['b_0',['B',['../struct_register_1_1_b.html',1,'Register']]]
+  ['b_919',['B',['../structRegister_1_1B.html',1,'Register']]]
 ];
