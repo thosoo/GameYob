@@ -14,6 +14,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+        token: ${{ secrets.PAT }}
       
     - name: Install Doxygen and Graphviz
       run: sudo apt-get install doxygen graphviz
