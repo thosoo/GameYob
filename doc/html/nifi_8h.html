@@ -85,10 +85,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0a7f425c3694fcef721d52ab5b6a4442"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nifi_8h.html#a0a7f425c3694fcef721d52ab5b6a4442">enableNifi</a> ()</td></tr>
+<tr class="memdesc:a0a7f425c3694fcef721d52ab5b6a4442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables nifi and configures the Wi-Fi for communication.  <br /></td></tr>
 <tr class="separator:a0a7f425c3694fcef721d52ab5b6a4442"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9d355d8f542fe7b2706f431ca07980e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nifi_8h.html#ae9d355d8f542fe7b2706f431ca07980e">disableNifi</a> ()</td></tr>
+<tr class="memdesc:ae9d355d8f542fe7b2706f431ca07980e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables nifi and the Wi-Fi communication.  <br /></td></tr>
 <tr class="separator:ae9d355d8f542fe7b2706f431ca07980e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1af7ebf46963e53f2031c91462b5be3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nifi_8h.html#a1af7ebf46963e53f2031c91462b5be3d">sendPacketByte</a> (u8 command, u8 data)</td></tr>
+<tr class="memdesc:a1af7ebf46963e53f2031c91462b5be3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a packet byte over the network with the specified command and data.  <br /></td></tr>
 <tr class="separator:a1af7ebf46963e53f2031c91462b5be3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -124,7 +127,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="nifi_8cpp_source.html#l00123">123</a> of file <a class="el" href="nifi_8cpp_source.html">nifi.cpp</a>.</p>
+<p>Disables nifi and the Wi-Fi communication. </p>
+<p>This function disables the Wi-Fi and sets the nifiEnabled flag to false. </p>
+
+<p class="definition">Definition at line <a class="el" href="nifi_8cpp_source.html#l00199">199</a> of file <a class="el" href="nifi_8cpp_source.html">nifi.cpp</a>.</p>
 
 </div>
 </div>
@@ -143,7 +149,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="nifi_8cpp_source.html#l00095">95</a> of file <a class="el" href="nifi_8cpp_source.html">nifi.cpp</a>.</p>
+<p>Enables nifi and configures the Wi-Fi for communication. </p>
+<p>This function initializes the Wi-Fi with default settings, sets it to promiscuous mode, enables Wi-Fi, and sets a custom packet handler. It also sets the Wi-Fi channel and enables nifi for communication. </p>
+
+<p class="definition">Definition at line <a class="el" href="nifi_8cpp_source.html#l00154">154</a> of file <a class="el" href="nifi_8cpp_source.html">nifi.cpp</a>.</p>
 
 </div>
 </div>
@@ -173,7 +182,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="nifi_8cpp_source.html#l00129">129</a> of file <a class="el" href="nifi_8cpp_source.html">nifi.cpp</a>.</p>
+<p>Sends a packet byte over the network with the specified command and data. </p>
+<p>This function sends a packet byte with a specific command and data if nifi is enabled. It constructs a packet and sends it using the Wifi_RawTxFrame function. It also logs any errors that occur during transmission.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td>The command to be included in the packet. </td></tr>
+    <tr><td class="paramname">data</td><td>The data to be included in the packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="nifi_8cpp_source.html#l00215">215</a> of file <a class="el" href="nifi_8cpp_source.html">nifi.cpp</a>.</p>
 
 </div>
 </div>

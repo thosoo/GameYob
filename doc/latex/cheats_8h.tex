@@ -32,23 +32,23 @@ typedef struct \mbox{\hyperlink{structcheat__t}{cheat\+\_\+t}} \mbox{\hyperlink{
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}{enable\+Cheats}} (bool enable)
-\item 
+\begin{DoxyCompactList}\small\item\em Enables or disables cheats. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{cheats_8h_a909f0abd9b8e7c793c27e9c1592d8c48}{add\+Cheat}} (const char $\ast$str)
-\item 
+\begin{DoxyCompactList}\small\item\em Adds a new cheat to the cheats array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{cheats_8h_ab25e60b64f04206de72e8173d012de17}{toggle\+Cheat}} (int i, bool enabled)
-\item 
+\begin{DoxyCompactList}\small\item\em Toggles a cheat on or off. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}{unapply\+GGCheat}} (int cheat)
-\item 
+\begin{DoxyCompactList}\small\item\em Unapplies a Game Genie cheat. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}{apply\+GGCheats\+To\+Bank}} (int \mbox{\hyperlink{mmu_8h_aa6f131debd73127c437bad1e4a9a5232}{rom\+Bank}})
-\item 
+\begin{DoxyCompactList}\small\item\em Applies Game Genie cheats to a ROM bank. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{cheats_8h_af83e379a1b69795e5899a304e643fc6a}{apply\+GSCheats}} (void)
-\item 
+\begin{DoxyCompactList}\small\item\em Applies Game\+Shark cheats to the Game Boy\textquotesingle{}s memory. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}{start\+Cheat\+Menu}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Starts the cheat menu and displays it on the screen. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}{load\+Cheats}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
-\item 
+\begin{DoxyCompactList}\small\item\em Loads cheats from a file. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}{save\+Cheats}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Saves the current cheats to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -151,17 +151,45 @@ Definition at line \mbox{\hyperlink{cheats_8h_source_l00022}{22}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Adds a new cheat to the cheats array. 
+
+This function attempts to add a new cheat to the cheats array based on the given cheat string. The function checks the length of the string to determine whether the cheat is a Game Genie cheat or a Gameshark cheat. The function then extracts the cheat data from the string and sets the appropriate flags and data fields in the cheats array. If the cheat is added successfully, the function increments the num\+Cheats variable and returns true. If the cheats array is already full or the cheat string is not recognized, the function returns false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The cheat string to add to the cheats array.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean value indicating whether the cheat was added successfully (true) or not (false). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00050}{50}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}\label{cheats_8h_a9bd9dd10a393e942f75e3c0c84fb6a00}} 
 \index{cheats.h@{cheats.h}!applyGGCheatsToBank@{applyGGCheatsToBank}}
 \index{applyGGCheatsToBank@{applyGGCheatsToBank}!cheats.h@{cheats.h}}
 \doxysubsubsection{\texorpdfstring{applyGGCheatsToBank()}{applyGGCheatsToBank()}}
-{\footnotesize\ttfamily void apply\+GGCheats\+To\+Bank (\begin{DoxyParamCaption}\item[{int}]{rom\+Bank }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void apply\+GGCheats\+To\+Bank (\begin{DoxyParamCaption}\item[{int}]{bank }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Applies Game Genie cheats to a ROM bank. 
+
+This function applies enabled Game Genie cheats to a specified ROM bank. For each enabled Game Genie cheat, the function checks whether the cheat should be applied to the specified bank based on the cheat\textquotesingle{}s address and the ROM bank number. If the cheat should be applied to the bank, the function patches the ROM with the cheat data and saves the original ROM value to a list for later unpatching.
+
+
+\begin{DoxyParams}{Parameters}
+{\em bank} & The ROM bank number to apply the cheats to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00194}{194}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_af83e379a1b69795e5899a304e643fc6a}\label{cheats_8h_af83e379a1b69795e5899a304e643fc6a}} 
 \index{cheats.h@{cheats.h}!applyGSCheats@{applyGSCheats}}
@@ -171,7 +199,16 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00129}{129}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00156}{156}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Applies Game\+Shark cheats to the Game Boy\textquotesingle{}s memory. 
+
+This function applies enabled Game\+Shark cheats to the Game Boy\textquotesingle{}s memory. For each enabled Game\+Shark cheat, the function determines the bank to apply the cheat to based on the cheat\textquotesingle{}s address and the type of bank. Then it writes the cheat data to the appropriate bank.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00232}{232}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}\label{cheats_8h_a78c41cd53a58cd9d88e0b7c1ed3c6914}} 
 \index{cheats.h@{cheats.h}!enableCheats@{enableCheats}}
@@ -181,7 +218,18 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00156}{156}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Enables or disables cheats. 
+
+This function enables or disables cheats based on the {\ttfamily enable} parameter. If {\ttfamily enable} is set to true, cheats are enabled; if it\textquotesingle{}s set to false, cheats are disabled.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enable} & A boolean indicating whether cheats should be enabled or disabled. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}\label{cheats_8h_a2b80237c5fa9e3bfc73c24f084b062a1}} 
 \index{cheats.h@{cheats.h}!loadCheats@{loadCheats}}
@@ -191,7 +239,21 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00022}{22}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00183}{183}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Loads cheats from a file. 
+
+This function loads cheats from a file with the specified filename. If the ROM title matches the current ROM, any existing cheats are unapplied. If the ROM title has changed, the existing cheats are discarded.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The filename of the cheat file to load.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00271}{271}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}\label{cheats_8h_ae3c29812aadc45108637a0ca39ff5dac}} 
 \index{cheats.h@{cheats.h}!saveCheats@{saveCheats}}
@@ -201,7 +263,21 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00183}{183}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00348}{348}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Saves the current cheats to a file. 
+
+This function saves the current cheats to a file with the specified filename. If there are no cheats to save, this function does nothing.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The filename to save the cheats to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00478}{478}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}\label{cheats_8h_a1c493fcb5391c30ab19eea6310b00083}} 
 \index{cheats.h@{cheats.h}!startCheatMenu@{startCheatMenu}}
@@ -211,7 +287,16 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00348}{348}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00335}{335}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Starts the cheat menu and displays it on the screen. 
+
+This function checks if there are any cheats to display in the menu. If there are, it pauses the Game Boy and displays the cheat menu as a sub-\/menu. The cheat menu is updated and redrawn on the screen until the user closes the menu. If the Game Boy was not paused before the menu was opened, it is unpaused when the menu is closed.
+
+\begin{DoxyReturn}{Returns}
+true if there are cheats to display in the menu, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00455}{455}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_ab25e60b64f04206de72e8173d012de17}\label{cheats_8h_ab25e60b64f04206de72e8173d012de17}} 
 \index{cheats.h@{cheats.h}!toggleCheat@{toggleCheat}}
@@ -221,7 +306,23 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00335}{335}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00091}{91}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Toggles a cheat on or off. 
+
+This function toggles a specified cheat on or off based on the value of the \textquotesingle{}enabled\textquotesingle{} parameter. If the cheat is being enabled, the function sets the \textquotesingle{}FLAG\+\_\+\+ENABLED\textquotesingle{} flag for the cheat and applies the cheat to all ROM banks (if the cheat is a Game Genie cheat). If the cheat is being disabled, the function unapplies the cheat and clears the \textquotesingle{}FLAG\+\_\+\+ENABLED\textquotesingle{} flag.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The index of the cheat to toggle. \\
+\hline
+{\em enabled} & A boolean value indicating whether the cheat should be enabled (true) or disabled (false).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00127}{127}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 \mbox{\Hypertarget{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}\label{cheats_8h_ad176d0d0b1f3fa0e80f30376e6d6a801}} 
 \index{cheats.h@{cheats.h}!unapplyGGCheat@{unapplyGGCheat}}
@@ -231,7 +332,21 @@ Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00091}{91}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
+Unapplies a Game Genie cheat. 
+
+This function unapplies a specified Game Genie cheat by restoring the original ROM values that were patched by the cheat. The function iterates through the list of banks that were patched by the cheat and restores the original ROM value for each bank.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cheat} & The index of the cheat to unapply.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{cheats_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{cheats_8cpp_source}{cheats.\+cpp}}.
 
 
 

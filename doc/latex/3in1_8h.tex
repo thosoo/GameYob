@@ -4,11 +4,11 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{3in1_8h_ae8dc702e798cc38bb3add3ffcf3fa7ee}{Open\+Nor\+Write}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes writing to the NOR flash memory. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{3in1_8h_aa0c150f7f91c5ccd83a8e677aeb4ea15}{Close\+Nor\+Write}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Closes the write operation on the NOR memory. \end{DoxyCompactList}\item 
 uint32 \mbox{\hyperlink{3in1_8h_ae9856d8b1d92160954db3d114f488f6f}{Read\+Nor\+Flash\+ID}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Reads the ID of the NOR flash. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -20,7 +20,11 @@ uint32 \mbox{\hyperlink{3in1_8h_ae9856d8b1d92160954db3d114f488f6f}{Read\+Nor\+Fl
 
 
 
-Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{3in1_8cpp_source}{3in1.\+cpp}}.
+Closes the write operation on the NOR memory. 
+
+This function closes writing to the NOR flash memory by writing specific values to several memory addresses. 
+
+Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{3in1_8cpp_source}{3in1.\+cpp}}.
 
 \mbox{\Hypertarget{3in1_8h_ae8dc702e798cc38bb3add3ffcf3fa7ee}\label{3in1_8h_ae8dc702e798cc38bb3add3ffcf3fa7ee}} 
 \index{3in1.h@{3in1.h}!OpenNorWrite@{OpenNorWrite}}
@@ -30,7 +34,11 @@ Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00028}{28}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{3in1_8cpp_source}{3in1.\+cpp}}.
+Initializes writing to the NOR flash memory. 
+
+This function initializes writing to the NOR flash memory by writing specific values to several memory addresses. 
+
+Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{3in1_8cpp_source}{3in1.\+cpp}}.
 
 \mbox{\Hypertarget{3in1_8h_ae9856d8b1d92160954db3d114f488f6f}\label{3in1_8h_ae9856d8b1d92160954db3d114f488f6f}} 
 \index{3in1.h@{3in1.h}!ReadNorFlashID@{ReadNorFlashID}}
@@ -40,5 +48,12 @@ Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00018}{18}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{3in1_8cpp_source}{3in1.\+cpp}}.
+Reads the ID of the NOR flash. 
+
+\begin{DoxyReturn}{Returns}
+uint32 The ID of the NOR flash. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{3in1_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{3in1_8cpp_source}{3in1.\+cpp}}.
 

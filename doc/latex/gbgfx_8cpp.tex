@@ -45,56 +45,56 @@ struct \mbox{\hyperlink{structsprite_entry}{sprite\+Entry}}
 \item 
 u8 \mbox{\hyperlink{gbgfx_8h_a254d3c52c2ae7fff61e52168c0c37e86}{bg\+Palette\+Data}}\mbox{[}0x40\mbox{]} \mbox{\hyperlink{gbgfx_8cpp_a8355f1c3ad9d0c737c5304f5ca2dba5e}{ALIGN}} (4)
 \item 
-void \mbox{\hyperlink{gbgfx_8cpp_a2c3bc7cf83f9225ce88d2bcbd53875a6}{draw\+Sprites}} (u8 $\ast$data, int tall\+Sprites)
-\item 
-void \mbox{\hyperlink{gbgfx_8cpp_a27a1116d3f41a4a2d146cf8386b99bdd}{draw\+Tile}} (int tile, int bank)
-\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a88f8d46d8cf1f3ea65e4e290a99020d9}{draw\+Sprites}} (u8 $\ast$data, int tall)
+\begin{DoxyCompactList}\small\item\em Draw sprites on the screen. This function draws the sprites onto the screen using the sprite data provided. It uses the sprite data to determine the position, size, tile number, bank, and other attributes of each sprite. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a8c19f928b2c7863839f14f5609538afd}{draw\+Tile}} (int tile\+Num, int bank)
+\begin{DoxyCompactList}\small\item\em Draws a tile with the given tile number and bank. The draw\+Tile function draws tiles on the Game Boy\textquotesingle{}s background and sprite graphics planes based on the given tile number and bank. The function takes in two integer arguments\+: tile\+Num, which represents the tile number, and bank, which represents the bank number. The tile number is used to calculate the index of the tile data and to determine whether the tile number is unsigned or signed. The bank number is used to determine which VRAM bank the tile data is stored in. The function iterates over the 8 rows in the tile and over the 4 pixels in each row. It sets the foreground and background color values for each pixel based on the color ID values in the tile data. It then sets the graphics data for the tile in the appropriate location in the background or sprite graphics planes based on whether the tile number is unsigned or signed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a73afcb774f607a0031a6877ab3059fd3}{update\+Tiles}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Updates the tile data and queues the changed tiles to be redrawn. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a60975f999e5000cce01f957e5061efc2}{update\+Tile\+Maps}} ()
 \item 
-void \mbox{\hyperlink{gbgfx_8cpp_abaa5f65ef32cc80bd17ba14c47984536}{update\+Tile\+Map}} (int \mbox{\hyperlink{gbgfx_8cpp_a1e800a6a0ab719ff1af9a81efd02877a}{map}}, int i)
-\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a38cfcb29e33564da47daf80302f353b5}{update\+Tile\+Map}} (int m, int i)
+\begin{DoxyCompactList}\small\item\em Updates the tile map for the given map index and tile number. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a9a8e94462dd86825fa22f6a3a145862e}{update\+Bg\+Palette}} (int paletteid, u8 $\ast$data, u8 dmg\+Pal)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates a background palette. This function iterates through each color in the given data and updates the corresponding color in the background palette. The {\ttfamily paletteid} parameter specifies which palette to update, and {\ttfamily dmg\+Pal} is the palette data for DMG mode, which is used to map the indices to the correct color values. The background palette is stored as a linear array of 64 16-\/bit color values (one for each of the four colors in each of the 16 palette entries). The first entry is always transparent, so it is skipped in the loop. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a1214c2484459d4a461f437e67a072694}{update\+Bg\+Palette\+\_\+\+GBC}} (int paletteid, u8 $\ast$data)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates the Game Boy Color background palette with the specified data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a69f15ee8d4cda930e01bfe3e42bbd66a}{update\+Spr\+Palette}} (int paletteid, u8 $\ast$data, u8 dmg\+Pal)
-\item 
-void \mbox{\hyperlink{gbgfx_8cpp_a3299fd8fbf2fadcfd88ee2f18824cbea}{draw\+Line}} (int gb\+Line) ITCM\+\_\+\+CODE
-\item 
-void \mbox{\hyperlink{gbgfx_8cpp_af81933618cd850b54967001130817a61}{do\+HBlank}} (int line) ITCM\+\_\+\+CODE
-\item 
-void \mbox{\hyperlink{gbgfx_8cpp_ab7eb6d540dc38c5d31291f5ef9308f91}{hblank\+Handler}} () ITCM\+\_\+\+CODE
-\item 
+\begin{DoxyCompactList}\small\item\em Updates the sprite palette in the given paletteid using the provided data and dmg\+Pal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a7a78cce5bae844be29ced86930f0dd34}{draw\+Line}} (int gb\+Line)
+\begin{DoxyCompactList}\small\item\em Draws a line on the screen, updating the state and palettes for each line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a6636088a6baab3e32c6205d6cc483c86}{do\+HBlank}} (int line)
+\begin{DoxyCompactList}\small\item\em Perform horizontal blank processing for a given line. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a3f17d4b0a0e3c9903d68027415d47539}{hblank\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handle horizontal blank interrupt. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_abb0c9757b585d53633e72130af93d164}{vcount\+Handler}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Handle vcount interrupt, which is triggered on line 235 (middle of vblank). This function is called during the vcount interrupt and sets the vram banks to the appropriate sub backgrounds based on whether scaling is on or not. It then performs hblank processing for the very top line (physical line 0) and draws the first Game Boy line early (physical line 24) if it has been modified. If graphics are disabled, the function returns. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a2f55870003e8d34f5d175345f39f4105}{do\+At\+VBlank}} (void($\ast$func)(void))
-\item 
+\begin{DoxyCompactList}\small\item\em Add a function to be called at VBlank time. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a61980113c878f9f0138454e1e1047750}{vblank\+Handler}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Handle vblank interrupt. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a6152d90bc27302b3fcd92f4973a2401c}{load\+SGBBorder}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Load SGB border. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_ad00fca63a33eb7f18124dc4a19620a2e}{init\+GFX}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initialize the graphics subsystem. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_ad55b96f2678da1f09b16057cd76c3fe9}{init\+GFXPalette}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the palette data for the graphics. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a62b34356f6149d2c44ee24379cc347a6}{refresh\+GFX}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Refreshes the graphics on the screen. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a484b3e71acef74d4337dbaf8765cb140}{clear\+GFX}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Disables graphics and blackens the screen or sets it to white if a border is loaded. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_ab69a9c5313c53ae912567230d8ddfcf0}{refresh\+Sgb\+Palette}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Refreshes the palettes for the Super Game Boy (SGB) mode. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_af6eb238b4b25b103654a5cbae07a4138}{display\+Icon}} (int iconid)
-\item 
+\begin{DoxyCompactList}\small\item\em Displays an icon on the Game Boy screen. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a5c68b80f62aca2e37b19134d5885eb57}{select\+Border}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Selects a custom border image file for the emulator display. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{gbgfx_8cpp_ac67a99cc1feaf73626bdeebcd476c33d}{load\+Border}} (const char $\ast$\mbox{\hyperlink{inputhelper_8cpp_a8c1e45e135261042ac6429a00328fe61}{filename}})
 \item 
 void \mbox{\hyperlink{gbgfx_8cpp_aa830515ff224eeaa5ae76432a118cd98}{check\+Border}} ()
 \item 
 void \mbox{\hyperlink{gbgfx_8cpp_addf38491f7aa4075fc1bb2eb2fe2d096}{refresh\+Scale\+Mode}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Refreshes the scaling mode of the video. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_ab7865df132d4b365722a1ff879942afc}{set\+GFXMask}} (int mask)
 \item 
 void \mbox{\hyperlink{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}{set\+Sgb\+Tiles}} (u8 $\ast$src, u8 flags)
@@ -102,19 +102,19 @@ void \mbox{\hyperlink{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}{set\+Sgb\+Ti
 void \mbox{\hyperlink{gbgfx_8cpp_a8535091adb0cef3f5ddd47d30e6015bb}{set\+Sgb\+Map}} (u8 $\ast$src)
 \item 
 void \mbox{\hyperlink{gbgfx_8cpp_a211a591c0c34da3c0e17a95361b3b6ab}{copy\+Tile}} (u8 $\ast$src, u16 $\ast$dest)
-\item 
+\begin{DoxyCompactList}\small\item\em Copies a tile from source data to destination data. The copy\+Tile function copies a tile from the source data to the destination data. The function takes in two arguments\+: src, a pointer to the source data for the tile, and dest, a pointer to the destination data for the tile. The function iterates over the 8 rows in the tile and over the 8 pixels in each row. It gets the color ID for each pixel in the tile data and sets the appropriate color value in the destination data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a156e6af1e5bbf84cd59aaa74d204ee77}{draw\+Screen}} ()
 \item 
-void \mbox{\hyperlink{gbgfx_8cpp_ad7d241162c9a5a9725e74acbbf4e21a9}{draw\+Scanline}} (int scanline) ITCM\+\_\+\+CODE
-\item 
-void \mbox{\hyperlink{gbgfx_8cpp_accfc00674239f8d922416ce6defc9084}{draw\+Scanline\+\_\+\+P2}} (int scanline) ITCM\+\_\+\+CODE
-\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a1cec0914be5ae980da80f2a7cf47ddc9}{draw\+Scanline}} (int scanline)
+\begin{DoxyCompactList}\small\item\em Updates the window X position if it has changed and sets the line\+Modified and maps\+Modified flags accordingly. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{gbgfx_8cpp_a5f2076cbffa95c8bb5e27e4f4d6f67d5}{draw\+Scanline\+\_\+\+P2}} (int scanline)
+\begin{DoxyCompactList}\small\item\em Draw a scanline on the screen using palette data and background maps. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_aaf17e95c285e77dea221cb54923a91a3}{write\+Vram}} (u16 addr, u8 val)
-\item 
+\begin{DoxyCompactList}\small\item\em Writes a value to VRAM at the specified address. This function writes a byte to VRAM at a specified address. It checks if the old value is the same as the new value, and if it is, the function returns without making any changes. If the value has changed, the new value is written to the specified address in VRAM. If the address is less than 0x1800, the function determines which tile the address belongs to and checks the current scanline. If the current scanline is between 128 and 143, it marks the tile as changed in the current frame. Otherwise, it marks the tile as changed outside of the current frame. If the address is greater than or equal to 0x1800, the function determines which map the address belongs to and which tile it represents. If the VRAM bank is 1 and the new value has bit 7 set but the old value didn\textquotesingle{}t, it increments the number of tiles that use tile priority for that map. If the new value doesn\textquotesingle{}t have bit 7 set but the old value did, it decrements the number of tiles that use tile priority for that map. The function then marks the map and tile as changed. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a9631e983076a6906dd0eb1c185bd870c}{write\+Vram16}} (u16 dest, u16 src)
-\item 
+\begin{DoxyCompactList}\small\item\em Writes a 16-\/bit value to VRAM. The write\+Vram16 function is responsible for writing 16 bytes of data from the source address to the destination address in video RAM (VRAM). The function checks if the write operation is performed on map flags (in VRAM bank 1), and if so, it adjusts the tile priority accordingly. After the write operation is performed, the function checks if the affected tiles or maps need to be redrawn, based on whether the operation occurs during the visible screen area or not. If necessary, the function adds the affected tiles or maps to a queue for later redrawing. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_ae7573347fba5b70225ad712fc48a679c}{handle\+Video\+Register}} (u8 io\+Reg, u8 val)
-\item 
+\begin{DoxyCompactList}\small\item\em Handles writes to video-\/related I/O registers. This function is called whenever a write is made to one of the video-\/related I/O registers. It handles the register writes by updating any state that is affected by the write. For example, changes to the LCDC register can affect whether the background and sprites are displayed, and changes to the DMA register initiate a DMA transfer of sprite data. The handle\+Video\+Register function handles write accesses to various video-\/related IO registers. It takes two parameters, io\+Reg and val, which correspond to the register being written to and the value being written, respectively. The function contains a switch statement that handles each IO register separately. For register 0x40, the LCD Control register (LCDC), the function updates the IO register value and sets flags indicating that the screen needs to be redrawn if the LCD is turned on or off, and if the background or sprites should be redrawn. If the LCD is turned off, it also sets the video mode to 0. For register 0x46, the DMA Transfer register, the function performs a DMA transfer from the source address specified in the IO register multiplied by 0x100 to the HRAM. It also sets flags indicating that the sprites and screen need to be redrawn. For registers 0x42 and 0x43, the Scroll Y and Scroll X registers, the function updates the IO register values and sets flags indicating that the background maps need to be redrawn. For register 0x4B, the Window X Position register, the function updates the IO register value. For register 0x4A, the Window Y Position register, the function updates the IO register value and sets a flag indicating that the window position needs to be updated. For registers 0x47, 0x48, and 0x49, the Background Palette register, Sprite Palette 0 register, and Sprite Palette 1 register (GB classic only), respectively, the function updates the IO register values and sets flags indicating that the background or sprite palettes need to be redrawn. For registers 0x69 and 0x6B, the Background Palette Data and Sprite Palette Data registers (GBC only), respectively, the function updates the IO register values, the corresponding palette data, and sets flags indicating that the background or sprite palettes need to be redrawn. These registers also update the palette index register, which is checked in the next write to determine which palette data should be read. For all other registers, the function simply updates the IO register value. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{gbgfx_8cpp_a496cd2cdb3d9a1f4ca5bf45325ebdc0a}{write\+Hram}} (u16 addr, u8 val)
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
@@ -316,7 +316,7 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00167}{167}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00923}{923}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01073}{1073}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a484b3e71acef74d4337dbaf8765cb140}\label{gbgfx_8cpp_a484b3e71acef74d4337dbaf8765cb140}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!clearGFX@{clearGFX}}
@@ -326,7 +326,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00923}{923}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00699}{699}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Disables graphics and blackens the screen or sets it to white if a border is loaded. 
+
+This function disables all graphics and sets the background color to black or white depending on whether a border is loaded. If a border is loaded, it sets the palette to white. Otherwise, it sets the palette to black. It also disables all sprites. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00806}{806}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a211a591c0c34da3c0e17a95361b3b6ab}\label{gbgfx_8cpp_a211a591c0c34da3c0e17a95361b3b6ab}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!copyTile@{copyTile}}
@@ -336,7 +340,18 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00699}{699}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01266}{1266}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Copies a tile from source data to destination data. The copy\+Tile function copies a tile from the source data to the destination data. The function takes in two arguments\+: src, a pointer to the source data for the tile, and dest, a pointer to the destination data for the tile. The function iterates over the 8 rows in the tile and over the 8 pixels in each row. It gets the color ID for each pixel in the tile data and sets the appropriate color value in the destination data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & a pointer to the source data for the tile. \\
+\hline
+{\em dest} & a pointer to the destination data for the tile. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01534}{1534}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_af6eb238b4b25b103654a5cbae07a4138}\label{gbgfx_8cpp_af6eb238b4b25b103654a5cbae07a4138}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!displayIcon@{displayIcon}}
@@ -346,7 +361,16 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01266}{1266}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00795}{795}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Displays an icon on the Game Boy screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iconid} & Identifier of the icon to be displayed. ICON\+\_\+\+NULL for no icon, ICON\+\_\+\+PRINTER for a printer icon. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00913}{913}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a2f55870003e8d34f5d175345f39f4105}\label{gbgfx_8cpp_a2f55870003e8d34f5d175345f39f4105}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!doAtVBlank@{doAtVBlank}}
@@ -356,9 +380,20 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00795}{795}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00484}{484}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Add a function to be called at VBlank time. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_af81933618cd850b54967001130817a61}\label{gbgfx_8cpp_af81933618cd850b54967001130817a61}} 
+This function adds a function pointer to the list of tasks to be executed during VBlank. The function pointer is added to the end of the vblank\+Tasks vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & A pointer to the function to be executed at VBlank time. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00538}{538}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a6636088a6baab3e32c6205d6cc483c86}\label{gbgfx_8cpp_a6636088a6baab3e32c6205d6cc483c86}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!doHBlank@{doHBlank}}
 \index{doHBlank@{doHBlank}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{doHBlank()}{doHBlank()}}
@@ -366,9 +401,22 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00484}{484}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00422}{422}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Perform horizontal blank processing for a given line. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_a3299fd8fbf2fadcfd88ee2f18824cbea}\label{gbgfx_8cpp_a3299fd8fbf2fadcfd88ee2f18824cbea}} 
+This function is called during the horizontal blank period of the Game Boy\textquotesingle{}s screen refresh cycle. It checks if graphics are disabled, the current line is outside the valid range, or if H-\/blank processing is disabled. If none of these conditions apply, it calculates the Game Boy line number for the current line, checks if the previous line was modified but not yet drawn, and draws the current line if it has been modified.
+
+Additionally, if a file chooser or menu is currently active, this function will change the backdrop color for the current row to highlight the selected option.
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & The current line. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00444}{444}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a7a78cce5bae844be29ced86930f0dd34}\label{gbgfx_8cpp_a7a78cce5bae844be29ced86930f0dd34}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!drawLine@{drawLine}}
 \index{drawLine@{drawLine}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{drawLine()}{drawLine()}}
@@ -376,9 +424,20 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00422}{422}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00179}{179}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Draws a line on the screen, updating the state and palettes for each line. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_ad7d241162c9a5a9725e74acbbf4e21a9}\label{gbgfx_8cpp_ad7d241162c9a5a9725e74acbbf4e21a9}} 
+This function is responsible for updating the state of the screen on a line-\/by-\/line basis, including managing screen/window layers and updating palettes for the background and sprites. It also manages drawing the sprites for each line.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gb\+Line} & The current line number to be drawn on the screen. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00188}{188}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a1cec0914be5ae980da80f2a7cf47ddc9}\label{gbgfx_8cpp_a1cec0914be5ae980da80f2a7cf47ddc9}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!drawScanline@{drawScanline}}
 \index{drawScanline@{drawScanline}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{drawScanline()}{drawScanline()}}
@@ -386,9 +445,18 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00179}{179}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01407}{1407}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Updates the window X position if it has changed and sets the line\+Modified and maps\+Modified flags accordingly. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_accfc00674239f8d922416ce6defc9084}\label{gbgfx_8cpp_accfc00674239f8d922416ce6defc9084}} 
+
+\begin{DoxyParams}{Parameters}
+{\em scanline} & Current scanline. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01719}{1719}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a5f2076cbffa95c8bb5e27e4f4d6f67d5}\label{gbgfx_8cpp_a5f2076cbffa95c8bb5e27e4f4d6f67d5}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!drawScanline\_P2@{drawScanline\_P2}}
 \index{drawScanline\_P2@{drawScanline\_P2}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{drawScanline\_P2()}{drawScanline\_P2()}}
@@ -396,7 +464,19 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01407}{1407}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01424}{1424}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Draw a scanline on the screen using palette data and background maps. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scanline} & The current scanline being drawn. This function is called after video mode 3. It draws a scanline on the screen using the palette data and background maps. If HBlank is disabled, the function returns immediately. The function checks if the window position needs to be adjusted, updates the rendering state for the scanline, and sets the modified flag if necessary. It then updates the sprite and background palettes, as well as the maps and tiles used in the rendering. If the scanline is 0, the palettes and maps are marked as modified to ensure they are drawn correctly. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01746}{1746}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a156e6af1e5bbf84cd59aaa74d204ee77}\label{gbgfx_8cpp_a156e6af1e5bbf84cd59aaa74d204ee77}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!drawScreen@{drawScreen}}
@@ -404,29 +484,53 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01424}{1424}} of file \mb
 \doxysubsubsection{\texorpdfstring{drawScreen()}{drawScreen()}}
 {\footnotesize\ttfamily void draw\+Screen (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Draws the screen using the current rendering state.
 
+If {\ttfamily probing\+For\+Border} is true, the function immediately returns without performing any actions. Otherwise, if fast forward mode is not enabled, the function waits for vblank and sets the {\ttfamily did\+Vblank} flag to false. If {\ttfamily interrupt\+Wait\+Mode} is 1, the function always waits for vblank, otherwise it waits only if vblank has not yet occurred. The {\ttfamily frame\+Flip\+\_\+\+Gameboy} and {\ttfamily frame\+Flip\+\_\+\+DS} fields of the {\ttfamily shared\+Data} struct are updated based on the current value of {\ttfamily REG\+\_\+\+VCOUNT}. If {\ttfamily gfx\+Mask} is nonzero, the function immediately returns without performing any further actions. The {\ttfamily rendering\+State} and {\ttfamily drawing\+State} pointers are swapped, and the {\ttfamily screen\+Disabled} variable is updated based on the value of the LCD control register. The tile data and tile maps are updated, and if SGB mode is active, the SGB palette is refreshed. 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01284}{1284}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01571}{1571}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
-\mbox{\Hypertarget{gbgfx_8cpp_a2c3bc7cf83f9225ce88d2bcbd53875a6}\label{gbgfx_8cpp_a2c3bc7cf83f9225ce88d2bcbd53875a6}} 
+\mbox{\Hypertarget{gbgfx_8cpp_a88f8d46d8cf1f3ea65e4e290a99020d9}\label{gbgfx_8cpp_a88f8d46d8cf1f3ea65e4e290a99020d9}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!drawSprites@{drawSprites}}
 \index{drawSprites@{drawSprites}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{drawSprites()}{drawSprites()}}
-{\footnotesize\ttfamily void draw\+Sprites (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{data,  }\item[{int}]{tall\+Sprites }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void draw\+Sprites (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{data,  }\item[{int}]{tall }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01325}{1325}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Draw sprites on the screen. This function draws the sprites onto the screen using the sprite data provided. It uses the sprite data to determine the position, size, tile number, bank, and other attributes of each sprite. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_a27a1116d3f41a4a2d146cf8386b99bdd}\label{gbgfx_8cpp_a27a1116d3f41a4a2d146cf8386b99bdd}} 
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to an array containing the sprite data. \\
+\hline
+{\em tall} & Whether the sprites are tall (2 tiles high) or not. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01631}{1631}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a8c19f928b2c7863839f14f5609538afd}\label{gbgfx_8cpp_a8c19f928b2c7863839f14f5609538afd}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!drawTile@{drawTile}}
 \index{drawTile@{drawTile}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{drawTile()}{drawTile()}}
-{\footnotesize\ttfamily void draw\+Tile (\begin{DoxyParamCaption}\item[{int}]{tile,  }\item[{int}]{bank }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void draw\+Tile (\begin{DoxyParamCaption}\item[{int}]{tile\+Num,  }\item[{int}]{bank }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01199}{1199}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Draws a tile with the given tile number and bank. The draw\+Tile function draws tiles on the Game Boy\textquotesingle{}s background and sprite graphics planes based on the given tile number and bank. The function takes in two integer arguments\+: tile\+Num, which represents the tile number, and bank, which represents the bank number. The tile number is used to calculate the index of the tile data and to determine whether the tile number is unsigned or signed. The bank number is used to determine which VRAM bank the tile data is stored in. The function iterates over the 8 rows in the tile and over the 4 pixels in each row. It sets the foreground and background color values for each pixel based on the color ID values in the tile data. It then sets the graphics data for the tile in the appropriate location in the background or sprite graphics planes based on whether the tile number is unsigned or signed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tile\+Num} & an integer value representing the tile number. \\
+\hline
+{\em bank} & an integer value representing the bank number. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01448}{1448}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_ae7573347fba5b70225ad712fc48a679c}\label{gbgfx_8cpp_ae7573347fba5b70225ad712fc48a679c}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!handleVideoRegister@{handleVideoRegister}}
@@ -436,9 +540,20 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01199}{1199}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01744}{1744}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Handles writes to video-\/related I/O registers. This function is called whenever a write is made to one of the video-\/related I/O registers. It handles the register writes by updating any state that is affected by the write. For example, changes to the LCDC register can affect whether the background and sprites are displayed, and changes to the DMA register initiate a DMA transfer of sprite data. The handle\+Video\+Register function handles write accesses to various video-\/related IO registers. It takes two parameters, io\+Reg and val, which correspond to the register being written to and the value being written, respectively. The function contains a switch statement that handles each IO register separately. For register 0x40, the LCD Control register (LCDC), the function updates the IO register value and sets flags indicating that the screen needs to be redrawn if the LCD is turned on or off, and if the background or sprites should be redrawn. If the LCD is turned off, it also sets the video mode to 0. For register 0x46, the DMA Transfer register, the function performs a DMA transfer from the source address specified in the IO register multiplied by 0x100 to the HRAM. It also sets flags indicating that the sprites and screen need to be redrawn. For registers 0x42 and 0x43, the Scroll Y and Scroll X registers, the function updates the IO register values and sets flags indicating that the background maps need to be redrawn. For register 0x4B, the Window X Position register, the function updates the IO register value. For register 0x4A, the Window Y Position register, the function updates the IO register value and sets a flag indicating that the window position needs to be updated. For registers 0x47, 0x48, and 0x49, the Background Palette register, Sprite Palette 0 register, and Sprite Palette 1 register (GB classic only), respectively, the function updates the IO register values and sets flags indicating that the background or sprite palettes need to be redrawn. For registers 0x69 and 0x6B, the Background Palette Data and Sprite Palette Data registers (GBC only), respectively, the function updates the IO register values, the corresponding palette data, and sets flags indicating that the background or sprite palettes need to be redrawn. These registers also update the palette index register, which is checked in the next write to determine which palette data should be read. For all other registers, the function simply updates the IO register value. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_ab7eb6d540dc38c5d31291f5ef9308f91}\label{gbgfx_8cpp_ab7eb6d540dc38c5d31291f5ef9308f91}} 
+
+\begin{DoxyParams}{Parameters}
+{\em io\+Reg} & The I/O register being written to. \\
+\hline
+{\em val} & The value being written to the I/O register. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l02144}{2144}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a3f17d4b0a0e3c9903d68027415d47539}\label{gbgfx_8cpp_a3f17d4b0a0e3c9903d68027415d47539}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!hblankHandler@{hblankHandler}}
 \index{hblankHandler@{hblankHandler}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{hblankHandler()}{hblankHandler()}}
@@ -446,7 +561,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01744}{1744}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00456}{456}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Handle horizontal blank interrupt. 
+
+This function is called during the horizontal blank interrupt and retrieves the current line number using REG\+\_\+\+VCOUNT. If the screen is in a non-\/\+VBlank mode, it decrements the line number by one. It then calls the do\+HBlank function to perform horizontal blank processing for the given line. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00487}{487}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_ad00fca63a33eb7f18124dc4a19620a2e}\label{gbgfx_8cpp_ad00fca63a33eb7f18124dc4a19620a2e}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!initGFX@{initGFX}}
@@ -456,7 +575,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00456}{456}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00548}{548}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Initialize the graphics subsystem. 
+
+This function sets up the video memory banks for the backgrounds and sprites. It sets the vcount interrupt line to 235 and enables the vcount, hblank and vblank interrupts. It initializes the off map and the tile for \char`\"{}color0 maps\char`\"{}. It also initializes the window parameters and sets the video mode. Finally, it clears the scanline buffers and enables the graphics. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00631}{631}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_ad55b96f2678da1f09b16057cd76c3fe9}\label{gbgfx_8cpp_ad55b96f2678da1f09b16057cd76c3fe9}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!initGFXPalette@{initGFXPalette}}
@@ -466,7 +589,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00548}{548}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00627}{627}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Initializes the palette data for the graphics. 
+
+This function sets the palette data for the background and sprite palettes, as well as prevents flickering when loading ROMs. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00716}{716}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_ac67a99cc1feaf73626bdeebcd476c33d}\label{gbgfx_8cpp_ac67a99cc1feaf73626bdeebcd476c33d}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!loadBorder@{loadBorder}}
@@ -474,9 +601,19 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00627}{627}} of file \mbo
 \doxysubsubsection{\texorpdfstring{loadBorder()}{loadBorder()}}
 {\footnotesize\ttfamily int load\+Border (\begin{DoxyParamCaption}\item[{const char $\ast$}]{filename }\end{DoxyParamCaption})}
 
+Loads a custom border image file into VRAM and displays it on the screen.
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00860}{860}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path and filename of the custom border image file to load. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on failure. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00998}{998}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a6152d90bc27302b3fcd92f4973a2401c}\label{gbgfx_8cpp_a6152d90bc27302b3fcd92f4973a2401c}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!loadSGBBorder@{loadSGBBorder}}
@@ -486,7 +623,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00860}{860}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00536}{536}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Load SGB border. 
+
+This function sets up the background and loads the SGB border. It disables video background 3, sets the window out to video background 3, and sets the display control to mode 0. It sets the background 3 control register to the border map base and tile base 12, and sets the horizontal and vertical offsets to zero and -\/(screen\+OffsY -\/ 40) respectively. It then enables video background 3. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00610}{610}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a62b34356f6149d2c44ee24379cc347a6}\label{gbgfx_8cpp_a62b34356f6149d2c44ee24379cc347a6}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!refreshGFX@{refreshGFX}}
@@ -496,7 +637,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00536}{536}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00662}{662}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Refreshes the graphics on the screen. 
+
+This function updates all tiles and tile maps on both backgrounds, as well as clears all queues of changes to tiles and tile maps. It also resets various internal flags and counters used for graphics processing. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00762}{762}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_addf38491f7aa4075fc1bb2eb2fe2d096}\label{gbgfx_8cpp_addf38491f7aa4075fc1bb2eb2fe2d096}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!refreshScaleMode@{refreshScaleMode}}
@@ -506,7 +651,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00662}{662}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00986}{986}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Refreshes the scaling mode of the video. 
+
+This function is used to refresh the scaling mode of the video depending on the current scale mode and filter. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01144}{1144}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_ab69a9c5313c53ae912567230d8ddfcf0}\label{gbgfx_8cpp_ab69a9c5313c53ae912567230d8ddfcf0}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!refreshSgbPalette@{refreshSgbPalette}}
@@ -516,7 +665,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00986}{986}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00725}{725}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Refreshes the palettes for the Super Game Boy (SGB) mode. 
+
+This function updates the palettes for the SGB mode, managing both background and window layers. It takes into account the current state of the screen, scrolling, and window settings. Note that SGB palettes might not be perfect due to the SGB not necessarily aligning palettes with tiles, which is mostly problematic when scrolling around status bars. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00837}{837}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a5c68b80f62aca2e37b19134d5885eb57}\label{gbgfx_8cpp_a5c68b80f62aca2e37b19134d5885eb57}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!selectBorder@{selectBorder}}
@@ -526,7 +679,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00725}{725}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00822}{822}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Selects a custom border image file for the emulator display. 
+
+This function allows the user to select a custom border image file in BMP format for the emulator display. The border\+Chooser\+State is loaded and the user is prompted to select a BMP file using the file chooser. If a file is selected, its path is stored in border\+Path, the BORDER\+\_\+\+NONE is set to force a reload of the border, and check\+Border is called to check if the border is valid. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00949}{949}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_ab7865df132d4b365722a1ff879942afc}\label{gbgfx_8cpp_ab7865df132d4b365722a1ff879942afc}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!setGFXMask@{setGFXMask}}
@@ -534,9 +691,16 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00822}{822}} of file \mbo
 \doxysubsubsection{\texorpdfstring{setGFXMask()}{setGFXMask()}}
 {\footnotesize\ttfamily void set\+GFXMask (\begin{DoxyParamCaption}\item[{int}]{mask }\end{DoxyParamCaption})}
 
+Sets the graphics mask to the given value and performs necessary actions depending on the value.
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01058}{1058}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em mask} & an integer value representing the graphics mask to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01221}{1221}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a8535091adb0cef3f5ddd47d30e6015bb}\label{gbgfx_8cpp_a8535091adb0cef3f5ddd47d30e6015bb}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!setSgbMap@{setSgbMap}}
@@ -544,9 +708,16 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01058}{1058}} of file \mb
 \doxysubsubsection{\texorpdfstring{setSgbMap()}{setSgbMap()}}
 {\footnotesize\ttfamily void set\+Sgb\+Map (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{src }\end{DoxyParamCaption})}
 
+Sets the SGB map using the given source.
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01130}{1130}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em src} & an unsigned 8-\/bit integer pointer to the source. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01333}{1333}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}\label{gbgfx_8cpp_a3ab71e5f2db0803412a7e58751bbfe9a}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!setSgbTiles@{setSgbTiles}}
@@ -554,9 +725,18 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01130}{1130}} of file \mb
 \doxysubsubsection{\texorpdfstring{setSgbTiles()}{setSgbTiles()}}
 {\footnotesize\ttfamily void set\+Sgb\+Tiles (\begin{DoxyParamCaption}\item[{u8 $\ast$}]{src,  }\item[{u8}]{flags }\end{DoxyParamCaption})}
 
+Sets the SGB tiles using the given source and flags.
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01073}{1073}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em src} & an unsigned 8-\/bit integer pointer to the source. \\
+\hline
+{\em flags} & an unsigned 8-\/bit integer representing the flags. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01250}{1250}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a9a8e94462dd86825fa22f6a3a145862e}\label{gbgfx_8cpp_a9a8e94462dd86825fa22f6a3a145862e}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!updateBgPalette@{updateBgPalette}}
@@ -566,7 +746,20 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01073}{1073}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01710}{1710}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Updates a background palette. This function iterates through each color in the given data and updates the corresponding color in the background palette. The {\ttfamily paletteid} parameter specifies which palette to update, and {\ttfamily dmg\+Pal} is the palette data for DMG mode, which is used to map the indices to the correct color values. The background palette is stored as a linear array of 64 16-\/bit color values (one for each of the four colors in each of the 16 palette entries). The first entry is always transparent, so it is skipped in the loop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paletteid} & ID of the palette to update. \\
+\hline
+{\em data} & Pointer to the data containing the new palette values. \\
+\hline
+{\em dmg\+Pal} & DMG palette value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l02071}{2071}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a1214c2484459d4a461f437e67a072694}\label{gbgfx_8cpp_a1214c2484459d4a461f437e67a072694}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!updateBgPalette\_GBC@{updateBgPalette\_GBC}}
@@ -576,7 +769,21 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01710}{1710}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01720}{1720}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Updates the Game Boy Color background palette with the specified data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paletteid} & The index of the palette to update. \\
+\hline
+{\em data} & The data to update the palette with.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function is only used in Game Boy Color mode. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l02090}{2090}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a69f15ee8d4cda930e01bfe3e42bbd66a}\label{gbgfx_8cpp_a69f15ee8d4cda930e01bfe3e42bbd66a}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!updateSprPalette@{updateSprPalette}}
@@ -586,17 +793,43 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01720}{1720}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01727}{1727}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Updates the sprite palette in the given paletteid using the provided data and dmg\+Pal. 
 
-\mbox{\Hypertarget{gbgfx_8cpp_abaa5f65ef32cc80bd17ba14c47984536}\label{gbgfx_8cpp_abaa5f65ef32cc80bd17ba14c47984536}} 
+
+\begin{DoxyParams}{Parameters}
+{\em paletteid} & The palette ID to update \\
+\hline
+{\em data} & The data containing the new color values \\
+\hline
+{\em dmg\+Pal} & The DMG palette \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l02107}{2107}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+
+\mbox{\Hypertarget{gbgfx_8cpp_a38cfcb29e33564da47daf80302f353b5}\label{gbgfx_8cpp_a38cfcb29e33564da47daf80302f353b5}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!updateTileMap@{updateTileMap}}
 \index{updateTileMap@{updateTileMap}!gbgfx.cpp@{gbgfx.cpp}}
 \doxysubsubsection{\texorpdfstring{updateTileMap()}{updateTileMap()}}
-{\footnotesize\ttfamily void update\+Tile\+Map (\begin{DoxyParamCaption}\item[{int}]{map,  }\item[{int}]{i }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void update\+Tile\+Map (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{i }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01170}{1170}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Updates the tile map for the given map index and tile number. 
+
+The update\+Tile\+Map function updates the tile map for the given map index m and tile number i. It first sets the changed map flag for the tile to false. It then gets the map address and tile number for the tile. If the Game Boy mode is CGB, it extracts the flipX, flipY, bank, paletteid, and priority values from the VRAM. If the priority value is set, it sets the overlay map entry with the tile number, bank, palette ID, flipX, and flipY values. Otherwise, it sets the overlay map entry to 0x300. The function sets the map entry with the tile number, bank, palette ID, flipX, and flipY values. It also sets the color 0 map entry with the palette ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & an integer value representing the map index. \\
+\hline
+{\em i} & an integer value representing the tile number. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01398}{1398}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a60975f999e5000cce01f957e5061efc2}\label{gbgfx_8cpp_a60975f999e5000cce01f957e5061efc2}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!updateTileMaps@{updateTileMaps}}
@@ -604,9 +837,9 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01170}{1170}} of file \mb
 \doxysubsubsection{\texorpdfstring{updateTileMaps()}{updateTileMaps()}}
 {\footnotesize\ttfamily void update\+Tile\+Maps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
+Updates the tile maps. 
 
-
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01159}{1159}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01374}{1374}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a73afcb774f607a0031a6877ab3059fd3}\label{gbgfx_8cpp_a73afcb774f607a0031a6877ab3059fd3}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!updateTiles@{updateTiles}}
@@ -616,7 +849,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01159}{1159}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01689}{1689}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Updates the tile data and queues the changed tiles to be redrawn. 
+
+The function updates the tile data and queues the changed tiles to be redrawn. It first processes all the tiles in the {\ttfamily changed\+Tile\+Queue}, which holds the tiles that have changed on the current frame. After redrawing these tiles, it marks them as unmodified. Then, it copies the tiles in the {\ttfamily changed\+Tile\+In\+Frame\+Queue}, which holds the tiles that have changed in the current frame but haven\textquotesingle{}t been redrawn yet, to {\ttfamily changed\+Tile\+Queue} so they can be redrawn on the next frame. Finally, it marks the tiles in the {\ttfamily changed\+Tile\+In\+Frame} queue as unmodified. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l02039}{2039}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a61980113c878f9f0138454e1e1047750}\label{gbgfx_8cpp_a61980113c878f9f0138454e1e1047750}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!vblankHandler@{vblankHandler}}
@@ -626,7 +863,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01689}{1689}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00490}{490}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Handle vblank interrupt. 
+
+This function is called during the vblank interrupt and performs various tasks such as setting the appropriate vram banks for scaling, capturing the main display into vram bank D, resetting the line completion status, and executing any vblank tasks that were added to the vblank\+Tasks vector using do\+At\+VBlank. If scaling is enabled, DMA copying is left for arm7 to handle and the scale\+Transfer\+Ready flag is set to true. The function also updates the frame counter and the filter position if a filter is being applied. 
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00553}{553}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_abb0c9757b585d53633e72130af93d164}\label{gbgfx_8cpp_abb0c9757b585d53633e72130af93d164}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!vcountHandler@{vcountHandler}}
@@ -636,7 +877,11 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00490}{490}} of file \mbo
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00465}{465}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Handle vcount interrupt, which is triggered on line 235 (middle of vblank). This function is called during the vcount interrupt and sets the vram banks to the appropriate sub backgrounds based on whether scaling is on or not. It then performs hblank processing for the very top line (physical line 0) and draws the first Game Boy line early (physical line 24) if it has been modified. If graphics are disabled, the function returns. 
+
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00506}{506}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a496cd2cdb3d9a1f4ca5bf45325ebdc0a}\label{gbgfx_8cpp_a496cd2cdb3d9a1f4ca5bf45325ebdc0a}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!writeHram@{writeHram}}
@@ -644,9 +889,18 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00465}{465}} of file \mbo
 \doxysubsubsection{\texorpdfstring{writeHram()}{writeHram()}}
 {\footnotesize\ttfamily void write\+Hram (\begin{DoxyParamCaption}\item[{u16}]{addr,  }\item[{u8}]{val }\end{DoxyParamCaption})}
 
+Writes a byte to the High RAM at the specified address.
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01869}{1869}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address to write to. \\
+\hline
+{\em val} & The value to write. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l02275}{2275}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_aaf17e95c285e77dea221cb54923a91a3}\label{gbgfx_8cpp_aaf17e95c285e77dea221cb54923a91a3}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!writeVram@{writeVram}}
@@ -656,7 +910,18 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01869}{1869}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01578}{1578}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Writes a value to VRAM at the specified address. This function writes a byte to VRAM at a specified address. It checks if the old value is the same as the new value, and if it is, the function returns without making any changes. If the value has changed, the new value is written to the specified address in VRAM. If the address is less than 0x1800, the function determines which tile the address belongs to and checks the current scanline. If the current scanline is between 128 and 143, it marks the tile as changed in the current frame. Otherwise, it marks the tile as changed outside of the current frame. If the address is greater than or equal to 0x1800, the function determines which map the address belongs to and which tile it represents. If the VRAM bank is 1 and the new value has bit 7 set but the old value didn\textquotesingle{}t, it increments the number of tiles that use tile priority for that map. If the new value doesn\textquotesingle{}t have bit 7 set but the old value did, it decrements the number of tiles that use tile priority for that map. The function then marks the map and tile as changed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em addr} & The address to write to. \\
+\hline
+{\em val} & The value to write. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01908}{1908}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a9631e983076a6906dd0eb1c185bd870c}\label{gbgfx_8cpp_a9631e983076a6906dd0eb1c185bd870c}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!writeVram16@{writeVram16}}
@@ -666,7 +931,18 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01578}{1578}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01624}{1624}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Writes a 16-\/bit value to VRAM. The write\+Vram16 function is responsible for writing 16 bytes of data from the source address to the destination address in video RAM (VRAM). The function checks if the write operation is performed on map flags (in VRAM bank 1), and if so, it adjusts the tile priority accordingly. After the write operation is performed, the function checks if the affected tiles or maps need to be redrawn, based on whether the operation occurs during the visible screen area or not. If necessary, the function adds the affected tiles or maps to a queue for later redrawing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & The destination address in VRAM. \\
+\hline
+{\em src} & The source address in ROM or RAM. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01962}{1962}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 
 
@@ -899,7 +1175,7 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00067}{67}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00489}{489}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00543}{543}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a1b6ed3b899ddd242915f4dd097981b9c}\label{gbgfx_8cpp_a1b6ed3b899ddd242915f4dd097981b9c}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!firstGbSprite@{firstGbSprite}}
@@ -1229,7 +1505,7 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00063}{63}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00482}{482}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00528}{528}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 
 \mbox{\Hypertarget{gbgfx_8cpp_a2f7019b05da7580d78d7b80310aca299}\label{gbgfx_8cpp_a2f7019b05da7580d78d7b80310aca299}} 
 \index{gbgfx.cpp@{gbgfx.cpp}!win\_all\_priority@{win\_all\_priority}}
@@ -1299,5 +1575,5 @@ Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l00084}{84}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01405}{1405}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
+Definition at line \mbox{\hyperlink{gbgfx_8cpp_source_l01711}{1711}} of file \mbox{\hyperlink{gbgfx_8cpp_source}{gbgfx.\+cpp}}.
 

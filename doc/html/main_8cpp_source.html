@@ -104,247 +104,254 @@ $(function() {
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">   27</a></span><span class="keyword">volatile</span> <a class="code hl_struct" href="struct_shared_data.html">SharedData</a> *<a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// This is used to signal sleep mode starting or ending.</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">   30</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a>(u32 value, <span class="keywordtype">void</span> *user_data)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static</span> u8 scalingWasOn;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> soundWasDisabled;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> wasPaused;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">switch</span> (value)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="common_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6e1fb58ca56dd660997afeab864d37d3">FIFOMSG_LID_CLOSED</a>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="comment">// Entering sleep mode</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        scalingWasOn = <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a>;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        soundWasDisabled = <a class="code hl_variable" href="gbsnd_8h.html#aae56561200e090019d70871c72b8021d">soundDisabled</a>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        wasPaused = <a class="code hl_function" href="gameboy_8h.html#a04f739b2c98ebfeee00219477d8bdd93">isGameboyPaused</a>();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a> = 0;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <a class="code hl_variable" href="gbsnd_8h.html#aae56561200e090019d70871c72b8021d">soundDisabled</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <a class="code hl_function" href="gameboy_8h.html#a7512b02909147a8b26c34c8a272ee93d">pauseGameboy</a>();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="common_8h.html#aba01db17f4a2bfbc3db60dc172972a25a435e97d021d51611c1a8435978002c13">FIFOMSG_LID_OPENED</a>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="comment">// Exiting sleep mode</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a> = scalingWasOn;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_variable" href="gbsnd_8h.html#aae56561200e090019d70871c72b8021d">soundDisabled</a> = soundWasDisabled;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (!wasPaused)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <a class="code hl_function" href="gameboy_8h.html#a2048c5bce6dc06e8f6f23d7983aeb4bd">unpauseGameboy</a>();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="comment">// Time isn&#39;t incremented properly in sleep mode, compensate here.</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        time(&amp;<a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_variable" href="main_8cpp.html#ad0ebda86ffac57ba19597a1233125129">lastRawTime</a> = <a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="main_8h.html#a54add63a62b11f9bccd4975da8fdd99c">   60</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a>()</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_function" href="inputhelper_8h.html#ac19211d01e57489fcb69ce14b4062a72">unloadRom</a>();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_function" href="filechooser_8h.html#a0585552ff957251a4c6304d2ac819dba">loadFileChooserState</a>(&amp;<a class="code hl_variable" href="filechooser_8h.html#a1c185a37dc80642d3853e3e2bc73c6a2">romChooserState</a>);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *extraExtensions[] = {<span class="stringliteral">&quot;gbs&quot;</span>};</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> len = (<span class="keyword">sizeof</span>(extraExtensions) / <span class="keyword">sizeof</span>(<span class="keyword">const</span> <span class="keywordtype">char</span> *));</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a> = <a class="code hl_function" href="filechooser_8h.html#ad9290a6b86d58cddd1af76147abebaee">startFileChooser</a>(extraExtensions, len, <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_function" href="filechooser_8h.html#a2469bf89eddb75cbc3b1b7712e08bb48">saveFileChooserState</a>(&amp;<a class="code hl_variable" href="filechooser_8h.html#a1c185a37dc80642d3853e3e2bc73c6a2">romChooserState</a>);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a>)</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        FILE *file;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        file = fopen(<span class="stringliteral">&quot;gbc_bios.bin&quot;</span>, <span class="stringliteral">&quot;rb&quot;</span>);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a> = file != NULL;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a>)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            fread(<a class="code hl_variable" href="mmu_8h.html#a7d8aa7cd05aad3b87cf03fc1067ed3cd">bios</a>, 1, 0x900, file);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            fclose(file);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_function" href="inputhelper_8h.html#a700999c3f0e95c5cb420ab499bbf12ad">loadRom</a>(<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    free(<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <a class="code hl_function" href="console_8h.html#a1d1c3cd5a61d79618f2045518fae2e70">updateScreens</a>();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <a class="code hl_function" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a>();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">   90</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>()</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>{</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="console_8h.html#a5d5a5bbb3fa33716a2399b9317c82a59">sgbModeOption</a> != 0 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x14b] == 0x33 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x146] == 0x03)</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 2;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 0;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">   99</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a>()</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="console_8h.html#a5d5a5bbb3fa33716a2399b9317c82a59">sgbModeOption</a> == 2 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x14b] == 0x33 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x146] == 0x03)</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 2;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 1;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">   41</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a>(u32 value, <span class="keywordtype">void</span> *user_data)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">static</span> u8 scalingWasOn; </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> soundWasDisabled; </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> wasPaused; </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">switch</span> (value)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="common_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6e1fb58ca56dd660997afeab864d37d3">FIFOMSG_LID_CLOSED</a>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="comment">// Entering sleep mode</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        scalingWasOn = <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        soundWasDisabled = <a class="code hl_variable" href="gbsnd_8h.html#aae56561200e090019d70871c72b8021d">soundDisabled</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        wasPaused = <a class="code hl_function" href="gameboy_8h.html#a04f739b2c98ebfeee00219477d8bdd93">isGameboyPaused</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a> = 0;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <a class="code hl_variable" href="gbsnd_8h.html#aae56561200e090019d70871c72b8021d">soundDisabled</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <a class="code hl_function" href="gameboy_8h.html#a7512b02909147a8b26c34c8a272ee93d">pauseGameboy</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="common_8h.html#aba01db17f4a2bfbc3db60dc172972a25a435e97d021d51611c1a8435978002c13">FIFOMSG_LID_OPENED</a>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment">// Exiting sleep mode</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a> = scalingWasOn;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <a class="code hl_variable" href="gbsnd_8h.html#aae56561200e090019d70871c72b8021d">soundDisabled</a> = soundWasDisabled;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (!wasPaused)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <a class="code hl_function" href="gameboy_8h.html#a2048c5bce6dc06e8f6f23d7983aeb4bd">unpauseGameboy</a>();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// Time isn&#39;t incremented properly in sleep mode, compensate here.</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        time(&amp;<a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_variable" href="main_8cpp.html#ad0ebda86ffac57ba19597a1233125129">lastRawTime</a> = <a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="main_8h.html#a54add63a62b11f9bccd4975da8fdd99c">   83</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a>()</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="comment">// Unload the current ROM</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_function" href="inputhelper_8h.html#ac19211d01e57489fcb69ce14b4062a72">unloadRom</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// Display a file chooser dialog to let the user select a new ROM file to load</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_function" href="filechooser_8h.html#a0585552ff957251a4c6304d2ac819dba">loadFileChooserState</a>(&amp;<a class="code hl_variable" href="filechooser_8h.html#a1c185a37dc80642d3853e3e2bc73c6a2">romChooserState</a>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">const</span> <span class="keywordtype">char</span> *extraExtensions[] = {<span class="stringliteral">&quot;gbs&quot;</span>};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">int</span> len = (<span class="keyword">sizeof</span>(extraExtensions) / <span class="keyword">sizeof</span>(<span class="keyword">const</span> <span class="keywordtype">char</span> *));</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">char</span> *<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a> = <a class="code hl_function" href="filechooser_8h.html#ad9290a6b86d58cddd1af76147abebaee">startFileChooser</a>(extraExtensions, len, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_function" href="filechooser_8h.html#a2469bf89eddb75cbc3b1b7712e08bb48">saveFileChooserState</a>(&amp;<a class="code hl_variable" href="filechooser_8h.html#a1c185a37dc80642d3853e3e2bc73c6a2">romChooserState</a>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// Load the BIOS file if it exists</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a>)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        FILE *file;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        file = fopen(<span class="stringliteral">&quot;gbc_bios.bin&quot;</span>, <span class="stringliteral">&quot;rb&quot;</span>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a> = file != NULL;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a>)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            fread(<a class="code hl_variable" href="mmu_8h.html#a7d8aa7cd05aad3b87cf03fc1067ed3cd">bios</a>, 1, 0x900, file);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            fclose(file);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        }</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="main_8h.html#aa1e7d84951bad6e6c0e5b0962495a2d5">  108</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a>()</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>{</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="console_8h.html#a50a69c022725d0b54985ee39f399b45f">enableSleepMode</a>();</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_variable" href="gameboy_8h.html#a336d50bc2a8c4ef18daea3f63bbb7608">gameboyFrameCounter</a> = 0;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_variable" href="gameboy_8h.html#a5021082cf23612467be2f40ebe83d8e3">sgbMode</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a>)</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    {</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 1; <span class="comment">// GBC</span></div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    {</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordflow">switch</span> (<a class="code hl_variable" href="console_8h.html#afd07a20fda1c1711a0f55764901c8df7">gbcModeOption</a>)</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">case</span> 0: <span class="comment">// GB</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>();</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">case</span> 1: <span class="comment">// GBC if needed</span></div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x143] == 0xC0)</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                <a class="code hl_function" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a>();</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>                <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>();</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">case</span> 2: <span class="comment">// GBC</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x143] == 0x80 || <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x143] == 0xC0)</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                <a class="code hl_function" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a>();</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>();</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        }</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordtype">bool</span> sgbEnhanced = <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x14b] == 0x33 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x146] == 0x03;</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <span class="keywordflow">if</span> (sgbEnhanced &amp;&amp; <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> != 2 &amp;&amp; <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a>)</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        {</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>            <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 2;</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        }</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        {</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        }</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    } <span class="comment">// !gbsMode</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_function" href="mmu_8h.html#a1660bd805506c41836f415364b20440b">initMMU</a>();</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <a class="code hl_function" href="gbcpu_8h.html#a5706c99691ce2a042f08bc3c4b50f3ba">initCPU</a>();</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <a class="code hl_function" href="gameboy_8h.html#a08529d00f32f8441dc7669b1a1d3783c">initLCD</a>();</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <a class="code hl_function" href="gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a>();</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <a class="code hl_function" href="gbsnd_8h.html#a15114ef6911222770c38408ae365c6bd">initSND</a>();</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a> &amp;&amp; !<a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#a3a90b3fc29f7dd88ced366105b542e46">suspendStateExists</a>)</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    {</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <a class="code hl_function" href="inputhelper_8h.html#ad98183888fd36f8de7ef2ff6ee75c746">loadState</a>(-1);</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    }</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a>)</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <a class="code hl_function" href="gbs_8h.html#a369dd14d3b470e7277401596f1eab7b6">gbsInit</a>();</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <span class="comment">// We haven&#39;t calculated the # of cycles to the next hardware event.</span></div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <a class="code hl_variable" href="gameboy_8h.html#aa0a57e3c9fa1af0b8e7cf6e69af8704e">cyclesToEvent</a> = 1;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="comment">// Load the selected ROM file and update the screens</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_function" href="inputhelper_8h.html#a700999c3f0e95c5cb420ab499bbf12ad">loadRom</a>(<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    free(<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <a class="code hl_function" href="console_8h.html#a1d1c3cd5a61d79618f2045518fae2e70">updateScreens</a>();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="comment">// Initialize the emulator for the first time</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <a class="code hl_function" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a>();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>}</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">  126</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>()</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="console_8h.html#a5d5a5bbb3fa33716a2399b9317c82a59">sgbModeOption</a> != 0 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x14b] == 0x33 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x146] == 0x03)</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 2; <span class="comment">// SGB mode</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 0; <span class="comment">// GB mode</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">  145</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a>()</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>{</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="console_8h.html#a5d5a5bbb3fa33716a2399b9317c82a59">sgbModeOption</a> == 2 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x14b] == 0x33 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x146] == 0x03)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 2; <span class="comment">// SGB mode</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 1; <span class="comment">// GBC mode</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>}</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="main_8h.html#aa1e7d84951bad6e6c0e5b0962495a2d5">  163</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a>()</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>{</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_function" href="console_8h.html#a50a69c022725d0b54985ee39f399b45f">enableSleepMode</a>(); <span class="comment">// Set the Gameboy to sleep mode</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <a class="code hl_variable" href="gameboy_8h.html#a336d50bc2a8c4ef18daea3f63bbb7608">gameboyFrameCounter</a> = 0; <span class="comment">// Reset the frame counter to 0</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <a class="code hl_variable" href="gameboy_8h.html#a5021082cf23612467be2f40ebe83d8e3">sgbMode</a> = <span class="keyword">false</span>; <span class="comment">// Set the Super Gameboy mode to false</span></div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="main_8h.html#a4429766953b588702b57e002f24122a1">  169</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a>()</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>{</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="console_8h.html#a317ff7205cdf33838b77012ea9027eb7">sgbBordersEnabled</a>)</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> = <span class="keyword">true</span>; <span class="comment">// This will be ignored if starting in sgb mode, or if there is no sgb mode.</span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_variable" href="gbgfx_8h.html#a134de385e7f51e7cb43357cf0bb4b624">sgbBorderLoaded</a> = <span class="keyword">false</span>;     <span class="comment">// Effectively unloads any sgb border</span></div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <a class="code hl_function" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a>();</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a>)</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    {</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;State Slot&quot;</span>);</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Save State&quot;</span>);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Load State&quot;</span>);</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Delete State&quot;</span>);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Suspend&quot;</span>);</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Exit without saving&quot;</span>);</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    {</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;State Slot&quot;</span>);</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Save State&quot;</span>);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Suspend&quot;</span>);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="inputhelper_8h.html#af174f16d94b3866c8bc8b927a6ec0545">checkStateExists</a>(<a class="code hl_variable" href="console_8h.html#a736f6a5a0ef7cbd8892110dc80ae7946">stateNum</a>))</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Load State&quot;</span>);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Delete State&quot;</span>);</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        }</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a>) <span class="comment">// Check if it is in Gameboy Sound mode</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 1; <span class="comment">// Set the resultant Gameboy mode to Gameboy Color</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> = <span class="keyword">false</span>; <span class="comment">// Stop probing for border</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">else</span> <span class="comment">// If not in Gameboy Sound mode</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">switch</span> (<a class="code hl_variable" href="console_8h.html#afd07a20fda1c1711a0f55764901c8df7">gbcModeOption</a>) <span class="comment">// Check the Gameboy Color mode option</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        <span class="keywordflow">case</span> 0: <span class="comment">// Gameboy mode</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>            <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>(); <span class="comment">// Initialize Gameboy mode</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">case</span> 1: <span class="comment">// Gameboy Color mode if needed</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x143] == 0xC0)</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                <a class="code hl_function" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a>(); <span class="comment">// Initialize Gameboy Color mode</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>(); <span class="comment">// Initialize Gameboy mode</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordflow">case</span> 2: <span class="comment">// Gameboy Color mode</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x143] == 0x80 || <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x143] == 0xC0)</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                <a class="code hl_function" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a>(); <span class="comment">// Initialize Gameboy Color mode</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                <a class="code hl_function" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a>(); <span class="comment">// Initialize Gameboy mode</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        }</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        <span class="keywordtype">bool</span> sgbEnhanced = <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x14b] == 0x33 &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#ab4926433311d08ecb615d83f8f124e23">romSlot0</a>[0x146] == 0x03; <span class="comment">// Check if the ROM is Super Gameboy enhanced</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">if</span> (sgbEnhanced &amp;&amp; <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> != 2 &amp;&amp; <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a>)</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        {</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Load State&quot;</span>);</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Delete State&quot;</span>);</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="mmu_8h.html#a0ab672ff412b81f8e9bba15e0b2fbf74">numRamBanks</a> &amp;&amp; !<a class="code hl_variable" href="console_8h.html#a05d508b721ab9377e3c3a8b96faec074">autoSavingEnabled</a>)</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>            <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Exit without saving&quot;</span>);</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Exit without saving&quot;</span>);</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    }</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a>)</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;GBC Bios&quot;</span>);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;GBC Bios&quot;</span>);</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>}</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">  214</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>{</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    REG_POWERCNT = POWER_ALL &amp; ~(POWER_MATRIX | POWER_3D_CORE); <span class="comment">// don&#39;t need 3D</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    consoleDebugInit(DebugDevice_CONSOLE);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    defaultExceptionHandler();</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    time(&amp;<a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>);</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <a class="code hl_variable" href="main_8cpp.html#ad0ebda86ffac57ba19597a1233125129">lastRawTime</a> = <a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>;</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    timerStart(0, ClockDivider_1024, TIMER_FREQ_1024(1), <a class="code hl_function" href="timer_8h.html#a7042121c8f144661521688018c38967b">clockUpdater</a>);</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="comment">/* Reset the EZ3in1 if present */</span></div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="common_8h.html#ab2f6cb20193495bf269501e9cd545017">__dsimode</a>)</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        sysSetCartOwner(BUS_OWNER_ARM9);</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        GBA_BUS[0x0000] = 0xF0;</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        GBA_BUS[0x1000] = 0xF0;</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    }</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    fifoSetValue32Handler(FIFO_USER_02, <a class="code hl_function" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a>, NULL);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <a class="code hl_variable" href="mmu_8h.html#a2595910b448f4f3cb2826c7207f2e5d0">resultantGBMode</a> = 2; <span class="comment">// Set the resultant Gameboy mode to Super Gameboy</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>        }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> = <span class="keyword">false</span>; <span class="comment">// Stop probing for border</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    } <span class="comment">// !gbsMode</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <a class="code hl_function" href="mmu_8h.html#a1660bd805506c41836f415364b20440b">initMMU</a>(); <span class="comment">// Initialize the Memory Management Unit</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <a class="code hl_function" href="gbcpu_8h.html#a5706c99691ce2a042f08bc3c4b50f3ba">initCPU</a>(); <span class="comment">// Initialize the Central Processing Unit</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <a class="code hl_function" href="gameboy_8h.html#a08529d00f32f8441dc7669b1a1d3783c">initLCD</a>(); <span class="comment">// Initialize the Liquid Crystal Display</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <a class="code hl_function" href="gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a>(); <span class="comment">// Initialize the Graphics</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <a class="code hl_function" href="gbsnd_8h.html#a15114ef6911222770c38408ae365c6bd">initSND</a>(); <span class="comment">// Initialize the Sound</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a> &amp;&amp; !<a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> &amp;&amp; <a class="code hl_variable" href="inputhelper_8h.html#a3a90b3fc29f7dd88ced366105b542e46">suspendStateExists</a>)</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        <a class="code hl_function" href="inputhelper_8h.html#ad98183888fd36f8de7ef2ff6ee75c746">loadState</a>(-1); <span class="comment">// Load the suspended state</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a>)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        <a class="code hl_function" href="gbs_8h.html#a369dd14d3b470e7277401596f1eab7b6">gbsInit</a>(); <span class="comment">// Initialize the Gameboy Sound mode</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">// We haven&#39;t calculated the # of cycles to the next hardware event.</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <a class="code hl_variable" href="gameboy_8h.html#aa0a57e3c9fa1af0b8e7cf6e69af8704e">cyclesToEvent</a> = 1; <span class="comment">// Set the number of cycles to the next hardware event to 1</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>}</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="main_8h.html#a4429766953b588702b57e002f24122a1">  230</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a>()</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>{</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="console_8h.html#a317ff7205cdf33838b77012ea9027eb7">sgbBordersEnabled</a>)</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        <a class="code hl_variable" href="gameboy_8h.html#af9fb33f9e0c7674ff242adfb4fa0e1b0">probingForBorder</a> = <span class="keyword">true</span>; <span class="comment">// This will be ignored if starting in sgb mode, or if there is no sgb mode.</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <a class="code hl_variable" href="gbgfx_8h.html#a134de385e7f51e7cb43357cf0bb4b624">sgbBorderLoaded</a> = <span class="keyword">false</span>;     <span class="comment">// Effectively unloads any sgb border</span></div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a> = (<a class="code hl_struct" href="struct_shared_data.html">SharedData</a> *)memUncached(malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_shared_data.html">SharedData</a>)));</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#aa3cf7a41e0900e97c888a6a458c6db00">enableSleepMode</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="comment">// It might make more sense to use &quot;fifoSendAddress&quot; here.</span></div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="comment">// However there may have been something wrong with it in dsi mode.</span></div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    fifoSendValue32(FIFO_USER_03, ((u32)<a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>) &amp; 0x00ffffff);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <a class="code hl_function" href="inputhelper_8h.html#a3d3188b9d438add4ac7abf5d19f9b74c">initInput</a>();</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    <a class="code hl_function" href="console_8h.html#ad856b53da91c1cc12f94a5634bf79cda">setMenuDefaults</a>();</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <a class="code hl_function" href="inputhelper_8h.html#a5a9ea8d08563c440e8a39e3798c96e46">readConfigFile</a>();</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    swiWaitForVBlank();</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    swiWaitForVBlank();</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">// initGFX is called in initializeGameboy, but I also call it from here to</span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">// set up the vblank handler asap.</span></div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <a class="code hl_function" href="gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a>();</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <a class="code hl_variable" href="console_8h.html#ab48cf4f68fa4c26febbebca02f21251d">consoleInitialized</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">if</span> (argc &gt;= 2)</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    {</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="keywordtype">char</span> *<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a> = argv[1];</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <a class="code hl_function" href="inputhelper_8h.html#a700999c3f0e95c5cb420ab499bbf12ad">loadRom</a>(<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>);</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        <a class="code hl_function" href="console_8h.html#a1d1c3cd5a61d79618f2045518fae2e70">updateScreens</a>();</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        <a class="code hl_function" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a>();</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    }</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    {</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <a class="code hl_function" href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a>();</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    }</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <a class="code hl_function" href="gameboy_8h.html#a81597fe9593afa9524041c128e8c9517">runEmul</a>();</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>}</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <a class="code hl_function" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a>();</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a>)</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;State Slot&quot;</span>);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Save State&quot;</span>);</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Load State&quot;</span>);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Delete State&quot;</span>);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Suspend&quot;</span>);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Exit without saving&quot;</span>);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;State Slot&quot;</span>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Save State&quot;</span>);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Suspend&quot;</span>);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="inputhelper_8h.html#af174f16d94b3866c8bc8b927a6ec0545">checkStateExists</a>(<a class="code hl_variable" href="console_8h.html#a736f6a5a0ef7cbd8892110dc80ae7946">stateNum</a>))</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>            <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Load State&quot;</span>);</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Delete State&quot;</span>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        }</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        {</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Load State&quot;</span>);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>            <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Delete State&quot;</span>);</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        }</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="mmu_8h.html#a0ab672ff412b81f8e9bba15e0b2fbf74">numRamBanks</a> &amp;&amp; !<a class="code hl_variable" href="console_8h.html#a05d508b721ab9377e3c3a8b96faec074">autoSavingEnabled</a>)</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;Exit without saving&quot;</span>);</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>            <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;Exit without saving&quot;</span>);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="mmu_8h.html#a3afb95c5ba95a8b7a5be05efead3da80">biosExists</a>)</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <a class="code hl_function" href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a>(<span class="stringliteral">&quot;GBC Bios&quot;</span>);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <a class="code hl_function" href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a>(<span class="stringliteral">&quot;GBC Bios&quot;</span>);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>}</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">  284</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>{</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>    REG_POWERCNT = POWER_ALL &amp; ~(POWER_MATRIX | POWER_3D_CORE); <span class="comment">// don&#39;t need 3D</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    consoleDebugInit(DebugDevice_CONSOLE);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    defaultExceptionHandler();</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    time(&amp;<a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <a class="code hl_variable" href="main_8cpp.html#ad0ebda86ffac57ba19597a1233125129">lastRawTime</a> = <a class="code hl_variable" href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    timerStart(0, ClockDivider_1024, TIMER_FREQ_1024(1), <a class="code hl_function" href="timer_8h.html#a7042121c8f144661521688018c38967b">clockUpdater</a>);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">/* Reset the EZ3in1 if present */</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="common_8h.html#ab2f6cb20193495bf269501e9cd545017">__dsimode</a>)</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>        sysSetCartOwner(BUS_OWNER_ARM9);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        GBA_BUS[0x0000] = 0xF0;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>        GBA_BUS[0x1000] = 0xF0;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    fifoSetValue32Handler(FIFO_USER_02, <a class="code hl_function" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a>, NULL);</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a> = (<a class="code hl_struct" href="struct_shared_data.html">SharedData</a> *)memUncached(malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_shared_data.html">SharedData</a>)));</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#a2c0c6b195867ee5f8f5c974fcb1d4197">scalingOn</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>-&gt;<a class="code hl_variable" href="struct_shared_data.html#aa3cf7a41e0900e97c888a6a458c6db00">enableSleepMode</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>    <span class="comment">// It might make more sense to use &quot;fifoSendAddress&quot; here.</span></div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="comment">// However there may have been something wrong with it in dsi mode.</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>    fifoSendValue32(FIFO_USER_03, ((u32)<a class="code hl_variable" href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a>) &amp; 0x00ffffff);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>    <a class="code hl_function" href="inputhelper_8h.html#a3d3188b9d438add4ac7abf5d19f9b74c">initInput</a>();</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    <a class="code hl_function" href="console_8h.html#ad856b53da91c1cc12f94a5634bf79cda">setMenuDefaults</a>();</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    <a class="code hl_function" href="inputhelper_8h.html#a5a9ea8d08563c440e8a39e3798c96e46">readConfigFile</a>();</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>    swiWaitForVBlank();</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    swiWaitForVBlank();</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    <span class="comment">// initGFX is called in initializeGameboy, but I also call it from here to</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    <span class="comment">// set up the vblank handler asap.</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    <a class="code hl_function" href="gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a>();</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>    <a class="code hl_variable" href="console_8h.html#ab48cf4f68fa4c26febbebca02f21251d">consoleInitialized</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    <span class="keywordflow">if</span> (argc &gt;= 2)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>    {</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <span class="keywordtype">char</span> *<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a> = argv[1];</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        <a class="code hl_function" href="inputhelper_8h.html#a700999c3f0e95c5cb420ab499bbf12ad">loadRom</a>(<a class="code hl_variable" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <a class="code hl_function" href="console_8h.html#a1d1c3cd5a61d79618f2045518fae2e70">updateScreens</a>();</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        <a class="code hl_function" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a>();</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    }</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    {</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        <a class="code hl_function" href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a>();</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    }</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <a class="code hl_function" href="gameboy_8h.html#a81597fe9593afa9524041c128e8c9517">runEmul</a>();</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>}</div>
 <div class="ttc" id="acheats_8h_html"><div class="ttname"><a href="cheats_8h.html">cheats.h</a></div></div>
 <div class="ttc" id="acommon_8h_html"><div class="ttname"><a href="common_8h.html">common.h</a></div></div>
 <div class="ttc" id="acommon_8h_html_ab2f6cb20193495bf269501e9cd545017"><div class="ttname"><a href="common_8h.html#ab2f6cb20193495bf269501e9cd545017">__dsimode</a></div><div class="ttdeci">bool __dsimode</div></div>
@@ -352,15 +359,15 @@ $(function() {
 <div class="ttc" id="acommon_8h_html_aba01db17f4a2bfbc3db60dc172972a25a6e1fb58ca56dd660997afeab864d37d3"><div class="ttname"><a href="common_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6e1fb58ca56dd660997afeab864d37d3">FIFOMSG_LID_CLOSED</a></div><div class="ttdeci">@ FIFOMSG_LID_CLOSED</div><div class="ttdef"><b>Definition:</b> <a href="common_8h_source.html#l00047">common.h:47</a></div></div>
 <div class="ttc" id="aconsole_8h_html"><div class="ttname"><a href="console_8h.html">console.h</a></div></div>
 <div class="ttc" id="aconsole_8h_html_a05d508b721ab9377e3c3a8b96faec074"><div class="ttname"><a href="console_8h.html#a05d508b721ab9377e3c3a8b96faec074">autoSavingEnabled</a></div><div class="ttdeci">bool autoSavingEnabled</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00041">console.cpp:41</a></div></div>
-<div class="ttc" id="aconsole_8h_html_a1d1c3cd5a61d79618f2045518fae2e70"><div class="ttname"><a href="console_8h.html#a1d1c3cd5a61d79618f2045518fae2e70">updateScreens</a></div><div class="ttdeci">void updateScreens(bool waitToFinish=false)</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00983">console.cpp:983</a></div></div>
+<div class="ttc" id="aconsole_8h_html_a1d1c3cd5a61d79618f2045518fae2e70"><div class="ttname"><a href="console_8h.html#a1d1c3cd5a61d79618f2045518fae2e70">updateScreens</a></div><div class="ttdeci">void updateScreens(bool waitToFinish=false)</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00990">console.cpp:990</a></div></div>
 <div class="ttc" id="aconsole_8h_html_a317ff7205cdf33838b77012ea9027eb7"><div class="ttname"><a href="console_8h.html#a317ff7205cdf33838b77012ea9027eb7">sgbBordersEnabled</a></div><div class="ttdeci">bool sgbBordersEnabled</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00040">console.cpp:40</a></div></div>
-<div class="ttc" id="aconsole_8h_html_a50a69c022725d0b54985ee39f399b45f"><div class="ttname"><a href="console_8h.html#a50a69c022725d0b54985ee39f399b45f">enableSleepMode</a></div><div class="ttdeci">void enableSleepMode()</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l01110">console.cpp:1110</a></div></div>
-<div class="ttc" id="aconsole_8h_html_a5309114235fda699b310a34bb8dfe131"><div class="ttname"><a href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a></div><div class="ttdeci">void enableMenuOption(const char *name)</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00785">console.cpp:785</a></div></div>
+<div class="ttc" id="aconsole_8h_html_a50a69c022725d0b54985ee39f399b45f"><div class="ttname"><a href="console_8h.html#a50a69c022725d0b54985ee39f399b45f">enableSleepMode</a></div><div class="ttdeci">void enableSleepMode()</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l01117">console.cpp:1117</a></div></div>
+<div class="ttc" id="aconsole_8h_html_a5309114235fda699b310a34bb8dfe131"><div class="ttname"><a href="console_8h.html#a5309114235fda699b310a34bb8dfe131">enableMenuOption</a></div><div class="ttdeci">void enableMenuOption(const char *name)</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00792">console.cpp:792</a></div></div>
 <div class="ttc" id="aconsole_8h_html_a5d5a5bbb3fa33716a2399b9317c82a59"><div class="ttname"><a href="console_8h.html#a5d5a5bbb3fa33716a2399b9317c82a59">sgbModeOption</a></div><div class="ttdeci">int sgbModeOption</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00037">console.cpp:37</a></div></div>
-<div class="ttc" id="aconsole_8h_html_a67a8669d5dfb6c692da04af49dc4c510"><div class="ttname"><a href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a></div><div class="ttdeci">void disableMenuOption(const char *name)</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00802">console.cpp:802</a></div></div>
+<div class="ttc" id="aconsole_8h_html_a67a8669d5dfb6c692da04af49dc4c510"><div class="ttname"><a href="console_8h.html#a67a8669d5dfb6c692da04af49dc4c510">disableMenuOption</a></div><div class="ttdeci">void disableMenuOption(const char *name)</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00809">console.cpp:809</a></div></div>
 <div class="ttc" id="aconsole_8h_html_a736f6a5a0ef7cbd8892110dc80ae7946"><div class="ttname"><a href="console_8h.html#a736f6a5a0ef7cbd8892110dc80ae7946">stateNum</a></div><div class="ttdeci">int stateNum</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00032">console.cpp:32</a></div></div>
 <div class="ttc" id="aconsole_8h_html_ab48cf4f68fa4c26febbebca02f21251d"><div class="ttname"><a href="console_8h.html#ab48cf4f68fa4c26febbebca02f21251d">consoleInitialized</a></div><div class="ttdeci">bool consoleInitialized</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00026">console.cpp:26</a></div></div>
-<div class="ttc" id="aconsole_8h_html_ad856b53da91c1cc12f94a5634bf79cda"><div class="ttname"><a href="console_8h.html#ad856b53da91c1cc12f94a5634bf79cda">setMenuDefaults</a></div><div class="ttdeci">void setMenuDefaults()</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00474">console.cpp:474</a></div></div>
+<div class="ttc" id="aconsole_8h_html_ad856b53da91c1cc12f94a5634bf79cda"><div class="ttname"><a href="console_8h.html#ad856b53da91c1cc12f94a5634bf79cda">setMenuDefaults</a></div><div class="ttdeci">void setMenuDefaults()</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00481">console.cpp:481</a></div></div>
 <div class="ttc" id="aconsole_8h_html_afd07a20fda1c1711a0f55764901c8df7"><div class="ttname"><a href="console_8h.html#afd07a20fda1c1711a0f55764901c8df7">gbcModeOption</a></div><div class="ttdeci">int gbcModeOption</div><div class="ttdef"><b>Definition:</b> <a href="console_8cpp_source.html#l00035">console.cpp:35</a></div></div>
 <div class="ttc" id="afilechooser_8h_html"><div class="ttname"><a href="filechooser_8h.html">filechooser.h</a></div></div>
 <div class="ttc" id="afilechooser_8h_html_a0585552ff957251a4c6304d2ac819dba"><div class="ttname"><a href="filechooser_8h.html#a0585552ff957251a4c6304d2ac819dba">loadFileChooserState</a></div><div class="ttdeci">void loadFileChooserState(FileChooserState *state)</div><div class="ttdef"><b>Definition:</b> <a href="filechooser_8cpp_source.html#l00512">filechooser.cpp:512</a></div></div>
@@ -381,7 +388,7 @@ $(function() {
 <div class="ttc" id="agbcpu_8h_html_a5706c99691ce2a042f08bc3c4b50f3ba"><div class="ttname"><a href="gbcpu_8h.html#a5706c99691ce2a042f08bc3c4b50f3ba">initCPU</a></div><div class="ttdeci">void initCPU()</div><div class="ttdef"><b>Definition:</b> <a href="gbcpu_8cpp_source.html#l00113">gbcpu.cpp:113</a></div></div>
 <div class="ttc" id="agbgfx_8h_html"><div class="ttname"><a href="gbgfx_8h.html">gbgfx.h</a></div></div>
 <div class="ttc" id="agbgfx_8h_html_a134de385e7f51e7cb43357cf0bb4b624"><div class="ttname"><a href="gbgfx_8h.html#a134de385e7f51e7cb43357cf0bb4b624">sgbBorderLoaded</a></div><div class="ttdeci">bool sgbBorderLoaded</div><div class="ttdef"><b>Definition:</b> <a href="gbgfx_8cpp_source.html#l00104">gbgfx.cpp:104</a></div></div>
-<div class="ttc" id="agbgfx_8h_html_ad00fca63a33eb7f18124dc4a19620a2e"><div class="ttname"><a href="gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a></div><div class="ttdeci">void initGFX()</div><div class="ttdef"><b>Definition:</b> <a href="gbgfx_8cpp_source.html#l00548">gbgfx.cpp:548</a></div></div>
+<div class="ttc" id="agbgfx_8h_html_ad00fca63a33eb7f18124dc4a19620a2e"><div class="ttname"><a href="gbgfx_8h.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a></div><div class="ttdeci">void initGFX()</div><div class="ttdoc">Initialize the graphics subsystem.</div><div class="ttdef"><b>Definition:</b> <a href="gbgfx_8cpp_source.html#l00631">gbgfx.cpp:631</a></div></div>
 <div class="ttc" id="agbs_8h_html"><div class="ttname"><a href="gbs_8h.html">gbs.h</a></div></div>
 <div class="ttc" id="agbs_8h_html_a369dd14d3b470e7277401596f1eab7b6"><div class="ttname"><a href="gbs_8h.html#a369dd14d3b470e7277401596f1eab7b6">gbsInit</a></div><div class="ttdeci">void gbsInit()</div><div class="ttdef"><b>Definition:</b> <a href="gbs_8cpp_source.html#l00113">gbs.cpp:113</a></div></div>
 <div class="ttc" id="agbs_8h_html_a6e7048c5efaac6e4916711ad174944cd"><div class="ttname"><a href="gbs_8h.html#a6e7048c5efaac6e4916711ad174944cd">gbsMode</a></div><div class="ttdeci">bool gbsMode</div><div class="ttdef"><b>Definition:</b> <a href="gbs_8cpp_source.html#l00015">gbs.cpp:15</a></div></div>
@@ -401,12 +408,12 @@ $(function() {
 <div class="ttc" id="amain_8c_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00075">main.c:75</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a2bb32c52cb5d21be737aaa2aefb353d4"><div class="ttname"><a href="main_8cpp.html#a2bb32c52cb5d21be737aaa2aefb353d4">sharedData</a></div><div class="ttdeci">volatile SharedData * sharedData</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00027">main.cpp:27</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a2e99c78e3943a1e70d5e79a314aee490"><div class="ttname"><a href="main_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a></div><div class="ttdeci">time_t rawTime</div><div class="ttdef"><b>Definition:</b> <a href="gameboy_8cpp_source.html#l00022">gameboy.cpp:22</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a4429766953b588702b57e002f24122a1"><div class="ttname"><a href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a></div><div class="ttdeci">void initializeGameboyFirstTime()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00169">main.cpp:169</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a4476c89fd8b9a0783c75f891a47c535e"><div class="ttname"><a href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a></div><div class="ttdeci">void initGBMode()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00090">main.cpp:90</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a54add63a62b11f9bccd4975da8fdd99c"><div class="ttname"><a href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a></div><div class="ttdeci">void selectRom()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00060">main.cpp:60</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a5e9496c777a9b87b88b024e86e1df765"><div class="ttname"><a href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a></div><div class="ttdeci">void fifoValue32Handler(u32 value, void *user_data)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00030">main.cpp:30</a></div></div>
-<div class="ttc" id="amain_8cpp_html_a78e04af5145ec29fb32527bd0bb749f9"><div class="ttname"><a href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a></div><div class="ttdeci">void initGBCMode()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00099">main.cpp:99</a></div></div>
-<div class="ttc" id="amain_8cpp_html_aa1e7d84951bad6e6c0e5b0962495a2d5"><div class="ttname"><a href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a></div><div class="ttdeci">void initializeGameboy()</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00108">main.cpp:108</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a4429766953b588702b57e002f24122a1"><div class="ttname"><a href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a></div><div class="ttdeci">void initializeGameboyFirstTime()</div><div class="ttdoc">Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probingForBorder ...</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00230">main.cpp:230</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a4476c89fd8b9a0783c75f891a47c535e"><div class="ttname"><a href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a></div><div class="ttdeci">void initGBMode()</div><div class="ttdoc">This function initializes the Game Boy mode based on the current ROM's header values.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00126">main.cpp:126</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a54add63a62b11f9bccd4975da8fdd99c"><div class="ttname"><a href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a></div><div class="ttdeci">void selectRom()</div><div class="ttdoc">Loads a ROM file and initializes the Gameboy emulator for the first time.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00083">main.cpp:83</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a5e9496c777a9b87b88b024e86e1df765"><div class="ttname"><a href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a></div><div class="ttdeci">void fifoValue32Handler(u32 value, void *user_data)</div><div class="ttdoc">Handle 32-bit FIFO messages.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00041">main.cpp:41</a></div></div>
+<div class="ttc" id="amain_8cpp_html_a78e04af5145ec29fb32527bd0bb749f9"><div class="ttname"><a href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a></div><div class="ttdeci">void initGBCMode()</div><div class="ttdoc">This function initializes the Game Boy Color mode based on the current ROM's header values.</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00145">main.cpp:145</a></div></div>
+<div class="ttc" id="amain_8cpp_html_aa1e7d84951bad6e6c0e5b0962495a2d5"><div class="ttname"><a href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a></div><div class="ttdeci">void initializeGameboy()</div><div class="ttdoc">Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user p...</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00163">main.cpp:163</a></div></div>
 <div class="ttc" id="amain_8cpp_html_ad0ebda86ffac57ba19597a1233125129"><div class="ttname"><a href="main_8cpp.html#ad0ebda86ffac57ba19597a1233125129">lastRawTime</a></div><div class="ttdeci">time_t lastRawTime</div><div class="ttdef"><b>Definition:</b> <a href="gameboy_8cpp_source.html#l00023">gameboy.cpp:23</a></div></div>
 <div class="ttc" id="amain_8h_html"><div class="ttname"><a href="main_8h.html">main.h</a></div></div>
 <div class="ttc" id="ammu_8h_html"><div class="ttname"><a href="mmu_8h.html">mmu.h</a></div></div>

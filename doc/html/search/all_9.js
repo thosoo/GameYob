@@ -16,7 +16,7 @@ var searchData=
   ['hasrumble_13',['hasRumble',['../mmu_8h.html#a08a68b1c289b33130f5e3b3d11c49974',1,'hasRumble():&#160;mmu.cpp'],['../mmu_8cpp.html#a08a68b1c289b33130f5e3b3d11c49974',1,'hasRumble():&#160;mmu.cpp']]],
   ['hblankdisabled_14',['hblankDisabled',['../console_8cpp.html#ab764cbdc62a676940e3d9c4940461cea',1,'hblankDisabled():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#ab764cbdc62a676940e3d9c4940461cea',1,'hblankDisabled():&#160;gbgfx.cpp']]],
   ['hblankenablefunc_15',['hblankEnableFunc',['../console_8cpp.html#aeaaee96010340c6794df62f6828445ed',1,'console.cpp']]],
-  ['hblankhandler_16',['hblankHandler',['../gbgfx_8cpp.html#ab7eb6d540dc38c5d31291f5ef9308f91',1,'gbgfx.cpp']]],
+  ['hblankhandler_16',['hblankHandler',['../gbgfx_8cpp.html#a3f17d4b0a0e3c9903d68027415d47539',1,'gbgfx.cpp']]],
   ['highram_17',['highram',['../mmu_8cpp.html#a6d89140bb7b275ad027a7b33fd16909d',1,'mmu.cpp']]],
   ['hl_18',['hl',['../struct_registers.html#a621a70a9e2d67ae03e6064dd62be9251',1,'Registers']]],
   ['hofs_19',['hofs',['../struct_scanline_struct.html#a29c1fa6eb5e29c3a97f0ade15c3d6c79',1,'ScanlineStruct']]],

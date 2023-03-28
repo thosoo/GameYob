@@ -5,9 +5,9 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{sgb_8h_aa21c07d9fc28cda5175e8cc1c534355b}{init\+SGB}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the Super Game Boy. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8h_a3b13f7d7f0c70b71e45025bd1a08eeaf}{sgb\+Handle\+P1}} (u8 val)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -32,7 +32,16 @@ u8 \mbox{\hyperlink{sgb_8h_a16d8f1d1f6a628ef1473009a55a26222}{sgb\+Command}}
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Initializes the Super Game Boy. 
+
+This function resets the variables associated with the Super Game Boy (SGB) mode, including the length of the packet, the number of controllers, the selected controller, the transferred packets, and the checked buttons. Additionally, the SGB map is reset using memset().
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8h_a3b13f7d7f0c70b71e45025bd1a08eeaf}\label{sgb_8h_a3b13f7d7f0c70b71e45025bd1a08eeaf}} 
 \index{sgb.h@{sgb.h}!sgbHandleP1@{sgbHandleP1}}
@@ -42,7 +51,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00042}{42}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00432}{432}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The value of the incoming packet. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00627}{627}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 
 

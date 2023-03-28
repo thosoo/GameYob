@@ -9,6 +9,6 @@ var searchData=
   ['handlesoundregister_6',['handleSoundRegister',['../gbsnd_8h.html#a01fc1036f2f8d4a5d368abdcbc3172b0',1,'handleSoundRegister(u8 ioReg, u8 val):&#160;gbsnd.cpp'],['../gbsnd_8cpp.html#a01fc1036f2f8d4a5d368abdcbc3172b0',1,'handleSoundRegister(u8 ioReg, u8 val):&#160;gbsnd.cpp']]],
   ['handlevideoregister_7',['handleVideoRegister',['../gbgfx_8h.html#ae7573347fba5b70225ad712fc48a679c',1,'handleVideoRegister(u8 ioReg, u8 val):&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#ae7573347fba5b70225ad712fc48a679c',1,'handleVideoRegister(u8 ioReg, u8 val):&#160;gbgfx.cpp']]],
   ['hblankenablefunc_8',['hblankEnableFunc',['../console_8cpp.html#aeaaee96010340c6794df62f6828445ed',1,'console.cpp']]],
-  ['hblankhandler_9',['hblankHandler',['../gbgfx_8cpp.html#ab7eb6d540dc38c5d31291f5ef9308f91',1,'gbgfx.cpp']]],
+  ['hblankhandler_9',['hblankHandler',['../gbgfx_8cpp.html#a3f17d4b0a0e3c9903d68027415d47539',1,'gbgfx.cpp']]],
   ['hypersoundfunc_10',['hyperSoundFunc',['../console_8cpp.html#ab3966734a0db7f04a4d55a52fd0390a4',1,'console.cpp']]]
 ];

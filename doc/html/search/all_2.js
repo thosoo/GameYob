@@ -8,7 +8,7 @@ var searchData=
   ['affine_5fdata_5',['affine_data',['../structsprite_entry.html#a3b23f7ed7cc56b8da3c4cdab432ef4bc',1,'spriteEntry']]],
   ['align_6',['ALIGN',['../struct_scanline_struct.html#a211a54f2977b36b5612d4221ceff850f',1,'ScanlineStruct::ALIGN(4)'],['../struct_scanline_struct.html#a2f63d1fb4f6e664116e95ff50fb4d771',1,'ScanlineStruct::ALIGN(4)'],['../noise_8h.html#a6f9a57bc601b529307b00d00d34237c3',1,'ALIGN(4):&#160;noise.h'],['../sound_8c.html#ab62e524d64b812841067f3f311bde8ab',1,'ALIGN(4):&#160;sound.c'],['../gbgfx_8cpp.html#a8355f1c3ad9d0c737c5304f5ca2dba5e',1,'ALIGN(4):&#160;gbgfx.cpp']]],
   ['applyggcheatstobank_7',['applyGGCheatsToBank',['../cheats_8h.html#a9bd9dd10a393e942f75e3c0c84fb6a00',1,'applyGGCheatsToBank(int romBank):&#160;cheats.cpp'],['../cheats_8cpp.html#aa6df8ad952d02ffe94c24305f75cdd35',1,'applyGGCheatsToBank(int bank):&#160;cheats.cpp']]],
-  ['applygscheats_8',['applyGSCheats',['../cheats_8h.html#af83e379a1b69795e5899a304e643fc6a',1,'applyGSCheats(void):&#160;cheats.cpp'],['../cheats_8cpp.html#aea77d75e653af4d8848e493887741597',1,'applyGSCheats(void) ITCM_CODE:&#160;cheats.cpp']]],
+  ['applygscheats_8',['applyGSCheats',['../cheats_8h.html#af83e379a1b69795e5899a304e643fc6a',1,'applyGSCheats(void):&#160;cheats.cpp'],['../cheats_8cpp.html#af83e379a1b69795e5899a304e643fc6a',1,'applyGSCheats(void):&#160;cheats.cpp']]],
   ['attr0_9',['attr0',['../structsprite_entry.html#a75f67522a197ddbb8bff9f27af427f2a',1,'spriteEntry']]],
   ['attr1_10',['attr1',['../structsprite_entry.html#a6ac9bb2abb17aaded43d1a833b1cda8b',1,'spriteEntry']]],
   ['attr2_11',['attr2',['../structsprite_entry.html#a2ff0bdc7f67ff024ea4d99f5018a5b69',1,'spriteEntry']]],

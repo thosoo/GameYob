@@ -128,55 +128,77 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a8355f1c3ad9d0c737c5304f5ca2dba5e"><td class="memItemLeft" align="right" valign="top">u8 <a class="el" href="gbgfx_8h.html#a254d3c52c2ae7fff61e52168c0c37e86">bgPaletteData</a>[0x40]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a8355f1c3ad9d0c737c5304f5ca2dba5e">ALIGN</a> (4)</td></tr>
 <tr class="separator:a8355f1c3ad9d0c737c5304f5ca2dba5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c3bc7cf83f9225ce88d2bcbd53875a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a2c3bc7cf83f9225ce88d2bcbd53875a6">drawSprites</a> (u8 *data, int tallSprites)</td></tr>
-<tr class="separator:a2c3bc7cf83f9225ce88d2bcbd53875a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27a1116d3f41a4a2d146cf8386b99bdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a27a1116d3f41a4a2d146cf8386b99bdd">drawTile</a> (int tile, int bank)</td></tr>
-<tr class="separator:a27a1116d3f41a4a2d146cf8386b99bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88f8d46d8cf1f3ea65e4e290a99020d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a88f8d46d8cf1f3ea65e4e290a99020d9">drawSprites</a> (u8 *data, int tall)</td></tr>
+<tr class="memdesc:a88f8d46d8cf1f3ea65e4e290a99020d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw sprites on the screen. This function draws the sprites onto the screen using the sprite data provided. It uses the sprite data to determine the position, size, tile number, bank, and other attributes of each sprite.  <br /></td></tr>
+<tr class="separator:a88f8d46d8cf1f3ea65e4e290a99020d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c19f928b2c7863839f14f5609538afd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a8c19f928b2c7863839f14f5609538afd">drawTile</a> (int tileNum, int bank)</td></tr>
+<tr class="memdesc:a8c19f928b2c7863839f14f5609538afd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a tile with the given tile number and bank. The drawTile function draws tiles on the Game Boy's background and sprite graphics planes based on the given tile number and bank. The function takes in two integer arguments: tileNum, which represents the tile number, and bank, which represents the bank number. The tile number is used to calculate the index of the tile data and to determine whether the tile number is unsigned or signed. The bank number is used to determine which VRAM bank the tile data is stored in. The function iterates over the 8 rows in the tile and over the 4 pixels in each row. It sets the foreground and background color values for each pixel based on the color ID values in the tile data. It then sets the graphics data for the tile in the appropriate location in the background or sprite graphics planes based on whether the tile number is unsigned or signed.  <br /></td></tr>
+<tr class="separator:a8c19f928b2c7863839f14f5609538afd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73afcb774f607a0031a6877ab3059fd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a73afcb774f607a0031a6877ab3059fd3">updateTiles</a> ()</td></tr>
+<tr class="memdesc:a73afcb774f607a0031a6877ab3059fd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the tile data and queues the changed tiles to be redrawn.  <br /></td></tr>
 <tr class="separator:a73afcb774f607a0031a6877ab3059fd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60975f999e5000cce01f957e5061efc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a60975f999e5000cce01f957e5061efc2">updateTileMaps</a> ()</td></tr>
 <tr class="separator:a60975f999e5000cce01f957e5061efc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaa5f65ef32cc80bd17ba14c47984536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#abaa5f65ef32cc80bd17ba14c47984536">updateTileMap</a> (int <a class="el" href="gbgfx_8cpp.html#a1e800a6a0ab719ff1af9a81efd02877a">map</a>, int i)</td></tr>
-<tr class="separator:abaa5f65ef32cc80bd17ba14c47984536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38cfcb29e33564da47daf80302f353b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a38cfcb29e33564da47daf80302f353b5">updateTileMap</a> (int m, int i)</td></tr>
+<tr class="memdesc:a38cfcb29e33564da47daf80302f353b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the tile map for the given map index and tile number.  <br /></td></tr>
+<tr class="separator:a38cfcb29e33564da47daf80302f353b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a8e94462dd86825fa22f6a3a145862e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a9a8e94462dd86825fa22f6a3a145862e">updateBgPalette</a> (int paletteid, u8 *data, u8 dmgPal)</td></tr>
+<tr class="memdesc:a9a8e94462dd86825fa22f6a3a145862e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a background palette. This function iterates through each color in the given data and updates the corresponding color in the background palette. The <code>paletteid</code> parameter specifies which palette to update, and <code>dmgPal</code> is the palette data for DMG mode, which is used to map the indices to the correct color values. The background palette is stored as a linear array of 64 16-bit color values (one for each of the four colors in each of the 16 palette entries). The first entry is always transparent, so it is skipped in the loop.  <br /></td></tr>
 <tr class="separator:a9a8e94462dd86825fa22f6a3a145862e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1214c2484459d4a461f437e67a072694"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a1214c2484459d4a461f437e67a072694">updateBgPalette_GBC</a> (int paletteid, u8 *data)</td></tr>
+<tr class="memdesc:a1214c2484459d4a461f437e67a072694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the Game Boy Color background palette with the specified data.  <br /></td></tr>
 <tr class="separator:a1214c2484459d4a461f437e67a072694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69f15ee8d4cda930e01bfe3e42bbd66a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a69f15ee8d4cda930e01bfe3e42bbd66a">updateSprPalette</a> (int paletteid, u8 *data, u8 dmgPal)</td></tr>
+<tr class="memdesc:a69f15ee8d4cda930e01bfe3e42bbd66a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the sprite palette in the given paletteid using the provided data and dmgPal.  <br /></td></tr>
 <tr class="separator:a69f15ee8d4cda930e01bfe3e42bbd66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3299fd8fbf2fadcfd88ee2f18824cbea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a3299fd8fbf2fadcfd88ee2f18824cbea">drawLine</a> (int gbLine) ITCM_CODE</td></tr>
-<tr class="separator:a3299fd8fbf2fadcfd88ee2f18824cbea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af81933618cd850b54967001130817a61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#af81933618cd850b54967001130817a61">doHBlank</a> (int line) ITCM_CODE</td></tr>
-<tr class="separator:af81933618cd850b54967001130817a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7eb6d540dc38c5d31291f5ef9308f91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ab7eb6d540dc38c5d31291f5ef9308f91">hblankHandler</a> () ITCM_CODE</td></tr>
-<tr class="separator:ab7eb6d540dc38c5d31291f5ef9308f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a78cce5bae844be29ced86930f0dd34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a7a78cce5bae844be29ced86930f0dd34">drawLine</a> (int gbLine)</td></tr>
+<tr class="memdesc:a7a78cce5bae844be29ced86930f0dd34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a line on the screen, updating the state and palettes for each line.  <br /></td></tr>
+<tr class="separator:a7a78cce5bae844be29ced86930f0dd34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6636088a6baab3e32c6205d6cc483c86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a6636088a6baab3e32c6205d6cc483c86">doHBlank</a> (int line)</td></tr>
+<tr class="memdesc:a6636088a6baab3e32c6205d6cc483c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform horizontal blank processing for a given line.  <br /></td></tr>
+<tr class="separator:a6636088a6baab3e32c6205d6cc483c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f17d4b0a0e3c9903d68027415d47539"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a3f17d4b0a0e3c9903d68027415d47539">hblankHandler</a> ()</td></tr>
+<tr class="memdesc:a3f17d4b0a0e3c9903d68027415d47539"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle horizontal blank interrupt.  <br /></td></tr>
+<tr class="separator:a3f17d4b0a0e3c9903d68027415d47539"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb0c9757b585d53633e72130af93d164"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#abb0c9757b585d53633e72130af93d164">vcountHandler</a> ()</td></tr>
+<tr class="memdesc:abb0c9757b585d53633e72130af93d164"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle vcount interrupt, which is triggered on line 235 (middle of vblank). This function is called during the vcount interrupt and sets the vram banks to the appropriate sub backgrounds based on whether scaling is on or not. It then performs hblank processing for the very top line (physical line 0) and draws the first Game Boy line early (physical line 24) if it has been modified. If graphics are disabled, the function returns.  <br /></td></tr>
 <tr class="separator:abb0c9757b585d53633e72130af93d164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f55870003e8d34f5d175345f39f4105"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a2f55870003e8d34f5d175345f39f4105">doAtVBlank</a> (void(*func)(void))</td></tr>
+<tr class="memdesc:a2f55870003e8d34f5d175345f39f4105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a function to be called at VBlank time.  <br /></td></tr>
 <tr class="separator:a2f55870003e8d34f5d175345f39f4105"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61980113c878f9f0138454e1e1047750"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a61980113c878f9f0138454e1e1047750">vblankHandler</a> ()</td></tr>
+<tr class="memdesc:a61980113c878f9f0138454e1e1047750"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle vblank interrupt.  <br /></td></tr>
 <tr class="separator:a61980113c878f9f0138454e1e1047750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6152d90bc27302b3fcd92f4973a2401c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a6152d90bc27302b3fcd92f4973a2401c">loadSGBBorder</a> ()</td></tr>
+<tr class="memdesc:a6152d90bc27302b3fcd92f4973a2401c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load SGB border.  <br /></td></tr>
 <tr class="separator:a6152d90bc27302b3fcd92f4973a2401c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad00fca63a33eb7f18124dc4a19620a2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ad00fca63a33eb7f18124dc4a19620a2e">initGFX</a> ()</td></tr>
+<tr class="memdesc:ad00fca63a33eb7f18124dc4a19620a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the graphics subsystem.  <br /></td></tr>
 <tr class="separator:ad00fca63a33eb7f18124dc4a19620a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad55b96f2678da1f09b16057cd76c3fe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ad55b96f2678da1f09b16057cd76c3fe9">initGFXPalette</a> ()</td></tr>
+<tr class="memdesc:ad55b96f2678da1f09b16057cd76c3fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the palette data for the graphics.  <br /></td></tr>
 <tr class="separator:ad55b96f2678da1f09b16057cd76c3fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62b34356f6149d2c44ee24379cc347a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a62b34356f6149d2c44ee24379cc347a6">refreshGFX</a> ()</td></tr>
+<tr class="memdesc:a62b34356f6149d2c44ee24379cc347a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the graphics on the screen.  <br /></td></tr>
 <tr class="separator:a62b34356f6149d2c44ee24379cc347a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484b3e71acef74d4337dbaf8765cb140"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a484b3e71acef74d4337dbaf8765cb140">clearGFX</a> ()</td></tr>
+<tr class="memdesc:a484b3e71acef74d4337dbaf8765cb140"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables graphics and blackens the screen or sets it to white if a border is loaded.  <br /></td></tr>
 <tr class="separator:a484b3e71acef74d4337dbaf8765cb140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab69a9c5313c53ae912567230d8ddfcf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ab69a9c5313c53ae912567230d8ddfcf0">refreshSgbPalette</a> ()</td></tr>
+<tr class="memdesc:ab69a9c5313c53ae912567230d8ddfcf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the palettes for the Super Game Boy (SGB) mode.  <br /></td></tr>
 <tr class="separator:ab69a9c5313c53ae912567230d8ddfcf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6eb238b4b25b103654a5cbae07a4138"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#af6eb238b4b25b103654a5cbae07a4138">displayIcon</a> (int iconid)</td></tr>
+<tr class="memdesc:af6eb238b4b25b103654a5cbae07a4138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays an icon on the Game Boy screen.  <br /></td></tr>
 <tr class="separator:af6eb238b4b25b103654a5cbae07a4138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c68b80f62aca2e37b19134d5885eb57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a5c68b80f62aca2e37b19134d5885eb57">selectBorder</a> ()</td></tr>
+<tr class="memdesc:a5c68b80f62aca2e37b19134d5885eb57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects a custom border image file for the emulator display.  <br /></td></tr>
 <tr class="separator:a5c68b80f62aca2e37b19134d5885eb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac67a99cc1feaf73626bdeebcd476c33d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ac67a99cc1feaf73626bdeebcd476c33d">loadBorder</a> (const char *<a class="el" href="inputhelper_8cpp.html#a8c1e45e135261042ac6429a00328fe61">filename</a>)</td></tr>
 <tr class="separator:ac67a99cc1feaf73626bdeebcd476c33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa830515ff224eeaa5ae76432a118cd98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#aa830515ff224eeaa5ae76432a118cd98">checkBorder</a> ()</td></tr>
 <tr class="separator:aa830515ff224eeaa5ae76432a118cd98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addf38491f7aa4075fc1bb2eb2fe2d096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#addf38491f7aa4075fc1bb2eb2fe2d096">refreshScaleMode</a> ()</td></tr>
+<tr class="memdesc:addf38491f7aa4075fc1bb2eb2fe2d096"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the scaling mode of the video.  <br /></td></tr>
 <tr class="separator:addf38491f7aa4075fc1bb2eb2fe2d096"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7865df132d4b365722a1ff879942afc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ab7865df132d4b365722a1ff879942afc">setGFXMask</a> (int mask)</td></tr>
 <tr class="separator:ab7865df132d4b365722a1ff879942afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,18 +207,24 @@ Functions</h2></td></tr>
 <tr class="memitem:a8535091adb0cef3f5ddd47d30e6015bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a8535091adb0cef3f5ddd47d30e6015bb">setSgbMap</a> (u8 *src)</td></tr>
 <tr class="separator:a8535091adb0cef3f5ddd47d30e6015bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a211a591c0c34da3c0e17a95361b3b6ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a211a591c0c34da3c0e17a95361b3b6ab">copyTile</a> (u8 *src, u16 *dest)</td></tr>
+<tr class="memdesc:a211a591c0c34da3c0e17a95361b3b6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies a tile from source data to destination data. The copyTile function copies a tile from the source data to the destination data. The function takes in two arguments: src, a pointer to the source data for the tile, and dest, a pointer to the destination data for the tile. The function iterates over the 8 rows in the tile and over the 8 pixels in each row. It gets the color ID for each pixel in the tile data and sets the appropriate color value in the destination data.  <br /></td></tr>
 <tr class="separator:a211a591c0c34da3c0e17a95361b3b6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a156e6af1e5bbf84cd59aaa74d204ee77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a156e6af1e5bbf84cd59aaa74d204ee77">drawScreen</a> ()</td></tr>
 <tr class="separator:a156e6af1e5bbf84cd59aaa74d204ee77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7d241162c9a5a9725e74acbbf4e21a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ad7d241162c9a5a9725e74acbbf4e21a9">drawScanline</a> (int scanline) ITCM_CODE</td></tr>
-<tr class="separator:ad7d241162c9a5a9725e74acbbf4e21a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accfc00674239f8d922416ce6defc9084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#accfc00674239f8d922416ce6defc9084">drawScanline_P2</a> (int scanline) ITCM_CODE</td></tr>
-<tr class="separator:accfc00674239f8d922416ce6defc9084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cec0914be5ae980da80f2a7cf47ddc9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a1cec0914be5ae980da80f2a7cf47ddc9">drawScanline</a> (int scanline)</td></tr>
+<tr class="memdesc:a1cec0914be5ae980da80f2a7cf47ddc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the window X position if it has changed and sets the lineModified and mapsModified flags accordingly.  <br /></td></tr>
+<tr class="separator:a1cec0914be5ae980da80f2a7cf47ddc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f2076cbffa95c8bb5e27e4f4d6f67d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a5f2076cbffa95c8bb5e27e4f4d6f67d5">drawScanline_P2</a> (int scanline)</td></tr>
+<tr class="memdesc:a5f2076cbffa95c8bb5e27e4f4d6f67d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw a scanline on the screen using palette data and background maps.  <br /></td></tr>
+<tr class="separator:a5f2076cbffa95c8bb5e27e4f4d6f67d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf17e95c285e77dea221cb54923a91a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#aaf17e95c285e77dea221cb54923a91a3">writeVram</a> (u16 addr, u8 val)</td></tr>
+<tr class="memdesc:aaf17e95c285e77dea221cb54923a91a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a value to VRAM at the specified address. This function writes a byte to VRAM at a specified address. It checks if the old value is the same as the new value, and if it is, the function returns without making any changes. If the value has changed, the new value is written to the specified address in VRAM. If the address is less than 0x1800, the function determines which tile the address belongs to and checks the current scanline. If the current scanline is between 128 and 143, it marks the tile as changed in the current frame. Otherwise, it marks the tile as changed outside of the current frame. If the address is greater than or equal to 0x1800, the function determines which map the address belongs to and which tile it represents. If the VRAM bank is 1 and the new value has bit 7 set but the old value didn't, it increments the number of tiles that use tile priority for that map. If the new value doesn't have bit 7 set but the old value did, it decrements the number of tiles that use tile priority for that map. The function then marks the map and tile as changed.  <br /></td></tr>
 <tr class="separator:aaf17e95c285e77dea221cb54923a91a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9631e983076a6906dd0eb1c185bd870c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a9631e983076a6906dd0eb1c185bd870c">writeVram16</a> (u16 dest, u16 src)</td></tr>
+<tr class="memdesc:a9631e983076a6906dd0eb1c185bd870c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a 16-bit value to VRAM. The writeVram16 function is responsible for writing 16 bytes of data from the source address to the destination address in video RAM (VRAM). The function checks if the write operation is performed on map flags (in VRAM bank 1), and if so, it adjusts the tile priority accordingly. After the write operation is performed, the function checks if the affected tiles or maps need to be redrawn, based on whether the operation occurs during the visible screen area or not. If necessary, the function adds the affected tiles or maps to a queue for later redrawing.  <br /></td></tr>
 <tr class="separator:a9631e983076a6906dd0eb1c185bd870c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7573347fba5b70225ad712fc48a679c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#ae7573347fba5b70225ad712fc48a679c">handleVideoRegister</a> (u8 ioReg, u8 val)</td></tr>
+<tr class="memdesc:ae7573347fba5b70225ad712fc48a679c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles writes to video-related I/O registers. This function is called whenever a write is made to one of the video-related I/O registers. It handles the register writes by updating any state that is affected by the write. For example, changes to the LCDC register can affect whether the background and sprites are displayed, and changes to the DMA register initiate a DMA transfer of sprite data. The handleVideoRegister function handles write accesses to various video-related IO registers. It takes two parameters, ioReg and val, which correspond to the register being written to and the value being written, respectively. The function contains a switch statement that handles each IO register separately. For register 0x40, the LCD Control register (LCDC), the function updates the IO register value and sets flags indicating that the screen needs to be redrawn if the LCD is turned on or off, and if the background or sprites should be redrawn. If the LCD is turned off, it also sets the video mode to 0. For register 0x46, the DMA Transfer register, the function performs a DMA transfer from the source address specified in the IO register multiplied by 0x100 to the HRAM. It also sets flags indicating that the sprites and screen need to be redrawn. For registers 0x42 and 0x43, the Scroll Y and Scroll X registers, the function updates the IO register values and sets flags indicating that the background maps need to be redrawn. For register 0x4B, the Window X Position register, the function updates the IO register value. For register 0x4A, the Window Y Position register, the function updates the IO register value and sets a flag indicating that the window position needs to be updated. For registers 0x47, 0x48, and 0x49, the Background Palette register, Sprite Palette 0 register, and Sprite Palette 1 register (GB classic only), respectively, the function updates the IO register values and sets flags indicating that the background or sprite palettes need to be redrawn. For registers 0x69 and 0x6B, the Background Palette Data and Sprite Palette Data registers (GBC only), respectively, the function updates the IO register values, the corresponding palette data, and sets flags indicating that the background or sprite palettes need to be redrawn. These registers also update the palette index register, which is checked in the next write to determine which palette data should be read. For all other registers, the function simply updates the IO register value.  <br /></td></tr>
 <tr class="separator:ae7573347fba5b70225ad712fc48a679c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a496cd2cdb3d9a1f4ca5bf45325ebdc0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbgfx_8cpp.html#a496cd2cdb3d9a1f4ca5bf45325ebdc0a">writeHram</a> (u16 addr, u8 val)</td></tr>
 <tr class="separator:a496cd2cdb3d9a1f4ca5bf45325ebdc0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -457,7 +485,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00923">923</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01073">1073</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -476,7 +504,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00699">699</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Disables graphics and blackens the screen or sets it to white if a border is loaded. </p>
+<p>This function disables all graphics and sets the background color to black or white depending on whether a border is loaded. If a border is loaded, it sets the palette to white. Otherwise, it sets the palette to black. It also disables all sprites. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00806">806</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -506,7 +537,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01266">1266</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Copies a tile from source data to destination data. The copyTile function copies a tile from the source data to the destination data. The function takes in two arguments: src, a pointer to the source data for the tile, and dest, a pointer to the destination data for the tile. The function iterates over the 8 rows in the tile and over the 8 pixels in each row. It gets the color ID for each pixel in the tile data and sets the appropriate color value in the destination data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>a pointer to the source data for the tile. </td></tr>
+    <tr><td class="paramname">dest</td><td>a pointer to the destination data for the tile. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01534">1534</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -526,7 +566,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00795">795</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Displays an icon on the Game Boy screen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iconid</td><td>Identifier of the icon to be displayed. ICON_NULL for no icon, ICON_PRINTER for a printer icon. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00913">913</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -546,12 +594,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00484">484</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Add a function to be called at VBlank time. </p>
+<p>This function adds a function pointer to the list of tasks to be executed during VBlank. The function pointer is added to the end of the vblankTasks vector.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>A pointer to the function to be executed at VBlank time. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00538">538</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="af81933618cd850b54967001130817a61" name="af81933618cd850b54967001130817a61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af81933618cd850b54967001130817a61">&#9670;&#160;</a></span>doHBlank()</h2>
+<a id="a6636088a6baab3e32c6205d6cc483c86" name="a6636088a6baab3e32c6205d6cc483c86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6636088a6baab3e32c6205d6cc483c86">&#9670;&#160;</a></span>doHBlank()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -566,12 +623,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00422">422</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Perform horizontal blank processing for a given line. </p>
+<p>This function is called during the horizontal blank period of the Game Boy's screen refresh cycle. It checks if graphics are disabled, the current line is outside the valid range, or if H-blank processing is disabled. If none of these conditions apply, it calculates the Game Boy line number for the current line, checks if the previous line was modified but not yet drawn, and draws the current line if it has been modified.</p>
+<p>Additionally, if a file chooser or menu is currently active, this function will change the backdrop color for the current row to highlight the selected option.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">line</td><td>The current line. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00444">444</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a3299fd8fbf2fadcfd88ee2f18824cbea" name="a3299fd8fbf2fadcfd88ee2f18824cbea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3299fd8fbf2fadcfd88ee2f18824cbea">&#9670;&#160;</a></span>drawLine()</h2>
+<a id="a7a78cce5bae844be29ced86930f0dd34" name="a7a78cce5bae844be29ced86930f0dd34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a78cce5bae844be29ced86930f0dd34">&#9670;&#160;</a></span>drawLine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -586,12 +653,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00179">179</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Draws a line on the screen, updating the state and palettes for each line. </p>
+<p>This function is responsible for updating the state of the screen on a line-by-line basis, including managing screen/window layers and updating palettes for the background and sprites. It also manages drawing the sprites for each line.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gbLine</td><td>The current line number to be drawn on the screen. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00188">188</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ad7d241162c9a5a9725e74acbbf4e21a9" name="ad7d241162c9a5a9725e74acbbf4e21a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7d241162c9a5a9725e74acbbf4e21a9">&#9670;&#160;</a></span>drawScanline()</h2>
+<a id="a1cec0914be5ae980da80f2a7cf47ddc9" name="a1cec0914be5ae980da80f2a7cf47ddc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cec0914be5ae980da80f2a7cf47ddc9">&#9670;&#160;</a></span>drawScanline()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -606,12 +682,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01407">1407</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Updates the window X position if it has changed and sets the lineModified and mapsModified flags accordingly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scanline</td><td>Current scanline. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01719">1719</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="accfc00674239f8d922416ce6defc9084" name="accfc00674239f8d922416ce6defc9084"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#accfc00674239f8d922416ce6defc9084">&#9670;&#160;</a></span>drawScanline_P2()</h2>
+<a id="a5f2076cbffa95c8bb5e27e4f4d6f67d5" name="a5f2076cbffa95c8bb5e27e4f4d6f67d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2076cbffa95c8bb5e27e4f4d6f67d5">&#9670;&#160;</a></span>drawScanline_P2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -626,7 +710,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01424">1424</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Draw a scanline on the screen using palette data and background maps. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scanline</td><td>The current scanline being drawn. This function is called after video mode 3. It draws a scanline on the screen using the palette data and background maps. If HBlank is disabled, the function returns immediately. The function checks if the window position needs to be adjusted, updates the rendering state for the scanline, and sets the modified flag if necessary. It then updates the sprite and background palettes, as well as the maps and tiles used in the rendering. If the scanline is 0, the palettes and maps are marked as modified to ensure they are drawn correctly. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01746">1746</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -644,13 +737,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Draws the screen using the current rendering state.</p>
+<p>If <code>probingForBorder</code> is true, the function immediately returns without performing any actions. Otherwise, if fast forward mode is not enabled, the function waits for vblank and sets the <code>didVblank</code> flag to false. If <code>interruptWaitMode</code> is 1, the function always waits for vblank, otherwise it waits only if vblank has not yet occurred. The <code>frameFlip_Gameboy</code> and <code>frameFlip_DS</code> fields of the <code>sharedData</code> struct are updated based on the current value of <code>REG_VCOUNT</code>. If <code>gfxMask</code> is nonzero, the function immediately returns without performing any further actions. The <code>renderingState</code> and <code>drawingState</code> pointers are swapped, and the <code>screenDisabled</code> variable is updated based on the value of the LCD control register. The tile data and tile maps are updated, and if SGB mode is active, the SGB palette is refreshed. </p>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01284">1284</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01571">1571</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a2c3bc7cf83f9225ce88d2bcbd53875a6" name="a2c3bc7cf83f9225ce88d2bcbd53875a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c3bc7cf83f9225ce88d2bcbd53875a6">&#9670;&#160;</a></span>drawSprites()</h2>
+<a id="a88f8d46d8cf1f3ea65e4e290a99020d9" name="a88f8d46d8cf1f3ea65e4e290a99020d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88f8d46d8cf1f3ea65e4e290a99020d9">&#9670;&#160;</a></span>drawSprites()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -665,7 +760,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tallSprites</em>&#160;</td>
+          <td class="paramname"><em>tall</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -675,12 +770,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01325">1325</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Draw sprites on the screen. This function draws the sprites onto the screen using the sprite data provided. It uses the sprite data to determine the position, size, tile number, bank, and other attributes of each sprite. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Pointer to an array containing the sprite data. </td></tr>
+    <tr><td class="paramname">tall</td><td>Whether the sprites are tall (2 tiles high) or not. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01631">1631</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a27a1116d3f41a4a2d146cf8386b99bdd" name="a27a1116d3f41a4a2d146cf8386b99bdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27a1116d3f41a4a2d146cf8386b99bdd">&#9670;&#160;</a></span>drawTile()</h2>
+<a id="a8c19f928b2c7863839f14f5609538afd" name="a8c19f928b2c7863839f14f5609538afd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c19f928b2c7863839f14f5609538afd">&#9670;&#160;</a></span>drawTile()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -689,7 +793,7 @@ Variables</h2></td></tr>
           <td class="memname">void drawTile </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>tile</em>, </td>
+          <td class="paramname"><em>tileNum</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -705,7 +809,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01199">1199</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Draws a tile with the given tile number and bank. The drawTile function draws tiles on the Game Boy's background and sprite graphics planes based on the given tile number and bank. The function takes in two integer arguments: tileNum, which represents the tile number, and bank, which represents the bank number. The tile number is used to calculate the index of the tile data and to determine whether the tile number is unsigned or signed. The bank number is used to determine which VRAM bank the tile data is stored in. The function iterates over the 8 rows in the tile and over the 4 pixels in each row. It sets the foreground and background color values for each pixel based on the color ID values in the tile data. It then sets the graphics data for the tile in the appropriate location in the background or sprite graphics planes based on whether the tile number is unsigned or signed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileNum</td><td>an integer value representing the tile number. </td></tr>
+    <tr><td class="paramname">bank</td><td>an integer value representing the bank number. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01448">1448</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -735,12 +848,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01744">1744</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Handles writes to video-related I/O registers. This function is called whenever a write is made to one of the video-related I/O registers. It handles the register writes by updating any state that is affected by the write. For example, changes to the LCDC register can affect whether the background and sprites are displayed, and changes to the DMA register initiate a DMA transfer of sprite data. The handleVideoRegister function handles write accesses to various video-related IO registers. It takes two parameters, ioReg and val, which correspond to the register being written to and the value being written, respectively. The function contains a switch statement that handles each IO register separately. For register 0x40, the LCD Control register (LCDC), the function updates the IO register value and sets flags indicating that the screen needs to be redrawn if the LCD is turned on or off, and if the background or sprites should be redrawn. If the LCD is turned off, it also sets the video mode to 0. For register 0x46, the DMA Transfer register, the function performs a DMA transfer from the source address specified in the IO register multiplied by 0x100 to the HRAM. It also sets flags indicating that the sprites and screen need to be redrawn. For registers 0x42 and 0x43, the Scroll Y and Scroll X registers, the function updates the IO register values and sets flags indicating that the background maps need to be redrawn. For register 0x4B, the Window X Position register, the function updates the IO register value. For register 0x4A, the Window Y Position register, the function updates the IO register value and sets a flag indicating that the window position needs to be updated. For registers 0x47, 0x48, and 0x49, the Background Palette register, Sprite Palette 0 register, and Sprite Palette 1 register (GB classic only), respectively, the function updates the IO register values and sets flags indicating that the background or sprite palettes need to be redrawn. For registers 0x69 and 0x6B, the Background Palette Data and Sprite Palette Data registers (GBC only), respectively, the function updates the IO register values, the corresponding palette data, and sets flags indicating that the background or sprite palettes need to be redrawn. These registers also update the palette index register, which is checked in the next write to determine which palette data should be read. For all other registers, the function simply updates the IO register value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ioReg</td><td>The I/O register being written to. </td></tr>
+    <tr><td class="paramname">val</td><td>The value being written to the I/O register. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l02144">2144</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ab7eb6d540dc38c5d31291f5ef9308f91" name="ab7eb6d540dc38c5d31291f5ef9308f91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7eb6d540dc38c5d31291f5ef9308f91">&#9670;&#160;</a></span>hblankHandler()</h2>
+<a id="a3f17d4b0a0e3c9903d68027415d47539" name="a3f17d4b0a0e3c9903d68027415d47539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f17d4b0a0e3c9903d68027415d47539">&#9670;&#160;</a></span>hblankHandler()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -754,7 +876,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00456">456</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Handle horizontal blank interrupt. </p>
+<p>This function is called during the horizontal blank interrupt and retrieves the current line number using REG_VCOUNT. If the screen is in a non-VBlank mode, it decrements the line number by one. It then calls the doHBlank function to perform horizontal blank processing for the given line. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00487">487</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -773,7 +898,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00548">548</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Initialize the graphics subsystem. </p>
+<p>This function sets up the video memory banks for the backgrounds and sprites. It sets the vcount interrupt line to 235 and enables the vcount, hblank and vblank interrupts. It initializes the off map and the tile for "color0 maps". It also initializes the window parameters and sets the video mode. Finally, it clears the scanline buffers and enables the graphics. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00631">631</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -792,7 +920,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00627">627</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Initializes the palette data for the graphics. </p>
+<p>This function sets the palette data for the background and sprite palettes, as well as prevents flickering when loading ROMs. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00716">716</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -811,8 +942,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Loads a custom border image file into VRAM and displays it on the screen.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The path and filename of the custom border image file to load. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, 1 on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00860">860</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00998">998</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -831,7 +970,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00536">536</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Load SGB border. </p>
+<p>This function sets up the background and loads the SGB border. It disables video background 3, sets the window out to video background 3, and sets the display control to mode 0. It sets the background 3 control register to the border map base and tile base 12, and sets the horizontal and vertical offsets to zero and -(screenOffsY - 40) respectively. It then enables video background 3. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00610">610</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -850,7 +992,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00662">662</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Refreshes the graphics on the screen. </p>
+<p>This function updates all tiles and tile maps on both backgrounds, as well as clears all queues of changes to tiles and tile maps. It also resets various internal flags and counters used for graphics processing. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00762">762</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -869,7 +1014,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00986">986</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Refreshes the scaling mode of the video. </p>
+<p>This function is used to refresh the scaling mode of the video depending on the current scale mode and filter. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01144">1144</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -888,7 +1036,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00725">725</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Refreshes the palettes for the Super Game Boy (SGB) mode. </p>
+<p>This function updates the palettes for the SGB mode, managing both background and window layers. It takes into account the current state of the screen, scrolling, and window settings. Note that SGB palettes might not be perfect due to the SGB not necessarily aligning palettes with tiles, which is mostly problematic when scrolling around status bars. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00837">837</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -907,7 +1058,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00822">822</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Selects a custom border image file for the emulator display. </p>
+<p>This function allows the user to select a custom border image file in BMP format for the emulator display. The borderChooserState is loaded and the user is prompted to select a BMP file using the file chooser. If a file is selected, its path is stored in borderPath, the BORDER_NONE is set to force a reload of the border, and checkBorder is called to check if the border is valid. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00949">949</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -926,8 +1080,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the graphics mask to the given value and performs necessary actions depending on the value.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mask</td><td>an integer value representing the graphics mask to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01058">1058</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01221">1221</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -946,8 +1107,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the SGB map using the given source.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>an unsigned 8-bit integer pointer to the source. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01130">1130</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01333">1333</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -976,8 +1144,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the SGB tiles using the given source and flags.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>an unsigned 8-bit integer pointer to the source. </td></tr>
+    <tr><td class="paramname">flags</td><td>an unsigned 8-bit integer representing the flags. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01073">1073</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01250">1250</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1013,7 +1189,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01710">1710</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Updates a background palette. This function iterates through each color in the given data and updates the corresponding color in the background palette. The <code>paletteid</code> parameter specifies which palette to update, and <code>dmgPal</code> is the palette data for DMG mode, which is used to map the indices to the correct color values. The background palette is stored as a linear array of 64 16-bit color values (one for each of the four colors in each of the 16 palette entries). The first entry is always transparent, so it is skipped in the loop. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">paletteid</td><td>ID of the palette to update. </td></tr>
+    <tr><td class="paramname">data</td><td>Pointer to the data containing the new palette values. </td></tr>
+    <tr><td class="paramname">dmgPal</td><td>DMG palette value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l02071">2071</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1043,7 +1229,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01720">1720</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Updates the Game Boy Color background palette with the specified data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">paletteid</td><td>The index of the palette to update. </td></tr>
+    <tr><td class="paramname">data</td><td>The data to update the palette with.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function is only used in Game Boy Color mode. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l02090">2090</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1079,12 +1275,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01727">1727</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Updates the sprite palette in the given paletteid using the provided data and dmgPal. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">paletteid</td><td>The palette ID to update </td></tr>
+    <tr><td class="paramname">data</td><td>The data containing the new color values </td></tr>
+    <tr><td class="paramname">dmgPal</td><td>The DMG palette </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l02107">2107</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
-<a id="abaa5f65ef32cc80bd17ba14c47984536" name="abaa5f65ef32cc80bd17ba14c47984536"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abaa5f65ef32cc80bd17ba14c47984536">&#9670;&#160;</a></span>updateTileMap()</h2>
+<a id="a38cfcb29e33564da47daf80302f353b5" name="a38cfcb29e33564da47daf80302f353b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38cfcb29e33564da47daf80302f353b5">&#9670;&#160;</a></span>updateTileMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1093,7 +1299,7 @@ Variables</h2></td></tr>
           <td class="memname">void updateTileMap </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>map</em>, </td>
+          <td class="paramname"><em>m</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1109,7 +1315,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01170">1170</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Updates the tile map for the given map index and tile number. </p>
+<p>The updateTileMap function updates the tile map for the given map index m and tile number i. It first sets the changed map flag for the tile to false. It then gets the map address and tile number for the tile. If the Game Boy mode is CGB, it extracts the flipX, flipY, bank, paletteid, and priority values from the VRAM. If the priority value is set, it sets the overlay map entry with the tile number, bank, palette ID, flipX, and flipY values. Otherwise, it sets the overlay map entry to 0x300. The function sets the map entry with the tile number, bank, palette ID, flipX, and flipY values. It also sets the color 0 map entry with the palette ID.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>an integer value representing the map index. </td></tr>
+    <tr><td class="paramname">i</td><td>an integer value representing the tile number. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01398">1398</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1127,8 +1343,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates the tile maps. </p>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01159">1159</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01374">1374</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1364,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01689">1689</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Updates the tile data and queues the changed tiles to be redrawn. </p>
+<p>The function updates the tile data and queues the changed tiles to be redrawn. It first processes all the tiles in the <code>changedTileQueue</code>, which holds the tiles that have changed on the current frame. After redrawing these tiles, it marks them as unmodified. Then, it copies the tiles in the <code>changedTileInFrameQueue</code>, which holds the tiles that have changed in the current frame but haven't been redrawn yet, to <code>changedTileQueue</code> so they can be redrawn on the next frame. Finally, it marks the tiles in the <code>changedTileInFrame</code> queue as unmodified. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l02039">2039</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1386,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00490">490</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Handle vblank interrupt. </p>
+<p>This function is called during the vblank interrupt and performs various tasks such as setting the appropriate vram banks for scaling, capturing the main display into vram bank D, resetting the line completion status, and executing any vblank tasks that were added to the vblankTasks vector using doAtVBlank. If scaling is enabled, DMA copying is left for arm7 to handle and the scaleTransferReady flag is set to true. The function also updates the frame counter and the filter position if a filter is being applied. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00553">553</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1185,7 +1408,9 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00465">465</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Handle vcount interrupt, which is triggered on line 235 (middle of vblank). This function is called during the vcount interrupt and sets the vram banks to the appropriate sub backgrounds based on whether scaling is on or not. It then performs hblank processing for the very top line (physical line 0) and draws the first Game Boy line early (physical line 24) if it has been modified. If graphics are disabled, the function returns. </p>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00506">506</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1214,8 +1439,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Writes a byte to the High RAM at the specified address.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The address to write to. </td></tr>
+    <tr><td class="paramname">val</td><td>The value to write. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01869">1869</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l02275">2275</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1245,7 +1478,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01578">1578</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Writes a value to VRAM at the specified address. This function writes a byte to VRAM at a specified address. It checks if the old value is the same as the new value, and if it is, the function returns without making any changes. If the value has changed, the new value is written to the specified address in VRAM. If the address is less than 0x1800, the function determines which tile the address belongs to and checks the current scanline. If the current scanline is between 128 and 143, it marks the tile as changed in the current frame. Otherwise, it marks the tile as changed outside of the current frame. If the address is greater than or equal to 0x1800, the function determines which map the address belongs to and which tile it represents. If the VRAM bank is 1 and the new value has bit 7 set but the old value didn't, it increments the number of tiles that use tile priority for that map. If the new value doesn't have bit 7 set but the old value did, it decrements the number of tiles that use tile priority for that map. The function then marks the map and tile as changed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The address to write to. </td></tr>
+    <tr><td class="paramname">val</td><td>The value to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01908">1908</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1275,7 +1517,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01624">1624</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p>Writes a 16-bit value to VRAM. The writeVram16 function is responsible for writing 16 bytes of data from the source address to the destination address in video RAM (VRAM). The function checks if the write operation is performed on map flags (in VRAM bank 1), and if so, it adjusts the tile priority accordingly. After the write operation is performed, the function checks if the affected tiles or maps need to be redrawn, based on whether the operation occurs during the visible screen area or not. If necessary, the function adds the affected tiles or maps to a queue for later redrawing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>The destination address in VRAM. </td></tr>
+    <tr><td class="paramname">src</td><td>The source address in ROM or RAM. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01962">1962</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -1644,7 +1895,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00489">489</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00543">543</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -2172,7 +2423,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00482">482</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l00528">528</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>
@@ -2284,7 +2535,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01405">1405</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="gbgfx_8cpp_source.html#l01711">1711</a> of file <a class="el" href="gbgfx_8cpp_source.html">gbgfx.cpp</a>.</p>
 
 </div>
 </div>

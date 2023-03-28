@@ -4,11 +4,11 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{main_8h_a54add63a62b11f9bccd4975da8fdd99c}{select\+Rom}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Loads a ROM file and initializes the Gameboy emulator for the first time. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8h_aa1e7d84951bad6e6c0e5b0962495a2d5}{initialize\+Gameboy}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences. This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero, and initializing the SGB mode to false. Depending on the type of game being loaded and the user\textquotesingle{}s preferences, the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized and GBS mode is handled accordingly. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{main_8h_a4429766953b588702b57e002f24122a1}{initialize\+Gameboy\+First\+Time}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probing\+For\+Border flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgb\+Border\+Loaded flag to false, which effectively unloads any SGB border. Calls \mbox{\hyperlink{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}{initialize\+Gameboy()}} to continue with Gameboy initialization. If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -20,7 +20,14 @@ void \mbox{\hyperlink{main_8h_a4429766953b588702b57e002f24122a1}{initialize\+Gam
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00108}{108}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences. This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero, and initializing the SGB mode to false. Depending on the type of game being loaded and the user\textquotesingle{}s preferences, the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized and GBS mode is handled accordingly. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00163}{163}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 
 \mbox{\Hypertarget{main_8h_a4429766953b588702b57e002f24122a1}\label{main_8h_a4429766953b588702b57e002f24122a1}} 
 \index{main.h@{main.h}!initializeGameboyFirstTime@{initializeGameboyFirstTime}}
@@ -30,7 +37,14 @@ Definition at line \mbox{\hyperlink{main_8cpp_source_l00108}{108}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00169}{169}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probing\+For\+Border flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgb\+Border\+Loaded flag to false, which effectively unloads any SGB border. Calls \mbox{\hyperlink{main_8cpp_aa1e7d84951bad6e6c0e5b0962495a2d5}{initialize\+Gameboy()}} to continue with Gameboy initialization. If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00230}{230}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 
 \mbox{\Hypertarget{main_8h_a54add63a62b11f9bccd4975da8fdd99c}\label{main_8h_a54add63a62b11f9bccd4975da8fdd99c}} 
 \index{main.h@{main.h}!selectRom@{selectRom}}
@@ -40,5 +54,14 @@ Definition at line \mbox{\hyperlink{main_8cpp_source_l00169}{169}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{main_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+Loads a ROM file and initializes the Gameboy emulator for the first time. 
+
+This function unloads the current ROM, displays a file chooser dialog to let the user select a new ROM file to load, and initializes the emulator with the selected ROM. If a BIOS file is present, it is loaded and used by the emulator as well.
+
+\begin{DoxyNote}{Note}
+This function must be called after the emulator has been initialized at least once. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{main_8cpp_source_l00083}{83}} of file \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
 

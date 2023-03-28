@@ -105,18 +105,25 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a5e9496c777a9b87b88b024e86e1df765"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a5e9496c777a9b87b88b024e86e1df765">fifoValue32Handler</a> (u32 value, void *user_data)</td></tr>
+<tr class="memdesc:a5e9496c777a9b87b88b024e86e1df765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle 32-bit FIFO messages.  <br /></td></tr>
 <tr class="separator:a5e9496c777a9b87b88b024e86e1df765"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54add63a62b11f9bccd4975da8fdd99c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a> ()</td></tr>
+<tr class="memdesc:a54add63a62b11f9bccd4975da8fdd99c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a ROM file and initializes the Gameboy emulator for the first time.  <br /></td></tr>
 <tr class="separator:a54add63a62b11f9bccd4975da8fdd99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4476c89fd8b9a0783c75f891a47c535e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4476c89fd8b9a0783c75f891a47c535e">initGBMode</a> ()</td></tr>
+<tr class="memdesc:a4476c89fd8b9a0783c75f891a47c535e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes the Game Boy mode based on the current ROM's header values.  <br /></td></tr>
 <tr class="separator:a4476c89fd8b9a0783c75f891a47c535e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e04af5145ec29fb32527bd0bb749f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a78e04af5145ec29fb32527bd0bb749f9">initGBCMode</a> ()</td></tr>
+<tr class="memdesc:a78e04af5145ec29fb32527bd0bb749f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function initializes the Game Boy Color mode based on the current ROM's header values.  <br /></td></tr>
 <tr class="separator:a78e04af5145ec29fb32527bd0bb749f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1e7d84951bad6e6c0e5b0962495a2d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a> ()</td></tr>
+<tr class="memdesc:aa1e7d84951bad6e6c0e5b0962495a2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences. This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero, and initializing the SGB mode to false. Depending on the type of game being loaded and the user's preferences, the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized and GBS mode is handled accordingly.  <br /></td></tr>
 <tr class="separator:aa1e7d84951bad6e6c0e5b0962495a2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4429766953b588702b57e002f24122a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a> ()</td></tr>
+<tr class="memdesc:a4429766953b588702b57e002f24122a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probingForBorder flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgbBorderLoaded flag to false, which effectively unloads any SGB border. Calls <a class="el" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5" title="Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user p...">initializeGameboy()</a> to continue with Gameboy initialization. If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu.  <br /></td></tr>
 <tr class="separator:a4429766953b588702b57e002f24122a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:a0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function for the Gameboy emulator. This function initializes the emulator by setting various parameters and calling the necessary initialization functions. It also loads a ROM file if passed as a command-line argument, otherwise it prompts the user to select a ROM file. Finally, it runs the emulator by calling the <a class="el" href="gameboy_8h.html#a81597fe9593afa9524041c128e8c9517">runEmul()</a> function and returns 0 when finished.  <br /></td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -155,7 +162,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00030">30</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Handle 32-bit FIFO messages. </p>
+<p>This function is used to handle 32-bit FIFO messages, specifically to signal sleep mode starting or ending.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The 32-bit value. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">user_data</td><td>Pointer to user-defined data.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="gameboy_8h.html#a7512b02909147a8b26c34c8a272ee93d">pauseGameboy()</a>, <a class="el" href="gameboy_8h.html#a04f739b2c98ebfeee00219477d8bdd93">isGameboyPaused()</a>, <a class="el" href="gameboy_8h.html#a2048c5bce6dc06e8f6f23d7983aeb4bd">unpauseGameboy()</a> </dd></dl>
+<p>&lt; The scaling value before entering sleep mode.</p>
+<p>&lt; The sound state before entering sleep mode.</p>
+<p>&lt; Whether the Game Boy was paused before entering sleep mode.</p>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00041">41</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -174,7 +196,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00099">99</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>This function initializes the Game Boy Color mode based on the current ROM's header values. </p>
+<p>It checks if the SGB mode option is set to 2 and if the ROM header contains the SGB identifier. If both conditions are met, it sets the Game Boy Color mode to SGB (Super Game Boy) mode. Otherwise, it sets the Game Boy Color mode to GBC (Game Boy Color) mode.</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00145">145</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,7 +219,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00090">90</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>This function initializes the Game Boy mode based on the current ROM's header values. </p>
+<p>It checks if the SGB mode option is enabled and if the ROM header contains the SGB identifier. If both conditions are met, it sets the Game Boy mode to SGB (Super Game Boy) mode. Otherwise, it sets the Game Boy mode to GB (Game Boy) mode.</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00126">126</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -212,7 +242,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00108">108</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences. This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero, and initializing the SGB mode to false. Depending on the type of game being loaded and the user's preferences, the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized and GBS mode is handled accordingly. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00163">163</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -231,7 +264,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00169">169</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probingForBorder flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgbBorderLoaded flag to false, which effectively unloads any SGB border. Calls <a class="el" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5" title="Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user p...">initializeGameboy()</a> to continue with Gameboy initialization. If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00230">230</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -261,7 +297,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00214">214</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Main function for the Gameboy emulator. This function initializes the emulator by setting various parameters and calling the necessary initialization functions. It also loads a ROM file if passed as a command-line argument, otherwise it prompts the user to select a ROM file. Finally, it runs the emulator by calling the <a class="el" href="gameboy_8h.html#a81597fe9593afa9524041c128e8c9517">runEmul()</a> function and returns 0 when finished. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">argc</td><td>The number of command-line arguments passed to the program. </td></tr>
+    <tr><td class="paramname">argv</td><td>An array of command-line argument strings. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An integer indicating the success of the program (always returns 0). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00284">284</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -280,7 +326,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00060">60</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Loads a ROM file and initializes the Gameboy emulator for the first time. </p>
+<p>This function unloads the current ROM, displays a file chooser dialog to let the user select a new ROM file to load, and initializes the emulator with the selected ROM. If a BIOS file is present, it is loaded and used by the emulator as well.</p>
+<dl class="section note"><dt>Note</dt><dd>This function must be called after the emulator has been initialized at least once. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00083">83</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>

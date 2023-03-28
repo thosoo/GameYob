@@ -4,11 +4,11 @@
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{nifi_8h_a0a7f425c3694fcef721d52ab5b6a4442}{enable\+Nifi}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables nifi and configures the Wi-\/\+Fi for communication. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{nifi_8h_ae9d355d8f542fe7b2706f431ca07980e}{disable\+Nifi}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Disables nifi and the Wi-\/\+Fi communication. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}{send\+Packet\+Byte}} (u8 command, u8 data)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sends a packet byte over the network with the specified command and data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -37,7 +37,11 @@ bool \mbox{\hyperlink{nifi_8h_af3c60f1353a1aaf418c586a59ea8c1ef}{nifi\+Enabled}}
 
 
 
-Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00123}{123}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+Disables nifi and the Wi-\/\+Fi communication. 
+
+This function disables the Wi-\/\+Fi and sets the nifi\+Enabled flag to false. 
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00199}{199}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
 
 \mbox{\Hypertarget{nifi_8h_a0a7f425c3694fcef721d52ab5b6a4442}\label{nifi_8h_a0a7f425c3694fcef721d52ab5b6a4442}} 
 \index{nifi.h@{nifi.h}!enableNifi@{enableNifi}}
@@ -47,7 +51,11 @@ Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00123}{123}} of file \mbox
 
 
 
-Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+Enables nifi and configures the Wi-\/\+Fi for communication. 
+
+This function initializes the Wi-\/\+Fi with default settings, sets it to promiscuous mode, enables Wi-\/\+Fi, and sets a custom packet handler. It also sets the Wi-\/\+Fi channel and enables nifi for communication. 
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00154}{154}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
 
 \mbox{\Hypertarget{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}\label{nifi_8h_a1af7ebf46963e53f2031c91462b5be3d}} 
 \index{nifi.h@{nifi.h}!sendPacketByte@{sendPacketByte}}
@@ -57,7 +65,20 @@ Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00095}{95}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
+Sends a packet byte over the network with the specified command and data. 
+
+This function sends a packet byte with a specific command and data if nifi is enabled. It constructs a packet and sends it using the Wifi\+\_\+\+Raw\+Tx\+Frame function. It also logs any errors that occur during transmission.
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command to be included in the packet. \\
+\hline
+{\em data} & The data to be included in the packet. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{nifi_8cpp_source_l00215}{215}} of file \mbox{\hyperlink{nifi_8cpp_source}{nifi.\+cpp}}.
 
 
 

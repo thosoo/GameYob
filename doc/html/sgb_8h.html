@@ -86,8 +86,10 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa21c07d9fc28cda5175e8cc1c534355b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8h.html#aa21c07d9fc28cda5175e8cc1c534355b">initSGB</a> ()</td></tr>
+<tr class="memdesc:aa21c07d9fc28cda5175e8cc1c534355b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Super Game Boy.  <br /></td></tr>
 <tr class="separator:aa21c07d9fc28cda5175e8cc1c534355b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b13f7d7f0c70b71e45025bd1a08eeaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8h.html#a3b13f7d7f0c70b71e45025bd1a08eeaf">sgbHandleP1</a> (u8 val)</td></tr>
+<tr class="memdesc:a3b13f7d7f0c70b71e45025bd1a08eeaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer.  <br /></td></tr>
 <tr class="separator:a3b13f7d7f0c70b71e45025bd1a08eeaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -119,7 +121,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00042">42</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Initializes the Super Game Boy. </p>
+<p>This function resets the variables associated with the Super Game Boy (SGB) mode, including the length of the packet, the number of controllers, the selected controller, the transferred packets, and the checked buttons. Additionally, the SGB map is reset using memset().</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00059">59</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -139,7 +145,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00432">432</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The value of the incoming packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00627">627</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>

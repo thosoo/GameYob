@@ -83,7 +83,7 @@ var searchData=
   ['sgbborderenablefunc_80',['sgbBorderEnableFunc',['../console_8cpp.html#aa0ab45f408db004f8dc22f4ac222f258',1,'console.cpp']]],
   ['sgbborderloaded_81',['sgbBorderLoaded',['../gbgfx_8h.html#a134de385e7f51e7cb43357cf0bb4b624',1,'sgbBorderLoaded():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#a134de385e7f51e7cb43357cf0bb4b624',1,'sgbBorderLoaded():&#160;gbgfx.cpp']]],
   ['sgbbordersenabled_82',['sgbBordersEnabled',['../console_8h.html#a317ff7205cdf33838b77012ea9027eb7',1,'sgbBordersEnabled():&#160;console.cpp'],['../console_8cpp.html#a317ff7205cdf33838b77012ea9027eb7',1,'sgbBordersEnabled():&#160;console.cpp']]],
-  ['sgbchrtrn_83',['sgbChrTrn',['../sgb_8cpp.html#a53ba469d34c6346d30da260968136ed9',1,'sgb.cpp']]],
+  ['sgbchrtrn_83',['sgbChrTrn',['../sgb_8cpp.html#a4d02878f5ab9cca1e00f34064f952e09',1,'sgb.cpp']]],
   ['sgbcommand_84',['sgbCommand',['../sgb_8h.html#a16d8f1d1f6a628ef1473009a55a26222',1,'sgbCommand():&#160;sgb.cpp'],['../sgb_8cpp.html#a16d8f1d1f6a628ef1473009a55a26222',1,'sgbCommand():&#160;sgb.cpp']]],
   ['sgbcommands_85',['sgbCommands',['../sgb_8cpp.html#a66a56570b35035a4ad8876f1ba522af0',1,'sgb.cpp']]],
   ['sgbdatasnd_86',['sgbDataSnd',['../sgb_8cpp.html#acd018560ba8bed1fc8a0c0b833cd7b92',1,'sgb.cpp']]],

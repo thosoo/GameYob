@@ -45,7 +45,7 @@ var searchData=
   ['sgbattrset_42',['sgbAttrSet',['../sgb_8cpp.html#aead92dac54be408bac5cf5e812d40f57',1,'sgb.cpp']]],
   ['sgbattrtrn_43',['sgbAttrTrn',['../sgb_8cpp.html#a2896f6d53572c2575b2f5ea632ff0704',1,'sgb.cpp']]],
   ['sgbborderenablefunc_44',['sgbBorderEnableFunc',['../console_8cpp.html#aa0ab45f408db004f8dc22f4ac222f258',1,'console.cpp']]],
-  ['sgbchrtrn_45',['sgbChrTrn',['../sgb_8cpp.html#a53ba469d34c6346d30da260968136ed9',1,'sgb.cpp']]],
+  ['sgbchrtrn_45',['sgbChrTrn',['../sgb_8cpp.html#a4d02878f5ab9cca1e00f34064f952e09',1,'sgb.cpp']]],
   ['sgbdatasnd_46',['sgbDataSnd',['../sgb_8cpp.html#acd018560ba8bed1fc8a0c0b833cd7b92',1,'sgb.cpp']]],
   ['sgbhandlep1_47',['sgbHandleP1',['../sgb_8h.html#a3b13f7d7f0c70b71e45025bd1a08eeaf',1,'sgbHandleP1(u8 val):&#160;sgb.cpp'],['../sgb_8cpp.html#a3b13f7d7f0c70b71e45025bd1a08eeaf',1,'sgbHandleP1(u8 val):&#160;sgb.cpp']]],
   ['sgbloadattrfile_48',['sgbLoadAttrFile',['../sgb_8cpp.html#a5a048cf7ef6e4eed828e899b472abad0',1,'sgb.cpp']]],

@@ -9,48 +9,48 @@
 \begin{DoxyCompactItemize}
 \item 
 struct \mbox{\hyperlink{struct_cmd_data}{Cmd\+Data}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This struct defines the data for various different commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{sgb_8cpp_aa21c07d9fc28cda5175e8cc1c534355b}{init\+SGB}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the Super Game Boy. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_acc6c37260ac1171a8b837c1870dac7e8}{do\+Vram\+Transfer}} (u8 $\ast$dest)
-\item 
+\begin{DoxyCompactList}\small\item\em Transfers data from the VRAM to a destination buffer. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_af4270fd4d212fa2417cae1235987fb74}{set\+Backdrop}} (u16 val)
-\item 
+\begin{DoxyCompactList}\small\item\em Set the backdrop color of the screen. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a5a048cf7ef6e4eed828e899b472abad0}{sgb\+Load\+Attr\+File}} (int index)
-\item 
+\begin{DoxyCompactList}\small\item\em Loads an SGB attribute file at the given index This function loads an SGB attribute file at the given index. If the index is greater than 0x2c, it prints an error message and returns. The function then iterates over 20 x 18 / 4 (90) elements in the sgb\+Attr\+Files array, and for each element, it extracts 4 pairs of 2-\/bit attribute dataand stores them in the sgb\+Map array. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgb\+Pal\+XX}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the SGB color palettes Sets the SGB color palettes based on the SGB command type and packet data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}{sgb\+Attr\+Block}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets SGB\textquotesingle{}s attribute block for map data. This function sets the SGB\textquotesingle{}s attribute block for map data. It takes in an integer block number, which is used to indicate the start of a new block. The function then fills the data for the attribute block by parsing the packet data. The attribute block\textquotesingle{}s data sets are stored in cmd\+Data as an array of u8s. This function then uses the stored data to update the SGB map according to the data sets. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}{sgb\+Attr\+Lin}} (int block)
 \item 
 void \mbox{\hyperlink{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}{sgb\+Attr\+Div}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the color of the SGB screen based on the data in the SGB packet. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}{sgb\+Attr\+Chr}} (int block)
 \item 
 void \mbox{\hyperlink{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}{sgb\+Pal\+Set}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the background and sprite palettes and loads attribute file if required. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}{sgb\+Pal\+Trn}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Transfers SGB palettes to the VRAM. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}{sgb\+Data\+Snd}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Handles SGB sound data commands. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a603a100441b56f441700833266adf0fa}{sgb\+Mlt\+Req}} (int block)
-\item 
-void \mbox{\hyperlink{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}{sgb\+Chr\+Trn}} (int blonk)
-\item 
+\begin{DoxyCompactList}\small\item\em Handles SGB multiplayer request commands. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sgb_8cpp_a4d02878f5ab9cca1e00f34064f952e09}{sgb\+Chr\+Trn}} (int block)
+\begin{DoxyCompactList}\small\item\em Transfers SGB character data to the VRAM. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}{sgb\+Pct\+Trn}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Transfers a pattern table from the SGB to the Game Boy VRAM. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}{sgb\+Attr\+Trn}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Transfers attribute files to VRAM. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}{sgb\+Attr\+Set}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the SGB attributes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}{sgb\+Mask}} (int block)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets the graphics mask for SGB. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{sgb_8cpp_a3b13f7d7f0c70b71e45025bd1a08eeaf}{sgb\+Handle\+P1}} (u8 val)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -79,7 +79,7 @@ u8 \mbox{\hyperlink{sgb_8cpp_a0772742b284d8d2fb5643a2322cc497a}{buttons\+Checked
 struct \mbox{\hyperlink{struct_cmd_data}{Cmd\+Data}} \mbox{\hyperlink{sgb_8cpp_acb133109fc664afffe02d4f76af18d34}{cmd\+Data}}
 \item 
 void($\ast$ \mbox{\hyperlink{sgb_8cpp_a66a56570b35035a4ad8876f1ba522af0}{sgb\+Commands}} \mbox{[}$\,$\mbox{]})(int)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em array of function pointers named sgb\+Commands This code defines an array of function pointers named sgb\+Commands. Each element in the array is a pointer to a function that takes an integer parameter and returns no value (void). \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
@@ -91,7 +91,21 @@ void($\ast$ \mbox{\hyperlink{sgb_8cpp_a66a56570b35035a4ad8876f1ba522af0}{sgb\+Co
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Transfers data from the VRAM to a destination buffer. 
+
+This function transfers data from VRAM to a destination buffer. The transfer is made based on the current video mode and scroll position. The destination buffer is assumed to have enough space for the transfer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dest} & Pointer to the destination buffer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00081}{81}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_aa21c07d9fc28cda5175e8cc1c534355b}\label{sgb_8cpp_aa21c07d9fc28cda5175e8cc1c534355b}} 
 \index{sgb.cpp@{sgb.cpp}!initSGB@{initSGB}}
@@ -101,7 +115,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00054}{54}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Initializes the Super Game Boy. 
+
+This function resets the variables associated with the Super Game Boy (SGB) mode, including the length of the packet, the number of controllers, the selected controller, the transferred packets, and the checked buttons. Additionally, the SGB map is reset using memset().
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_af4270fd4d212fa2417cae1235987fb74}\label{sgb_8cpp_af4270fd4d212fa2417cae1235987fb74}} 
 \index{sgb.cpp@{sgb.cpp}!setBackdrop@{setBackdrop}}
@@ -111,7 +134,18 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00042}{42}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00074}{74}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Set the backdrop color of the screen. 
+
+The set\+Backdrop function sets the backdrop color of the screen. It takes a 16-\/bit value val as an argument, and sets the background palette, sprite palette, and off-\/map palette (used when the screen is disabled) to this value. If the loaded border type is SGB, it also sets the first background palette entry to this value. The function first sets the off-\/map palette and the first background palette entry if the loaded border type is SGB. It then iterates over four color palettes, setting their first two entries to the backdrop color. This is done by writing the lower 8 bits of val to the first byte and the upper 8 bits of val to the second byte of each of the three palette entries in the palette.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The 16-\/bit value representing the color to set as the backdrop. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}\label{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}} 
 \index{sgb.cpp@{sgb.cpp}!sgbAttrBlock@{sgbAttrBlock}}
@@ -121,7 +155,19 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00074}{74}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00143}{143}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Sets SGB\textquotesingle{}s attribute block for map data. This function sets the SGB\textquotesingle{}s attribute block for map data. It takes in an integer block number, which is used to indicate the start of a new block. The function then fills the data for the attribute block by parsing the packet data. The attribute block\textquotesingle{}s data sets are stored in cmd\+Data as an array of u8s. This function then uses the stored data to update the SGB map according to the data sets. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & the integer block number. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00211}{211}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}\label{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}} 
 \index{sgb.cpp@{sgb.cpp}!sgbAttrChr@{sgbAttrChr}}
@@ -129,9 +175,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00143}{143}} of file \mbox{
 \doxysubsubsection{\texorpdfstring{sgbAttrChr()}{sgbAttrChr()}}
 {\footnotesize\ttfamily void sgb\+Attr\+Chr (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
 
+Sets the character data of the SGB map using the attribute information contained in the SGB packet. The x and y position of the data is defined by the x and y variables of cmd\+Data.\+attr\+Chr.
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00309}{309}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em block} & Index of the SGB packet to start reading attribute data from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00415}{415}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}\label{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}} 
 \index{sgb.cpp@{sgb.cpp}!sgbAttrDiv@{sgbAttrDiv}}
@@ -141,7 +194,18 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00309}{309}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Sets the color of the SGB screen based on the data in the SGB packet. 
+
+This function handles setting the color of the SGB screen based on the data in the SGB packet. It uses the data in the packet to set the color of different sections of the screen.
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The block of data in the SGB packet to process. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00361}{361}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}\label{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}} 
 \index{sgb.cpp@{sgb.cpp}!sgbAttrLin@{sgbAttrLin}}
@@ -149,9 +213,18 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00265}{265}} of file \mbox{
 \doxysubsubsection{\texorpdfstring{sgbAttrLin()}{sgbAttrLin()}}
 {\footnotesize\ttfamily void sgb\+Attr\+Lin (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
 
+Applies an SGB line attribute to the tile map.
+
+This function parses the line attribute data in the SGB packet and modifies the tile map accordingly. Each line attribute specifies a line number and a palette index, as well as whether the line is horizontal or vertical. For horizontal lines, the entire row of tiles with the specified line number is set to the specified palette index. For vertical lines, the entire column of tiles with the specified line number is set to the specified palette index.
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00232}{232}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+\begin{DoxyParams}{Parameters}
+{\em block} & The index of the attribute block to process. If this is zero, the function initializes the attribute block and sets the number of data sets. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00314}{314}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}\label{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}} 
 \index{sgb.cpp@{sgb.cpp}!sgbAttrSet@{sgbAttrSet}}
@@ -161,7 +234,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00232}{232}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00414}{414}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Sets the SGB attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The block to set the attributes for. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00584}{584}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}\label{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}} 
 \index{sgb.cpp@{sgb.cpp}!sgbAttrTrn@{sgbAttrTrn}}
@@ -171,17 +253,35 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00414}{414}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00409}{409}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Transfers attribute files to VRAM. 
 
-\mbox{\Hypertarget{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}\label{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}} 
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The SGB block number. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00574}{574}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+
+\mbox{\Hypertarget{sgb_8cpp_a4d02878f5ab9cca1e00f34064f952e09}\label{sgb_8cpp_a4d02878f5ab9cca1e00f34064f952e09}} 
 \index{sgb.cpp@{sgb.cpp}!sgbChrTrn@{sgbChrTrn}}
 \index{sgbChrTrn@{sgbChrTrn}!sgb.cpp@{sgb.cpp}}
 \doxysubsubsection{\texorpdfstring{sgbChrTrn()}{sgbChrTrn()}}
-{\footnotesize\ttfamily void sgb\+Chr\+Trn (\begin{DoxyParamCaption}\item[{int}]{blonk }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void sgb\+Chr\+Trn (\begin{DoxyParamCaption}\item[{int}]{block }\end{DoxyParamCaption})}
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00393}{393}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Transfers SGB character data to the VRAM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & SGB command packet block number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00548}{548}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}\label{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}} 
 \index{sgb.cpp@{sgb.cpp}!sgbDataSnd@{sgbDataSnd}}
@@ -191,7 +291,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00393}{393}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00379}{379}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Handles SGB sound data commands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & SGB command packet block number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00526}{526}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a3b13f7d7f0c70b71e45025bd1a08eeaf}\label{sgb_8cpp_a3b13f7d7f0c70b71e45025bd1a08eeaf}} 
 \index{sgb.cpp@{sgb.cpp}!sgbHandleP1@{sgbHandleP1}}
@@ -201,7 +310,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00379}{379}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00432}{432}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The value of the incoming packet. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00627}{627}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a5a048cf7ef6e4eed828e899b472abad0}\label{sgb_8cpp_a5a048cf7ef6e4eed828e899b472abad0}} 
 \index{sgb.cpp@{sgb.cpp}!sgbLoadAttrFile@{sgbLoadAttrFile}}
@@ -211,7 +329,19 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00432}{432}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00090}{90}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Loads an SGB attribute file at the given index This function loads an SGB attribute file at the given index. If the index is greater than 0x2c, it prints an error message and returns. The function then iterates over 20 x 18 / 4 (90) elements in the sgb\+Attr\+Files array, and for each element, it extracts 4 pairs of 2-\/bit attribute dataand stores them in the sgb\+Map array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the attribute file to load \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00142}{142}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}\label{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}} 
 \index{sgb.cpp@{sgb.cpp}!sgbMask@{sgbMask}}
@@ -221,7 +351,21 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00090}{90}} of file \mbox{\
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00421}{421}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Sets the graphics mask for SGB. 
+
+This function sets the graphics mask for SGB by calling the set\+GFXMask function with the value of the second byte of the sgb\+Packet ANDed with 3.
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & an integer representing the block.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00604}{604}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a603a100441b56f441700833266adf0fa}\label{sgb_8cpp_a603a100441b56f441700833266adf0fa}} 
 \index{sgb.cpp@{sgb.cpp}!sgbMltReq@{sgbMltReq}}
@@ -231,7 +375,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00421}{421}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00384}{384}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Handles SGB multiplayer request commands. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & SGB command packet block number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00535}{535}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}\label{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}} 
 \index{sgb.cpp@{sgb.cpp}!sgbPalSet@{sgbPalSet}}
@@ -241,7 +394,18 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00384}{384}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00355}{355}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Sets the background and sprite palettes and loads attribute file if required. 
+
+This function sets the background and sprite palettes according to the data in the SGB packet. It reads four 15-\/bit indices from the SGB packet, sets the corresponding background and sprite palettes, and updates the backdrop color as well. It also loads the attribute file if specified in the SGB packet.
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & An integer specifying the block in the SGB packet to read from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00484}{484}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}\label{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}} 
 \index{sgb.cpp@{sgb.cpp}!sgbPalTrn@{sgbPalTrn}}
@@ -251,7 +415,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00355}{355}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00374}{374}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Transfers SGB palettes to the VRAM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & SGB command packet block number \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00517}{517}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}\label{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}} 
 \index{sgb.cpp@{sgb.cpp}!sgbPalXX@{sgbPalXX}}
@@ -261,7 +434,19 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00374}{374}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00110}{110}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Sets the SGB color palettes Sets the SGB color palettes based on the SGB command type and packet data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & The SGB palette block number to use. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00168}{168}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}\label{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}} 
 \index{sgb.cpp@{sgb.cpp}!sgbPctTrn@{sgbPctTrn}}
@@ -271,7 +456,16 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00110}{110}} of file \mbox{
 
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00401}{401}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+Transfers a pattern table from the SGB to the Game Boy VRAM. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em block} & SGB block number. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00561}{561}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 
 
@@ -343,13 +537,17 @@ Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00011}{11}} of file \mbox{\
 \DoxyCodeLine{=\ \{}
 \DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a62d80a48566d80d990c1985431cb653d}{sgbPalXX}},\ \mbox{\hyperlink{sgb_8cpp_a39490670355b211e07c38a7df74d4bf5}{sgbAttrBlock}},\ \mbox{\hyperlink{sgb_8cpp_a2e015a1738977951b24e613a4c7d24c0}{sgbAttrLin}},\ \mbox{\hyperlink{sgb_8cpp_a93026e4f6ea4967c46eae9be8d6a0c6f}{sgbAttrDiv}},\ \mbox{\hyperlink{sgb_8cpp_a5c0470b73c155468c13ad6c1df3e74ce}{sgbAttrChr}},}
 \DoxyCodeLine{\ \ \ \ NULL,\ NULL,\ \mbox{\hyperlink{sgb_8cpp_a1195d0f24fc201c5d6fb87f5a7b053ea}{sgbPalSet}},\ \mbox{\hyperlink{sgb_8cpp_a9d6fe36bc64ac8589a8f8656340f6ef2}{sgbPalTrn}},\ NULL,\ NULL,\ NULL,\ \mbox{\hyperlink{sgb_8cpp_acd018560ba8bed1fc8a0c0b833cd7b92}{sgbDataSnd}},}
-\DoxyCodeLine{\ \ \ \ NULL,\ \mbox{\hyperlink{sgb_8cpp_a603a100441b56f441700833266adf0fa}{sgbMltReq}},\ NULL,\ \mbox{\hyperlink{sgb_8cpp_a53ba469d34c6346d30da260968136ed9}{sgbChrTrn}},\ \mbox{\hyperlink{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}{sgbPctTrn}},\ \mbox{\hyperlink{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}{sgbAttrTrn}},\ \mbox{\hyperlink{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}{sgbAttrSet}},\ \mbox{\hyperlink{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}{sgbMask}},}
+\DoxyCodeLine{\ \ \ \ NULL,\ \mbox{\hyperlink{sgb_8cpp_a603a100441b56f441700833266adf0fa}{sgbMltReq}},\ NULL,\ \mbox{\hyperlink{sgb_8cpp_a4d02878f5ab9cca1e00f34064f952e09}{sgbChrTrn}},\ \mbox{\hyperlink{sgb_8cpp_adb1b46e247d5fc1080a1a80dba548dc5}{sgbPctTrn}},\ \mbox{\hyperlink{sgb_8cpp_a2896f6d53572c2575b2f5ea632ff0704}{sgbAttrTrn}},\ \mbox{\hyperlink{sgb_8cpp_aead92dac54be408bac5cf5e812d40f57}{sgbAttrSet}},\ \mbox{\hyperlink{sgb_8cpp_af3c85ed63a0272014cb869f7eb4f7536}{sgbMask}},}
 \DoxyCodeLine{\ \ \ \ NULL,\ NULL,\ NULL,\ NULL,\ NULL,\ NULL,\ NULL,\ NULL\}}
 
 \end{DoxyCode}
 
 
-Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00426}{426}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
+array of function pointers named sgb\+Commands This code defines an array of function pointers named sgb\+Commands. Each element in the array is a pointer to a function that takes an integer parameter and returns no value (void). 
+
+
+
+Definition at line \mbox{\hyperlink{sgb_8cpp_source_l00613}{613}} of file \mbox{\hyperlink{sgb_8cpp_source}{sgb.\+cpp}}.
 
 \mbox{\Hypertarget{sgb_8cpp_a15e19c23520a5b3c3a3ddb347af5273b}\label{sgb_8cpp_a15e19c23520a5b3c3a3ddb347af5273b}} 
 \index{sgb.cpp@{sgb.cpp}!sgbMap@{sgbMap}}

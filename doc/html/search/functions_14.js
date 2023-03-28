@@ -21,7 +21,7 @@ var searchData=
   ['updatesound_18',['updateSound',['../gbsnd_8h.html#a1840a3078560b98a286226ca593d69e6',1,'updateSound(int cycles):&#160;gbsnd.cpp'],['../gbsnd_8cpp.html#a37529cb105bb1a74d33d4930f87f4a3f',1,'updateSound(int cycles) ITCM_CODE:&#160;gbsnd.cpp']]],
   ['updatesoundsample_19',['updateSoundSample',['../gbsnd_8h.html#adf56904dd8cd20559b11887998ce5e88',1,'updateSoundSample():&#160;gbsnd.h'],['../gbsnd_8cpp.html#a6d1af3c3dd29b218dfec9b2661137e5e',1,'updateSoundSample(int byte):&#160;gbsnd.cpp']]],
   ['updatesprpalette_20',['updateSprPalette',['../gbgfx_8cpp.html#a69f15ee8d4cda930e01bfe3e42bbd66a',1,'gbgfx.cpp']]],
-  ['updatetilemap_21',['updateTileMap',['../gbgfx_8cpp.html#abaa5f65ef32cc80bd17ba14c47984536',1,'gbgfx.cpp']]],
+  ['updatetilemap_21',['updateTileMap',['../gbgfx_8cpp.html#a38cfcb29e33564da47daf80302f353b5',1,'gbgfx.cpp']]],
   ['updatetilemaps_22',['updateTileMaps',['../gbgfx_8cpp.html#a60975f999e5000cce01f957e5061efc2',1,'gbgfx.cpp']]],
   ['updatetiles_23',['updateTiles',['../gbgfx_8cpp.html#a73afcb774f607a0031a6877ab3059fd3',1,'gbgfx.cpp']]],
   ['updatetimers_24',['updateTimers',['../gameboy_8h.html#af559177576173f5f7a282a38f5bca3f1',1,'updateTimers(int cycles):&#160;gameboy.cpp'],['../gameboy_8cpp.html#af559177576173f5f7a282a38f5bca3f1',1,'updateTimers(int cycles):&#160;gameboy.cpp']]]

@@ -91,47 +91,65 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cmd_data.html">CmdData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct defines the data for various different commands.  <a href="struct_cmd_data.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa21c07d9fc28cda5175e8cc1c534355b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#aa21c07d9fc28cda5175e8cc1c534355b">initSGB</a> ()</td></tr>
+<tr class="memdesc:aa21c07d9fc28cda5175e8cc1c534355b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Super Game Boy.  <br /></td></tr>
 <tr class="separator:aa21c07d9fc28cda5175e8cc1c534355b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc6c37260ac1171a8b837c1870dac7e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#acc6c37260ac1171a8b837c1870dac7e8">doVramTransfer</a> (u8 *dest)</td></tr>
+<tr class="memdesc:acc6c37260ac1171a8b837c1870dac7e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers data from the VRAM to a destination buffer.  <br /></td></tr>
 <tr class="separator:acc6c37260ac1171a8b837c1870dac7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4270fd4d212fa2417cae1235987fb74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#af4270fd4d212fa2417cae1235987fb74">setBackdrop</a> (u16 val)</td></tr>
+<tr class="memdesc:af4270fd4d212fa2417cae1235987fb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the backdrop color of the screen.  <br /></td></tr>
 <tr class="separator:af4270fd4d212fa2417cae1235987fb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a048cf7ef6e4eed828e899b472abad0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a5a048cf7ef6e4eed828e899b472abad0">sgbLoadAttrFile</a> (int index)</td></tr>
+<tr class="memdesc:a5a048cf7ef6e4eed828e899b472abad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads an SGB attribute file at the given index This function loads an SGB attribute file at the given index. If the index is greater than 0x2c, it prints an error message and returns. The function then iterates over 20 x 18 / 4 (90) elements in the sgbAttrFiles array, and for each element, it extracts 4 pairs of 2-bit attribute dataand stores them in the sgbMap array.  <br /></td></tr>
 <tr class="separator:a5a048cf7ef6e4eed828e899b472abad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d80a48566d80d990c1985431cb653d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a> (int block)</td></tr>
+<tr class="memdesc:a62d80a48566d80d990c1985431cb653d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the SGB color palettes Sets the SGB color palettes based on the SGB command type and packet data.  <br /></td></tr>
 <tr class="separator:a62d80a48566d80d990c1985431cb653d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39490670355b211e07c38a7df74d4bf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a39490670355b211e07c38a7df74d4bf5">sgbAttrBlock</a> (int block)</td></tr>
+<tr class="memdesc:a39490670355b211e07c38a7df74d4bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets SGB's attribute block for map data. This function sets the SGB's attribute block for map data. It takes in an integer block number, which is used to indicate the start of a new block. The function then fills the data for the attribute block by parsing the packet data. The attribute block's data sets are stored in cmdData as an array of u8s. This function then uses the stored data to update the SGB map according to the data sets.  <br /></td></tr>
 <tr class="separator:a39490670355b211e07c38a7df74d4bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e015a1738977951b24e613a4c7d24c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a2e015a1738977951b24e613a4c7d24c0">sgbAttrLin</a> (int block)</td></tr>
 <tr class="separator:a2e015a1738977951b24e613a4c7d24c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93026e4f6ea4967c46eae9be8d6a0c6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a93026e4f6ea4967c46eae9be8d6a0c6f">sgbAttrDiv</a> (int block)</td></tr>
+<tr class="memdesc:a93026e4f6ea4967c46eae9be8d6a0c6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the color of the SGB screen based on the data in the SGB packet.  <br /></td></tr>
 <tr class="separator:a93026e4f6ea4967c46eae9be8d6a0c6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c0470b73c155468c13ad6c1df3e74ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a5c0470b73c155468c13ad6c1df3e74ce">sgbAttrChr</a> (int block)</td></tr>
 <tr class="separator:a5c0470b73c155468c13ad6c1df3e74ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1195d0f24fc201c5d6fb87f5a7b053ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a1195d0f24fc201c5d6fb87f5a7b053ea">sgbPalSet</a> (int block)</td></tr>
+<tr class="memdesc:a1195d0f24fc201c5d6fb87f5a7b053ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background and sprite palettes and loads attribute file if required.  <br /></td></tr>
 <tr class="separator:a1195d0f24fc201c5d6fb87f5a7b053ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d6fe36bc64ac8589a8f8656340f6ef2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a9d6fe36bc64ac8589a8f8656340f6ef2">sgbPalTrn</a> (int block)</td></tr>
+<tr class="memdesc:a9d6fe36bc64ac8589a8f8656340f6ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers SGB palettes to the VRAM.  <br /></td></tr>
 <tr class="separator:a9d6fe36bc64ac8589a8f8656340f6ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd018560ba8bed1fc8a0c0b833cd7b92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#acd018560ba8bed1fc8a0c0b833cd7b92">sgbDataSnd</a> (int block)</td></tr>
+<tr class="memdesc:acd018560ba8bed1fc8a0c0b833cd7b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles SGB sound data commands.  <br /></td></tr>
 <tr class="separator:acd018560ba8bed1fc8a0c0b833cd7b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a603a100441b56f441700833266adf0fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a603a100441b56f441700833266adf0fa">sgbMltReq</a> (int block)</td></tr>
+<tr class="memdesc:a603a100441b56f441700833266adf0fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles SGB multiplayer request commands.  <br /></td></tr>
 <tr class="separator:a603a100441b56f441700833266adf0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53ba469d34c6346d30da260968136ed9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a53ba469d34c6346d30da260968136ed9">sgbChrTrn</a> (int blonk)</td></tr>
-<tr class="separator:a53ba469d34c6346d30da260968136ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d02878f5ab9cca1e00f34064f952e09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a4d02878f5ab9cca1e00f34064f952e09">sgbChrTrn</a> (int block)</td></tr>
+<tr class="memdesc:a4d02878f5ab9cca1e00f34064f952e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers SGB character data to the VRAM.  <br /></td></tr>
+<tr class="separator:a4d02878f5ab9cca1e00f34064f952e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb1b46e247d5fc1080a1a80dba548dc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#adb1b46e247d5fc1080a1a80dba548dc5">sgbPctTrn</a> (int block)</td></tr>
+<tr class="memdesc:adb1b46e247d5fc1080a1a80dba548dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers a pattern table from the SGB to the Game Boy VRAM.  <br /></td></tr>
 <tr class="separator:adb1b46e247d5fc1080a1a80dba548dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2896f6d53572c2575b2f5ea632ff0704"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a2896f6d53572c2575b2f5ea632ff0704">sgbAttrTrn</a> (int block)</td></tr>
+<tr class="memdesc:a2896f6d53572c2575b2f5ea632ff0704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfers attribute files to VRAM.  <br /></td></tr>
 <tr class="separator:a2896f6d53572c2575b2f5ea632ff0704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aead92dac54be408bac5cf5e812d40f57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#aead92dac54be408bac5cf5e812d40f57">sgbAttrSet</a> (int block)</td></tr>
+<tr class="memdesc:aead92dac54be408bac5cf5e812d40f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the SGB attributes.  <br /></td></tr>
 <tr class="separator:aead92dac54be408bac5cf5e812d40f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3c85ed63a0272014cb869f7eb4f7536"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#af3c85ed63a0272014cb869f7eb4f7536">sgbMask</a> (int block)</td></tr>
+<tr class="memdesc:af3c85ed63a0272014cb869f7eb4f7536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the graphics mask for SGB.  <br /></td></tr>
 <tr class="separator:af3c85ed63a0272014cb869f7eb4f7536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b13f7d7f0c70b71e45025bd1a08eeaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a3b13f7d7f0c70b71e45025bd1a08eeaf">sgbHandleP1</a> (u8 val)</td></tr>
+<tr class="memdesc:a3b13f7d7f0c70b71e45025bd1a08eeaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer.  <br /></td></tr>
 <tr class="separator:a3b13f7d7f0c70b71e45025bd1a08eeaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -161,6 +179,7 @@ Variables</h2></td></tr>
 <tr class="memitem:acb133109fc664afffe02d4f76af18d34"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_cmd_data.html">CmdData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#acb133109fc664afffe02d4f76af18d34">cmdData</a></td></tr>
 <tr class="separator:acb133109fc664afffe02d4f76af18d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66a56570b35035a4ad8876f1ba522af0"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sgb_8cpp.html#a66a56570b35035a4ad8876f1ba522af0">sgbCommands</a> [])(int)</td></tr>
+<tr class="memdesc:a66a56570b35035a4ad8876f1ba522af0"><td class="mdescLeft">&#160;</td><td class="mdescRight">array of function pointers named sgbCommands This code defines an array of function pointers named sgbCommands. Each element in the array is a pointer to a function that takes an integer parameter and returns no value (void).  <br /></td></tr>
 <tr class="separator:a66a56570b35035a4ad8876f1ba522af0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -180,7 +199,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00054">54</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Transfers data from the VRAM to a destination buffer. </p>
+<p>This function transfers data from VRAM to a destination buffer. The transfer is made based on the current video mode and scroll position. The destination buffer is assumed to have enough space for the transfer.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>Pointer to the destination buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00081">81</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -199,7 +228,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00042">42</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Initializes the Super Game Boy. </p>
+<p>This function resets the variables associated with the Super Game Boy (SGB) mode, including the length of the packet, the number of controllers, the selected controller, the transferred packets, and the checked buttons. Additionally, the SGB map is reset using memset().</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00059">59</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -219,7 +252,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00074">74</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Set the backdrop color of the screen. </p>
+<p>The setBackdrop function sets the backdrop color of the screen. It takes a 16-bit value val as an argument, and sets the background palette, sprite palette, and off-map palette (used when the screen is disabled) to this value. If the loaded border type is SGB, it also sets the first background palette entry to this value. The function first sets the off-map palette and the first background palette entry if the loaded border type is SGB. It then iterates over four color palettes, setting their first two entries to the backdrop color. This is done by writing the lower 8 bits of val to the first byte and the upper 8 bits of val to the second byte of each of the three palette entries in the palette.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The 16-bit value representing the color to set as the backdrop. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00119">119</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -239,7 +281,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00143">143</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Sets SGB's attribute block for map data. This function sets the SGB's attribute block for map data. It takes in an integer block number, which is used to indicate the start of a new block. The function then fills the data for the attribute block by parsing the packet data. The attribute block's data sets are stored in cmdData as an array of u8s. This function then uses the stored data to update the SGB map according to the data sets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>the integer block number. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00211">211</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -258,8 +309,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets the character data of the SGB map using the attribute information contained in the SGB packet. The x and y position of the data is defined by the x and y variables of cmdData.attrChr.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>Index of the SGB packet to start reading attribute data from. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00309">309</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00415">415</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -279,7 +337,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00265">265</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Sets the color of the SGB screen based on the data in the SGB packet. </p>
+<p>This function handles setting the color of the SGB screen based on the data in the SGB packet. It uses the data in the packet to set the color of different sections of the screen.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>The block of data in the SGB packet to process. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00361">361</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -298,8 +365,16 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Applies an SGB line attribute to the tile map.</p>
+<p>This function parses the line attribute data in the SGB packet and modifies the tile map accordingly. Each line attribute specifies a line number and a palette index, as well as whether the line is horizontal or vertical. For horizontal lines, the entire row of tiles with the specified line number is set to the specified palette index. For vertical lines, the entire column of tiles with the specified line number is set to the specified palette index.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>The index of the attribute block to process. If this is zero, the function initializes the attribute block and sets the number of data sets. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00232">232</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00314">314</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -319,7 +394,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00414">414</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Sets the SGB attributes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>The block to set the attributes for. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00584">584</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -339,12 +422,20 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00409">409</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Transfers attribute files to VRAM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>The SGB block number. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00574">574</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
-<a id="a53ba469d34c6346d30da260968136ed9" name="a53ba469d34c6346d30da260968136ed9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53ba469d34c6346d30da260968136ed9">&#9670;&#160;</a></span>sgbChrTrn()</h2>
+<a id="a4d02878f5ab9cca1e00f34064f952e09" name="a4d02878f5ab9cca1e00f34064f952e09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d02878f5ab9cca1e00f34064f952e09">&#9670;&#160;</a></span>sgbChrTrn()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -353,13 +444,21 @@ Variables</h2></td></tr>
           <td class="memname">void sgbChrTrn </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>blonk</em></td><td>)</td>
+          <td class="paramname"><em>block</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00393">393</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Transfers SGB character data to the VRAM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>SGB command packet block number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00548">548</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -379,7 +478,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00379">379</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Handles SGB sound data commands. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>SGB command packet block number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00526">526</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -399,7 +506,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00432">432</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Handle SGB packets received over P1 port This function handles SGB packets received over the P1 port. It assembles packets from individual bits and executes the corresponding command when a complete packet has been received. It also handles controller selection when the P1 port is not being used for packet transfer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The value of the incoming packet. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00627">627</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,7 +534,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00090">90</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Loads an SGB attribute file at the given index This function loads an SGB attribute file at the given index. If the index is greater than 0x2c, it prints an error message and returns. The function then iterates over 20 x 18 / 4 (90) elements in the sgbAttrFiles array, and for each element, it extracts 4 pairs of 2-bit attribute dataand stores them in the sgbMap array. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the attribute file to load </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00142">142</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -439,7 +563,17 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00421">421</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Sets the graphics mask for SGB. </p>
+<p>This function sets the graphics mask for SGB by calling the setGFXMask function with the value of the second byte of the sgbPacket ANDed with 3.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>an integer representing the block.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00604">604</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -459,7 +593,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00384">384</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Handles SGB multiplayer request commands. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>SGB command packet block number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00535">535</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +621,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00355">355</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Sets the background and sprite palettes and loads attribute file if required. </p>
+<p>This function sets the background and sprite palettes according to the data in the SGB packet. It reads four 15-bit indices from the SGB packet, sets the corresponding background and sprite palettes, and updates the backdrop color as well. It also loads the attribute file if specified in the SGB packet.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>An integer specifying the block in the SGB packet to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00484">484</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -499,7 +650,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00374">374</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Transfers SGB palettes to the VRAM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>SGB command packet block number </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00517">517</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -519,7 +678,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00110">110</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Sets the SGB color palettes Sets the SGB color palettes based on the SGB command type and packet data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>The SGB palette block number to use. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00168">168</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -539,7 +707,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00401">401</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>Transfers a pattern table from the SGB to the Game Boy VRAM. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">block</td><td>SGB block number. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00561">561</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>
@@ -656,24 +832,26 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
 <div class="line">    <a class="code hl_function" href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a>, <a class="code hl_function" href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a>, <a class="code hl_function" href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a>, <a class="code hl_function" href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a>, <a class="code hl_function" href="sgb_8cpp.html#a39490670355b211e07c38a7df74d4bf5">sgbAttrBlock</a>, <a class="code hl_function" href="sgb_8cpp.html#a2e015a1738977951b24e613a4c7d24c0">sgbAttrLin</a>, <a class="code hl_function" href="sgb_8cpp.html#a93026e4f6ea4967c46eae9be8d6a0c6f">sgbAttrDiv</a>, <a class="code hl_function" href="sgb_8cpp.html#a5c0470b73c155468c13ad6c1df3e74ce">sgbAttrChr</a>,</div>
 <div class="line">    NULL, NULL, <a class="code hl_function" href="sgb_8cpp.html#a1195d0f24fc201c5d6fb87f5a7b053ea">sgbPalSet</a>, <a class="code hl_function" href="sgb_8cpp.html#a9d6fe36bc64ac8589a8f8656340f6ef2">sgbPalTrn</a>, NULL, NULL, NULL, <a class="code hl_function" href="sgb_8cpp.html#acd018560ba8bed1fc8a0c0b833cd7b92">sgbDataSnd</a>,</div>
-<div class="line">    NULL, <a class="code hl_function" href="sgb_8cpp.html#a603a100441b56f441700833266adf0fa">sgbMltReq</a>, NULL, <a class="code hl_function" href="sgb_8cpp.html#a53ba469d34c6346d30da260968136ed9">sgbChrTrn</a>, <a class="code hl_function" href="sgb_8cpp.html#adb1b46e247d5fc1080a1a80dba548dc5">sgbPctTrn</a>, <a class="code hl_function" href="sgb_8cpp.html#a2896f6d53572c2575b2f5ea632ff0704">sgbAttrTrn</a>, <a class="code hl_function" href="sgb_8cpp.html#aead92dac54be408bac5cf5e812d40f57">sgbAttrSet</a>, <a class="code hl_function" href="sgb_8cpp.html#af3c85ed63a0272014cb869f7eb4f7536">sgbMask</a>,</div>
+<div class="line">    NULL, <a class="code hl_function" href="sgb_8cpp.html#a603a100441b56f441700833266adf0fa">sgbMltReq</a>, NULL, <a class="code hl_function" href="sgb_8cpp.html#a4d02878f5ab9cca1e00f34064f952e09">sgbChrTrn</a>, <a class="code hl_function" href="sgb_8cpp.html#adb1b46e247d5fc1080a1a80dba548dc5">sgbPctTrn</a>, <a class="code hl_function" href="sgb_8cpp.html#a2896f6d53572c2575b2f5ea632ff0704">sgbAttrTrn</a>, <a class="code hl_function" href="sgb_8cpp.html#aead92dac54be408bac5cf5e812d40f57">sgbAttrSet</a>, <a class="code hl_function" href="sgb_8cpp.html#af3c85ed63a0272014cb869f7eb4f7536">sgbMask</a>,</div>
 <div class="line">    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL}</div>
-<div class="ttc" id="asgb_8cpp_html_a1195d0f24fc201c5d6fb87f5a7b053ea"><div class="ttname"><a href="sgb_8cpp.html#a1195d0f24fc201c5d6fb87f5a7b053ea">sgbPalSet</a></div><div class="ttdeci">void sgbPalSet(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00355">sgb.cpp:355</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a2896f6d53572c2575b2f5ea632ff0704"><div class="ttname"><a href="sgb_8cpp.html#a2896f6d53572c2575b2f5ea632ff0704">sgbAttrTrn</a></div><div class="ttdeci">void sgbAttrTrn(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00409">sgb.cpp:409</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a2e015a1738977951b24e613a4c7d24c0"><div class="ttname"><a href="sgb_8cpp.html#a2e015a1738977951b24e613a4c7d24c0">sgbAttrLin</a></div><div class="ttdeci">void sgbAttrLin(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00232">sgb.cpp:232</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a39490670355b211e07c38a7df74d4bf5"><div class="ttname"><a href="sgb_8cpp.html#a39490670355b211e07c38a7df74d4bf5">sgbAttrBlock</a></div><div class="ttdeci">void sgbAttrBlock(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00143">sgb.cpp:143</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a53ba469d34c6346d30da260968136ed9"><div class="ttname"><a href="sgb_8cpp.html#a53ba469d34c6346d30da260968136ed9">sgbChrTrn</a></div><div class="ttdeci">void sgbChrTrn(int blonk)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00393">sgb.cpp:393</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a5c0470b73c155468c13ad6c1df3e74ce"><div class="ttname"><a href="sgb_8cpp.html#a5c0470b73c155468c13ad6c1df3e74ce">sgbAttrChr</a></div><div class="ttdeci">void sgbAttrChr(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00309">sgb.cpp:309</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a603a100441b56f441700833266adf0fa"><div class="ttname"><a href="sgb_8cpp.html#a603a100441b56f441700833266adf0fa">sgbMltReq</a></div><div class="ttdeci">void sgbMltReq(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00384">sgb.cpp:384</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a62d80a48566d80d990c1985431cb653d"><div class="ttname"><a href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a></div><div class="ttdeci">void sgbPalXX(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00110">sgb.cpp:110</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a93026e4f6ea4967c46eae9be8d6a0c6f"><div class="ttname"><a href="sgb_8cpp.html#a93026e4f6ea4967c46eae9be8d6a0c6f">sgbAttrDiv</a></div><div class="ttdeci">void sgbAttrDiv(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00265">sgb.cpp:265</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_a9d6fe36bc64ac8589a8f8656340f6ef2"><div class="ttname"><a href="sgb_8cpp.html#a9d6fe36bc64ac8589a8f8656340f6ef2">sgbPalTrn</a></div><div class="ttdeci">void sgbPalTrn(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00374">sgb.cpp:374</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_acd018560ba8bed1fc8a0c0b833cd7b92"><div class="ttname"><a href="sgb_8cpp.html#acd018560ba8bed1fc8a0c0b833cd7b92">sgbDataSnd</a></div><div class="ttdeci">void sgbDataSnd(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00379">sgb.cpp:379</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_adb1b46e247d5fc1080a1a80dba548dc5"><div class="ttname"><a href="sgb_8cpp.html#adb1b46e247d5fc1080a1a80dba548dc5">sgbPctTrn</a></div><div class="ttdeci">void sgbPctTrn(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00401">sgb.cpp:401</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_aead92dac54be408bac5cf5e812d40f57"><div class="ttname"><a href="sgb_8cpp.html#aead92dac54be408bac5cf5e812d40f57">sgbAttrSet</a></div><div class="ttdeci">void sgbAttrSet(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00414">sgb.cpp:414</a></div></div>
-<div class="ttc" id="asgb_8cpp_html_af3c85ed63a0272014cb869f7eb4f7536"><div class="ttname"><a href="sgb_8cpp.html#af3c85ed63a0272014cb869f7eb4f7536">sgbMask</a></div><div class="ttdeci">void sgbMask(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00421">sgb.cpp:421</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a1195d0f24fc201c5d6fb87f5a7b053ea"><div class="ttname"><a href="sgb_8cpp.html#a1195d0f24fc201c5d6fb87f5a7b053ea">sgbPalSet</a></div><div class="ttdeci">void sgbPalSet(int block)</div><div class="ttdoc">Sets the background and sprite palettes and loads attribute file if required.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00484">sgb.cpp:484</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a2896f6d53572c2575b2f5ea632ff0704"><div class="ttname"><a href="sgb_8cpp.html#a2896f6d53572c2575b2f5ea632ff0704">sgbAttrTrn</a></div><div class="ttdeci">void sgbAttrTrn(int block)</div><div class="ttdoc">Transfers attribute files to VRAM.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00574">sgb.cpp:574</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a2e015a1738977951b24e613a4c7d24c0"><div class="ttname"><a href="sgb_8cpp.html#a2e015a1738977951b24e613a4c7d24c0">sgbAttrLin</a></div><div class="ttdeci">void sgbAttrLin(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00314">sgb.cpp:314</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a39490670355b211e07c38a7df74d4bf5"><div class="ttname"><a href="sgb_8cpp.html#a39490670355b211e07c38a7df74d4bf5">sgbAttrBlock</a></div><div class="ttdeci">void sgbAttrBlock(int block)</div><div class="ttdoc">Sets SGB's attribute block for map data. This function sets the SGB's attribute block for map data....</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00211">sgb.cpp:211</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a4d02878f5ab9cca1e00f34064f952e09"><div class="ttname"><a href="sgb_8cpp.html#a4d02878f5ab9cca1e00f34064f952e09">sgbChrTrn</a></div><div class="ttdeci">void sgbChrTrn(int block)</div><div class="ttdoc">Transfers SGB character data to the VRAM.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00548">sgb.cpp:548</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a5c0470b73c155468c13ad6c1df3e74ce"><div class="ttname"><a href="sgb_8cpp.html#a5c0470b73c155468c13ad6c1df3e74ce">sgbAttrChr</a></div><div class="ttdeci">void sgbAttrChr(int block)</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00415">sgb.cpp:415</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a603a100441b56f441700833266adf0fa"><div class="ttname"><a href="sgb_8cpp.html#a603a100441b56f441700833266adf0fa">sgbMltReq</a></div><div class="ttdeci">void sgbMltReq(int block)</div><div class="ttdoc">Handles SGB multiplayer request commands.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00535">sgb.cpp:535</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a62d80a48566d80d990c1985431cb653d"><div class="ttname"><a href="sgb_8cpp.html#a62d80a48566d80d990c1985431cb653d">sgbPalXX</a></div><div class="ttdeci">void sgbPalXX(int block)</div><div class="ttdoc">Sets the SGB color palettes Sets the SGB color palettes based on the SGB command type and packet data...</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00168">sgb.cpp:168</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a93026e4f6ea4967c46eae9be8d6a0c6f"><div class="ttname"><a href="sgb_8cpp.html#a93026e4f6ea4967c46eae9be8d6a0c6f">sgbAttrDiv</a></div><div class="ttdeci">void sgbAttrDiv(int block)</div><div class="ttdoc">Sets the color of the SGB screen based on the data in the SGB packet.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00361">sgb.cpp:361</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_a9d6fe36bc64ac8589a8f8656340f6ef2"><div class="ttname"><a href="sgb_8cpp.html#a9d6fe36bc64ac8589a8f8656340f6ef2">sgbPalTrn</a></div><div class="ttdeci">void sgbPalTrn(int block)</div><div class="ttdoc">Transfers SGB palettes to the VRAM.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00517">sgb.cpp:517</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_acd018560ba8bed1fc8a0c0b833cd7b92"><div class="ttname"><a href="sgb_8cpp.html#acd018560ba8bed1fc8a0c0b833cd7b92">sgbDataSnd</a></div><div class="ttdeci">void sgbDataSnd(int block)</div><div class="ttdoc">Handles SGB sound data commands.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00526">sgb.cpp:526</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_adb1b46e247d5fc1080a1a80dba548dc5"><div class="ttname"><a href="sgb_8cpp.html#adb1b46e247d5fc1080a1a80dba548dc5">sgbPctTrn</a></div><div class="ttdeci">void sgbPctTrn(int block)</div><div class="ttdoc">Transfers a pattern table from the SGB to the Game Boy VRAM.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00561">sgb.cpp:561</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_aead92dac54be408bac5cf5e812d40f57"><div class="ttname"><a href="sgb_8cpp.html#aead92dac54be408bac5cf5e812d40f57">sgbAttrSet</a></div><div class="ttdeci">void sgbAttrSet(int block)</div><div class="ttdoc">Sets the SGB attributes.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00584">sgb.cpp:584</a></div></div>
+<div class="ttc" id="asgb_8cpp_html_af3c85ed63a0272014cb869f7eb4f7536"><div class="ttname"><a href="sgb_8cpp.html#af3c85ed63a0272014cb869f7eb4f7536">sgbMask</a></div><div class="ttdeci">void sgbMask(int block)</div><div class="ttdoc">Sets the graphics mask for SGB.</div><div class="ttdef"><b>Definition:</b> <a href="sgb_8cpp_source.html#l00604">sgb.cpp:604</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00426">426</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
+<p>array of function pointers named sgbCommands This code defines an array of function pointers named sgbCommands. Each element in the array is a pointer to a function that takes an integer parameter and returns no value (void). </p>
+
+<p class="definition">Definition at line <a class="el" href="sgb_8cpp_source.html#l00613">613</a> of file <a class="el" href="sgb_8cpp_source.html">sgb.cpp</a>.</p>
 
 </div>
 </div>

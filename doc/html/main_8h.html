@@ -84,10 +84,13 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a54add63a62b11f9bccd4975da8fdd99c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a54add63a62b11f9bccd4975da8fdd99c">selectRom</a> ()</td></tr>
+<tr class="memdesc:a54add63a62b11f9bccd4975da8fdd99c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a ROM file and initializes the Gameboy emulator for the first time.  <br /></td></tr>
 <tr class="separator:a54add63a62b11f9bccd4975da8fdd99c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1e7d84951bad6e6c0e5b0962495a2d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#aa1e7d84951bad6e6c0e5b0962495a2d5">initializeGameboy</a> ()</td></tr>
+<tr class="memdesc:aa1e7d84951bad6e6c0e5b0962495a2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences. This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero, and initializing the SGB mode to false. Depending on the type of game being loaded and the user's preferences, the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized and GBS mode is handled accordingly.  <br /></td></tr>
 <tr class="separator:aa1e7d84951bad6e6c0e5b0962495a2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4429766953b588702b57e002f24122a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a4429766953b588702b57e002f24122a1">initializeGameboyFirstTime</a> ()</td></tr>
+<tr class="memdesc:a4429766953b588702b57e002f24122a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probingForBorder flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgbBorderLoaded flag to false, which effectively unloads any SGB border. Calls <a class="el" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5" title="Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user p...">initializeGameboy()</a> to continue with Gameboy initialization. If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu.  <br /></td></tr>
 <tr class="separator:a4429766953b588702b57e002f24122a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -106,7 +109,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00108">108</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user preferences. This function initializes the Gameboy emulator by enabling sleep mode, setting frame counter to zero, and initializing the SGB mode to false. Depending on the type of game being loaded and the user's preferences, the resultant GB mode is determined either as GB, GBC, or SGB. MMU, CPU, LCD, GFX, and SND are also initialized and GBS mode is handled accordingly. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00163">163</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -125,7 +131,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00169">169</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Initializes the Gameboy system for the first time. If SGB borders are enabled, sets probingForBorder flag to true, which will be ignored if starting in SGB mode or if there is no SGB mode. Then sets sgbBorderLoaded flag to false, which effectively unloads any SGB border. Calls <a class="el" href="main_8cpp.html#aa1e7d84951bad6e6c0e5b0962495a2d5" title="Initializes the Gameboy emulator and sets the resulting GB mode depending on the game type and user p...">initializeGameboy()</a> to continue with Gameboy initialization. If in GBS mode, disables several menu options related to save states. Otherwise, enables menu options related to save states and the ability to exit without saving. If the GBC BIOS exists, enables the option to load it from the menu. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00230">230</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -144,7 +153,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00060">60</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Loads a ROM file and initializes the Gameboy emulator for the first time. </p>
+<p>This function unloads the current ROM, displays a file chooser dialog to let the user select a new ROM file to load, and initializes the emulator with the selected ROM. If a BIOS file is present, it is loaded and used by the emulator as well.</p>
+<dl class="section note"><dt>Note</dt><dd>This function must be called after the emulator has been initialized at least once. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="main_8cpp_source.html#l00083">83</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
