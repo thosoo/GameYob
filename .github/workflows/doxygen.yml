@@ -3,10 +3,10 @@ name: Generate Doxygen Documentation
 on:
   push:
     branches:
-      - main
+      - ["v0.5-hotfix"]
   pull_request:
     branches:
-      - main
+      - ["v0.5-hotfix"]
 
 jobs:
   build_and_generate_docs:
