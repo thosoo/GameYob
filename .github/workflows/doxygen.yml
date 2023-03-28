@@ -21,8 +21,7 @@ jobs:
     - name: Generate Doxygen documentation
       run: doxygen Doxyfile
 
-    - name: Publish build to GH Actions
-      uses: actions/upload-artifact@v3
+    - name: Commit
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        path: ~/doc/*
-        name: build
+        commit_message: Update Documentation
