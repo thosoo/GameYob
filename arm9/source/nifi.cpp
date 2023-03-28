@@ -196,11 +196,6 @@ void disableNifi()
     // Set nifiEnabled flag to false
     nifiEnabled = false;
 }
-void disableNifi()
-{
-    Wifi_DisableWifi();
-    nifiEnabled = false;
-}
 
 /**
  * @brief Sends a packet byte over the network with the specified command and data.
