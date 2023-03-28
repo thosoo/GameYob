@@ -2,11 +2,10 @@ name: Generate Doxygen Documentation
 
 on:
   push:
-    branches:
-      - ["v0.5-hotfix"]
+    branches: ["v0.5-hotfix"]
   pull_request:
-    branches:
-      - ["v0.5-hotfix"]
+    branches: ["v0.5-hotfix"]
+  workflow_dispatch:
 
 jobs:
   build_and_generate_docs:
