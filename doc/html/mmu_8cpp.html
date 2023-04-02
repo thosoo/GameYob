@@ -179,6 +179,17 @@ Functions</h2></td></tr>
 <tr class="memitem:aaff623eef2ec4af523c8a8963b61cf73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#aaff623eef2ec4af523c8a8963b61cf73">mapMemory</a> ()</td></tr>
 <tr class="memdesc:aaff623eef2ec4af523c8a8963b61cf73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the game's memory to the appropriate locations based on the current state of the system.  <a href="mmu_8cpp.html#aaff623eef2ec4af523c8a8963b61cf73">More...</a><br /></td></tr>
 <tr class="separator:aaff623eef2ec4af523c8a8963b61cf73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08fec8c2e7136e93c021a18e4d11e176"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a08fec8c2e7136e93c021a18e4d11e176">latchClock</a> ()</td></tr>
+<tr class="memdesc:a08fec8c2e7136e93c021a18e4d11e176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the Game Boy's clock using the current system time. This function calculates the time difference between the last update and the current system time, and uses it to update the Game Boy's clock. The updated clock values are stored in the appropriate fields of the gbClock structure.  <a href="mmu_8cpp.html#a08fec8c2e7136e93c021a18e4d11e176">More...</a><br /></td></tr>
+<tr class="separator:a08fec8c2e7136e93c021a18e4d11e176"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14840c955aa72022046ea731262ee843"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a14840c955aa72022046ea731262ee843">readMemory</a> (u16 addr)</td></tr>
+<tr class="separator:a14840c955aa72022046ea731262ee843"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a558bc6fb4a68e2add3fee88eec1c2a6c"><td class="memItemLeft" align="right" valign="top">u16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a558bc6fb4a68e2add3fee88eec1c2a6c">readMemory16</a> (u16 addr)</td></tr>
+<tr class="separator:a558bc6fb4a68e2add3fee88eec1c2a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a42bf79f008339a337f67be30e7282"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#ab8a42bf79f008339a337f67be30e7282">readIO</a> (u8 ioReg)</td></tr>
+<tr class="separator:ab8a42bf79f008339a337f67be30e7282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e4ce4b7fa59a8e7784a6665e2f8f588"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a3e4ce4b7fa59a8e7784a6665e2f8f588">writeMemory</a> (u16 addr, u8 val)</td></tr>
+<tr class="separator:a3e4ce4b7fa59a8e7784a6665e2f8f588"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74be1f52cca5cb48d588325e62da730a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a74be1f52cca5cb48d588325e62da730a">nifiTimeoutFunc</a> ()</td></tr>
 <tr class="separator:a74be1f52cca5cb48d588325e62da730a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf23f43365192603962a5b11716d0102"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#acf23f43365192603962a5b11716d0102">writeIO</a> (u8 ioReg, u8 val)</td></tr>
@@ -195,8 +206,6 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a2e99c78e3943a1e70d5e79a314aee490"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a></td></tr>
 <tr class="separator:a2e99c78e3943a1e70d5e79a314aee490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae130ca660308236fbaa1555be4bff2bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#ae130ca660308236fbaa1555be4bff2bf">memory</a> [0x9] = <a class="el" href="mmu_8cpp.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a>[<a class="el" href="mmu_8cpp.html#adf5f76879a2dc41ba5b73a2fbe844c26">vramBank</a>] + 0x1000</td></tr>
-<tr class="separator:ae130ca660308236fbaa1555be4bff2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08a68b1c289b33130f5e3b3d11c49974"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a08a68b1c289b33130f5e3b3d11c49974">hasRumble</a></td></tr>
 <tr class="separator:a08a68b1c289b33130f5e3b3d11c49974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6654eea5fc0c5ae97a818042a1c18c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#aa6654eea5fc0c5ae97a818042a1c18c5">rumbleStrength</a></td></tr>
@@ -225,6 +234,8 @@ Variables</h2></td></tr>
 <tr class="separator:a15ebf698d3c867fd1fcd0ef9bcfd5e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cd98054e31302954e876a68c3aff0d1"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a7cd98054e31302954e876a68c3aff0d1">buttonsPressed</a> = 0xff</td></tr>
 <tr class="separator:a7cd98054e31302954e876a68c3aff0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f09ea9762f03d69ea68b6c34a0b59d0"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a0f09ea9762f03d69ea68b6c34a0b59d0">memory</a> [0x10]</td></tr>
+<tr class="separator:a0f09ea9762f03d69ea68b6c34a0b59d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0ed1b85995cb654491c9e0958abed2"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a> [2][0x2000]</td></tr>
 <tr class="separator:a7d0ed1b85995cb654491c9e0958abed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a778a1d929da98073cbc4e7b78f4a5e09"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a778a1d929da98073cbc4e7b78f4a5e09">externRam</a> = NULL</td></tr>
@@ -283,8 +294,8 @@ Variables</h2></td></tr>
 <tr class="separator:a8831563aea31e6e2b82b3b79f4f9dee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f170d2bedf050b12eed6290bb9c791e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="mmu_8cpp.html#ad019ba8ba5869f29e6cfdfe5ef33e06f">mbcWrite</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a5f170d2bedf050b12eed6290bb9c791e">mbcWrites</a> []</td></tr>
 <tr class="separator:a5f170d2bedf050b12eed6290bb9c791e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a721c6ff80a6d3e4ad4ffa52a04c60085"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#a721c6ff80a6d3e4ad4ffa52a04c60085">do</a></td></tr>
-<tr class="separator:a721c6ff80a6d3e4ad4ffa52a04c60085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1539affa638c954993cc8e8b34a473a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8cpp.html#ab1539affa638c954993cc8e8b34a473a">nifiTryAgain</a> = true</td></tr>
+<tr class="separator:ab1539affa638c954993cc8e8b34a473a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ab75400deb214dbfc74b1d869cc54f652"></a>
@@ -318,7 +329,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Value:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span> \</div>
+<div class="line">    { \</div>
+<div class="line">        while (x &gt;= val) \</div>
+<div class="line">        { \</div>
+<div class="line">            x -= val; \</div>
+<div class="line">            y++; \</div>
+<div class="line">        } \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="add66663822ebd2a648468eceb44f22b2"></a>
@@ -335,7 +354,13 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Value:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">        memory[0x8] = <a class="code" href="mmu_8cpp.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a>[<a class="code" href="mmu_8cpp.html#adf5f76879a2dc41ba5b73a2fbe844c26">vramBank</a>]; \</div>
+<div class="line">        memory[0x9] = <a class="code" href="mmu_8cpp.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a>[<a class="code" href="mmu_8cpp.html#adf5f76879a2dc41ba5b73a2fbe844c26">vramBank</a>] + 0x1000; \</div>
+<div class="line">    }</div>
+<div class="ttc" id="ammu_8cpp_html_a7d0ed1b85995cb654491c9e0958abed2"><div class="ttname"><a href="mmu_8cpp.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a></div><div class="ttdeci">u8 vram[2][0x2000]</div><div class="ttdef"><b>Definition:</b> mmu.cpp:55</div></div>
+<div class="ttc" id="ammu_8cpp_html_adf5f76879a2dc41ba5b73a2fbe844c26"><div class="ttname"><a href="mmu_8cpp.html#adf5f76879a2dc41ba5b73a2fbe844c26">vramBank</a></div><div class="ttdeci">int vramBank</div><div class="ttdef"><b>Definition:</b> mmu.cpp:64</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a6e29f12e28db7494e9918eada2c9bc0b"></a>
@@ -352,7 +377,12 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Value:</b><div class="fragment"><div class="line">    { \</div>
+<div class="line">        memory[0xd] = <a class="code" href="mmu_8cpp.html#abc159efa8df9b452d4a5cfefee7258e5">wram</a>[<a class="code" href="mmu_8cpp.html#ad746f082fa7f3e1b582d29eb9863cc33">wramBank</a>]; \</div>
+<div class="line">    }</div>
+<div class="ttc" id="ammu_8cpp_html_abc159efa8df9b452d4a5cfefee7258e5"><div class="ttname"><a href="mmu_8cpp.html#abc159efa8df9b452d4a5cfefee7258e5">wram</a></div><div class="ttdeci">u8 wram[8][0x1000]</div><div class="ttdef"><b>Definition:</b> mmu.cpp:57</div></div>
+<div class="ttc" id="ammu_8cpp_html_ad746f082fa7f3e1b582d29eb9863cc33"><div class="ttname"><a href="mmu_8cpp.html#ad746f082fa7f3e1b582d29eb9863cc33">wramBank</a></div><div class="ttdeci">int wramBank</div><div class="ttdef"><b>Definition:</b> mmu.cpp:63</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
@@ -561,6 +591,33 @@ Variables</h2></td></tr>
 <p>Initializes the Memory Management Unit (MMU) by setting initial values for various system variables, mapping the game's memory, and initializing the IO registers and sprite memory. </p>
 <p>This function initializes the Memory Management Unit (MMU) by setting initial values for various system variables, including the work RAM bank, VRAM bank, ROM bank, current RAM bank, memory model, DMA source and destination addresses, DMA length, DMA mode, SGB status, HuC3 value and shift, Rockman mapper status, MBC read and write functions, BIOS status, and RAM enabled status. It then calls the <code><a class="el" href="mmu_8cpp.html#aaff623eef2ec4af523c8a8963b61cf73" title="Maps the game&#39;s memory to the appropriate locations based on the current state of the system.">mapMemory()</a></code> function to map the game's memory to the appropriate locations based on the current state of the system. The function then initializes the work RAM and high RAM by setting all bytes to 0, initializes the IO registers and sprite memory by writing default values to the relevant memory locations, and sets the dirty sectors array to all 0's.</p>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="a08fec8c2e7136e93c021a18e4d11e176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08fec8c2e7136e93c021a18e4d11e176">&#9670;&nbsp;</a></span>latchClock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void latchClock </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates the Game Boy's clock using the current system time. This function calculates the time difference between the last update and the current system time, and uses it to update the Game Boy's clock. The updated clock values are stored in the appropriate fields of the gbClock structure. </p>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that rawTime is set to the current system time (in seconds) prior to its execution. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
 
 </div>
 </div>
@@ -826,6 +883,84 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ab8a42bf79f008339a337f67be30e7282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a42bf79f008339a337f67be30e7282">&#9670;&nbsp;</a></span>readIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">u8 readIO </td>
+          <td>(</td>
+          <td class="paramtype">u8&#160;</td>
+          <td class="paramname"><em>ioReg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function reads the byte value of a given I/O register. The function determines which register is being read and returns the appropriate value. If the SPEEDHAX flag is defined, the function simply returns the value of the requested register from the ioRam array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ioReg</td><td>The I/O register to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte value read from the I/O register. </dd></dl>
+
+</div>
+</div>
+<a id="a14840c955aa72022046ea731262ee843"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14840c955aa72022046ea731262ee843">&#9670;&nbsp;</a></span>readMemory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">u8 readMemory </td>
+          <td>(</td>
+          <td class="paramtype">u16&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function reads a single byte from the specified memory address. If the SPEEDHAX flag is not defined, the function checks if the address is within the range of a specific memory area (0x8000 - 0xFFFF) and takes appropriate action based on the area. If the address is not in a special area, the function reads the byte from the memory array at the specified address.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The memory address to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte value read from memory. </dd></dl>
+
+</div>
+</div>
+<a id="a558bc6fb4a68e2add3fee88eec1c2a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a558bc6fb4a68e2add3fee88eec1c2a6c">&#9670;&nbsp;</a></span>readMemory16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">u16 readMemory16 </td>
+          <td>(</td>
+          <td class="paramtype">u16&#160;</td>
+          <td class="paramname"><em>addr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function reads a 16-bit value from memory starting at the given address. The function calls the <code>readMemory</code> function twice to get the low byte and high byte of the 16-bit value, and combines the two bytes into a single 16-bit value using a bitwise OR and shift operations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The memory address to start reading from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The 16-bit value read from memory. </dd></dl>
+
+</div>
+</div>
 <a id="a3afecb5267d14dab19df97a82208cb85"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3afecb5267d14dab19df97a82208cb85">&#9670;&nbsp;</a></span>refreshP1()</h2>
 
@@ -977,6 +1112,42 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">ioReg</td><td>The I/O register to be written to (8-bit unsigned integer). Determines the specific register operation. </td></tr>
     <tr><td class="paramname">val</td><td>The value to be written to the specified I/O register (8-bit unsigned integer). Defines the data for the register operation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e4ce4b7fa59a8e7784a6665e2f8f588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e4ce4b7fa59a8e7784a6665e2f8f588">&#9670;&nbsp;</a></span>writeMemory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void writeMemory </td>
+          <td>(</td>
+          <td class="paramtype">u16&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">u8&#160;</td>
+          <td class="paramname"><em>val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This function writes a byte value to a given memory address. The function determines which memory area the address belongs to and writes the value accordingly. If the address belongs to a specific area, the function calls the appropriate write function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The memory address to write to. </td></tr>
+    <tr><td class="paramname">val</td><td>The byte value to write. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1190,20 +1361,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a721c6ff80a6d3e4ad4ffa52a04c60085"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a721c6ff80a6d3e4ad4ffa52a04c60085">&#9670;&nbsp;</a></span>do</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">do</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a778a1d929da98073cbc4e7b78f4a5e09"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a778a1d929da98073cbc4e7b78f4a5e09">&#9670;&nbsp;</a></span>externRam</h2>
 
@@ -1243,12 +1400,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">{</div>
-<div class="line">        <a class="code" href="mmu_8cpp.html#ae130ca660308236fbaa1555be4bff2bf">memory</a>[0xd] = <a class="code" href="mmu_8cpp.html#abc159efa8df9b452d4a5cfefee7258e5">wram</a>[<a class="code" href="mmu_8cpp.html#ad746f082fa7f3e1b582d29eb9863cc33">wramBank</a>]</div>
-<div class="ttc" id="ammu_8cpp_html_abc159efa8df9b452d4a5cfefee7258e5"><div class="ttname"><a href="mmu_8cpp.html#abc159efa8df9b452d4a5cfefee7258e5">wram</a></div><div class="ttdeci">u8 wram[8][0x1000]</div><div class="ttdef"><b>Definition:</b> mmu.cpp:57</div></div>
-<div class="ttc" id="ammu_8cpp_html_ad746f082fa7f3e1b582d29eb9863cc33"><div class="ttname"><a href="mmu_8cpp.html#ad746f082fa7f3e1b582d29eb9863cc33">wramBank</a></div><div class="ttdeci">int wramBank</div><div class="ttdef"><b>Definition:</b> mmu.cpp:63</div></div>
-<div class="ttc" id="ammu_8cpp_html_ae130ca660308236fbaa1555be4bff2bf"><div class="ttname"><a href="mmu_8cpp.html#ae130ca660308236fbaa1555be4bff2bf">memory</a></div><div class="ttdeci">memory[0x9]</div><div class="ttdef"><b>Definition:</b> mmu.cpp:23</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a6d89140bb7b275ad027a7b33fd16909d"></a>
@@ -1404,14 +1556,14 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ae130ca660308236fbaa1555be4bff2bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae130ca660308236fbaa1555be4bff2bf">&#9670;&nbsp;</a></span>memory</h2>
+<a id="a0f09ea9762f03d69ea68b6c34a0b59d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f09ea9762f03d69ea68b6c34a0b59d0">&#9670;&nbsp;</a></span>memory</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">u8* memory[0x10] = <a class="el" href="mmu_8cpp.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a>[<a class="el" href="mmu_8cpp.html#adf5f76879a2dc41ba5b73a2fbe844c26">vramBank</a>] + 0x1000</td>
+          <td class="memname">u8* memory[0x10]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1426,6 +1578,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">int memoryModel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1539affa638c954993cc8e8b34a473a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1539affa638c954993cc8e8b34a473a">&#9670;&nbsp;</a></span>nifiTryAgain</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool nifiTryAgain = true</td>
         </tr>
       </table>
 </div><div class="memdoc">

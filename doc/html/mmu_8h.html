@@ -146,6 +146,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a343775d9586e8f6468a3e9062ea782f0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a343775d9586e8f6468a3e9062ea782f0">updateHblankDMA</a> ()</td></tr>
 <tr class="separator:a343775d9586e8f6468a3e9062ea782f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08fec8c2e7136e93c021a18e4d11e176"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a08fec8c2e7136e93c021a18e4d11e176">latchClock</a> ()</td></tr>
+<tr class="memdesc:a08fec8c2e7136e93c021a18e4d11e176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the Game Boy's clock using the current system time. This function calculates the time difference between the last update and the current system time, and uses it to update the Game Boy's clock. The updated clock values are stored in the appropriate fields of the gbClock structure.  <a href="mmu_8h.html#a08fec8c2e7136e93c021a18e4d11e176">More...</a><br /></td></tr>
 <tr class="separator:a08fec8c2e7136e93c021a18e4d11e176"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc152270575ff7a8e64f2f5ac3d69fda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#acc152270575ff7a8e64f2f5ac3d69fda">doRumble</a> (bool rumbleVal)</td></tr>
 <tr class="separator:acc152270575ff7a8e64f2f5ac3d69fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,8 +185,8 @@ Variables</h2></td></tr>
 <tr class="separator:a15ebf698d3c867fd1fcd0ef9bcfd5e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d8aa7cd05aad3b87cf03fc1067ed3cd"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a7d8aa7cd05aad3b87cf03fc1067ed3cd">bios</a> [0x900]</td></tr>
 <tr class="separator:a7d8aa7cd05aad3b87cf03fc1067ed3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8aba6196de8f095cd60dfaeac6a8ce57"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a8aba6196de8f095cd60dfaeac6a8ce57">memory</a> [0x10]</td></tr>
-<tr class="separator:a8aba6196de8f095cd60dfaeac6a8ce57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f09ea9762f03d69ea68b6c34a0b59d0"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a0f09ea9762f03d69ea68b6c34a0b59d0">memory</a> [0x10]</td></tr>
+<tr class="separator:a0f09ea9762f03d69ea68b6c34a0b59d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0ed1b85995cb654491c9e0958abed2"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a> [2][0x2000]</td></tr>
 <tr class="separator:a7d0ed1b85995cb654491c9e0958abed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a778a1d929da98073cbc4e7b78f4a5e09"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a778a1d929da98073cbc4e7b78f4a5e09">externRam</a></td></tr>
@@ -306,6 +307,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the Game Boy's clock using the current system time. This function calculates the time difference between the last update and the current system time, and uses it to update the Game Boy's clock. The updated clock values are stored in the appropriate fields of the gbClock structure. </p>
+<dl class="section note"><dt>Note</dt><dd>This function assumes that rawTime is set to the current system time (in seconds) prior to its execution. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None </dd></dl>
+
 </div>
 </div>
 <a id="aaff623eef2ec4af523c8a8963b61cf73"></a>
@@ -344,6 +355,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function reads the byte value of a given I/O register. The function determines which register is being read and returns the appropriate value. If the SPEEDHAX flag is defined, the function simply returns the value of the requested register from the ioRam array.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ioReg</td><td>The I/O register to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte value read from the I/O register. </dd></dl>
 
 </div>
 </div>
@@ -362,6 +381,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function reads a single byte from the specified memory address. If the SPEEDHAX flag is not defined, the function checks if the address is within the range of a specific memory area (0x8000 - 0xFFFF) and takes appropriate action based on the area. If the address is not in a special area, the function reads the byte from the memory array at the specified address.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The memory address to read from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The byte value read from memory. </dd></dl>
 
 </div>
 </div>
@@ -380,6 +407,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function reads a 16-bit value from memory starting at the given address. The function calls the <code>readMemory</code> function twice to get the low byte and high byte of the 16-bit value, and combines the two bytes into a single 16-bit value using a bitwise OR and shift operations.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The memory address to start reading from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The 16-bit value read from memory. </dd></dl>
 
 </div>
 </div>
@@ -491,6 +526,14 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function writes a byte value to a given memory address. The function determines which memory area the address belongs to and writes the value accordingly. If the address belongs to a specific area, the function calls the appropriate write function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">addr</td><td>The memory address to write to. </td></tr>
+    <tr><td class="paramname">val</td><td>The byte value to write. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -957,8 +1000,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a8aba6196de8f095cd60dfaeac6a8ce57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8aba6196de8f095cd60dfaeac6a8ce57">&#9670;&nbsp;</a></span>memory</h2>
+<a id="a0f09ea9762f03d69ea68b6c34a0b59d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f09ea9762f03d69ea68b6c34a0b59d0">&#9670;&nbsp;</a></span>memory</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -967,7 +1010,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">u8 * memory</td>
+          <td class="memname">u8* memory[0x10]</td>
         </tr>
       </table>
   </td>

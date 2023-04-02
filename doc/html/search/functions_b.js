@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['latchclock_1098',['latchClock',['../mmu_8h.html#a08fec8c2e7136e93c021a18e4d11e176',1,'mmu.h']]],
+  ['latchclock_1098',['latchClock',['../mmu_8cpp.html#a08fec8c2e7136e93c021a18e4d11e176',1,'latchClock():&#160;mmu.cpp'],['../mmu_8h.html#a08fec8c2e7136e93c021a18e4d11e176',1,'latchClock():&#160;mmu.cpp']]],
   ['loadbios_1099',['loadBios',['../inputhelper_8h.html#ac4e4aa8937901a5e1323e1e48af89655',1,'loadBios(const char *filename):&#160;inputhelper.cpp'],['../inputhelper_8cpp.html#ac4e4aa8937901a5e1323e1e48af89655',1,'loadBios(const char *filename):&#160;inputhelper.cpp']]],
   ['loadborder_1100',['loadBorder',['../gbgfx_8h.html#ac67a99cc1feaf73626bdeebcd476c33d',1,'loadBorder(const char *filename):&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#ac67a99cc1feaf73626bdeebcd476c33d',1,'loadBorder(const char *filename):&#160;gbgfx.cpp']]],
   ['loadcheats_1101',['loadCheats',['../cheats_8h.html#a2b80237c5fa9e3bfc73c24f084b062a1',1,'loadCheats(const char *filename):&#160;cheats.cpp'],['../cheats_8cpp.html#a2b80237c5fa9e3bfc73c24f084b062a1',1,'loadCheats(const char *filename):&#160;cheats.cpp']]],
