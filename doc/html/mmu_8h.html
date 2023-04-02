@@ -125,8 +125,10 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a1660bd805506c41836f415364b20440b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a1660bd805506c41836f415364b20440b">initMMU</a> ()</td></tr>
+<tr class="memdesc:a1660bd805506c41836f415364b20440b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the Memory Management Unit (MMU) by setting initial values for various system variables, mapping the game's memory, and initializing the IO registers and sprite memory.  <a href="mmu_8h.html#a1660bd805506c41836f415364b20440b">More...</a><br /></td></tr>
 <tr class="separator:a1660bd805506c41836f415364b20440b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaff623eef2ec4af523c8a8963b61cf73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#aaff623eef2ec4af523c8a8963b61cf73">mapMemory</a> ()</td></tr>
+<tr class="memdesc:aaff623eef2ec4af523c8a8963b61cf73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the game's memory to the appropriate locations based on the current state of the system.  <a href="mmu_8h.html#aaff623eef2ec4af523c8a8963b61cf73">More...</a><br /></td></tr>
 <tr class="separator:aaff623eef2ec4af523c8a8963b61cf73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14840c955aa72022046ea731262ee843"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a14840c955aa72022046ea731262ee843">readMemory</a> (u16 addr)</td></tr>
 <tr class="separator:a14840c955aa72022046ea731262ee843"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +139,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a3e4ce4b7fa59a8e7784a6665e2f8f588"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a3e4ce4b7fa59a8e7784a6665e2f8f588">writeMemory</a> (u16 addr, u8 val)</td></tr>
 <tr class="separator:a3e4ce4b7fa59a8e7784a6665e2f8f588"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf23f43365192603962a5b11716d0102"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#acf23f43365192603962a5b11716d0102">writeIO</a> (u8 ioReg, u8 val)</td></tr>
+<tr class="memdesc:acf23f43365192603962a5b11716d0102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a value to an I/O register.  <a href="mmu_8h.html#acf23f43365192603962a5b11716d0102">More...</a><br /></td></tr>
 <tr class="separator:acf23f43365192603962a5b11716d0102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3afecb5267d14dab19df97a82208cb85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a3afecb5267d14dab19df97a82208cb85">refreshP1</a> ()</td></tr>
 <tr class="separator:a3afecb5267d14dab19df97a82208cb85"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,8 +184,8 @@ Variables</h2></td></tr>
 <tr class="separator:a15ebf698d3c867fd1fcd0ef9bcfd5e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d8aa7cd05aad3b87cf03fc1067ed3cd"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a7d8aa7cd05aad3b87cf03fc1067ed3cd">bios</a> [0x900]</td></tr>
 <tr class="separator:a7d8aa7cd05aad3b87cf03fc1067ed3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f09ea9762f03d69ea68b6c34a0b59d0"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a0f09ea9762f03d69ea68b6c34a0b59d0">memory</a> [0x10]</td></tr>
-<tr class="separator:a0f09ea9762f03d69ea68b6c34a0b59d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aba6196de8f095cd60dfaeac6a8ce57"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a8aba6196de8f095cd60dfaeac6a8ce57">memory</a> [0x10]</td></tr>
+<tr class="separator:a8aba6196de8f095cd60dfaeac6a8ce57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0ed1b85995cb654491c9e0958abed2"><td class="memItemLeft" align="right" valign="top">u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a7d0ed1b85995cb654491c9e0958abed2">vram</a> [2][0x2000]</td></tr>
 <tr class="separator:a7d0ed1b85995cb654491c9e0958abed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a778a1d929da98073cbc4e7b78f4a5e09"><td class="memItemLeft" align="right" valign="top">u8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mmu_8h.html#a778a1d929da98073cbc4e7b78f4a5e09">externRam</a></td></tr>
@@ -257,6 +260,13 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function sets the rumble feature of the game controller if it is inserted. If it is not inserted, it sets the rumble feature using direct memory access.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rumbleVal</td><td>A boolean value representing the state of the rumble feature. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -274,6 +284,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes the Memory Management Unit (MMU) by setting initial values for various system variables, mapping the game's memory, and initializing the IO registers and sprite memory. </p>
+<p>This function initializes the Memory Management Unit (MMU) by setting initial values for various system variables, including the work RAM bank, VRAM bank, ROM bank, current RAM bank, memory model, DMA source and destination addresses, DMA length, DMA mode, SGB status, HuC3 value and shift, Rockman mapper status, MBC read and write functions, BIOS status, and RAM enabled status. It then calls the <code><a class="el" href="mmu_8cpp.html#aaff623eef2ec4af523c8a8963b61cf73" title="Maps the game&#39;s memory to the appropriate locations based on the current state of the system.">mapMemory()</a></code> function to map the game's memory to the appropriate locations based on the current state of the system. The function then initializes the work RAM and high RAM by setting all bytes to 0, initializes the IO registers and sprite memory by writing default values to the relevant memory locations, and sets the dirty sectors array to all 0's.</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -308,6 +322,10 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Maps the game's memory to the appropriate locations based on the current state of the system. </p>
+<p>This function maps the game's memory to the appropriate locations based on the current state of the system. If the BIOS is enabled, the first 0x100 bytes of memory are mapped to the BIOS. Otherwise, the first 0x100 bytes of memory are mapped to the first ROM bank. The next three memory locations (0x100 - 0x300) are mapped to the second, third, and fourth banks of the ROM, respectively. The ROM bank is refreshed to the current ROM bank value using the <code><a class="el" href="mmu_8cpp.html#a88eb2ff9cc52f2684345f7c9df1da20e" title="Refresh the ROM bank.">refreshRomBank()</a></code> function. The RAM bank is refreshed to the current RAM bank value using the <code><a class="el" href="mmu_8cpp.html#a28d14c62697472b84df12d323ff7f754" title="Refresh the RAM bank.">refreshRamBank()</a></code> function. The VRAM bank is refreshed using the <code><a class="el" href="mmu_8cpp.html#add66663822ebd2a648468eceb44f22b2">refreshVramBank()</a></code> function. The first 0x1000 bytes of work RAM are mapped to memory location 0xC. The work RAM bank is refreshed using the <code><a class="el" href="mmu_8cpp.html#a6e29f12e28db7494e9918eada2c9bc0b">refreshWramBank()</a></code> function. Memory locations 0xE and 0xF are mapped to the first 0x100 bytes of work RAM and the high RAM, respectively. Finally, the DMA source and destination addresses are calculated based on the values in the I/O RAM registers, and are stored in the <code>dmaSource</code> and <code>dmaDest</code> variables, respectively.</p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -379,6 +397,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function updates the input register (0xFF00) based on the current state of the buttons pressed. If the SGB packet bit is not set, the function sets the input register based on the button state and the selected input type. If the SGB packet bit is set, the function checks if the game is in SGB mode and sets the input register accordingly. </p>
 
 </div>
 </div>
@@ -396,6 +415,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>This function updates the Hblank DMA by writing 16-bit values from the source to the destination address in VRAM, and decrementing the DMA length by 1. It also updates the relevant memory addresses to reflect the new DMA parameters.</p>
+<dl class="section return"><dt>Returns</dt><dd>A boolean value indicating whether the DMA is still ongoing or has completed. </dd></dl>
 
 </div>
 </div>
@@ -424,6 +445,24 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Writes a value to an I/O register. </p>
+<p>This function handles the writing of a given value to a specific I/O register in the system. It manages the operations related to the different registers, such as sound, video, timers, and others. The behavior of the function depends on the input I/O register and the value being written. The following operations are performed:</p>
+<ul>
+<li>For specific I/O registers, the Super Game Boy (SGB) or Game Boy (GB) mode is handled.</li>
+<li>Timers and serial communication are managed for certain I/O registers.</li>
+<li>Sound registers are updated based on the input register and value.</li>
+<li>Video registers are updated accordingly, and VRAM and WRAM banks are refreshed when necessary.</li>
+<li>Direct Memory Access (DMA) operations are performed for certain I/O registers in Color Game Boy (CGB) mode.</li>
+<li>Interrupts are requested and cycles are executed based on the values of specific I/O registers.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ioReg</td><td>The I/O register to be written to (8-bit unsigned integer). Determines the specific register operation. </td></tr>
+    <tr><td class="paramname">val</td><td>The value to be written to the specified I/O register (8-bit unsigned integer). Defines the data for the register operation. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -918,8 +957,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0f09ea9762f03d69ea68b6c34a0b59d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f09ea9762f03d69ea68b6c34a0b59d0">&#9670;&nbsp;</a></span>memory</h2>
+<a id="a8aba6196de8f095cd60dfaeac6a8ce57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aba6196de8f095cd60dfaeac6a8ce57">&#9670;&nbsp;</a></span>memory</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -928,7 +967,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">u8* memory[0x10]</td>
+          <td class="memname">u8 * memory</td>
         </tr>
       </table>
   </td>

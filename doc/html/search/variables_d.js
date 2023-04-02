@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['name_1527',['name',['../structMenuOption.html#a3bccf99e96a0d499d30a34403198791b',1,'MenuOption::name()'],['../structConsoleSubMenu.html#a471a9c4e88aadf1c8611ee0c163aba9d',1,'ConsoleSubMenu::name()'],['../structKeyConfig.html#a5b1fbe3d6616bef006d9580547aff3b7',1,'KeyConfig::name()'],['../structcheat__t.html#abf6068fb1afbdc7aea9a6340f663c723',1,'cheat_t::name()']]],
-  ['nifienabled_1528',['nifiEnabled',['../nifi_8h.html#af3c60f1353a1aaf418c586a59ea8c1ef',1,'nifiEnabled():&#160;nifi.cpp'],['../nifi_8cpp.html#af3c60f1353a1aaf418c586a59ea8c1ef',1,'nifiEnabled():&#160;nifi.cpp']]],
-  ['nifisendid_1529',['nifiSendid',['../nifi_8cpp.html#a986667ac77a6f03db6e0bb203903b6be',1,'nifiSendid():&#160;nifi.cpp'],['../nifi_8h.html#a986667ac77a6f03db6e0bb203903b6be',1,'nifiSendid():&#160;nifi.cpp']]],
-  ['nifitryagain_1530',['nifiTryAgain',['../mmu_8cpp.html#ab1539affa638c954993cc8e8b34a473a',1,'mmu.cpp']]],
+  ['name_1528',['name',['../structMenuOption.html#a3bccf99e96a0d499d30a34403198791b',1,'MenuOption::name()'],['../structConsoleSubMenu.html#a471a9c4e88aadf1c8611ee0c163aba9d',1,'ConsoleSubMenu::name()'],['../structKeyConfig.html#a5b1fbe3d6616bef006d9580547aff3b7',1,'KeyConfig::name()'],['../structcheat__t.html#abf6068fb1afbdc7aea9a6340f663c723',1,'cheat_t::name()']]],
+  ['nifienabled_1529',['nifiEnabled',['../nifi_8h.html#af3c60f1353a1aaf418c586a59ea8c1ef',1,'nifiEnabled():&#160;nifi.cpp'],['../nifi_8cpp.html#af3c60f1353a1aaf418c586a59ea8c1ef',1,'nifiEnabled():&#160;nifi.cpp']]],
+  ['nifisendid_1530',['nifiSendid',['../nifi_8h.html#a986667ac77a6f03db6e0bb203903b6be',1,'nifiSendid():&#160;nifi.cpp'],['../nifi_8cpp.html#a986667ac77a6f03db6e0bb203903b6be',1,'nifiSendid():&#160;nifi.cpp']]],
   ['num_5fds_5fkeys_1531',['NUM_DS_KEYS',['../inputhelper_8cpp.html#ab272be0c4af402e484bcbd8b1d20ad34',1,'inputhelper.cpp']]],
   ['num_5fgb_5fkeys_1532',['NUM_GB_KEYS',['../inputhelper_8cpp.html#ae418cdf8a0af8daa79b97ff7d03ecb6c',1,'inputhelper.cpp']]],
   ['numberofpages_1533',['numberOfPages',['../structCACHE.html#a14fdc7815f479766c61005aac1f9c535',1,'CACHE']]],

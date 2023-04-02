@@ -1,14 +1,14 @@
 var searchData=
 [
   ['readconfigfile_1141',['readConfigFile',['../inputhelper_8cpp.html#a5a9ea8d08563c440e8a39e3798c96e46',1,'readConfigFile():&#160;inputhelper.cpp'],['../inputhelper_8h.html#a5a9ea8d08563c440e8a39e3798c96e46',1,'readConfigFile():&#160;inputhelper.cpp']]],
-  ['readio_1142',['readIO',['../mmu_8cpp.html#ab8a42bf79f008339a337f67be30e7282',1,'readIO(u8 ioReg):&#160;mmu.cpp'],['../mmu_8h.html#ab8a42bf79f008339a337f67be30e7282',1,'readIO(u8 ioReg):&#160;mmu.cpp']]],
+  ['readio_1142',['readIO',['../mmu_8h.html#ab8a42bf79f008339a337f67be30e7282',1,'mmu.h']]],
   ['readkeys_1143',['readKeys',['../inputhelper_8h.html#ac5fadb7881ae954770d26f6ee7fc4c72',1,'readKeys():&#160;inputhelper.cpp'],['../inputhelper_8cpp.html#ac5fadb7881ae954770d26f6ee7fc4c72',1,'readKeys():&#160;inputhelper.cpp']]],
-  ['readmemory_1144',['readMemory',['../mmu_8h.html#a14840c955aa72022046ea731262ee843',1,'readMemory(u16 addr):&#160;mmu.cpp'],['../mmu_8cpp.html#a14840c955aa72022046ea731262ee843',1,'readMemory(u16 addr):&#160;mmu.cpp']]],
-  ['readmemory16_1145',['readMemory16',['../mmu_8h.html#a558bc6fb4a68e2add3fee88eec1c2a6c',1,'readMemory16(u16 addr):&#160;mmu.cpp'],['../mmu_8cpp.html#a558bc6fb4a68e2add3fee88eec1c2a6c',1,'readMemory16(u16 addr):&#160;mmu.cpp']]],
+  ['readmemory_1144',['readMemory',['../mmu_8h.html#a14840c955aa72022046ea731262ee843',1,'mmu.h']]],
+  ['readmemory16_1145',['readMemory16',['../mmu_8h.html#a558bc6fb4a68e2add3fee88eec1c2a6c',1,'mmu.h']]],
   ['readnorflashid_1146',['ReadNorFlashID',['../3in1_8h.html#ae9856d8b1d92160954db3d114f488f6f',1,'ReadNorFlashID():&#160;3in1.cpp'],['../3in1_8cpp.html#ae9856d8b1d92160954db3d114f488f6f',1,'ReadNorFlashID():&#160;3in1.cpp']]],
   ['redrawcheatmenu_1147',['redrawCheatMenu',['../cheats_8cpp.html#a4a5fa081b7a687f6bc46c7c73f39c653',1,'cheats.cpp']]],
   ['redrawkeyconfigchooser_1148',['redrawKeyConfigChooser',['../inputhelper_8cpp.html#a95c7c2afbdbb5e22feb9c38f8a4adc88',1,'inputhelper.cpp']]],
-  ['redrawmenu_1149',['redrawMenu',['../console_8h.html#abbe4f0a9055ffd1709a5407f53186f9a',1,'redrawMenu():&#160;console.cpp'],['../console_8cpp.html#abbe4f0a9055ffd1709a5407f53186f9a',1,'redrawMenu():&#160;console.cpp']]],
+  ['redrawmenu_1149',['redrawMenu',['../console_8cpp.html#abbe4f0a9055ffd1709a5407f53186f9a',1,'redrawMenu():&#160;console.cpp'],['../console_8h.html#abbe4f0a9055ffd1709a5407f53186f9a',1,'redrawMenu():&#160;console.cpp']]],
   ['refreshgfx_1150',['refreshGFX',['../gbgfx_8h.html#a62b34356f6149d2c44ee24379cc347a6',1,'refreshGFX():&#160;gbgfx.cpp'],['../gbgfx_8cpp.html#a62b34356f6149d2c44ee24379cc347a6',1,'refreshGFX():&#160;gbgfx.cpp']]],
   ['refreshp1_1151',['refreshP1',['../mmu_8h.html#a3afecb5267d14dab19df97a82208cb85',1,'refreshP1():&#160;mmu.cpp'],['../mmu_8cpp.html#a3afecb5267d14dab19df97a82208cb85',1,'refreshP1():&#160;mmu.cpp']]],
   ['refreshrambank_1152',['refreshRamBank',['../mmu_8cpp.html#a28d14c62697472b84df12d323ff7f754',1,'mmu.cpp']]],
