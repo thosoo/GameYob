@@ -17,14 +17,14 @@
 
 extern time_t rawTime;
 
-#define refreshVramBank()
-    {
-        memory[0x8] = vram[vramBank];
-        memory[0x9] = vram[vramBank] + 0x1000;
+#define refreshVramBank() \
+    { \
+        memory[0x8] = vram[vramBank]; \
+        memory[0x9] = vram[vramBank] + 0x1000; \
     }
-#define refreshWramBank()
-    {
-        memory[0xd] = wram[wramBank];
+#define refreshWramBank() \
+    { \
+        memory[0xd] = wram[wramBank]; \
     }
 
 bool hasRumble;
@@ -869,14 +869,14 @@ void mapMemory()
 
 
 /* Increment y if x is greater than val */
-#define OVERFLOW(x, val, y)
-    do
-    {
-        while (x >= val)
-        {
-            x -= val;
-            y++;
-        }
+#define OVERFLOW(x, val, y) \
+    do \
+    { \
+        while (x >= val) \
+        { \
+            x -= val; \
+            y++; \
+        } \
     } while (0)
 
 /**
