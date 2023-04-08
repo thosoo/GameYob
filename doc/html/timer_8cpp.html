@@ -72,6 +72,9 @@ $(function() {
 <div class="title">timer.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Clock updater module for NDS (Nintendo DS) projects.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;nds.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="timer_8h_source.html">timer.h</a>&quot;</code><br />
@@ -80,7 +83,7 @@ Include dependency graph for timer.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="timer_8cpp__incl.png" border="0" usemap="#aarm9_2source_2timer_8cpp" alt=""/></div>
 <map name="aarm9_2source_2timer_8cpp" id="aarm9_2source_2timer_8cpp">
-<area shape="rect" title=" " alt="" coords="35,5,203,32"/>
+<area shape="rect" title="Clock updater module for NDS (Nintendo DS) projects." alt="" coords="35,5,203,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,63,107"/>
 <area shape="rect" title=" " alt="" coords="87,80,151,107"/>
 <area shape="rect" href="timer_8h.html" title=" " alt="" coords="176,80,244,107"/>
@@ -90,6 +93,7 @@ Include dependency graph for timer.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7042121c8f144661521688018c38967b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8cpp.html#a7042121c8f144661521688018c38967b">clockUpdater</a> ()</td></tr>
+<tr class="memdesc:a7042121c8f144661521688018c38967b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the raw time value.  <a href="timer_8cpp.html#a7042121c8f144661521688018c38967b">More...</a><br /></td></tr>
 <tr class="separator:a7042121c8f144661521688018c38967b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -97,7 +101,10 @@ Variables</h2></td></tr>
 <tr class="memitem:a2e99c78e3943a1e70d5e79a314aee490"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timer_8cpp.html#a2e99c78e3943a1e70d5e79a314aee490">rawTime</a></td></tr>
 <tr class="separator:a2e99c78e3943a1e70d5e79a314aee490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Clock updater module for NDS (Nintendo DS) projects. </p>
+<p>This module provides a basic clock updater function to increase the raw time value by one. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="a7042121c8f144661521688018c38967b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7042121c8f144661521688018c38967b">&#9670;&nbsp;</a></span>clockUpdater()</h2>
 
@@ -112,6 +119,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates the raw time value. </p>
+<p>This function is responsible for incrementing the raw time value (rawTime) by 1. It is typically called by a timer interrupt or a main loop in the application. </p>
 
 </div>
 </div>
