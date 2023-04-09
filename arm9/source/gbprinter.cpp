@@ -46,36 +46,72 @@ void resetGbPrinter();
 void printerSendVariableLenData();
 void printerSaveFile();
 
-// Called along with other initialization routines
+/**
+ * @brief Initialize the Game Boy Printer emulator.
+ *
+ * This function initializes the Game Boy Printer emulator, setting initial values
+ * for various parameters and calling the resetGbPrinter() function to reset the
+ * printer state. This function should be called along with other initialization
+ * routines.
+ */
 void initGbPrinter()
 {
+    // Initialize packet byte index, checksum, and command index
     printerPacketByte = 0;
     printerChecksum = 0;
     printerCmd2Index = 0;
 
+    // Initialize printer margins and last printer margins
     printerMargins = -1;
     lastPrinterMargins = -1;
 
+    // Initialize the number of printed images
     numPrinted = 0;
 
+    // Reset the Game Boy Printer emulator state
     resetGbPrinter();
 }
 
-// Can be invoked by the game (command 1)
+
+/**
+ * @brief Reset the Game Boy Printer emulator state.
+ *
+ * This function resets the Game Boy Printer emulator state, clearing the graphics
+ * buffer, resetting the printer status, and setting the printer graphics index and
+ * print counter to zero. This can be invoked by the game using command 1.
+ */
 void resetGbPrinter()
 {
+    // Reset printer status
     printerStatus = 0;
+
+    // Reset printer graphics index
     printerGfxIndex = 0;
+
+    // Clear the printer graphics buffer
     memset(printerGfx, 0, sizeof(printerGfx));
+
+    // Reset the print counter
     printCounter = 0;
 }
 
+
+/**
+ * @brief Process variable-length data and update the Game Boy Printer emulator state.
+ *
+ * This function processes variable-length data sent to the Game Boy Printer emulator,
+ * updating the emulator state based on the current printer command. It handles
+ * print and fill buffer commands, as well as updating various parameters.
+ *
+ * @param dat The byte of variable-length data to be processed.
+ */
 void printerSendVariableLenData(u8 dat)
 {
+    // Process the variable-length data based on the current printer command
     switch (printerCmd)
     {
-
     case 0x2: // Print
+        // Handle print subcommands based on the command index
         switch (printerCmd2Index)
         {
         case 0: // Unknown (0x01)
@@ -91,10 +127,12 @@ void printerSendVariableLenData(u8 dat)
             printerExposure = dat;
             break;
         }
+        // Increment the command index
         printerCmd2Index++;
         break;
 
     case 0x4: // Fill buffer
+        // Add data to the printer graphics buffer if within bounds
         if (printerGfxIndex < PRINTER_WIDTH * PRINTER_HEIGHT / 4)
         {
             printerGfx[printerGfxIndex++] = dat;
@@ -103,19 +141,28 @@ void printerSendVariableLenData(u8 dat)
     }
 }
 
+
+/**
+ * @brief Process and send a byte to the Game Boy Printer emulator.
+ *
+ * This function processes a byte of data sent to the Game Boy Printer emulator,
+ * updating the printer state and handling the communication protocol. The
+ * protocol involves handling magic bytes, commands, data, checksum, and status
+ * information.
+ *
+ * @param dat The byte of data to be sent to the Game Boy Printer emulator.
+ */
 void sendGbPrinterByte(u8 dat)
 {
-    // printLog("Byte %d = %x\n", printerPacketByte, dat);
-
-    // "Byte" 6 is actually a number of bytes. The counter stays at 6 until the
-    // required number of bytes have been read.
+    // Handle variable-length data packet byte depending on the packet byte index
     if (printerPacketByte == 6 && printerCmdLength == 0)
         printerPacketByte++;
 
-    // Checksum: don't count the magic bytes or checksum bytes
+    // Update the checksum, excluding magic bytes and checksum bytes
     if (printerPacketByte != 0 && printerPacketByte != 1 && printerPacketByte != 7 && printerPacketByte != 8)
         printerChecksum += dat;
 
+    // Process the current packet byte based on its index
     switch (printerPacketByte)
     {
     case 0: // Magic byte
@@ -147,7 +194,7 @@ void sendGbPrinterByte(u8 dat)
         printerCmdLength |= dat << 8;
         break;
 
-    case 6: // variable-length data
+    case 6: // Variable-length data
         linkReceivedData = 0x00;
 
         if (!printerPacketCompressed)
@@ -183,7 +230,6 @@ void sendGbPrinterByte(u8 dat)
         }
         printerCmdLength--;
         return; // printerPacketByte won't be incremented
-
     case 7: // Checksum (LSB)
         linkReceivedData = 0x00;
         printerExpectedChecksum = dat;
@@ -192,11 +238,9 @@ void sendGbPrinterByte(u8 dat)
         linkReceivedData = 0x00;
         printerExpectedChecksum |= dat << 8;
         break;
-
     case 9: // Alive indicator
         linkReceivedData = 0x81;
         break;
-
     case 10: // Status
         if (printerChecksum != printerExpectedChecksum)
         {
@@ -205,7 +249,7 @@ void sendGbPrinterByte(u8 dat)
         }
         else
             printerStatus &= ~PRINTER_STATUS_CHECKSUM;
-
+        // Handle commands
         switch (printerCmd)
         {
         case 1: // Initialize
@@ -218,9 +262,7 @@ void sendGbPrinterByte(u8 dat)
             // Data has been read, nothing more to do
             break;
         }
-
         linkReceivedData = printerStatus;
-
         // The received value apparently shouldn't contain this until next
         // packet.
         if (printerGfxIndex >= 0x280)
@@ -228,24 +270,41 @@ void sendGbPrinterByte(u8 dat)
 
         goto endPacket;
     }
-
+    // Increment the packet byte index
     printerPacketByte++;
     return;
-
 endPacket:
+    // Reset packet byte index, checksum, and command index for the next packet
     printerPacketByte = 0;
     printerChecksum = 0;
     printerCmd2Index = 0;
     return;
 }
 
+/**
+ * @brief Write a 32-bit unsigned integer into a byte array in little-endian order.
+ *
+ * This function writes the given 32-bit unsigned integer into the provided byte
+ * array in little-endian order, i.e., least significant byte first.
+ *
+ * @param ptr Pointer to the byte array where the 32-bit value will be written.
+ * @param x The 32-bit unsigned integer to be written.
+ */
 inline void WRITE_32(u8 *ptr, u32 x)
 {
+    // Write the least significant byte of x into the byte array
     *ptr = x & 0xff;
+
+    // Write the second least significant byte of x into the byte array
     *(ptr + 1) = (x >> 8) & 0xff;
+
+    // Write the second most significant byte of x into the byte array
     *(ptr + 2) = (x >> 16) & 0xff;
+
+    // Write the most significant byte of x into the byte array
     *(ptr + 3) = (x >> 24) & 0xff;
 }
+
 
 u8 bmpHeader[] = { // Contains header data & palettes
     0x42, 0x4d, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46, 0x00, 0x00, 0x00, 0x28, 0x00,
@@ -254,13 +313,19 @@ u8 bmpHeader[] = { // Contains header data & palettes
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x55, 0x55, 0x55, 0x55, 0xaa, 0xaa,
     0xaa, 0xaa, 0xff, 0xff, 0xff, 0xff};
 
-// Save the image as a 4bpp bitmap
+/**
+ * @brief Save the Game Boy Printer image as a 4bpp bitmap.
+ *
+ * This function saves the image generated by the Game Boy Printer emulator as a
+ * 4bpp bitmap file. The function also handles appending images to existing bitmap
+ * files, if necessary.
+ */
 void printerSaveFile()
 {
+    // Display the printer icon during the save process
     displayIcon(ICON_PRINTER);
 
-    // if "appending" is true, this image will be slapped onto the old one.
-    // Some games have a tendency to print an image in multiple goes.
+    // Check if the image should be appended to the previous one
     bool appending = false;
     if (lastPrinterMargins != -1 &&
         (lastPrinterMargins & 0x0f) == 0 && // Last printed item left 0 space after
@@ -340,7 +405,7 @@ void printerSaveFile()
         index += (pixel % 8);
         index /= 4;
 
-        pixelData[index] = 0;
+                pixelData[index] = 0;
         pixelData[index + 1] = 0;
         for (int j = 0; j < 2; j++)
         {
@@ -401,25 +466,46 @@ void printerSaveFile()
         printCounter = 1;
 }
 
+
+/**
+ * @brief Updates the state of the Game Boy Printer emulator.
+ *
+ * This function is responsible for managing the state of the Game Boy Printer
+ * emulator, including decrementing the print counter, updating the printer
+ * status, and saving the print data to a file when necessary.
+ */
 void updateGbPrinter()
 {
+    // Check if the print counter is non-zero
     if (printCounter != 0)
     {
+        // Decrement the print counter
         printCounter--;
+
+        // If the print counter reaches zero, update the printer status
         if (printCounter == 0)
         {
+            // Check if the printer is currently printing
             if (printerStatus & PRINTER_STATUS_PRINTING)
             {
+                // Clear the printing flag from the printer status
                 printerStatus &= ~PRINTER_STATUS_PRINTING;
-                displayIcon(ICON_NULL); // Disable the printing icon
+                // Disable the printing icon on the display
+                displayIcon(ICON_NULL);
             }
             else
             {
+                // Set the requested and printing flags in the printer status
                 printerStatus |= PRINTER_STATUS_REQUESTED;
                 printerStatus |= PRINTER_STATUS_PRINTING;
+
+                // Clear the ready flag from the printer status
                 printerStatus &= ~PRINTER_STATUS_READY;
+
+                // Save the print data to a file
                 printerSaveFile();
             }
         }
     }
 }
+
