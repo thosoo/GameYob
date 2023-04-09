@@ -99,10 +99,13 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8b7f6bd95a6bdb68024751bda063020f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbprinter_8h.html#a8b7f6bd95a6bdb68024751bda063020f">initGbPrinter</a> ()</td></tr>
+<tr class="memdesc:a8b7f6bd95a6bdb68024751bda063020f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Game Boy Printer emulator.  <a href="gbprinter_8h.html#a8b7f6bd95a6bdb68024751bda063020f">More...</a><br /></td></tr>
 <tr class="separator:a8b7f6bd95a6bdb68024751bda063020f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c708f03b0d606199c03f238ba0d50eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbprinter_8h.html#a5c708f03b0d606199c03f238ba0d50eb">sendGbPrinterByte</a> (u8 dat)</td></tr>
+<tr class="memdesc:a5c708f03b0d606199c03f238ba0d50eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process and send a byte to the Game Boy Printer emulator.  <a href="gbprinter_8h.html#a5c708f03b0d606199c03f238ba0d50eb">More...</a><br /></td></tr>
 <tr class="separator:a5c708f03b0d606199c03f238ba0d50eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d8869d9aa767f42c48f2511ac520e3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gbprinter_8h.html#a9d8869d9aa767f42c48f2511ac520e3a">updateGbPrinter</a> ()</td></tr>
+<tr class="memdesc:a9d8869d9aa767f42c48f2511ac520e3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the state of the Game Boy Printer emulator.  <a href="gbprinter_8h.html#a9d8869d9aa767f42c48f2511ac520e3a">More...</a><br /></td></tr>
 <tr class="separator:a9d8869d9aa767f42c48f2511ac520e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -120,6 +123,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize the Game Boy Printer emulator. </p>
+<p>This function initializes the Game Boy Printer emulator, setting initial values for various parameters and calling the <a class="el" href="gbprinter_8cpp.html#a0be880571cffcaceab46e9a22a5ef703" title="Reset the Game Boy Printer emulator state.">resetGbPrinter()</a> function to reset the printer state. This function should be called along with other initialization routines. </p>
 
 </div>
 </div>
@@ -139,6 +145,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Process and send a byte to the Game Boy Printer emulator. </p>
+<p>This function processes a byte of data sent to the Game Boy Printer emulator, updating the printer state and handling the communication protocol. The protocol involves handling magic bytes, commands, data, checksum, and status information.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dat</td><td>The byte of data to be sent to the Game Boy Printer emulator. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a9d8869d9aa767f42c48f2511ac520e3a"></a>
@@ -155,6 +170,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Updates the state of the Game Boy Printer emulator. </p>
+<p>This function is responsible for managing the state of the Game Boy Printer emulator, including decrementing the print counter, updating the printer status, and saving the print data to a file when necessary. </p>
 
 </div>
 </div>
